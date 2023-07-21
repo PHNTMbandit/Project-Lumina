@@ -224,9 +224,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.03271028
+    y: 0.24747474
     width: 1
-    height: 0.9339953
+    height: 0.5037879
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -907,7 +907,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaaa03a8ba67194ba3d9ee655ad2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 6
+  _moveSpeed: 9
+  _velocity: 0.96
+  _acceleration: 13
+  _decceleration: 16
+  _frictionAmount: 0.22
 --- !u!50 &1244203715
 Rigidbody2D:
   serializedVersion: 4
