@@ -1,4 +1,6 @@
-﻿namespace ProjectLumina.Player.StateMachine.States
+﻿using UnityEngine;
+
+namespace ProjectLumina.Player.StateMachine.States
 {
     public class GroundedState : State
     {
@@ -19,7 +21,13 @@
                 lastMoveX = moveInput;
             }
 
-            if (jumpInput && stateController.PlayerJump.IsGrounded)
+            if (stateController.PlayerFall.IsFalling)
+            {
+                stateController.ChangeState(stateController.GetState("Fall"));
+            }
+            Debug.Log(jumpInput);
+
+            if (jumpInput && stateController.PlayerJump.CanJump())
             {
                 stateController.ChangeState(stateController.GetState("Jump"));
             }
@@ -29,7 +37,7 @@
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerMovement.Move(moveInput);
+            stateController.PlayerMove.Move(moveInput);
         }
     }
 }

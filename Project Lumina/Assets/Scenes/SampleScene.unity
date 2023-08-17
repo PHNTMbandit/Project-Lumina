@@ -223,10 +223,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.0018744143
-    y: 0
-    width: 0.9963553
-    height: 1
+    x: 0
+    y: 0.24747474
+    width: 1
+    height: 0.5037879
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -756,6 +756,7 @@ GameObject:
   - component: {fileID: 1244203715}
   - component: {fileID: 1244203712}
   - component: {fileID: 1244203713}
+  - component: {fileID: 1244203718}
   - component: {fileID: 1244203714}
   - component: {fileID: 1244203717}
   m_Layer: 3
@@ -1008,8 +1009,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3954851771403c440acd3d3dfb22bb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 4.11
+  _jumpForce: 13
+  _jumpBufferTime: 0.1
+  _jumpCoyoteTime: 0.15
   _sensor: {fileID: 1729079057}
+--- !u!114 &1244203718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19011604e7e8abf4b89a8a2e06dc22e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <FallingThreshold>k__BackingField: -1
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1221,7 +1237,7 @@ Transform:
   m_GameObject: {fileID: 1729079055}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.06, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

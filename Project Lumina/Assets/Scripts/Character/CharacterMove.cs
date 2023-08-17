@@ -1,13 +1,17 @@
-﻿using UnityEngine;
+﻿using Sirenix.OdinInspector;
+using UnityEngine;
 
-namespace ProjectLumina.Player
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Rigidbody2D))]
-    [AddComponentMenu("Player/Player Movement")]
-    public class PlayerMovement : MonoBehaviour
+    [AddComponentMenu("Character/Character Move")]
+    public class CharacterMove : MonoBehaviour
     {
-        [SerializeField, Range(0, 25)]
-        private float _moveSpeed, _velocity, _acceleration, _decceleration, _frictionAmount;
+        [BoxGroup("Move"), SerializeField, Range(0, 25)]
+        private float _moveSpeed, _velocity, _acceleration;
+
+        [BoxGroup("Stop"), SerializeField, Range(0, 25)]
+        private float _decceleration, _frictionAmount;
 
         private Rigidbody2D _rb;
 

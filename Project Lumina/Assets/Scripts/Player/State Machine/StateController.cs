@@ -1,11 +1,12 @@
-﻿using ProjectLumina.Input;
+﻿using ProjectLumina.Character;
+using ProjectLumina.Input;
 using System;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(PlayerMovement))]
+    [RequireComponent(typeof(CharacterMove))]
     [AddComponentMenu("Player/State Controller")]
     public class StateController : MonoBehaviour
     {
@@ -15,8 +16,9 @@ namespace ProjectLumina.Player.StateMachine
         public InputReader InputReader { get; private set; }
 
         public Animator Animator { get; private set; }
-        public PlayerJump PlayerJump { get; private set; }
-        public PlayerMovement PlayerMovement { get; private set; }
+        public CharacterFall PlayerFall { get; private set; }
+        public CharacterJump PlayerJump { get; private set; }
+        public CharacterMove PlayerMove { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
         #endregion Properties
@@ -43,8 +45,9 @@ namespace ProjectLumina.Player.StateMachine
         private void Awake()
         {
             Animator = GetComponent<Animator>();
-            PlayerJump = GetComponent<PlayerJump>();
-            PlayerMovement = GetComponent<PlayerMovement>();
+            PlayerFall = GetComponent<CharacterFall>();
+            PlayerJump = GetComponent<CharacterJump>();
+            PlayerMove = GetComponent<CharacterMove>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
