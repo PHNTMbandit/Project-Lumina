@@ -10,7 +10,8 @@ namespace ProjectLumina.Input
         #region Variables
 
         public GameControls GameControls { get; private set; }
-        public bool JumpInput { get; private set; }
+        public bool JumpInputPress { get; private set; }
+        public bool JumpInputRelease { get; private set; }
         public float MoveInput { get; private set; }
 
         public UnityAction onJump;
@@ -43,13 +44,15 @@ namespace ProjectLumina.Input
         {
             if (context.performed)
             {
-                JumpInput = true;
+                JumpInputPress = true;
+                JumpInputRelease = false;
 
                 onJump?.Invoke();
             }
             else if (context.canceled)
             {
-                JumpInput = false;
+                JumpInputPress = false;
+                JumpInputRelease = true;
             }
         }
 

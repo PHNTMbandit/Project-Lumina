@@ -46,11 +46,17 @@ namespace ProjectLumina.Character
         {
             if (IsGrounded)
             {
+
                 _lastGroundedTime = _jumpCoyoteTime;
             }
             else
             {
                 _lastGroundedTime -= Time.deltaTime;
+            }
+
+            if (_rb.velocity.y > 0 && _inputReader.JumpInputRelease)
+            {
+                _rb.AddForce(_rb.velocity.y * (1 - _jumpCutMultiplier) * Vector2.down, ForceMode2D.Impulse);
             }
         }
 
