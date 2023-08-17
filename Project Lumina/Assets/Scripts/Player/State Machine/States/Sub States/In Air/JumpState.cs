@@ -8,7 +8,7 @@ namespace ProjectLumina.Player.StateMachine.States
         public override void Enter(StateController stateController)
         {
             base.Enter(stateController);
-            Debug.Log("jump");
+
             stateController.PlayerJump.Jump();
         }
     }

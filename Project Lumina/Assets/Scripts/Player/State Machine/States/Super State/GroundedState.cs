@@ -23,10 +23,6 @@
             {
                 stateController.ChangeState(stateController.GetState("Jump"));
             }
-            else if (stateController.PlayerJump.IsGrounded == false)
-            {
-                stateController.ChangeState(stateController.GetState("Fall"));
-            }
         }
 
         public override void PhysicsUpdate(StateController stateController)
