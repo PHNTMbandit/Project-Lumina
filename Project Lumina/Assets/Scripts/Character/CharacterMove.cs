@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ProjectLumina.Character
 {
+    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(SpriteRenderer))]
     [AddComponentMenu("Character/Character Move")]
@@ -15,11 +16,13 @@ namespace ProjectLumina.Character
         private float _decceleration, _frictionAmount;
 
         private float _lastMoveX, _moveInput;
+        private Animator _animator;
         private Rigidbody2D _rb;
         private SpriteRenderer _spriteRenderer;
 
         private void Awake()
         {
+            _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
             _spriteRenderer = GetComponent<SpriteRenderer>();
         }
@@ -40,6 +43,7 @@ namespace ProjectLumina.Character
             float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, _velocity) * Mathf.Sign(speedDiff);
 
             _moveInput = move;
+            _animator.SetFloat("speed", Mathf.Abs(_moveInput));
             _spriteRenderer.flipX = _lastMoveX < 0;
 
             _rb.AddForce(movement * Vector2.right);
