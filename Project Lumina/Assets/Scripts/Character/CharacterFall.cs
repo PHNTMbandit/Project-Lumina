@@ -12,6 +12,9 @@ namespace ProjectLumina.Character
         [BoxGroup("Thresholds"), SerializeField, Range(-10, 0)]
         private float _fallingThreshold;
 
+        [BoxGroup("Thresholds"), SerializeField, Range(-100, 0)]
+        private float _maxFallGravitySpeed;
+
         [BoxGroup("Thresholds"), SerializeField, Range(0, 10)]
         private float _fallingGravityScale, _fallingGravityMultiplier;
 
@@ -26,11 +29,12 @@ namespace ProjectLumina.Character
         {
             if (_rb.velocity.y < 0)
             {
-                _rb.gravityScale = _fallingGravityScale * _fallingGravityMultiplier;
+                SetGravityScale(_fallingGravityScale * _fallingGravityMultiplier);
+                _rb.velocity = new(_rb.velocity.x, Mathf.Max(_rb.velocity.y, _maxFallGravitySpeed));
             }
             else
             {
-                _rb.gravityScale = _fallingGravityScale;
+                SetGravityScale(_fallingGravityScale);
             }
 
             if (_rb.velocity.y < _fallingThreshold)
@@ -41,6 +45,11 @@ namespace ProjectLumina.Character
             {
                 IsFalling = false;
             }
+        }
+
+        private void SetGravityScale(float gravityScale)
+        {
+            _rb.gravityScale = gravityScale;
         }
     }
 }

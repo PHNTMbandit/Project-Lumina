@@ -12,27 +12,45 @@ namespace ProjectLumina.Character
         [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool IsGrounded { get; private set; }
 
-        [BoxGroup("Force"), SerializeField, Range(0, 25)]
+        [ToggleGroup("AddForce"), SerializeField]
+        private bool AddForce;
 
+        [ToggleGroup("AddForce"), SerializeField, Range(0, 25)]
         private float _jumpForce;
 
-        [BoxGroup("Quality of Life"), SerializeField, Range(0, 10)]
+        [ToggleGroup("AddForce"), SerializeField, Range(0, 10)]
+        private float _jumpGravityScale;
+
+        [ToggleGroup("JumpCut"), SerializeField]
+        private bool JumpCut;
+
+        [ToggleGroup("JumpCut"), SerializeField, Range(0, 10)]
         private float _jumpCutMultiplier;
 
-        [BoxGroup("Quality of Life"), SerializeField, Range(0, 1)]
+        [ToggleGroup("CoyoteTime"), SerializeField]
+        private bool CoyoteTime;
+
+        [ToggleGroup("CoyoteTime"), SerializeField, Range(0, 1)]
         private float _jumpCoyoteTime;
 
-        [BoxGroup("References"), SerializeField]
+        [ToggleGroup("HangTime"), SerializeField]
+        private bool HangTime;
+
+        [ToggleGroup("HangTime"), Range(0, 10), SerializeField]
+        private float _jumpHangGravityMult, _jumpHangTimeThreshold, _jumpHangAccelerationMultiplier, _jumpHangMaxSpeedMultiplier;
+
+        [FoldoutGroup("References"), SerializeField]
         private RaySensor2D _sensor;
 
-        [BoxGroup("References"), SerializeField]
+        [FoldoutGroup("References"), SerializeField]
         private InputReader _inputReader;
 
         [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         private float _lastGroundedTime;
 
+        private float _accelerationRate;
+        private float _targetSpeed;
         private Rigidbody2D _rb;
-
 
         private void Awake()
         {
@@ -46,37 +64,60 @@ namespace ProjectLumina.Character
         {
             if (IsGrounded)
             {
-
                 _lastGroundedTime = _jumpCoyoteTime;
             }
             else
             {
                 _lastGroundedTime -= Time.deltaTime;
+
+                if (HangTime)
+                {
+                    if (Mathf.Abs(_rb.velocity.y) < _jumpHangTimeThreshold)
+                    {
+                        _rb.gravityScale = _jumpGravityScale * _jumpHangGravityMult;
+
+                        _accelerationRate = _jumpHangAccelerationMultiplier;
+                        _targetSpeed *= _jumpHangMaxSpeedMultiplier;
+                    }
+                }
             }
 
-            if (_rb.velocity.y > 0 && _inputReader.JumpInputRelease)
+            if (JumpCut)
             {
-                _rb.AddForce(_rb.velocity.y * (1 - _jumpCutMultiplier) * Vector2.down, ForceMode2D.Impulse);
+                if (_rb.velocity.y > 0 && _inputReader.JumpInputRelease)
+                {
+                    _rb.AddForce(_rb.velocity.y * (1 - _jumpCutMultiplier) * Vector2.down, ForceMode2D.Impulse);
+                }
             }
         }
 
         public bool CanJump()
         {
-            if (_lastGroundedTime > 0f)
+            if (CoyoteTime)
             {
-                return true;
+                if (_lastGroundedTime > 0f)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                return false;
+                return IsGrounded;
             }
         }
 
         public void Jump()
         {
-            _lastGroundedTime = 0f;
+            if (AddForce)
+            {
+                _lastGroundedTime = 0f;
 
-            _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+                _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
+            }
         }
     }
 }
