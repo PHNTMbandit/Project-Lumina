@@ -899,6 +899,7 @@ MonoBehaviour:
   <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
   _states:
   - {fileID: 11400000, guid: 66800e2f34b775f40aab33b34f0fe5d7, type: 2}
+  - {fileID: 11400000, guid: 0ea3980a456c18542b78e0a1edb7f32a, type: 2}
   - {fileID: 11400000, guid: c2ae0a06b31f2c94f8884ac3c3c35ad6, type: 2}
   - {fileID: 11400000, guid: 254c741f7b07ec0498cd2b014b87e349, type: 2}
   _defaultState: {fileID: 11400000, guid: 66800e2f34b775f40aab33b34f0fe5d7, type: 2}
@@ -1007,7 +1008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3954851771403c440acd3d3dfb22bb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 1.8
+  _jumpForce: 4.11
   _sensor: {fileID: 1729079057}
 --- !u!1 &1267731883
 GameObject:
@@ -1263,7 +1264,7 @@ MonoBehaviour:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 1.2
+  Length: 1
   Direction: {x: 0, y: -1}
   WorldSpace: 0
   DetectsOnLayers:

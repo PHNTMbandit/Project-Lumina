@@ -1,5 +1,7 @@
 ﻿using Micosmo.SensorToolkit;
+using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Player
 {
@@ -7,7 +9,10 @@ namespace ProjectLumina.Player
     [AddComponentMenu("Player/Player Jump")]
     public class PlayerJump : MonoBehaviour
     {
-        [SerializeField, Range(0, 25)]
+        [field: SerializeField]
+        public bool IsGrounded { get; private set; }
+
+        [SerializeField, Range(0, 5)]
         private float _jumpForce;
 
         [SerializeField]
@@ -16,22 +21,13 @@ namespace ProjectLumina.Player
         private float _lastGroundedTime, _lastJumpedTime;
         private Rigidbody2D _rb;
 
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-        }
 
-        public bool CanJump()
-        {
-            if (_lastGroundedTime > 0 && _lastJumpedTime > 0)
-            {
-                if (_sensor.GetNearestDetection() != null)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            _sensor.OnDetected.AddListener(delegate { IsGrounded = true; });
+            _sensor.OnLostDetection.AddListener(delegate { IsGrounded = false; });
         }
 
         public void Jump()

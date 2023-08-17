@@ -1,0 +1,15 @@
+﻿using UnityEngine;
+
+namespace ProjectLumina.Player.StateMachine.States
+{
+    [CreateAssetMenu(fileName = "Jump State", menuName = "Project Lumina/States/Jump State")]
+    public class JumpState : InAirState
+    {
+        public override void Enter(StateController stateController)
+        {
+            base.Enter(stateController);
+            Debug.Log("jump");
+            stateController.PlayerJump.Jump();
+        }
+    }
+}

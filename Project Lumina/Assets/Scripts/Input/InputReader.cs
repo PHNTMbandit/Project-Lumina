@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace ProjectLumina.Input
@@ -11,6 +12,8 @@ namespace ProjectLumina.Input
         public GameControls GameControls { get; private set; }
         public bool JumpInput { get; private set; }
         public float MoveInput { get; private set; }
+
+        public UnityAction onJump;
 
         #endregion Variables
 
@@ -41,6 +44,8 @@ namespace ProjectLumina.Input
             if (context.performed)
             {
                 JumpInput = true;
+
+                onJump?.Invoke();
             }
             else if (context.canceled)
             {

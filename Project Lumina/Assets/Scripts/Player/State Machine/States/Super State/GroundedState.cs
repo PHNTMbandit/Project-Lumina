@@ -12,16 +12,20 @@
             jumpInput = stateController.InputReader.JumpInput;
             moveInput = stateController.InputReader.MoveInput;
 
+            stateController.SpriteRenderer.flipX = lastMoveX < 0;
+
             if (moveInput != 0)
             {
                 lastMoveX = moveInput;
             }
 
-            stateController.SpriteRenderer.flipX = lastMoveX < 0;
-
-            if (jumpInput)
+            if (jumpInput && stateController.PlayerJump.IsGrounded)
             {
                 stateController.ChangeState(stateController.GetState("Jump"));
+            }
+            else if (stateController.PlayerJump.IsGrounded == false)
+            {
+                stateController.ChangeState(stateController.GetState("Fall"));
             }
         }
 
