@@ -6,6 +6,15 @@
             "id": "29582cc0-1ee9-48ef-8c65-5c9059fa0fe5",
             "actions": [
                 {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "d3fb8813-be87-4ad3-81fe-0a0ac5a3dc2a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Move",
                     "type": "Value",
                     "id": "69628f1d-9f83-42b1-8435-ce8405718f04",
@@ -132,6 +141,28 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc619f0d-30db-4fd1-beba-b11b30408ed0",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ae7c2f8e-6f19-4665-859c-52b8c3c56cc5",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Attack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

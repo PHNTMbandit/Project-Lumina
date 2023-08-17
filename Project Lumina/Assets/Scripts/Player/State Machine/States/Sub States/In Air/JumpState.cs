@@ -11,5 +11,15 @@ namespace ProjectLumina.Player.StateMachine.States
 
             stateController.PlayerJump.Jump();
         }
+
+        public override void LogicUpdate(StateController stateController)
+        {
+            base.LogicUpdate(stateController);
+
+            if (stateController.PlayerFall.IsFalling)
+            {
+                stateController.ChangeState(stateController.GetState("Fall"));
+            }
+        }
     }
 }

@@ -10,11 +10,12 @@ namespace ProjectLumina.Input
         #region Variables
 
         public GameControls GameControls { get; private set; }
+        public bool AttackInput { get; private set; }
         public bool JumpInputPress { get; private set; }
         public bool JumpInputRelease { get; private set; }
         public float MoveInput { get; private set; }
 
-        public UnityAction onJump;
+        public UnityAction onAttack, onJump;
 
         #endregion Variables
 
@@ -39,6 +40,19 @@ namespace ProjectLumina.Input
         #endregion Unity Callback Functions
 
         #region Player Actions
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                AttackInput = true;
+
+                onAttack?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                AttackInput = false;
+            }
+        }
 
         public void OnJump(InputAction.CallbackContext context)
         {

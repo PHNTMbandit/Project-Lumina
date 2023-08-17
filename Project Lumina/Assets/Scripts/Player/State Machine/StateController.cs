@@ -16,6 +16,8 @@ namespace ProjectLumina.Player.StateMachine
         public InputReader InputReader { get; private set; }
 
         public Animator Animator { get; private set; }
+        public CharacterAerialAttack PlayerAerialAttack { get; private set; }
+        public CharacterMeleeAttack PlayerMeleeAttack { get; private set; }
         public CharacterFall PlayerFall { get; private set; }
         public CharacterJump PlayerJump { get; private set; }
         public CharacterMove PlayerMove { get; private set; }
@@ -33,10 +35,11 @@ namespace ProjectLumina.Player.StateMachine
         #region Variables
 
         [SerializeField]
-        private State[] _states;
+        private State _defaultState;
 
         [SerializeField]
-        private State _defaultState;
+        private State[] _states;
+
 
         #endregion Variables
 
@@ -45,8 +48,10 @@ namespace ProjectLumina.Player.StateMachine
         private void Awake()
         {
             Animator = GetComponent<Animator>();
+            PlayerAerialAttack = GetComponent<CharacterAerialAttack>();
             PlayerFall = GetComponent<CharacterFall>();
             PlayerJump = GetComponent<CharacterJump>();
+            PlayerMeleeAttack = GetComponent<CharacterMeleeAttack>();
             PlayerMove = GetComponent<CharacterMove>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }
