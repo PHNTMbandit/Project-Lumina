@@ -13,10 +13,14 @@ namespace ProjectLumina.Character
         public bool IsGrounded { get; private set; }
 
         [BoxGroup("Force"), SerializeField, Range(0, 25)]
+
         private float _jumpForce;
 
-        [BoxGroup("Times"), SerializeField, Range(0, 1)]
-        private float _jumpBufferTime, _jumpCoyoteTime;
+        [BoxGroup("Quality of Life"), SerializeField, Range(0, 10)]
+        private float _jumpCutMultiplier;
+
+        [BoxGroup("Quality of Life"), SerializeField, Range(0, 1)]
+        private float _jumpCoyoteTime;
 
         [BoxGroup("References"), SerializeField]
         private RaySensor2D _sensor;
@@ -25,7 +29,7 @@ namespace ProjectLumina.Character
         private InputReader _inputReader;
 
         [BoxGroup("Stats"), ShowInInspector, ReadOnly]
-        private float _lastGroundedTime, _lastJumpedTime;
+        private float _lastGroundedTime;
 
         private Rigidbody2D _rb;
 
@@ -48,20 +52,11 @@ namespace ProjectLumina.Character
             {
                 _lastGroundedTime -= Time.deltaTime;
             }
-
-            if (_inputReader.JumpInput)
-            {
-                _lastJumpedTime = _jumpBufferTime;
-            }
-            else
-            {
-                _lastJumpedTime -= Time.deltaTime;
-            }
         }
 
         public bool CanJump()
         {
-            if (_lastGroundedTime > 0f && _lastJumpedTime > 0f)
+            if (_lastGroundedTime > 0f)
             {
                 return true;
             }
@@ -73,10 +68,7 @@ namespace ProjectLumina.Character
 
         public void Jump()
         {
-            Debug.Log("jump");
-
             _lastGroundedTime = 0f;
-            _lastJumpedTime = 0f;
 
             _rb.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
         }

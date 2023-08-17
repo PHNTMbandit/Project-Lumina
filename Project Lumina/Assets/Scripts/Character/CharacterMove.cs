@@ -4,6 +4,7 @@ using UnityEngine;
 namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(SpriteRenderer))]
     [AddComponentMenu("Character/Character Move")]
     public class CharacterMove : MonoBehaviour
     {
@@ -13,11 +14,22 @@ namespace ProjectLumina.Character
         [BoxGroup("Stop"), SerializeField, Range(0, 25)]
         private float _decceleration, _frictionAmount;
 
+        private float _lastMoveX, _moveInput;
         private Rigidbody2D _rb;
+        private SpriteRenderer _spriteRenderer;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _spriteRenderer = GetComponent<SpriteRenderer>();
+        }
+
+        private void Update()
+        {
+            if (_moveInput != 0)
+            {
+                _lastMoveX = _moveInput;
+            }
         }
 
         public void Move(float move)
@@ -26,6 +38,9 @@ namespace ProjectLumina.Character
             float speedDiff = targetSpeed - _rb.velocity.x;
             float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _acceleration : _decceleration;
             float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, _velocity) * Mathf.Sign(speedDiff);
+
+            _moveInput = move;
+            _spriteRenderer.flipX = _lastMoveX < 0;
 
             _rb.AddForce(movement * Vector2.right);
 

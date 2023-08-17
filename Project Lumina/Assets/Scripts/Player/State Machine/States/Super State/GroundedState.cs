@@ -1,36 +1,28 @@
-﻿using UnityEngine;
-
-namespace ProjectLumina.Player.StateMachine.States
+﻿namespace ProjectLumina.Player.StateMachine.States
 {
     public class GroundedState : State
     {
-        protected bool jumpInput;
-        protected float lastMoveX, moveInput;
+        protected float moveInput;
+
+        public override void Enter(StateController stateController)
+        {
+            base.Enter(stateController);
+
+            stateController.InputReader.onJump = delegate { TryJump(stateController); };
+        }
+
+        public override void Exit(StateController stateController)
+        {
+            base.Exit(stateController);
+
+            stateController.InputReader.onJump -= delegate { TryJump(stateController); };
+        }
 
         public override void LogicUpdate(StateController stateController)
         {
             base.LogicUpdate(stateController);
 
-            jumpInput = stateController.InputReader.JumpInput;
             moveInput = stateController.InputReader.MoveInput;
-
-            stateController.SpriteRenderer.flipX = lastMoveX < 0;
-
-            if (moveInput != 0)
-            {
-                lastMoveX = moveInput;
-            }
-
-            if (stateController.PlayerFall.IsFalling)
-            {
-                stateController.ChangeState(stateController.GetState("Fall"));
-            }
-            Debug.Log(jumpInput);
-
-            if (jumpInput && stateController.PlayerJump.CanJump())
-            {
-                stateController.ChangeState(stateController.GetState("Jump"));
-            }
         }
 
         public override void PhysicsUpdate(StateController stateController)
@@ -38,6 +30,14 @@ namespace ProjectLumina.Player.StateMachine.States
             base.PhysicsUpdate(stateController);
 
             stateController.PlayerMove.Move(moveInput);
+        }
+
+        private void TryJump(StateController stateController)
+        {
+            if (stateController.PlayerJump.CanJump())
+            {
+                stateController.ChangeState(stateController.GetState("Jump"));
+            }
         }
     }
 }

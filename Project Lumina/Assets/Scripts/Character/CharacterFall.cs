@@ -9,8 +9,11 @@ namespace ProjectLumina.Character
     {
         public bool IsFalling { get; private set; }
 
-        [field: BoxGroup("Thresholds"), SerializeField, Range(-10, 0)]
-        public float FallingThreshold { get; private set; }
+        [BoxGroup("Thresholds"), SerializeField, Range(-10, 0)]
+        private float _fallingThreshold;
+
+        [BoxGroup("Thresholds"), SerializeField, Range(0, 10)]
+        private float _fallingGravityScale, _fallingGravityMultiplier;
 
         private Rigidbody2D _rb;
 
@@ -21,7 +24,16 @@ namespace ProjectLumina.Character
 
         private void Update()
         {
-            if (_rb.velocity.y < FallingThreshold)
+            if (_rb.velocity.y < 0)
+            {
+                _rb.gravityScale = _fallingGravityScale * _fallingGravityMultiplier;
+            }
+            else
+            {
+                _rb.gravityScale = _fallingGravityScale;
+            }
+
+            if (_rb.velocity.y < _fallingThreshold)
             {
                 IsFalling = true;
             }

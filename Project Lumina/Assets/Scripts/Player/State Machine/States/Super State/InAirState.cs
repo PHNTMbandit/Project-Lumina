@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ProjectLumina.Player.StateMachine.States
+﻿namespace ProjectLumina.Player.StateMachine.States
 {
     public class InAirState : State
     {
@@ -8,10 +6,17 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerJump.IsGrounded)
+            if (stateController.PlayerFall.IsFalling)
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                stateController.ChangeState(stateController.GetState("Fall"));
             }
+        }
+
+        public override void PhysicsUpdate(StateController stateController)
+        {
+            base.PhysicsUpdate(stateController);
+
+            stateController.PlayerMove.Move(stateController.InputReader.MoveInput);
         }
     }
 }

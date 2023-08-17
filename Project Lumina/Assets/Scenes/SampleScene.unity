@@ -224,9 +224,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0.24747474
+    y: 0
     width: 1
-    height: 0.5037879
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -752,8 +752,8 @@ GameObject:
   - component: {fileID: 1244203709}
   - component: {fileID: 1244203710}
   - component: {fileID: 1244203711}
-  - component: {fileID: 1244203716}
   - component: {fileID: 1244203715}
+  - component: {fileID: 1244203719}
   - component: {fileID: 1244203712}
   - component: {fileID: 1244203713}
   - component: {fileID: 1244203718}
@@ -868,7 +868,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 18032985f3f6f544ba7f2a5d2f3e3178, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 853046128}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -879,7 +879,67 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 69628f1d-9f83-42b1-8435-ce8405718f04
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/x,/XInputControllerWindows/dpad/x,/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: c2ae0a06b31f2c94f8884ac3c3c35ad6, type: 2}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fa48ecf0-b7e7-44c9-9b7a-2ad777467399
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cf1d09e8-2fb5-4bd4-be48-fb7c39d72031
+    m_ActionName: UI/Navigate[/XInputControllerWindows/leftStick/up,/XInputControllerWindows/rightStick/up,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/rightStick/down,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/rightStick/left,/XInputControllerWindows/leftStick/right,/XInputControllerWindows/rightStick/right,/XInputControllerWindows/dpad,/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4892a6d9-f9f2-4aaf-aa9e-c7911fa21b6c
+    m_ActionName: UI/Submit[/Keyboard/enter,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8ec127dd-8bbf-42fd-b5cf-212f6484ef2d
+    m_ActionName: UI/Cancel[/Keyboard/escape,/XInputControllerWindows/buttonEast]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f88a256-b2d6-49cb-91d3-9b0083a6acd6
+    m_ActionName: UI/Point[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a020e8b8-e84d-4e42-964e-aa244a803df9
+    m_ActionName: UI/Click[/Mouse/leftButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4f6108a1-7833-445c-96ff-7e7f4c63c4a0
+    m_ActionName: UI/ScrollWheel[/Mouse/scroll]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 91d5af88-eb57-45a5-bc68-1b6e2ac2e55b
+    m_ActionName: UI/MiddleClick[/Mouse/middleButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bfecd15d-e2ac-4b6c-80e6-69e7cd89cb97
+    m_ActionName: UI/RightClick[/Mouse/rightButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b3f925d1-7655-4663-aec8-07dd3d54bb5b
+    m_ActionName: UI/TrackedDevicePosition
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 250a2472-f878-4477-ae0e-2cdaa4454bc2
+    m_ActionName: UI/TrackedDeviceOrientation
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -917,10 +977,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 9
-  _velocity: 0.96
-  _acceleration: 13
-  _decceleration: 16
-  _frictionAmount: 0.22
+  _velocity: 1.2
+  _acceleration: 9
+  _decceleration: 9
+  _frictionAmount: 0.2
 --- !u!50 &1244203715
 Rigidbody2D:
   serializedVersion: 4
@@ -937,18 +997,50 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 74975acfe2ed40b4db84014175775995, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 1
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
---- !u!60 &1244203716
+--- !u!114 &1244203717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3954851771403c440acd3d3dfb22bb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: 12
+  _jumpCutMultiplier: 0.1
+  _jumpCoyoteTime: 0.15
+  _sensor: {fileID: 1729079057}
+  _inputReader: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
+--- !u!114 &1244203718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19011604e7e8abf4b89a8a2e06dc22e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fallingThreshold: -1
+  _fallingGravityScale: 1
+  _fallingGravityMultiplier: 1.9
+--- !u!60 &1244203719
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -997,35 +1089,6 @@ PolygonCollider2D:
       - {x: 0.625, y: 0.53125}
       - {x: 0.625, y: -0.96875}
   m_UseDelaunayMesh: 0
---- !u!114 &1244203717
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244203708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3954851771403c440acd3d3dfb22bb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _jumpForce: 13
-  _jumpBufferTime: 0.1
-  _jumpCoyoteTime: 0.15
-  _sensor: {fileID: 1729079057}
---- !u!114 &1244203718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244203708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19011604e7e8abf4b89a8a2e06dc22e7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <FallingThreshold>k__BackingField: -1
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0
