@@ -9,6 +9,7 @@ namespace ProjectLumina.Input
         #region Variables
 
         public GameControls GameControls { get; private set; }
+        public bool JumpInput { get; private set; }
         public float MoveInput { get; private set; }
 
         #endregion Variables
@@ -34,6 +35,18 @@ namespace ProjectLumina.Input
         #endregion Unity Callback Functions
 
         #region Player Actions
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                JumpInput = true;
+            }
+            else if (context.canceled)
+            {
+                JumpInput = false;
+            }
+        }
 
         public void OnMove(InputAction.CallbackContext context)
         {

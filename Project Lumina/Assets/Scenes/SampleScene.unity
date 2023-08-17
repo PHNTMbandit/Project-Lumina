@@ -223,10 +223,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0
-    y: 0.24747474
-    width: 1
-    height: 0.5037879
+    x: 0.0018744143
+    y: 0
+    width: 0.9963553
+    height: 1
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 34
@@ -256,7 +256,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.033, y: -0.175, z: -10}
+  m_LocalPosition: {x: 0.033, y: -0.52, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,8 +371,8 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: -0.00000011920929, z: 0}
-    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
+    m_Center: {x: 0, y: 0, z: 0}
+    m_Extent: {x: 0, y: 0, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
@@ -467,7 +467,7 @@ Transform:
   m_GameObject: {fileID: 642947203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.033, y: -0.175, z: -10}
+  m_LocalPosition: {x: 0.033, y: -0.52, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -757,6 +757,7 @@ GameObject:
   - component: {fileID: 1244203712}
   - component: {fileID: 1244203713}
   - component: {fileID: 1244203714}
+  - component: {fileID: 1244203717}
   m_Layer: 3
   m_Name: Swordmaster
   m_TagString: Player
@@ -773,10 +774,11 @@ Transform:
   m_GameObject: {fileID: 1244203708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.033, y: -0.175, z: 0}
+  m_LocalPosition: {x: 0.033, y: -0.52, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1729079056}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1244203710
@@ -891,10 +893,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1244203708}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e847cd9d66c87a84c8956cc4c986d4fc, type: 3}
+  m_Script: {fileID: 11500000, guid: a38c1e8434b08f040b9365643d48dbd4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
+  _states:
+  - {fileID: 11400000, guid: 66800e2f34b775f40aab33b34f0fe5d7, type: 2}
+  - {fileID: 11400000, guid: c2ae0a06b31f2c94f8884ac3c3c35ad6, type: 2}
+  - {fileID: 11400000, guid: 254c741f7b07ec0498cd2b014b87e349, type: 2}
+  _defaultState: {fileID: 11400000, guid: 66800e2f34b775f40aab33b34f0fe5d7, type: 2}
 --- !u!114 &1244203714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -988,6 +995,20 @@ PolygonCollider2D:
       - {x: 0.625, y: 0.53125}
       - {x: 0.625, y: -0.96875}
   m_UseDelaunayMesh: 0
+--- !u!114 &1244203717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3954851771403c440acd3d3dfb22bb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: 1.8
+  _sensor: {fileID: 1729079057}
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,6 +1135,18 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1729079055}
+    Ordinal: 8
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: 078a21a93c2cdb64bb3634cd8ec34db0, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &1267731885
 Transform:
   m_ObjectHideFlags: 0
@@ -1161,6 +1194,100 @@ Transform:
   - {fileID: 619394802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1729079055
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1729079056}
+  - component: {fileID: 1729079057}
+  m_Layer: 3
+  m_Name: Grounded Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1729079056
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729079055}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244203709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1729079057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729079055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67743d858b7a45d39461726716d6af2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  Shape: 0
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.5, y: 0.5}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  Length: 1.2
+  Direction: {x: 0, y: -1}
+  WorldSpace: 0
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  ObstructedByLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  DetectionMode: 0
+  IgnoreTriggerColliders: 0
+  MinimumSlopeAngle: 0
+  SlopeUpDirection: {x: 0, y: 1}
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
+  onObstruction:
+    m_PersistentCalls:
+      m_Calls: []
+  onClear:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &2005315238
 GameObject:
   m_ObjectHideFlags: 0

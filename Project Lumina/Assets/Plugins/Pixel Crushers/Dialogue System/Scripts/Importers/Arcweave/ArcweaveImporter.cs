@@ -1187,6 +1187,13 @@ namespace PixelCrushers.DialogueSystem.ArcweaveSupport
         protected string TouchUpRichText(string s)
         {
             if (string.IsNullOrEmpty(s)) return string.Empty;
+
+            // Replace emphasis tags:
+            if (s.Contains("<em>"))
+            {
+                s = s.Replace("<em>", "<i>").Replace("</em>", "</i>");
+            }
+
             var matches = BlockRegex.Matches(s);
 
             // Insert newlines for blocks containing <p>..</p>:

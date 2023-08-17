@@ -7,6 +7,9 @@ If you have any questions, feature requests or if you have found a bug then plea
 
 
 [CHANGELOG]
+2.5.4 - Fix for LOS generating invalid points in rare cases when running Quality mode.
+2.5.3 - Fix NRE when pulse mode is set before it has initialized.
+2.5.2 - Sensor UpdateFunction exposed via C#. Boolean sensor supports XOR. Sensors link to their doc pages from inspector.
 2.5.1 - Fix error when Examples directory removed. Renamed Examples/resources to Examples/assets so its not included in builds.
 2.5.0 - Big update to SteeringSensor which adds Velocity Obstacles support (Breaking changes). Most sensors will take a list of SignalProcessors. Laid a foundation to jobify the sensors, currently only the steering sensor is jobified. Many small performance fixes and improvements.
 2.4.7 - RaySensor ignores intersections at distance 0 for consistency between [...]Cast and [...]CastNonAlloc. Some small performance improvements. Functions that order detections by signal strength.

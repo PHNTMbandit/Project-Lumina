@@ -2,26 +2,14 @@
 {
     public class GroundedState : State
     {
-        public GroundedState(StateController stateController, StateMachine stateMachine, string animBoolName) : base(stateController, stateMachine, animBoolName)
-        {
-        }
-
+        protected bool jumpInput;
         protected float lastMoveX, moveInput;
 
-        public override void Enter()
+        public override void LogicUpdate(StateController stateController)
         {
-            base.Enter();
-        }
+            base.LogicUpdate(stateController);
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
+            jumpInput = stateController.InputReader.JumpInput;
             moveInput = stateController.InputReader.MoveInput;
 
             if (moveInput != 0)
@@ -30,11 +18,16 @@
             }
 
             stateController.SpriteRenderer.flipX = lastMoveX < 0;
+
+            if (jumpInput)
+            {
+                stateController.ChangeState(stateController.GetState("Jump"));
+            }
         }
 
-        public override void FixedUpdate()
+        public override void PhysicsUpdate(StateController stateController)
         {
-            base.FixedUpdate();
+            base.PhysicsUpdate(stateController);
 
             stateController.PlayerMovement.Move(moveInput);
         }

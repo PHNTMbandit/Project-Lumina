@@ -26,9 +26,9 @@ namespace PixelCrushers.DialogueSystem
         [Tooltip("Stop SkipAll() when end of conversation is reached.")]
         public bool stopSkipAllOnConversationEnd;
 
-        private AbstractDialogueUI dialogueUI;
+        protected AbstractDialogueUI dialogueUI;
 
-        private void Awake()
+        protected virtual void Awake()
         {
             dialogueUI =
                 GetComponent<AbstractDialogueUI>() ??
@@ -39,7 +39,7 @@ namespace PixelCrushers.DialogueSystem
         /// <summary>
         /// Toggles continue button mode between Always and Never.
         /// </summary>
-        public void ToggleAutoPlay()
+        public virtual void ToggleAutoPlay()
         {
             var mode = DialogueManager.displaySettings.subtitleSettings.continueButton;
             var newMode = (mode == DisplaySettings.SubtitleSettings.ContinueButtonMode.Never) ? DisplaySettings.SubtitleSettings.ContinueButtonMode.Always : DisplaySettings.SubtitleSettings.ContinueButtonMode.Never;
@@ -50,18 +50,18 @@ namespace PixelCrushers.DialogueSystem
         /// <summary>
         /// Skips all subtitles until response menu or end of conversation is reached.
         /// </summary>
-        public void SkipAll()
+        public virtual void SkipAll()
         {
             skipAll = true;
             if (dialogueUI != null) dialogueUI.OnContinueConversation();
         }
 
-        public void StopSkipAll()
+        public virtual void StopSkipAll()
         {
             skipAll = false;
         }
 
-        public void OnConversationLine(Subtitle subtitle)
+        public virtual void OnConversationLine(Subtitle subtitle)
         {
             if (skipAll)
             {
@@ -69,7 +69,7 @@ namespace PixelCrushers.DialogueSystem
             }
         }
 
-        public void OnConversationResponseMenu(Response[] responses)
+        public virtual void OnConversationResponseMenu(Response[] responses)
         {
             if (skipAll)
             {
@@ -78,7 +78,7 @@ namespace PixelCrushers.DialogueSystem
             }
         }
 
-        public void OnConversationEnd(Transform actor)
+        public virtual void OnConversationEnd(Transform actor)
         {
             if (stopSkipAllOnConversationEnd) skipAll = false;
         }

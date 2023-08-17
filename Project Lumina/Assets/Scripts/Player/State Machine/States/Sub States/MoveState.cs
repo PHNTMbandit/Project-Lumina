@@ -1,34 +1,18 @@
-﻿namespace ProjectLumina.Player.StateMachine.States
+﻿using UnityEngine;
+
+namespace ProjectLumina.Player.StateMachine.States
 {
+    [CreateAssetMenu(fileName = "Move State", menuName = "Project Lumina/States/Move State")]
     public class MoveState : GroundedState
     {
-        public MoveState(StateController stateController, StateMachine stateMachine, string animBoolName) : base(stateController, stateMachine, animBoolName)
+        public override void LogicUpdate(StateController stateController)
         {
-        }
-
-        public override void Enter()
-        {
-            base.Enter();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void Update()
-        {
-            base.Update();
+            base.LogicUpdate(stateController);
 
             if (moveInput == 0)
             {
-                stateMachine.ChangeState(stateController.IdleState);
+                stateController.ChangeState(stateController.GetState("Idle"));
             }
-        }
-
-        public override void FixedUpdate()
-        {
-            base.FixedUpdate();
         }
     }
 }
