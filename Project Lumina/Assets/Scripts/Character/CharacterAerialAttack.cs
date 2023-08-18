@@ -16,6 +16,9 @@ namespace ProjectLumina.Character
         [field: BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool AerialAttackCharge { get; private set; } = true;
 
+        [field: BoxGroup("Stats"), ShowInInspector, ReadOnly]
+        public bool IsAerialAttacking { get; private set; } = true;
+
         [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public int CurrentAerialComboIndex
         {

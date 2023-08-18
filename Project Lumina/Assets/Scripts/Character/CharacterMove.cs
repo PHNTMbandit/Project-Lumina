@@ -60,5 +60,17 @@ namespace ProjectLumina.Character
                 _rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
             }
         }
+
+        public Vector2 GetFacingDirection()
+        {
+            if (transform.localScale.x == 1)
+            {
+                return Vector2.right;
+            }
+            else
+            {
+                return Vector2.left;
+            }
+        }
     }
 }

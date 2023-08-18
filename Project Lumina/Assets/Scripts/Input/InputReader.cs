@@ -14,8 +14,9 @@ namespace ProjectLumina.Input
         public bool JumpInputPress { get; private set; }
         public bool JumpInputRelease { get; private set; }
         public Vector2 MoveInput { get; private set; }
+        public bool RollInput { get; private set; }
 
-        public UnityAction onAttack, onJump;
+        public UnityAction onAttack, onJump, onRoll;
 
         #endregion Variables
 
@@ -73,6 +74,20 @@ namespace ProjectLumina.Input
         public void OnMove(InputAction.CallbackContext context)
         {
             MoveInput = context.ReadValue<Vector2>();
+        }
+
+        public void OnRoll(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                RollInput = true;
+
+                onRoll?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                RollInput = false;
+            }
         }
 
         #endregion Player Actions

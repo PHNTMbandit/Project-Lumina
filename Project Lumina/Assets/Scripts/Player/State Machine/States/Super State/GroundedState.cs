@@ -15,6 +15,7 @@ namespace ProjectLumina.Player.StateMachine.States
 
             stateController.InputReader.onAttack = TryAttack;
             stateController.InputReader.onJump = TryJump;
+            stateController.InputReader.onRoll = TryRoll;
             stateController.PlayerAerialAttack.ResetAerialCombo();
         }
 
@@ -24,6 +25,7 @@ namespace ProjectLumina.Player.StateMachine.States
 
             stateController.InputReader.onAttack -= TryAttack;
             stateController.InputReader.onJump -= TryJump;
+            stateController.InputReader.onRoll -= TryRoll;
         }
 
         public override void LogicUpdate(StateController stateController)
@@ -56,6 +58,11 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 stateController.ChangeState(stateController.GetState("Jump"));
             }
+        }
+
+        protected void TryRoll()
+        {
+            stateController.ChangeState(stateController.GetState("Roll"));
         }
     }
 }

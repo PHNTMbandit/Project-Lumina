@@ -21,6 +21,7 @@ namespace ProjectLumina.Player.StateMachine
         public CharacterFall PlayerFall { get; private set; }
         public CharacterJump PlayerJump { get; private set; }
         public CharacterMove PlayerMove { get; private set; }
+        public CharacterRoll PlayerRoll { get; private set; }
         public CharacterWallSlide PlayerWallSlide { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
@@ -54,6 +55,7 @@ namespace ProjectLumina.Player.StateMachine
             PlayerJump = GetComponent<CharacterJump>();
             PlayerMeleeAttack = GetComponent<CharacterMeleeAttack>();
             PlayerMove = GetComponent<CharacterMove>();
+            PlayerRoll = GetComponent<CharacterRoll>();
             PlayerWallSlide = GetComponent<CharacterWallSlide>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }

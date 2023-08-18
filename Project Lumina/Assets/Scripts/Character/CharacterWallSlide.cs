@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace ProjectLumina.Character
 {
+    [RequireComponent(typeof(CharacterMove))]
     [AddComponentMenu("Character/Character Wall Slide")]
     public class CharacterWallSlide : MonoBehaviour
     {
@@ -26,10 +27,12 @@ namespace ProjectLumina.Character
         private RaySensor2D _sensor;
 
         private Rigidbody2D _rb;
+        private CharacterMove _characterMove;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _characterMove = GetComponent<CharacterMove>();
 
             _sensor.OnDetected.AddListener(delegate { CanWallSlide = true; });
             _sensor.OnLostDetection.AddListener(delegate { CanWallSlide = false; });
@@ -39,15 +42,7 @@ namespace ProjectLumina.Character
         {
             CanWallSlide = false;
 
-            if (transform.localScale.x == 1)
-            {
-                _rb.AddForce(Vector2.left * _wallJumpForce, ForceMode2D.Impulse);
-            }
-            else
-            {
-                _rb.AddForce(Vector2.right * _wallJumpForce, ForceMode2D.Impulse);
-            }
-
+            _rb.AddForce(_characterMove.GetFacingDirection() * _wallJumpForce, ForceMode2D.Impulse);
             _rb.AddForce(Vector2.up * _wallJumpUpForce, ForceMode2D.Impulse);
         }
 

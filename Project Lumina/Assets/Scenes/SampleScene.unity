@@ -776,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21, y: 30, z: -10}
+  m_LocalPosition: {x: -29, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -963,7 +963,7 @@ Transform:
   m_GameObject: {fileID: 642947203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21, y: 30, z: -10}
+  m_LocalPosition: {x: -29, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2096,6 +2096,7 @@ GameObject:
   - component: {fileID: 1244203720}
   - component: {fileID: 1244203714}
   - component: {fileID: 1244203722}
+  - component: {fileID: 1244203724}
   m_Layer: 3
   m_Name: Swordmaster
   m_TagString: Player
@@ -2112,7 +2113,7 @@ Transform:
   m_GameObject: {fileID: 1244203708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -21, y: 30, z: 0}
+  m_LocalPosition: {x: -29, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2283,6 +2284,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: d3fb8813-be87-4ad3-81fe-0a0ac5a3dc2a
     m_ActionName: Player/Attack[/XInputControllerWindows1/buttonWest,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 47b8cdfb-7980-49aa-b264-3e369b09a2d5
+    m_ActionName: Player/Roll[/XInputControllerWindows/rightShoulder]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2310,6 +2315,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 97433c3c3f461904dbd88026cb052a9e, type: 2}
   - {fileID: 11400000, guid: 254c741f7b07ec0498cd2b014b87e349, type: 2}
   - {fileID: 11400000, guid: 23838dfce2c0d7c4fb8b140fae174fc1, type: 2}
+  - {fileID: 11400000, guid: 90a4898acec61d54eae4fe3643f18677, type: 2}
 --- !u!114 &1244203714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2495,6 +2501,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.38997483, y: 1.5214187}
   m_EdgeRadius: 0
+--- !u!114 &1244203724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad2200e7a863cd14f83ea50b6cb4ab06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rollSpeed: 0.71
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0
