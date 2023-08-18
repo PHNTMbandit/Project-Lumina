@@ -31,8 +31,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 stateController.ChangeState(stateController.GetState("Fall"));
             }
-
-            if (stateController.PlayerJump.IsGrounded)
+            else if (stateController.PlayerJump.IsGrounded)
             {
                 stateController.ChangeState(stateController.GetState("Idle"));
             }

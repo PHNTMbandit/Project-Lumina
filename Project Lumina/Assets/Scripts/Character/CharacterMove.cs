@@ -44,11 +44,11 @@ namespace ProjectLumina.Character
 
             if (_lastMoveX < 0)
             {
-                transform.localRotation = new Quaternion(0, -180, 0, 0);
+                transform.localScale = new Vector3(-1, 1, 1);
             }
             else
             {
-                transform.localRotation = new Quaternion(0, 0, 0, 0);
+                transform.localScale = new Vector3(1, 1, 1);
             }
 
             _rb.AddForce(movement * Vector2.right);

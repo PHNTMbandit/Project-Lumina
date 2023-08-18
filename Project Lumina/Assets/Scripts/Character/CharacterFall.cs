@@ -7,6 +7,9 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Fall")]
     public class CharacterFall : MonoBehaviour
     {
+        [BoxGroup("Thresholds"), SerializeField, Range(-10, 0)]
+        private float _fallingThreshold;
+
         [BoxGroup("Thresholds"), SerializeField, Range(-100, 0)]
         private float _maxFallGravitySpeed;
 
@@ -28,7 +31,7 @@ namespace ProjectLumina.Character
 
         public bool IsFalling()
         {
-            if (_rb.velocity.y < 0)
+            if (_rb.velocity.y < _fallingThreshold)
             {
                 return true;
             }
