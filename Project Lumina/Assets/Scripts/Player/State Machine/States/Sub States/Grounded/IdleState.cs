@@ -14,5 +14,12 @@ namespace ProjectLumina.Player.StateMachine.States
                 stateController.ChangeState(stateController.GetState("Move"));
             }
         }
+
+        public override void PhysicsUpdate(StateController stateController)
+        {
+            base.PhysicsUpdate(stateController);
+
+            stateController.PlayerMove.Move(moveInput);
+        }
     }
 }

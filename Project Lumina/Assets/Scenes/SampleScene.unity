@@ -2095,8 +2095,8 @@ GameObject:
   - component: {fileID: 1244203717}
   - component: {fileID: 1244203720}
   - component: {fileID: 1244203714}
-  - component: {fileID: 1244203722}
   - component: {fileID: 1244203724}
+  - component: {fileID: 1244203722}
   m_Layer: 3
   m_Name: Swordmaster
   m_TagString: Player
@@ -2488,7 +2488,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06239426, y: -0.21436244}
+  m_Offset: {x: -0.06239426, y: -0.21597499}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -2499,7 +2499,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.38997483, y: 1.5214187}
+  m_Size: {x: 0.38997483, y: 1.5181936}
   m_EdgeRadius: 0
 --- !u!114 &1244203724
 MonoBehaviour:
@@ -2513,7 +2513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2200e7a863cd14f83ea50b6cb4ab06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rollSpeed: 0.71
+  _rollSpeed: 7
+  _colliderSizeY: 0.9537929
+  _colliderOffsetY: -0.4981754
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0

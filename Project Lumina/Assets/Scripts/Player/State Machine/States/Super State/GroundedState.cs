@@ -40,13 +40,6 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void PhysicsUpdate(StateController stateController)
-        {
-            base.PhysicsUpdate(stateController);
-
-            stateController.PlayerMove.Move(moveInput);
-        }
-
         protected void TryAttack()
         {
             stateController.ChangeState(stateController.GetState("Melee Attack"));

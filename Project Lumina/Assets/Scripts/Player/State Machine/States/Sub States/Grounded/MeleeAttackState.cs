@@ -20,6 +20,13 @@ namespace ProjectLumina.Player.StateMachine.States
             stateController.PlayerMeleeAttack.onComboFinished -= ChangeToIdle;
         }
 
+        public override void PhysicsUpdate(StateController stateController)
+        {
+            base.PhysicsUpdate(stateController);
+
+            stateController.PlayerMove.Move(moveInput);
+        }
+
         private void ChangeToIdle()
         {
             stateController.ChangeState(stateController.GetState("Idle"));
