@@ -21,7 +21,10 @@ namespace ProjectLumina.Character
         public bool WallJump;
 
         [ToggleGroup("WallJump"), Range(0, 50), SerializeField]
-        private float _wallJumpUpForce, _wallJumpForce;
+        private float _wallJumpUpForce;
+
+        [ToggleGroup("WallJump"), Range(0, 100), SerializeField]
+        private float _wallJumpForce;
 
         [FoldoutGroup("References"), SerializeField]
         private RaySensor2D _sensor;
@@ -42,7 +45,7 @@ namespace ProjectLumina.Character
         {
             CanWallSlide = false;
 
-            _rb.AddForce(_characterMove.GetFacingDirection() * _wallJumpForce, ForceMode2D.Impulse);
+            _rb.AddForce(-_characterMove.GetFacingDirection() * _wallJumpForce, ForceMode2D.Impulse);
             _rb.AddForce(Vector2.up * _wallJumpUpForce, ForceMode2D.Impulse);
         }
 

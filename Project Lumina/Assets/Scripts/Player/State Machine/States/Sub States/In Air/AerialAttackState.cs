@@ -37,6 +37,7 @@ namespace ProjectLumina.Player.StateMachine.States
             base.PhysicsUpdate(stateController);
 
             stateController.PlayerAerialAttack.SetGravityScale();
+            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
         }
 
         private void ChangeToFall()

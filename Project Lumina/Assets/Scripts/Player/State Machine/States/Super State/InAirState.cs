@@ -12,7 +12,15 @@ namespace ProjectLumina.Player.StateMachine.States
 
             this.stateController = stateController;
 
+            stateController.InputReader.onDash = TryDash;
             stateController.PlayerMeleeAttack.ResetCombo();
+        }
+
+        public override void Exit(StateController stateController)
+        {
+            base.Exit(stateController);
+
+            stateController.InputReader.onDash -= TryDash;
         }
 
         public override void LogicUpdate(StateController stateController)
@@ -25,19 +33,17 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void PhysicsUpdate(StateController stateController)
-        {
-            base.PhysicsUpdate(stateController);
-
-            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
-        }
-
         protected void TryAttack()
         {
             if (stateController.PlayerAerialAttack.AerialAttackCharge)
             {
                 stateController.ChangeState(stateController.GetState("Aerial Attack"));
             }
+        }
+
+        protected void TryDash()
+        {
+            stateController.ChangeState(stateController.GetState("Dash"));
         }
     }
 }
