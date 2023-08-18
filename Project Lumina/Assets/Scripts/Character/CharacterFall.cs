@@ -7,11 +7,6 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Fall")]
     public class CharacterFall : MonoBehaviour
     {
-        public bool IsFalling { get; private set; }
-
-        [BoxGroup("Thresholds"), SerializeField, Range(-10, 0)]
-        private float _fallingThreshold;
-
         [BoxGroup("Thresholds"), SerializeField, Range(-100, 0)]
         private float _maxFallGravitySpeed;
 
@@ -25,31 +20,22 @@ namespace ProjectLumina.Character
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        private void Update()
+        public void SetGravityScale()
+        {
+            _rb.gravityScale = _fallingGravityScale * _fallingGravityMultiplier;
+            _rb.velocity = new(_rb.velocity.x, Mathf.Max(_rb.velocity.y, _maxFallGravitySpeed));
+        }
+
+        public bool IsFalling()
         {
             if (_rb.velocity.y < 0)
             {
-                SetGravityScale(_fallingGravityScale * _fallingGravityMultiplier);
-                _rb.velocity = new(_rb.velocity.x, Mathf.Max(_rb.velocity.y, _maxFallGravitySpeed));
+                return true;
             }
             else
             {
-                SetGravityScale(_fallingGravityScale);
+                return false;
             }
-
-            if (_rb.velocity.y < _fallingThreshold)
-            {
-                IsFalling = true;
-            }
-            else
-            {
-                IsFalling = false;
-            }
-        }
-
-        private void SetGravityScale(float gravityScale)
-        {
-            _rb.gravityScale = gravityScale;
         }
     }
 }

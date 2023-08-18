@@ -69,24 +69,32 @@ namespace ProjectLumina.Character
             else
             {
                 _lastGroundedTime -= Time.deltaTime;
-
-                if (HangTime)
-                {
-                    if (Mathf.Abs(_rb.velocity.y) < _jumpHangTimeThreshold)
-                    {
-                        _rb.gravityScale = _jumpGravityScale * _jumpHangGravityMult;
-
-                        _accelerationRate = _jumpHangAccelerationMultiplier;
-                        _targetSpeed *= _jumpHangMaxSpeedMultiplier;
-                    }
-                }
             }
 
+            if (IsGrounded)
+            {
+                _rb.gravityScale = _jumpGravityScale;
+            }
+        }
+
+        public void SetGravityScale()
+        {
             if (JumpCut)
             {
                 if (_rb.velocity.y > 0 && _inputReader.JumpInputRelease)
                 {
                     _rb.AddForce(_rb.velocity.y * (1 - _jumpCutMultiplier) * Vector2.down, ForceMode2D.Impulse);
+                }
+            }
+
+            if (HangTime)
+            {
+                if (Mathf.Abs(_rb.velocity.y) < _jumpHangTimeThreshold)
+                {
+                    _rb.gravityScale = _jumpGravityScale * _jumpHangGravityMult;
+
+                    _accelerationRate = _jumpHangAccelerationMultiplier;
+                    _targetSpeed *= _jumpHangMaxSpeedMultiplier;
                 }
             }
         }

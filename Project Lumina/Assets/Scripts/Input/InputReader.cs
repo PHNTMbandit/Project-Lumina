@@ -13,7 +13,7 @@ namespace ProjectLumina.Input
         public bool AttackInput { get; private set; }
         public bool JumpInputPress { get; private set; }
         public bool JumpInputRelease { get; private set; }
-        public float MoveInput { get; private set; }
+        public Vector2 MoveInput { get; private set; }
 
         public UnityAction onAttack, onJump;
 
@@ -72,7 +72,7 @@ namespace ProjectLumina.Input
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            MoveInput = context.ReadValue<float>();
+            MoveInput = context.ReadValue<Vector2>();
         }
 
         #endregion Player Actions

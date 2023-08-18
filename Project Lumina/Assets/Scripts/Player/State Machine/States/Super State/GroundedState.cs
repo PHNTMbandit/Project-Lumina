@@ -30,9 +30,9 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            moveInput = stateController.InputReader.MoveInput;
+            moveInput = stateController.InputReader.MoveInput.x;
 
-            if (stateController.PlayerFall.IsFalling)
+            if (stateController.PlayerFall.IsFalling())
             {
                 stateController.ChangeState(stateController.GetState("Fall"));
             }

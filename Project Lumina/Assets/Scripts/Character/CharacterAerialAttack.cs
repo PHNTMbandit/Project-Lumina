@@ -26,18 +26,33 @@ namespace ProjectLumina.Character
         [BoxGroup("Combo Animations"), SerializeField]
         private AttackCombo[] _attackCombos;
 
+        [ToggleGroup("BulletTime")]
+        public bool BulletTime;
+
+        [ToggleGroup("BulletTime"), Range(0, 1), SerializeField]
+        private float _bulletTimeMultiplier;
+
         [FoldoutGroup("References"), SerializeField]
         private RaySensor2D _sensor;
 
-
         private int _currentComboIndex;
         private Animator _animator;
+        private Rigidbody2D _rb;
 
         public UnityAction onComboFinished;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _rb = GetComponent<Rigidbody2D>();
+        }
+
+        public void SetGravityScale()
+        {
+            if (BulletTime)
+            {
+                _rb.velocity *= _bulletTimeMultiplier;
+            }
         }
 
         public void AerialAttack()

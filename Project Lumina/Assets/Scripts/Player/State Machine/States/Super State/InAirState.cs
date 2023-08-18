@@ -1,4 +1,6 @@
-﻿namespace ProjectLumina.Player.StateMachine.States
+﻿using UnityEngine;
+
+namespace ProjectLumina.Player.StateMachine.States
 {
     public class InAirState : State
     {
@@ -10,21 +12,24 @@
 
             this.stateController = stateController;
 
-            stateController.InputReader.onAttack = TryAttack;
             stateController.PlayerMeleeAttack.ResetCombo();
         }
-        public override void Exit(StateController stateController)
-        {
-            base.Exit(stateController);
 
-            stateController.InputReader.onAttack -= TryAttack;
+        public override void LogicUpdate(StateController stateController)
+        {
+            base.LogicUpdate(stateController);
+
+            if (stateController.PlayerWallSlide.CanWallSlide && stateController.InputReader.MoveInput.x != 0)
+            {
+                stateController.ChangeState(stateController.GetState("Wall Slide"));
+            }
         }
 
         public override void PhysicsUpdate(StateController stateController)
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerMove.Move(stateController.InputReader.MoveInput);
+            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
         }
 
         protected void TryAttack()
