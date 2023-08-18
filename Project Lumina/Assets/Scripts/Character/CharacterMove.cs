@@ -5,7 +5,6 @@ namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(SpriteRenderer))]
     [AddComponentMenu("Character/Character Move")]
     public class CharacterMove : MonoBehaviour
     {
@@ -18,13 +17,11 @@ namespace ProjectLumina.Character
         private float _lastMoveX, _moveInput;
         private Animator _animator;
         private Rigidbody2D _rb;
-        private SpriteRenderer _spriteRenderer;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
-            _spriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Update()
@@ -44,7 +41,15 @@ namespace ProjectLumina.Character
 
             _moveInput = move;
             _animator.SetFloat("speed", Mathf.Abs(_moveInput));
-            _spriteRenderer.flipX = _lastMoveX < 0;
+
+            if (_lastMoveX < 0)
+            {
+                transform.localRotation = new Quaternion(0, -180, 0, 0);
+            }
+            else
+            {
+                transform.localRotation = new Quaternion(0, 0, 0, 0);
+            }
 
             _rb.AddForce(movement * Vector2.right);
 
