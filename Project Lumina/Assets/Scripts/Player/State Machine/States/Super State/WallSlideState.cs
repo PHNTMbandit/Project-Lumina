@@ -1,3 +1,4 @@
+using ProjectLumina.Abilities;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
@@ -27,13 +28,20 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerWallSlide.CanWallSlide == false)
+            if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
             {
-                stateController.ChangeState(stateController.GetState("Fall"));
+                if (characterWallSlide.CanWallSlide == false)
+                {
+                    stateController.ChangeState(stateController.GetState("Fall"));
+                }
             }
-            else if (stateController.PlayerJump.IsGrounded)
+
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                if (characterJump.IsGrounded)
+                {
+                    stateController.ChangeState(stateController.GetState("Idle"));
+                }
             }
         }
 
@@ -41,12 +49,19 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerWallSlide.Slide();
+            if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
+            {
+                characterWallSlide.Slide();
+            }
         }
 
         protected void TryWallJump()
         {
-            stateController.PlayerWallSlide.Jump();
+            if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
+            {
+                characterWallSlide.Jump();
+            }
+
             stateController.ChangeState(stateController.GetState("Jump"));
         }
     }

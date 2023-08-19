@@ -1,4 +1,4 @@
-﻿using ProjectLumina.Character;
+﻿using ProjectLumina.Abilities;
 using ProjectLumina.Input;
 using System;
 using UnityEngine;
@@ -16,18 +16,7 @@ namespace ProjectLumina.Player.StateMachine
         public InputReader InputReader { get; private set; }
 
         public Animator Animator { get; private set; }
-        public CharacterAerialAttack PlayerAerialAttack { get; private set; }
-        public CharacterDash PlayerDash { get; private set; }
-        public CharacterFall PlayerFall { get; private set; }
-        public CharacterFallAttack PlayerFallAttack { get; private set; }
-        public CharacterJump PlayerJump { get; private set; }
-        public CharacterMove PlayerMove { get; private set; }
-        public CharacterMeleeAttack PlayerMeleeAttack { get; private set; }
-        public CharacterRoll PlayerRoll { get; private set; }
-        public CharacterRollAttack PlayerRollAttack { get; private set; }
-        public CharacterSprint PlayerSprint { get; private set; }
-        public CharacterWallSlide PlayerWallSlide { get; private set; }
-        public SpriteRenderer SpriteRenderer { get; private set; }
+        public CharacterAbility[] CharacterAbilities { get; private set; }
 
         #endregion Properties
 
@@ -54,18 +43,7 @@ namespace ProjectLumina.Player.StateMachine
         private void Awake()
         {
             Animator = GetComponent<Animator>();
-            PlayerAerialAttack = GetComponent<CharacterAerialAttack>();
-            PlayerDash = GetComponent<CharacterDash>();
-            PlayerFall = GetComponent<CharacterFall>();
-            PlayerFallAttack = GetComponent<CharacterFallAttack>();
-            PlayerJump = GetComponent<CharacterJump>();
-            PlayerMeleeAttack = GetComponent<CharacterMeleeAttack>();
-            PlayerMove = GetComponent<CharacterMove>();
-            PlayerRoll = GetComponent<CharacterRoll>();
-            PlayerRollAttack = GetComponent<CharacterRollAttack>();
-            PlayerSprint = GetComponent<CharacterSprint>();
-            PlayerWallSlide = GetComponent<CharacterWallSlide>();
-            SpriteRenderer = GetComponent<SpriteRenderer>();
+            CharacterAbilities = GetComponents<CharacterAbility>();
         }
 
         private void Start()
@@ -107,6 +85,22 @@ namespace ProjectLumina.Player.StateMachine
         public State GetState(string stateName)
         {
             return Array.Find(_states, i => i.name == $"{stateName} State");
+        }
+
+        public bool HasCharacterAbility<T>(out T characterAbility) where T : CharacterAbility
+        {
+            T ability = (T)Array.Find(CharacterAbilities, i => i.GetType() == typeof(T));
+            characterAbility = ability;
+
+            if (ability != null)
+            {
+                if (ability.IsUnlocked)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         #endregion State Functions

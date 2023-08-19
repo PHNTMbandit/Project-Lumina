@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -25,9 +26,12 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerJump.IsGrounded)
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                if (characterJump.IsGrounded)
+                {
+                    stateController.ChangeState(stateController.GetState("Idle"));
+                }
             }
         }
 
@@ -35,15 +39,25 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerFall.SetGravityScale();
-            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            if (stateController.HasCharacterAbility(out CharacterFall characterFall))
+            {
+                characterFall.SetGravityScale();
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
+            {
+                characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            }
         }
 
         protected void TryFallAttack()
         {
-            if (stateController.PlayerFallAttack.FallAttackCharge)
+            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
             {
-                stateController.ChangeState(stateController.GetState("Fall Attack"));
+                if (characterFallAttack.FallAttackCharge)
+                {
+                    stateController.ChangeState(stateController.GetState("Fall Attack"));
+                }
             }
         }
     }

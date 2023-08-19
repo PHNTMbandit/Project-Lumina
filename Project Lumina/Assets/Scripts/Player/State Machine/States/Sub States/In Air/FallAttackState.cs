@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -9,25 +10,39 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerFallAttack.UseFallAttack();
-            stateController.PlayerFallAttack.onFallAttackFinished = ChangeToFall;
+            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+            {
+                characterFallAttack.UseFallAttack();
+                characterFallAttack.onFallAttackFinished = ChangeToFall;
+            }
         }
 
         public override void Exit(StateController stateController)
         {
             base.Exit(stateController);
 
-            stateController.PlayerAerialAttack.ResetAerialCombo();
-            stateController.PlayerFallAttack.onFallAttackFinished -= ChangeToFall;
+
+            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+            {
+                characterFallAttack.onFallAttackFinished -= ChangeToFall;
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            {
+                characterAerialAttack.ResetAerialCombo();
+            }
         }
 
         public override void LogicUpdate(StateController stateController)
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerJump.IsGrounded)
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                if (characterJump.IsGrounded)
+                {
+                    stateController.ChangeState(stateController.GetState("Idle"));
+                }
             }
         }
 
@@ -35,8 +50,15 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerFallAttack.SetGravityScale();
-            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+            {
+                characterFallAttack.SetGravityScale();
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
+            {
+                characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            }
         }
 
         private void ChangeToFall()

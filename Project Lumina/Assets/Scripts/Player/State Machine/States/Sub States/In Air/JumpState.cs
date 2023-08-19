@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -9,7 +10,11 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerJump.Jump();
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
+            {
+                characterJump.Jump();
+            }
+
             stateController.InputReader.onAttack = TryAttack;
         }
 
@@ -24,9 +29,12 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerFall.IsFalling())
+            if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
-                stateController.ChangeState(stateController.GetState("Fall"));
+                if (characterFall.IsFalling())
+                {
+                    stateController.ChangeState(stateController.GetState("Fall"));
+                }
             }
         }
 
@@ -34,8 +42,15 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerJump.SetGravityScale();
-            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
+            {
+                characterJump.SetGravityScale();
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
+            {
+                characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            }
         }
     }
 }

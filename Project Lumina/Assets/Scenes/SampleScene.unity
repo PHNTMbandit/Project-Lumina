@@ -2070,7 +2070,7 @@ GameObject:
   - component: {fileID: 1244203712}
   - component: {fileID: 1244203713}
   - component: {fileID: 1244203721}
-  - component: {fileID: 1244203725}
+  - component: {fileID: 1244203729}
   - component: {fileID: 1244203718}
   - component: {fileID: 1244203727}
   - component: {fileID: 1244203717}
@@ -2332,6 +2332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaaa03a8ba67194ba3d9ee655ad2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   Move: 1
   _moveSpeed: 9
   _velocity: 1.2
@@ -2378,6 +2379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3954851771403c440acd3d3dfb22bb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   AddForce: 1
   _jumpForce: 12
   _jumpGravityScale: 1
@@ -2404,6 +2406,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19011604e7e8abf4b89a8a2e06dc22e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   _fallingThreshold: -1
   _maxFallGravitySpeed: -50
   _fallingGravityScale: 1
@@ -2420,6 +2423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0b52ed5844f364bb2dee37001139d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   Slash1: 1
   Slash1Attack:
     <Damage>k__BackingField: 0
@@ -2448,6 +2452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c724a419a40fa0046a18768b8a17f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   AerialSlash1: 1
   AerialSlash1Attack:
     <Damage>k__BackingField: 0
@@ -2470,6 +2475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029f624239724d4489f0eb9b7d82e6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   WallSlide: 1
   _wallSlideSpeed: 2
   WallJump: 1
@@ -2533,25 +2539,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2200e7a863cd14f83ea50b6cb4ab06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   Roll: 0
   _rollSpeed: 7
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
---- !u!114 &1244203725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1244203708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df0f22d52e401504b97a3f81c74f7b3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Dash: 0
-  _dashCharges: 1
-  _dashSpeed: 20
 --- !u!114 &1244203726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2564,6 +2556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963aca35f631eae489db10b7bfd89c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   _rollAttack:
     <Damage>k__BackingField: 0
     <Sensor>k__BackingField: {fileID: 1977810697}
@@ -2579,6 +2572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ecf0ad249f9640ba55a747628b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   FallAttack: 1
   _fallAttack:
     <Damage>k__BackingField: 0
@@ -2597,11 +2591,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe1aa44ca8942548a1ca7b9e2e09361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
   _moveSpeed: 13
   _velocity: 1.2
   _acceleration: 9
   _decceleration: 9
   _frictionAmount: 0.2
+--- !u!114 &1244203729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df0f22d52e401504b97a3f81c74f7b3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
+  Dash: 1
+  _dashCharges: 1
+  _dashSpeed: 20
 --- !u!1 &1247397798
 GameObject:
   m_ObjectHideFlags: 0

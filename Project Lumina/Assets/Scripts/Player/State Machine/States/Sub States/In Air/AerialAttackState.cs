@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -9,26 +10,35 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerAerialAttack.UseAerialAttack();
-            stateController.PlayerAerialAttack.onComboFinished = ChangeToFall;
-            stateController.InputReader.onAttack = stateController.PlayerAerialAttack.UseAerialAttack;
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            {
+                characterAerialAttack.UseAerialAttack();
+                characterAerialAttack.onComboFinished = ChangeToFall;
+                stateController.InputReader.onAttack = characterAerialAttack.UseAerialAttack;
+            }
         }
 
         public override void Exit(StateController stateController)
         {
             base.Exit(stateController);
 
-            stateController.PlayerAerialAttack.onComboFinished -= ChangeToFall;
-            stateController.InputReader.onAttack -= stateController.PlayerAerialAttack.UseAerialAttack;
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            {
+                characterAerialAttack.onComboFinished -= ChangeToFall;
+                stateController.InputReader.onAttack -= characterAerialAttack.UseAerialAttack;
+            }
         }
 
         public override void LogicUpdate(StateController stateController)
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerJump.IsGrounded)
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                if (characterJump.IsGrounded)
+                {
+                    stateController.ChangeState(stateController.GetState("Idle"));
+                }
             }
         }
 
@@ -36,8 +46,15 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerAerialAttack.SetGravityScale();
-            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            {
+                characterAerialAttack.SetGravityScale();
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
+            {
+                characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+            }
         }
 
         private void ChangeToFall()
