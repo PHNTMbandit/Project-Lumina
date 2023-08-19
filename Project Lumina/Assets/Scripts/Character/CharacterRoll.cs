@@ -24,8 +24,6 @@ namespace ProjectLumina.Character
         private CharacterMove _characterMove;
         private Rigidbody2D _rb;
 
-        public UnityAction onRollFinished;
-
         private void Awake()
         {
             _collider = GetComponent<BoxCollider2D>();

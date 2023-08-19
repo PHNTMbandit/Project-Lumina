@@ -19,11 +19,13 @@ namespace ProjectLumina.Player.StateMachine
         public CharacterAerialAttack PlayerAerialAttack { get; private set; }
         public CharacterDash PlayerDash { get; private set; }
         public CharacterFall PlayerFall { get; private set; }
+        public CharacterFallAttack PlayerFallAttack { get; private set; }
         public CharacterJump PlayerJump { get; private set; }
         public CharacterMove PlayerMove { get; private set; }
         public CharacterMeleeAttack PlayerMeleeAttack { get; private set; }
         public CharacterRoll PlayerRoll { get; private set; }
         public CharacterRollAttack PlayerRollAttack { get; private set; }
+        public CharacterSprint PlayerSprint { get; private set; }
         public CharacterWallSlide PlayerWallSlide { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
 
@@ -55,11 +57,13 @@ namespace ProjectLumina.Player.StateMachine
             PlayerAerialAttack = GetComponent<CharacterAerialAttack>();
             PlayerDash = GetComponent<CharacterDash>();
             PlayerFall = GetComponent<CharacterFall>();
+            PlayerFallAttack = GetComponent<CharacterFallAttack>();
             PlayerJump = GetComponent<CharacterJump>();
             PlayerMeleeAttack = GetComponent<CharacterMeleeAttack>();
             PlayerMove = GetComponent<CharacterMove>();
             PlayerRoll = GetComponent<CharacterRoll>();
             PlayerRollAttack = GetComponent<CharacterRollAttack>();
+            PlayerSprint = GetComponent<CharacterSprint>();
             PlayerWallSlide = GetComponent<CharacterWallSlide>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }

@@ -2006,11 +2006,13 @@ GameObject:
   - component: {fileID: 1244203721}
   - component: {fileID: 1244203725}
   - component: {fileID: 1244203718}
+  - component: {fileID: 1244203727}
   - component: {fileID: 1244203717}
   - component: {fileID: 1244203720}
   - component: {fileID: 1244203714}
   - component: {fileID: 1244203724}
   - component: {fileID: 1244203726}
+  - component: {fileID: 1244203728}
   - component: {fileID: 1244203722}
   m_Layer: 3
   m_Name: Swordmaster
@@ -2207,6 +2209,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 609ca4ca-926f-47ac-a432-a6307e432adc
     m_ActionName: Player/Dash[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eb01890f-dfa7-4da2-834e-c6a10c006e72
+    m_ActionName: Player/Fall Attack[/XInputControllerWindows/leftStick/down,/XInputControllerWindows/buttonWest,/Keyboard/s,/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0bf34029-c197-4380-a4a9-fb364faf8ac8
+    m_ActionName: Player/Sprint[/XInputControllerWindows/rightTrigger,/XInputControllerWindows/leftStick]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -2237,6 +2247,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 90a4898acec61d54eae4fe3643f18677, type: 2}
   - {fileID: 11400000, guid: 31c9decd7d164524783319d52aaf3ac3, type: 2}
   - {fileID: 11400000, guid: 1b7f23fcde53d3a4f9d7a7ae94ba12c4, type: 2}
+  - {fileID: 11400000, guid: b101c782b43c3294898b9a1a908d2bc4, type: 2}
+  - {fileID: 11400000, guid: 5f55962b56ae25748951dc94e064aa2a, type: 2}
 --- !u!114 &1244203714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2463,6 +2475,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _damage: 0
+--- !u!114 &1244203727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ecf0ad249f9640ba55a747628b45e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletTime: 1
+  _bulletTimeMultiplier: 0.7
+--- !u!114 &1244203728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fe1aa44ca8942548a1ca7b9e2e09361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 15
+  _velocity: 1.4
+  _acceleration: 12
+  _decceleration: 6
+  _frictionAmount: 0.4
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0

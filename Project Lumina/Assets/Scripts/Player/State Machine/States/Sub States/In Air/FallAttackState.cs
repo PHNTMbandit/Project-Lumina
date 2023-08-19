@@ -2,23 +2,22 @@
 
 namespace ProjectLumina.Player.StateMachine.States
 {
-    [CreateAssetMenu(fileName = "Fall State", menuName = "Project Lumina/States/Fall State")]
-    public class FallState : InAirState
+    [CreateAssetMenu(fileName = "Fall Attack State", menuName = "Project Lumina/States/Fall Attack State")]
+    public class FallAttackState : InAirState
     {
         public override void Enter(StateController stateController)
         {
             base.Enter(stateController);
 
-            stateController.InputReader.onAttack = TryAttack;
-            stateController.InputReader.onFallAttack = TryFallAttack;
+            stateController.PlayerFallAttack.onFallAttackFinished = ChangeToFall;
         }
 
         public override void Exit(StateController stateController)
         {
             base.Exit(stateController);
 
-            stateController.InputReader.onAttack -= TryAttack;
-            stateController.InputReader.onFallAttack = TryFallAttack;
+            stateController.PlayerAerialAttack.ResetAerialCombo();
+            stateController.PlayerFallAttack.onFallAttackFinished -= ChangeToFall;
         }
 
         public override void LogicUpdate(StateController stateController)
@@ -35,16 +34,13 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerFall.SetGravityScale();
+            stateController.PlayerFallAttack.SetGravityScale();
             stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
         }
 
-        protected void TryFallAttack()
+        private void ChangeToFall()
         {
-            if (stateController.PlayerFallAttack.FallAttackCharge)
-            {
-                stateController.ChangeState(stateController.GetState("Fall Attack"));
-            }
+            stateController.ChangeState(stateController.GetState("Fall"));
         }
     }
 }

@@ -13,8 +13,6 @@ namespace ProjectLumina.Character
         [BoxGroup("Damage"), Range(0, 100), SerializeField]
         private float _damage;
 
-        public UnityAction onRollAttackFinished;
-
         public void RollAttack()
         {
             IsRollAttacking = true;

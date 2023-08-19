@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
+    [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Aerial Attack")]
     public class CharacterAerialAttack : MonoBehaviour
@@ -39,15 +40,15 @@ namespace ProjectLumina.Character
         private RaySensor2D _sensor;
 
         private int _currentComboIndex;
-        private Animator _animator;
         private Rigidbody2D _rb;
+        private Animator _animator;
 
         public UnityAction onComboFinished;
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         public void SetGravityScale()

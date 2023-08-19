@@ -2,15 +2,14 @@
 
 namespace ProjectLumina.Player.StateMachine.States
 {
-    [CreateAssetMenu(fileName = "Fall State", menuName = "Project Lumina/States/Fall State")]
-    public class FallState : InAirState
+    [CreateAssetMenu(fileName = "Sprint State", menuName = "Project Lumina/States/Sprint State")]
+    public class SprintState : GroundedState
     {
         public override void Enter(StateController stateController)
         {
             base.Enter(stateController);
 
             stateController.InputReader.onAttack = TryAttack;
-            stateController.InputReader.onFallAttack = TryFallAttack;
         }
 
         public override void Exit(StateController stateController)
@@ -18,16 +17,20 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Exit(stateController);
 
             stateController.InputReader.onAttack -= TryAttack;
-            stateController.InputReader.onFallAttack = TryFallAttack;
         }
 
         public override void LogicUpdate(StateController stateController)
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerJump.IsGrounded)
+            if (moveInput == 0)
             {
                 stateController.ChangeState(stateController.GetState("Idle"));
+            }
+
+            if (stateController.InputReader.SprintInput == false)
+            {
+                stateController.ChangeState(stateController.GetState("Move"));
             }
         }
 
@@ -35,16 +38,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerFall.SetGravityScale();
-            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
-        }
-
-        protected void TryFallAttack()
-        {
-            if (stateController.PlayerFallAttack.FallAttackCharge)
-            {
-                stateController.ChangeState(stateController.GetState("Fall Attack"));
-            }
+            stateController.PlayerSprint.Sprint(moveInput);
         }
     }
 }

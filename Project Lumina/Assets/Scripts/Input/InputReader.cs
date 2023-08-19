@@ -12,12 +12,14 @@ namespace ProjectLumina.Input
         public GameControls GameControls { get; private set; }
         public bool AttackInput { get; private set; }
         public bool DashInput { get; private set; }
+        public bool FallAttackInput { get; private set; }
         public bool JumpInputPress { get; private set; }
         public bool JumpInputRelease { get; private set; }
         public Vector2 MoveInput { get; private set; }
         public bool RollInput { get; private set; }
+        public bool SprintInput { get; private set; }
 
-        public UnityAction onAttack, onDash, onJump, onRoll;
+        public UnityAction onAttack, onDash, onFallAttack, onJump, onRoll, onSprint;
 
         #endregion Variables
 
@@ -46,6 +48,7 @@ namespace ProjectLumina.Input
         {
             if (context.performed)
             {
+                Debug.Log("attack");
                 AttackInput = true;
 
                 onAttack?.Invoke();
@@ -67,6 +70,22 @@ namespace ProjectLumina.Input
             else if (context.canceled)
             {
                 DashInput = false;
+            }
+        }
+
+        public void OnFallAttack(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Debug.Log("fall attack");
+
+                FallAttackInput = true;
+
+                onFallAttack?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                FallAttackInput = false;
             }
         }
 
@@ -102,6 +121,20 @@ namespace ProjectLumina.Input
             else if (context.canceled)
             {
                 RollInput = false;
+            }
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                SprintInput = true;
+
+                onSprint?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                SprintInput = false;
             }
         }
 
