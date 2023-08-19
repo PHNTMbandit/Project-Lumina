@@ -10,6 +10,7 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Enter(stateController);
 
             stateController.PlayerMeleeAttack.UseCombo();
+            stateController.InputReader.onAttack = TryAttack;
             stateController.PlayerMeleeAttack.onComboFinished = ChangeToIdle;
         }
 
@@ -17,6 +18,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Exit(stateController);
 
+            stateController.InputReader.onAttack -= TryAttack;
             stateController.PlayerMeleeAttack.onComboFinished -= ChangeToIdle;
         }
 
