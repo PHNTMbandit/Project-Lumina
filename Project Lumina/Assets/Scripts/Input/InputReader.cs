@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace ProjectLumina.Input
@@ -9,7 +10,16 @@ namespace ProjectLumina.Input
         #region Variables
 
         public GameControls GameControls { get; private set; }
-        public float MoveInput { get; private set; }
+        public bool AttackInput { get; private set; }
+        public bool DashInput { get; private set; }
+        public bool FallAttackInput { get; private set; }
+        public bool JumpInputPress { get; private set; }
+        public bool JumpInputRelease { get; private set; }
+        public Vector2 MoveInput { get; private set; }
+        public bool RollInput { get; private set; }
+        public bool SprintInput { get; private set; }
+
+        public UnityAction onAttack, onDash, onFallAttack, onJump, onRoll, onSprint;
 
         #endregion Variables
 
@@ -34,10 +44,98 @@ namespace ProjectLumina.Input
         #endregion Unity Callback Functions
 
         #region Player Actions
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Debug.Log("attack");
+                AttackInput = true;
+
+                onAttack?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                AttackInput = false;
+            }
+        }
+
+        public void OnDash(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                DashInput = true;
+
+                onDash?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                DashInput = false;
+            }
+        }
+
+        public void OnFallAttack(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                Debug.Log("fall attack");
+
+                FallAttackInput = true;
+
+                onFallAttack?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                FallAttackInput = false;
+            }
+        }
+
+        public void OnJump(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                JumpInputPress = true;
+                JumpInputRelease = false;
+
+                onJump?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                JumpInputPress = false;
+                JumpInputRelease = true;
+            }
+        }
 
         public void OnMove(InputAction.CallbackContext context)
         {
-            MoveInput = context.ReadValue<float>();
+            MoveInput = context.ReadValue<Vector2>();
+        }
+
+        public void OnRoll(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                RollInput = true;
+
+                onRoll?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                RollInput = false;
+            }
+        }
+
+        public void OnSprint(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                SprintInput = true;
+
+                onSprint?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                SprintInput = false;
+            }
         }
 
         #endregion Player Actions

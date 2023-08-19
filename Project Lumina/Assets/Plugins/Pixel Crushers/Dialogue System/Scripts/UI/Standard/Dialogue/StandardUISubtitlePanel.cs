@@ -328,7 +328,7 @@ namespace PixelCrushers.DialogueSystem
         /// </summary>
         public virtual void HideImmediate()
         {
-            DeactivateUIElements();
+            OnHidden();
         }
 
         protected override void OnHidden()

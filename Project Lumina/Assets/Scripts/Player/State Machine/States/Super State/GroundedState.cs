@@ -1,42 +1,61 @@
-﻿namespace ProjectLumina.Player.StateMachine.States
+﻿using UnityEngine;
+
+namespace ProjectLumina.Player.StateMachine.States
 {
     public class GroundedState : State
     {
-        public GroundedState(StateController stateController, StateMachine stateMachine, string animBoolName) : base(stateController, stateMachine, animBoolName)
+        protected float moveInput;
+        protected StateController stateController;
+
+        public override void Enter(StateController stateController)
         {
+            base.Enter(stateController);
+
+            this.stateController = stateController;
+
+            stateController.InputReader.onJump = TryJump;
+            stateController.InputReader.onRoll = TryRoll;
+            stateController.PlayerAerialAttack.ResetAerialCombo();
+            stateController.PlayerFallAttack.ResetFallAttack();
+            stateController.PlayerDash.ResetDash();
         }
 
-        protected float lastMoveX, moveInput;
-
-        public override void Enter()
+        public override void Exit(StateController stateController)
         {
-            base.Enter();
+            base.Exit(stateController);
+
+            stateController.InputReader.onJump -= TryJump;
+            stateController.InputReader.onRoll -= TryRoll;
         }
 
-        public override void Exit()
+        public override void LogicUpdate(StateController stateController)
         {
-            base.Exit();
-        }
+            base.LogicUpdate(stateController);
 
-        public override void Update()
-        {
-            base.Update();
+            moveInput = stateController.InputReader.MoveInput.x;
 
-            moveInput = stateController.InputReader.MoveInput;
-
-            if (moveInput != 0)
+            if (stateController.PlayerFall.IsFalling())
             {
-                lastMoveX = moveInput;
+                stateController.ChangeState(stateController.GetState("Fall"));
             }
-
-            stateController.SpriteRenderer.flipX = lastMoveX < 0;
         }
 
-        public override void FixedUpdate()
+        protected void TryAttack()
         {
-            base.FixedUpdate();
+            stateController.ChangeState(stateController.GetState("Melee Attack"));
+        }
 
-            stateController.PlayerMovement.Move(moveInput);
+        protected void TryJump()
+        {
+            if (stateController.PlayerJump.CanJump())
+            {
+                stateController.ChangeState(stateController.GetState("Jump"));
+            }
+        }
+
+        protected void TryRoll()
+        {
+            stateController.ChangeState(stateController.GetState("Roll"));
         }
     }
 }

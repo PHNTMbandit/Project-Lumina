@@ -1,12 +1,14 @@
-﻿using ProjectLumina.Input;
-using ProjectLumina.Player.StateMachine.States;
+﻿using ProjectLumina.Character;
+using ProjectLumina.Input;
+using System;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(PlayerMovement))]
-    public abstract class StateController : MonoBehaviour
+    [RequireComponent(typeof(CharacterMove))]
+    [AddComponentMenu("Player/State Controller")]
+    public class StateController : MonoBehaviour
     {
         #region Properties
 
@@ -14,43 +16,99 @@ namespace ProjectLumina.Player.StateMachine
         public InputReader InputReader { get; private set; }
 
         public Animator Animator { get; private set; }
-        public PlayerMovement PlayerMovement { get; private set; }
+        public CharacterAerialAttack PlayerAerialAttack { get; private set; }
+        public CharacterDash PlayerDash { get; private set; }
+        public CharacterFall PlayerFall { get; private set; }
+        public CharacterFallAttack PlayerFallAttack { get; private set; }
+        public CharacterJump PlayerJump { get; private set; }
+        public CharacterMove PlayerMove { get; private set; }
+        public CharacterMeleeAttack PlayerMeleeAttack { get; private set; }
+        public CharacterRoll PlayerRoll { get; private set; }
+        public CharacterRollAttack PlayerRollAttack { get; private set; }
+        public CharacterSprint PlayerSprint { get; private set; }
+        public CharacterWallSlide PlayerWallSlide { get; private set; }
         public SpriteRenderer SpriteRenderer { get; private set; }
-        public StateMachine StateMachine { get; private set; }
 
         #endregion Properties
 
         #region States
 
-        public IdleState IdleState { get; private set; }
-        public MoveState MoveState { get; private set; }
+        public State CurrentState { get; private set; }
+        public State PreviousState { get; private set; }
 
         #endregion States
 
+        #region Variables
+
+        [SerializeField]
+        private State _defaultState;
+
+        [SerializeField]
+        private State[] _states;
+
+
+        #endregion Variables
+
+        #region Unity Callback Functions
+
         private void Awake()
         {
-            StateMachine = new StateMachine();
-            IdleState = new(this, StateMachine, "idle");
-            MoveState = new(this, StateMachine, "moving");
-
             Animator = GetComponent<Animator>();
-            PlayerMovement = GetComponent<PlayerMovement>();
+            PlayerAerialAttack = GetComponent<CharacterAerialAttack>();
+            PlayerDash = GetComponent<CharacterDash>();
+            PlayerFall = GetComponent<CharacterFall>();
+            PlayerFallAttack = GetComponent<CharacterFallAttack>();
+            PlayerJump = GetComponent<CharacterJump>();
+            PlayerMeleeAttack = GetComponent<CharacterMeleeAttack>();
+            PlayerMove = GetComponent<CharacterMove>();
+            PlayerRoll = GetComponent<CharacterRoll>();
+            PlayerRollAttack = GetComponent<CharacterRollAttack>();
+            PlayerSprint = GetComponent<CharacterSprint>();
+            PlayerWallSlide = GetComponent<CharacterWallSlide>();
             SpriteRenderer = GetComponent<SpriteRenderer>();
         }
 
         private void Start()
         {
-            StateMachine.Initialise(IdleState);
+            Initialise(_defaultState);
         }
 
         private void Update()
         {
-            StateMachine.CurrentState.Update();
+            CurrentState.LogicUpdate(this);
         }
 
         private void FixedUpdate()
         {
-            StateMachine.CurrentState.FixedUpdate();
+            CurrentState.PhysicsUpdate(this);
         }
+
+        #endregion Unity Callback Functions
+
+        #region State Functions
+
+        public void Initialise(State startingState)
+        {
+            CurrentState = startingState;
+            CurrentState.Enter(this);
+        }
+
+        public void ChangeState(State newState)
+        {
+            if (newState != null)
+            {
+                CurrentState.Exit(this);
+                PreviousState = CurrentState;
+                CurrentState = newState;
+                CurrentState.Enter(this);
+            }
+        }
+
+        public State GetState(string stateName)
+        {
+            return Array.Find(_states, i => i.name == $"{stateName} State");
+        }
+
+        #endregion State Functions
     }
 }
