@@ -43,7 +43,10 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryDash()
         {
-            stateController.ChangeState(stateController.GetState("Dash"));
+            if (stateController.PlayerDash.CurrentDashCharges > 0)
+            {
+                stateController.ChangeState(stateController.GetState("Dash"));
+            }
         }
     }
 }

@@ -9,11 +9,22 @@ namespace ProjectLumina.Character
     public class CharacterDash : MonoBehaviour
     {
         [BoxGroup("Stats"), ShowInInspector, ReadOnly]
+        public int CurrentDashCharges
+        {
+            get => _currentDashCharges;
+            set => _currentDashCharges = value <= 0 ? 0 : value >= _dashCharges ? _dashCharges : value;
+        }
+
+        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool IsDashing { get; private set; }
 
-        [BoxGroup("Speed"), Range(0, 50), SerializeField]
+        [BoxGroup("Dash"), Range(0, 10), SerializeField]
+        private int _dashCharges;
+
+        [BoxGroup("Dash"), Range(0, 50), SerializeField]
         private float _dashSpeed;
 
+        private int _currentDashCharges;
         private Rigidbody2D _rb;
         private CharacterMove _characterMove;
 
@@ -23,8 +34,18 @@ namespace ProjectLumina.Character
             _characterMove = GetComponent<CharacterMove>();
         }
 
+        private void Start()
+        {
+            _currentDashCharges = _dashCharges;
+        }
+
         public void Dash()
         {
+            if (IsDashing == false)
+            {
+                CurrentDashCharges--;
+            }
+
             IsDashing = true;
 
             _rb.velocity = new Vector2(_characterMove.GetFacingDirection().x * _dashSpeed, 0);
@@ -34,6 +55,11 @@ namespace ProjectLumina.Character
         public void FinishDash()
         {
             IsDashing = false;
+        }
+
+        public void ResetDash()
+        {
+            CurrentDashCharges = _dashCharges;
         }
     }
 }

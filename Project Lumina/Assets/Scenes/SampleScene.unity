@@ -2461,6 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f22d52e401504b97a3f81c74f7b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _dashCharges: 3
   _dashSpeed: 20
 --- !u!114 &1244203726
 MonoBehaviour:

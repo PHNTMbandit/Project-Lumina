@@ -17,6 +17,7 @@ namespace ProjectLumina.Player.StateMachine.States
             stateController.InputReader.onRoll = TryRoll;
             stateController.PlayerAerialAttack.ResetAerialCombo();
             stateController.PlayerFallAttack.ResetFallAttack();
+            stateController.PlayerDash.ResetDash();
         }
 
         public override void Exit(StateController stateController)

@@ -27,6 +27,11 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 stateController.ChangeState(stateController.GetState("Idle"));
             }
+
+            if (stateController.InputReader.SprintInput)
+            {
+                stateController.ChangeState(stateController.GetState("Sprint"));
+            }
         }
 
         public override void PhysicsUpdate(StateController stateController)
