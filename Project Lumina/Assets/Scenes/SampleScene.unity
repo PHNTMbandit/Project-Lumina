@@ -2461,7 +2461,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f22d52e401504b97a3f81c74f7b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dashCharges: 3
+  _dashCharges: 1
   _dashSpeed: 20
 --- !u!114 &1244203726
 MonoBehaviour:
@@ -2502,11 +2502,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe1aa44ca8942548a1ca7b9e2e09361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 15
-  _velocity: 1.4
-  _acceleration: 12
-  _decceleration: 6
-  _frictionAmount: 0.4
+  _moveSpeed: 13
+  _velocity: 1.2
+  _acceleration: 9
+  _decceleration: 9
+  _frictionAmount: 0.2
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0
