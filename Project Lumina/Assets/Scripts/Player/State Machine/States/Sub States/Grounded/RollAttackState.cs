@@ -9,7 +9,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerRollAttack.RollAttack();
+            stateController.PlayerRollAttack.UseRollAttack();
         }
 
         public override void LogicUpdate(StateController stateController)

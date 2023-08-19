@@ -776,7 +776,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.05, y: 3, z: -10}
+  m_LocalPosition: {x: -30.159, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -963,7 +963,7 @@ Transform:
   m_GameObject: {fileID: 642947203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.05, y: 3, z: -10}
+  m_LocalPosition: {x: -30.159, y: 3, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1894,7 +1894,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1244203709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!1 &1173656594
+--- !u!1 &1148866636
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1902,25 +1902,40 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1173656596}
-  - component: {fileID: 1173656595}
+  - component: {fileID: 1148866637}
+  - component: {fileID: 1148866638}
   m_Layer: 3
-  m_Name: Attack Sensor
+  m_Name: Slash 2 Attack Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1173656595
+--- !u!4 &1148866637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148866636}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 2.325, y: 0.463, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244203709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1148866638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1173656594}
+  m_GameObject: {fileID: 1148866636}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67743d858b7a45d39461726716d6af2e, type: 3}
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   signalProcessors: []
@@ -1936,43 +1951,46 @@ MonoBehaviour:
   OnNoDetection:
     m_PersistentCalls:
       m_Calls: []
-  Shape: 0
-  Circle:
-    Radius: 1
-  Box:
-    HalfExtents: {x: 0.5, y: 0.5}
-  Capsule:
-    Radius: 0.5
-    Height: 1
   signalFilter:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 1
-  Direction: {x: 0, y: 1}
-  WorldSpace: 0
+  DetectionMode: 0
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.48, y: 1.59}
+  Capsule:
+    Radius: 0.5
+    Height: 1
   DetectsOnLayers:
     serializedVersion: 2
-    m_Bits: 0
-  ObstructedByLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  DetectionMode: 0
+    m_Bits: 1
   IgnoreTriggerColliders: 0
-  MinimumSlopeAngle: 0
-  SlopeUpDirection: {x: 0, y: 1}
   pulseRoutine:
     Mode:
       value: 2
     UpdateFunction: 0
     Interval:
       value: 1
-  onObstruction:
-    m_PersistentCalls:
-      m_Calls: []
-  onClear:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!1 &1173656594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1173656596}
+  - component: {fileID: 1173656597}
+  m_Layer: 3
+  m_Name: Slash 1 Attack Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &1173656596
 Transform:
   m_ObjectHideFlags: 0
@@ -1982,12 +2000,60 @@ Transform:
   m_GameObject: {fileID: 1173656594}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.56, z: 0}
+  m_LocalPosition: {x: 1.901, y: 0.38, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1244203709}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1173656597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173656594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  DetectionMode: 0
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.48, y: 1.57}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTriggerColliders: 0
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
 --- !u!1 &1244203708
 GameObject:
   m_ObjectHideFlags: 0
@@ -2030,11 +2096,16 @@ Transform:
   m_GameObject: {fileID: 1244203708}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.05, y: 3, z: 0}
+  m_LocalPosition: {x: -30.159, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1173656596}
+  - {fileID: 1148866637}
+  - {fileID: 1573371136}
+  - {fileID: 1977810696}
+  - {fileID: 1939052458}
+  - {fileID: 1247397799}
   - {fileID: 1729079056}
   - {fileID: 1017651434}
   m_Father: {fileID: 0}
@@ -2238,17 +2309,17 @@ MonoBehaviour:
   _defaultState: {fileID: 11400000, guid: 66800e2f34b775f40aab33b34f0fe5d7, type: 2}
   _states:
   - {fileID: 11400000, guid: 0ca89a954fdfe474c8cd6ddb322ceac9, type: 2}
+  - {fileID: 11400000, guid: 31c9decd7d164524783319d52aaf3ac3, type: 2}
   - {fileID: 11400000, guid: 66800e2f34b775f40aab33b34f0fe5d7, type: 2}
   - {fileID: 11400000, guid: 0ea3980a456c18542b78e0a1edb7f32a, type: 2}
+  - {fileID: 11400000, guid: b101c782b43c3294898b9a1a908d2bc4, type: 2}
   - {fileID: 11400000, guid: c2ae0a06b31f2c94f8884ac3c3c35ad6, type: 2}
   - {fileID: 11400000, guid: 97433c3c3f461904dbd88026cb052a9e, type: 2}
   - {fileID: 11400000, guid: 254c741f7b07ec0498cd2b014b87e349, type: 2}
-  - {fileID: 11400000, guid: 23838dfce2c0d7c4fb8b140fae174fc1, type: 2}
   - {fileID: 11400000, guid: 90a4898acec61d54eae4fe3643f18677, type: 2}
-  - {fileID: 11400000, guid: 31c9decd7d164524783319d52aaf3ac3, type: 2}
   - {fileID: 11400000, guid: 1b7f23fcde53d3a4f9d7a7ae94ba12c4, type: 2}
-  - {fileID: 11400000, guid: b101c782b43c3294898b9a1a908d2bc4, type: 2}
   - {fileID: 11400000, guid: 5f55962b56ae25748951dc94e064aa2a, type: 2}
+  - {fileID: 11400000, guid: 23838dfce2c0d7c4fb8b140fae174fc1, type: 2}
 --- !u!114 &1244203714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2261,9 +2332,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaaa03a8ba67194ba3d9ee655ad2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Move: 1
   _moveSpeed: 9
   _velocity: 1.2
   _acceleration: 9
+  Stop: 1
   _decceleration: 9
   _frictionAmount: 0.2
 --- !u!50 &1244203715
@@ -2347,12 +2420,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c0b52ed5844f364bb2dee37001139d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackCombos:
-  - {fileID: 11400000, guid: 2b93c2be7a0c77b4b94d7664de947413, type: 2}
-  - {fileID: 11400000, guid: 7f4e229481d7a594b86882e7e1152d4b, type: 2}
-  - {fileID: 11400000, guid: de9c9a84a2c163d46904684c77e2d2f3, type: 2}
-  - {fileID: 11400000, guid: 513040cfaf8766e4e8b650264047dc1b, type: 2}
-  _sensor: {fileID: 1173656595}
+  Slash1: 1
+  Slash1Attack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1173656597}
+  Slash2: 1
+  Slash2Attack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1148866638}
+  Slam: 1
+  SlamAttack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1939052459}
+  Spin: 1
+  SpinAttack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1247397800}
 --- !u!114 &1244203721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2365,12 +2448,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c724a419a40fa0046a18768b8a17f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackCombos:
-  - {fileID: 11400000, guid: 13ceaedbd34d8a94a9be7b62e00af171, type: 2}
-  - {fileID: 11400000, guid: 992c5955ed2aa064e92c3de7d428ca12, type: 2}
+  AerialSlash1: 1
+  AerialSlash1Attack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1173656597}
+  AerialSlash2: 1
+  AerialSlash2Attack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1148866638}
   BulletTime: 1
   _bulletTimeMultiplier: 0.7
-  _sensor: {fileID: 1173656595}
 --- !u!114 &1244203722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2446,6 +2533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2200e7a863cd14f83ea50b6cb4ab06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Roll: 0
   _rollSpeed: 7
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
@@ -2461,6 +2549,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f22d52e401504b97a3f81c74f7b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Dash: 0
   _dashCharges: 1
   _dashSpeed: 20
 --- !u!114 &1244203726
@@ -2475,7 +2564,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963aca35f631eae489db10b7bfd89c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
+  _rollAttack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1977810697}
 --- !u!114 &1244203727
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2488,6 +2579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ecf0ad249f9640ba55a747628b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FallAttack: 1
+  _fallAttack:
+    <Damage>k__BackingField: 0
+    <Sensor>k__BackingField: {fileID: 1573371137}
   BulletTime: 1
   _bulletTimeMultiplier: 0.7
 --- !u!114 &1244203728
@@ -2507,6 +2602,86 @@ MonoBehaviour:
   _acceleration: 9
   _decceleration: 9
   _frictionAmount: 0.2
+--- !u!1 &1247397798
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1247397799}
+  - component: {fileID: 1247397800}
+  m_Layer: 3
+  m_Name: Spin Attack Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1247397799
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247397798}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 1.012, y: 0.401, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244203709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1247397800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1247397798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  DetectionMode: 0
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.6, y: 2.77}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTriggerColliders: 0
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
 --- !u!1 &1267731883
 GameObject:
   m_ObjectHideFlags: 0
@@ -2663,7 +2838,7 @@ MonoBehaviour:
     Ordinal: 10
     Priority: 0
     IconType: 1
-    IconTexture: {fileID: 2800000, guid: 078a21a93c2cdb64bb3634cd8ec34db0, type: 3}
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
     IsIconRecursive: 0
     BackgroundType: 0
     BackgroundTexture: {fileID: 0}
@@ -2676,6 +2851,66 @@ MonoBehaviour:
     Priority: 0
     IconType: 1
     IconTexture: {fileID: 2800000, guid: 078a21a93c2cdb64bb3634cd8ec34db0, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1148866636}
+    Ordinal: 12
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1573371135}
+    Ordinal: 13
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1977810695}
+    Ordinal: 14
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1939052457}
+    Ordinal: 15
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1247397798}
+    Ordinal: 16
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
     IsIconRecursive: 0
     BackgroundType: 0
     BackgroundTexture: {fileID: 0}
@@ -2858,6 +3093,86 @@ Transform:
   - {fileID: 619394802}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1573371135
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1573371136}
+  - component: {fileID: 1573371137}
+  m_Layer: 3
+  m_Name: Fall Attack Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1573371136
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573371135}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0.027, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244203709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1573371137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1573371135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  DetectionMode: 0
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.28, y: 0.72}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTriggerColliders: 0
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
 --- !u!1 &1621887144
 GameObject:
   m_ObjectHideFlags: 0
@@ -3321,6 +3636,166 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928138056}
   m_CullTransparentMesh: 1
+--- !u!1 &1939052457
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1939052458}
+  - component: {fileID: 1939052459}
+  m_Layer: 3
+  m_Name: Slam Attack Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1939052458
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939052457}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 1.947, y: 0.755, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244203709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1939052459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1939052457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  DetectionMode: 0
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.95, y: 1.36}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTriggerColliders: 0
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
+--- !u!1 &1977810695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1977810696}
+  - component: {fileID: 1977810697}
+  m_Layer: 3
+  m_Name: Roll Attack Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1977810696
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977810695}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 1.258, y: 0.609, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1244203709}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
+--- !u!114 &1977810697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977810695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  DetectionMode: 0
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.8, y: 0.72}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1
+  IgnoreTriggerColliders: 0
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
 --- !u!1 &2005315238
 GameObject:
   m_ObjectHideFlags: 0

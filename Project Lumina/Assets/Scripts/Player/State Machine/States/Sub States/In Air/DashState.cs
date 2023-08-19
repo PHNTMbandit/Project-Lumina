@@ -9,7 +9,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerDash.Dash();
+            stateController.PlayerDash.UseDash();
         }
 
         public override void LogicUpdate(StateController stateController)

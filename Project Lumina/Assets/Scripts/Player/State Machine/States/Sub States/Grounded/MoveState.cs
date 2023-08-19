@@ -38,7 +38,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerMove.Move(moveInput);
+            stateController.PlayerMove.MoveCharacter(moveInput);
         }
     }
 }

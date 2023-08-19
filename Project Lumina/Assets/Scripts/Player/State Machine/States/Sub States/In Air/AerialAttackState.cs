@@ -9,9 +9,9 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerAerialAttack.UseAerialCombo();
+            stateController.PlayerAerialAttack.UseAerialAttack();
             stateController.PlayerAerialAttack.onComboFinished = ChangeToFall;
-            stateController.InputReader.onAttack = stateController.PlayerAerialAttack.UseAerialCombo;
+            stateController.InputReader.onAttack = stateController.PlayerAerialAttack.UseAerialAttack;
         }
 
         public override void Exit(StateController stateController)
@@ -19,7 +19,7 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Exit(stateController);
 
             stateController.PlayerAerialAttack.onComboFinished -= ChangeToFall;
-            stateController.InputReader.onAttack -= stateController.PlayerAerialAttack.UseAerialCombo;
+            stateController.InputReader.onAttack -= stateController.PlayerAerialAttack.UseAerialAttack;
         }
 
         public override void LogicUpdate(StateController stateController)
@@ -37,7 +37,7 @@ namespace ProjectLumina.Player.StateMachine.States
             base.PhysicsUpdate(stateController);
 
             stateController.PlayerAerialAttack.SetGravityScale();
-            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
+            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
         }
 
         private void ChangeToFall()

@@ -9,6 +9,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
+            stateController.PlayerFallAttack.UseFallAttack();
             stateController.PlayerFallAttack.onFallAttackFinished = ChangeToFall;
         }
 
@@ -35,7 +36,7 @@ namespace ProjectLumina.Player.StateMachine.States
             base.PhysicsUpdate(stateController);
 
             stateController.PlayerFallAttack.SetGravityScale();
-            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
+            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
         }
 
         private void ChangeToFall()

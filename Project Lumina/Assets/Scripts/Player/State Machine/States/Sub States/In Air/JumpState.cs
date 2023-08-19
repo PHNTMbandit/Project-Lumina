@@ -35,7 +35,7 @@ namespace ProjectLumina.Player.StateMachine.States
             base.PhysicsUpdate(stateController);
 
             stateController.PlayerJump.SetGravityScale();
-            stateController.PlayerMove.Move(stateController.InputReader.MoveInput.x);
+            stateController.PlayerMove.MoveCharacter(stateController.InputReader.MoveInput.x);
         }
     }
 }

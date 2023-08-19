@@ -8,20 +8,21 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Dash")]
     public class CharacterDash : MonoBehaviour
     {
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public int CurrentDashCharges
         {
             get => _currentDashCharges;
             set => _currentDashCharges = value <= 0 ? 0 : value >= _dashCharges ? _dashCharges : value;
         }
 
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool IsDashing { get; private set; }
 
-        [BoxGroup("Dash"), Range(0, 10), SerializeField]
+        [ToggleGroup("Dash"), SerializeField]
+        private bool Dash;
+
+        [ToggleGroup("Dash"), Range(0, 10), SerializeField]
         private int _dashCharges;
 
-        [BoxGroup("Dash"), Range(0, 50), SerializeField]
+        [ToggleGroup("Dash"), Range(0, 50), SerializeField]
         private float _dashSpeed;
 
         private int _currentDashCharges;
@@ -39,7 +40,7 @@ namespace ProjectLumina.Character
             _currentDashCharges = _dashCharges;
         }
 
-        public void Dash()
+        public void UseDash()
         {
             if (IsDashing == false)
             {

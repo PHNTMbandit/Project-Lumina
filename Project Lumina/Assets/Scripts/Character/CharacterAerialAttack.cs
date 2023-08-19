@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Micosmo.SensorToolkit;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
@@ -14,21 +13,24 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Aerial Attack")]
     public class CharacterAerialAttack : MonoBehaviour
     {
-        [field: BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool AerialAttackCharge { get; private set; } = true;
-
-        [field: BoxGroup("Stats"), ShowInInspector, ReadOnly]
-        public bool IsAerialAttacking { get; private set; } = true;
-
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
-        public int CurrentAerialComboIndex
+        public int CurrentAerialAttackIndex
         {
-            get => _currentComboIndex;
-            set => _currentComboIndex = value <= 0 ? 0 : value >= _attackCombos.Length ? _attackCombos.Length : value;
+            get => _currentAerialAttackIndex;
+            set => _currentAerialAttackIndex = value <= 0 ? 0 : value >= 2 ? 2 : value;
         }
 
-        [BoxGroup("Combo Animations"), SerializeField]
-        private AttackCombo[] _attackCombos;
+        [ToggleGroup("AerialSlash1"), SerializeField]
+        private bool AerialSlash1;
+
+        [ToggleGroup("AerialSlash1"), SerializeField]
+        private Attack AerialSlash1Attack;
+
+        [ToggleGroup("AerialSlash2"), SerializeField]
+        private bool AerialSlash2;
+
+        [ToggleGroup("AerialSlash2"), SerializeField]
+        private Attack AerialSlash2Attack;
 
         [ToggleGroup("BulletTime")]
         public bool BulletTime;
@@ -36,10 +38,7 @@ namespace ProjectLumina.Character
         [ToggleGroup("BulletTime"), Range(0, 1), SerializeField]
         private float _bulletTimeMultiplier;
 
-        [FoldoutGroup("References"), SerializeField]
-        private RaySensor2D _sensor;
-
-        private int _currentComboIndex;
+        private int _currentAerialAttackIndex = 1;
         private Rigidbody2D _rb;
         private Animator _animator;
 
@@ -51,32 +50,43 @@ namespace ProjectLumina.Character
             _animator = GetComponent<Animator>();
         }
 
-        public void SetGravityScale()
+        public void UseAerialAttack()
         {
-            if (BulletTime)
+            switch (CurrentAerialAttackIndex)
             {
-                _rb.velocity *= _bulletTimeMultiplier;
+                case 1:
+                    if (AerialSlash1)
+                    {
+                        _animator.SetInteger("aerial attack", CurrentAerialAttackIndex);
+                        CurrentAerialAttackIndex++;
+                    }
+                    break;
+
+                case 2:
+                    if (AerialSlash2)
+                    {
+                        _animator.SetInteger("aerial attack", CurrentAerialAttackIndex);
+                        CurrentAerialAttackIndex++;
+                    }
+                    break;
             }
         }
 
         public void AerialAttack()
         {
-            _attackCombos[CurrentAerialComboIndex - 1].SetRayAttackDistance(_sensor);
-
-            foreach (Damageable damageable in _sensor.GetDetectedComponents(new List<Damageable>()))
+            switch (CurrentAerialAttackIndex)
             {
-                damageable.Damage();
+                case 1:
+                    Damage(AerialSlash1Attack);
+                    break;
+
+                case 2:
+                    Damage(AerialSlash2Attack);
+                    break;
             }
         }
 
-        public void UseAerialCombo()
-        {
-            CurrentAerialComboIndex++;
-
-            _animator.SetInteger("aerial combo", Array.IndexOf(_attackCombos, _attackCombos[CurrentAerialComboIndex - 1]) + 1);
-        }
-
-        public void FinishCombo()
+        public void FinishAttack()
         {
             AerialAttackCharge = false;
 
@@ -87,9 +97,23 @@ namespace ProjectLumina.Character
         {
             AerialAttackCharge = true;
 
-            CurrentAerialComboIndex = 0;
-            _sensor.Length = 0;
-            _animator.SetInteger("aerial combo", 0);
+            CurrentAerialAttackIndex = 1;
+        }
+
+        public void SetGravityScale()
+        {
+            if (BulletTime)
+            {
+                _rb.velocity *= _bulletTimeMultiplier;
+            }
+        }
+
+        private void Damage(Attack attack)
+        {
+            foreach (Damageable damageable in attack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            {
+                damageable.Damage(attack.Damage);
+            }
         }
     }
 }

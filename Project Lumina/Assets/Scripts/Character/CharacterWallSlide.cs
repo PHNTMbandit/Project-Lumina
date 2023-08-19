@@ -8,7 +8,6 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Wall Slide")]
     public class CharacterWallSlide : MonoBehaviour
     {
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool CanWallSlide { get; private set; }
 
         [ToggleGroup("WallSlide")]

@@ -9,7 +9,6 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Jump")]
     public class CharacterJump : MonoBehaviour
     {
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool IsGrounded { get; private set; }
 
         [ToggleGroup("AddForce"), SerializeField]
@@ -45,9 +44,7 @@ namespace ProjectLumina.Character
         [FoldoutGroup("References"), SerializeField]
         private InputReader _inputReader;
 
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         private float _lastGroundedTime;
-
         private float _accelerationRate;
         private float _targetSpeed;
         private Rigidbody2D _rb;

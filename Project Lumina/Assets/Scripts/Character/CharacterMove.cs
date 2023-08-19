@@ -8,10 +8,16 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Move")]
     public class CharacterMove : MonoBehaviour
     {
-        [BoxGroup("Move"), SerializeField, Range(0, 25)]
+        [ToggleGroup("Move"), SerializeField]
+        private bool Move;
+
+        [ToggleGroup("Move"), SerializeField, Range(0, 25)]
         private float _moveSpeed, _velocity, _acceleration;
 
-        [BoxGroup("Stop"), SerializeField, Range(0, 25)]
+        [ToggleGroup("Stop"), SerializeField]
+        private bool Stop;
+
+        [ToggleGroup("Stop"), SerializeField, Range(0, 25)]
         private float _decceleration, _frictionAmount;
 
         private float _lastMoveX, _moveInput;
@@ -32,7 +38,7 @@ namespace ProjectLumina.Character
             }
         }
 
-        public void Move(float move)
+        public void MoveCharacter(float move)
         {
             float targetSpeed = move * _moveSpeed;
             float speedDiff = targetSpeed - _rb.velocity.x;

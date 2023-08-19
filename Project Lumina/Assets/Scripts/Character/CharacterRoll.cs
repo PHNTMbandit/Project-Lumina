@@ -1,6 +1,5 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
@@ -10,13 +9,15 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Roll")]
     public class CharacterRoll : MonoBehaviour
     {
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool IsRolling { get; private set; }
 
-        [BoxGroup("Speed"), Range(0, 10), SerializeField]
+        [ToggleGroup("Roll"), SerializeField]
+        private bool Roll;
+
+        [ToggleGroup("Roll"), Range(0, 10), SerializeField]
         private float _rollSpeed;
 
-        [BoxGroup("Collider"), SerializeField]
+        [ToggleGroup("Roll"), SerializeField]
         private float _colliderSizeY, _colliderOffsetY;
 
         private float _defaultColliderOffsetY, _defaultColliderSizeY;
@@ -34,7 +35,7 @@ namespace ProjectLumina.Character
             _defaultColliderOffsetY = _collider.offset.y;
         }
 
-        public void Roll()
+        public void RollCharacter()
         {
             IsRolling = true;
 

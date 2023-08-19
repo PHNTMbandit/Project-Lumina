@@ -9,7 +9,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerMeleeAttack.UseCombo();
+            stateController.PlayerMeleeAttack.UseMeleeAttack();
             stateController.InputReader.onAttack = TryAttack;
             stateController.PlayerMeleeAttack.onComboFinished = ChangeToIdle;
         }
@@ -26,7 +26,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerMove.Move(moveInput);
+            stateController.PlayerMove.MoveCharacter(moveInput);
         }
 
         private void ChangeToIdle()

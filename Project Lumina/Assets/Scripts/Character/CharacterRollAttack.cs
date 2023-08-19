@@ -1,21 +1,31 @@
+using System.Collections.Generic;
+using Micosmo.SensorToolkit;
+using ProjectLumina.Capabilities;
+using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
     [AddComponentMenu("Character/Character Roll Attack")]
     public class CharacterRollAttack : MonoBehaviour
     {
-        [BoxGroup("Stats"), ShowInInspector, ReadOnly]
         public bool IsRollAttacking { get; private set; }
 
-        [BoxGroup("Damage"), Range(0, 100), SerializeField]
-        private float _damage;
+        [BoxGroup("Attack"), SerializeField]
+        private Attack _rollAttack;
+
+        public void UseRollAttack()
+        {
+            IsRollAttacking = true;
+        }
 
         public void RollAttack()
         {
-            IsRollAttacking = true;
+            foreach (Damageable damageable in _rollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            {
+                damageable.Damage(_rollAttack.Damage);
+            }
         }
 
         public void FinishRollAttack()
