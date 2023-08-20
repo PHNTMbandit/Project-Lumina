@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -9,9 +10,13 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerMeleeAttack.UseCombo();
             stateController.InputReader.onAttack = TryAttack;
-            stateController.PlayerMeleeAttack.onComboFinished = ChangeToIdle;
+
+            if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
+            {
+                characterMeleeAttack.UseMeleeAttack();
+                characterMeleeAttack.onComboFinished = ChangeToIdle;
+            }
         }
 
         public override void Exit(StateController stateController)
@@ -19,14 +24,21 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Exit(stateController);
 
             stateController.InputReader.onAttack -= TryAttack;
-            stateController.PlayerMeleeAttack.onComboFinished -= ChangeToIdle;
+
+            if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
+            {
+                characterMeleeAttack.onComboFinished -= ChangeToIdle;
+            }
         }
 
         public override void PhysicsUpdate(StateController stateController)
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerMove.Move(moveInput);
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
+            {
+                characterMove.MoveCharacter(moveInput);
+            }
         }
 
         private void ChangeToIdle()

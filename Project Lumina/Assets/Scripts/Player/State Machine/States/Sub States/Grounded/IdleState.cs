@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -23,9 +24,12 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (moveInput != 0)
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
             {
-                stateController.ChangeState(stateController.GetState("Move"));
+                if (moveInput != 0)
+                {
+                    stateController.ChangeState(stateController.GetState("Move"));
+                }
             }
         }
 
@@ -33,7 +37,10 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            stateController.PlayerMove.Move(moveInput);
+            if (stateController.HasCharacterAbility(out CharacterMove characterMove))
+            {
+                characterMove.MoveCharacter(moveInput);
+            }
         }
     }
 }

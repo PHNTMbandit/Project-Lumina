@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -9,16 +10,22 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerRollAttack.RollAttack();
+            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
+            {
+                characterRollAttack.UseRollAttack();
+            }
         }
 
         public override void LogicUpdate(StateController stateController)
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerRollAttack.IsRollAttacking == false)
+            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                if (characterRollAttack.IsRollAttacking == false)
+                {
+                    stateController.ChangeState(stateController.GetState("Idle"));
+                }
             }
         }
     }

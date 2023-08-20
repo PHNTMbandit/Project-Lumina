@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -9,16 +10,22 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
-            stateController.PlayerDash.Dash();
+            if (stateController.HasCharacterAbility(out CharacterDash characterDash))
+            {
+                characterDash.UseDash();
+            }
         }
 
         public override void LogicUpdate(StateController stateController)
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerDash.IsDashing == false)
+            if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
-                stateController.ChangeState(stateController.GetState("Fall"));
+                if (characterDash.IsDashing == false)
+                {
+                    stateController.ChangeState(stateController.GetState("Fall"));
+                }
             }
         }
     }

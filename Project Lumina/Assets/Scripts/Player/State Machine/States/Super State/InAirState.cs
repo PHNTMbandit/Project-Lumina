@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -13,7 +14,11 @@ namespace ProjectLumina.Player.StateMachine.States
             this.stateController = stateController;
 
             stateController.InputReader.onDash = TryDash;
-            stateController.PlayerMeleeAttack.ResetCombo();
+
+            if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
+            {
+                characterMeleeAttack.ResetCombo();
+            }
         }
 
         public override void Exit(StateController stateController)
@@ -27,25 +32,34 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.PlayerWallSlide.CanWallSlide && stateController.InputReader.MoveInput.x != 0)
+            if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
             {
-                stateController.ChangeState(stateController.GetState("Wall Slide"));
+                if (characterWallSlide.CanWallSlide && stateController.InputReader.MoveInput.x != 0)
+                {
+                    stateController.ChangeState(stateController.GetState("Wall Slide"));
+                }
             }
         }
 
         protected void TryAttack()
         {
-            if (stateController.PlayerAerialAttack.AerialAttackCharge)
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
             {
-                stateController.ChangeState(stateController.GetState("Aerial Attack"));
+                if (characterAerialAttack.AerialAttackCharge)
+                {
+                    stateController.ChangeState(stateController.GetState("Aerial Attack"));
+                }
             }
         }
 
         protected void TryDash()
         {
-            if (stateController.PlayerDash.CurrentDashCharges > 0)
+            if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
-                stateController.ChangeState(stateController.GetState("Dash"));
+                if (characterDash.CurrentDashCharges > 0)
+                {
+                    stateController.ChangeState(stateController.GetState("Dash"));
+                }
             }
         }
     }

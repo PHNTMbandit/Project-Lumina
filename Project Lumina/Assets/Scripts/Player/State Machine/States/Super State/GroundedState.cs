@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Abilities;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -15,9 +16,21 @@ namespace ProjectLumina.Player.StateMachine.States
 
             stateController.InputReader.onJump = TryJump;
             stateController.InputReader.onRoll = TryRoll;
-            stateController.PlayerAerialAttack.ResetAerialCombo();
-            stateController.PlayerFallAttack.ResetFallAttack();
-            stateController.PlayerDash.ResetDash();
+
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            {
+                characterAerialAttack.ResetAerialCombo();
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+            {
+                characterFallAttack.ResetFallAttack();
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterDash characterDash))
+            {
+                characterDash.ResetDash();
+            }
         }
 
         public override void Exit(StateController stateController)
@@ -34,9 +47,12 @@ namespace ProjectLumina.Player.StateMachine.States
 
             moveInput = stateController.InputReader.MoveInput.x;
 
-            if (stateController.PlayerFall.IsFalling())
+            if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
-                stateController.ChangeState(stateController.GetState("Fall"));
+                if (characterFall.IsFalling())
+                {
+                    stateController.ChangeState(stateController.GetState("Fall"));
+                }
             }
         }
 
@@ -47,9 +63,12 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryJump()
         {
-            if (stateController.PlayerJump.CanJump())
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {
-                stateController.ChangeState(stateController.GetState("Jump"));
+                if (characterJump.CanJump())
+                {
+                    stateController.ChangeState(stateController.GetState("Jump"));
+                }
             }
         }
 

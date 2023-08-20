@@ -48,7 +48,6 @@ namespace ProjectLumina.Input
         {
             if (context.performed)
             {
-                Debug.Log("attack");
                 AttackInput = true;
 
                 onAttack?.Invoke();
@@ -77,8 +76,6 @@ namespace ProjectLumina.Input
         {
             if (context.performed)
             {
-                Debug.Log("fall attack");
-
                 FallAttackInput = true;
 
                 onFallAttack?.Invoke();
