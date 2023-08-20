@@ -13,19 +13,17 @@ namespace ProjectLumina.Player.StateMachine.States
             if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {
                 characterRollAttack.UseRollAttack();
+                characterRollAttack.onRollAttackFinished = ChangeToIdle;
             }
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void Exit(StateController stateController)
         {
-            base.LogicUpdate(stateController);
+            base.Exit(stateController);
 
             if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {
-                if (characterRollAttack.IsRollAttacking == false)
-                {
-                    stateController.ChangeState(stateController.GetState("Idle"));
-                }
+                characterRollAttack.onRollAttackFinished -= ChangeToIdle;
             }
         }
     }

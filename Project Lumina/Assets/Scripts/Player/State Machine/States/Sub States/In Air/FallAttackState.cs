@@ -21,15 +21,9 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Exit(stateController);
 
-
             if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
             {
                 characterFallAttack.onFallAttackFinished -= ChangeToFall;
-            }
-
-            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
-            {
-                characterAerialAttack.ResetAerialCombo();
             }
         }
 
@@ -50,20 +44,15 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+            if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
-                characterFallAttack.SetGravityScale();
+                characterFall.SetGravityScale();
             }
 
             if (stateController.HasCharacterAbility(out CharacterMove characterMove))
             {
                 characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
             }
-        }
-
-        private void ChangeToFall()
-        {
-            stateController.ChangeState(stateController.GetState("Fall"));
         }
     }
 }

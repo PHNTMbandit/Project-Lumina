@@ -17,7 +17,7 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
             {
-                characterMeleeAttack.ResetCombo();
+                characterMeleeAttack.ResetMeleeAttackCombo();
             }
         }
 
@@ -43,9 +43,16 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryAttack()
         {
-            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            if (stateController.InputReader.MoveInput.y < 0)
             {
-                if (characterAerialAttack.AerialAttackCharge)
+                if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+                {
+                    stateController.ChangeState(stateController.GetState("Fall Attack"));
+                }
+            }
+            else
+            {
+                if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
                 {
                     stateController.ChangeState(stateController.GetState("Aerial Attack"));
                 }
@@ -61,6 +68,11 @@ namespace ProjectLumina.Player.StateMachine.States
                     stateController.ChangeState(stateController.GetState("Dash"));
                 }
             }
+        }
+
+        protected void ChangeToFall()
+        {
+            stateController.ChangeState(stateController.GetState("Fall"));
         }
     }
 }

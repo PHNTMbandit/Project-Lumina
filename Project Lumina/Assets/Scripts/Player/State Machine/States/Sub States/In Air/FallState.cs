@@ -11,7 +11,6 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Enter(stateController);
 
             stateController.InputReader.onAttack = TryAttack;
-            stateController.InputReader.onFallAttack = TryFallAttack;
         }
 
         public override void Exit(StateController stateController)
@@ -19,7 +18,6 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Exit(stateController);
 
             stateController.InputReader.onAttack -= TryAttack;
-            stateController.InputReader.onFallAttack = TryFallAttack;
         }
 
         public override void LogicUpdate(StateController stateController)
@@ -47,17 +45,6 @@ namespace ProjectLumina.Player.StateMachine.States
             if (stateController.HasCharacterAbility(out CharacterMove characterMove))
             {
                 characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
-            }
-        }
-
-        protected void TryFallAttack()
-        {
-            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
-            {
-                if (characterFallAttack.FallAttackCharge)
-                {
-                    stateController.ChangeState(stateController.GetState("Fall Attack"));
-                }
             }
         }
     }

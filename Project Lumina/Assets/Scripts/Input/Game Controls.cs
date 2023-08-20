@@ -46,15 +46,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Fall Attack"",
-                    ""type"": ""Button"",
-                    ""id"": ""eb01890f-dfa7-4da2-834e-c6a10c006e72"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""fa48ecf0-b7e7-44c9-9b7a-2ad777467399"",
@@ -314,74 +305,8 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Gamepad"",
-                    ""id"": ""b34bdc96-1694-4469-bb7b-493cfbab44a6"",
-                    ""path"": ""ButtonWithOneModifier(overrideModifiersNeedToBePressedFirst=true)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fall Attack"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Modifier"",
-                    ""id"": ""aaece048-3a0b-4fc6-88a8-bfb0034581d0"",
-                    ""path"": ""<Gamepad>/leftStick/down"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Fall Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Button"",
-                    ""id"": ""a2f394b9-e5a6-4eb8-aef3-a62e978f4d76"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Fall Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Keyboard"",
-                    ""id"": ""b72927b2-edad-48b9-acc3-f3a8c1a8acaf"",
-                    ""path"": ""ButtonWithOneModifier(overrideModifiersNeedToBePressedFirst=true)"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fall Attack"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""Modifier"",
-                    ""id"": ""b7650f35-081f-4ec2-ae78-6679a88a25fa"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Fall Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Button"",
-                    ""id"": ""e556e346-e734-48ab-bea8-b9fc02f7967a"",
-                    ""path"": ""<Keyboard>/f"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Fall Attack"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""Gamepad"",
                     ""id"": ""4f48be86-5082-47e5-a72e-22a3c7c28118"",
-                    ""path"": ""OneModifier(overrideModifiersNeedToBePressedFirst=true)"",
+                    ""path"": ""OneModifier"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -997,7 +922,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Attack = m_Player.FindAction("Attack", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
-        m_Player_FallAttack = m_Player.FindAction("Fall Attack", throwIfNotFound: true);
         m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_Roll = m_Player.FindAction("Roll", throwIfNotFound: true);
@@ -1077,7 +1001,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Attack;
     private readonly InputAction m_Player_Dash;
-    private readonly InputAction m_Player_FallAttack;
     private readonly InputAction m_Player_Jump;
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_Roll;
@@ -1088,7 +1011,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
         public PlayerActions(@GameControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Attack => m_Wrapper.m_Player_Attack;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
-        public InputAction @FallAttack => m_Wrapper.m_Player_FallAttack;
         public InputAction @Jump => m_Wrapper.m_Player_Jump;
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @Roll => m_Wrapper.m_Player_Roll;
@@ -1108,9 +1030,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
-            @FallAttack.started += instance.OnFallAttack;
-            @FallAttack.performed += instance.OnFallAttack;
-            @FallAttack.canceled += instance.OnFallAttack;
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
@@ -1133,9 +1052,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
-            @FallAttack.started -= instance.OnFallAttack;
-            @FallAttack.performed -= instance.OnFallAttack;
-            @FallAttack.canceled -= instance.OnFallAttack;
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
@@ -1332,7 +1248,6 @@ public partial class @GameControls: IInputActionCollection2, IDisposable
     {
         void OnAttack(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
-        void OnFallAttack(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnRoll(InputAction.CallbackContext context);

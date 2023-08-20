@@ -1,36 +1,66 @@
 using System.Collections.Generic;
-using Micosmo.SensorToolkit;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Abilities
 {
+    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Roll Attack")]
     public class CharacterRollAttack : CharacterAbility
     {
-        public bool IsRollAttacking { get; private set; }
+        public int CurrentRollAttackIndex
+        {
+            get => _currentRollAttackIndex;
+            set => _currentRollAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
+        }
 
-        [BoxGroup("Attack"), SerializeField]
-        private Attack _rollAttack;
+        [BoxGroup("Attack Combos"), SerializeField]
+        private Attack[] _attackCombos;
+
+        private int _currentRollAttackIndex = 0;
+        private Attack _currentRollAttack;
+        private Animator _animator;
+
+        public UnityAction onRollAttackFinished;
+
+        private void Awake()
+        {
+            _animator = GetComponent<Animator>();
+        }
 
         public void UseRollAttack()
         {
-            IsRollAttacking = true;
+            _currentRollAttack = _attackCombos[CurrentRollAttackIndex];
+
+            if (_currentRollAttack.IsUnlocked)
+            {
+                _animator.Play(_currentRollAttack.AttackAnimation.name);
+
+                CurrentRollAttackIndex++;
+            }
         }
 
         public void RollAttack()
         {
-            foreach (Damageable damageable in _rollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.Damage(_rollAttack.Damage);
+                damageable.Damage(_currentRollAttack.Damage);
             }
         }
 
         public void FinishRollAttack()
         {
-            IsRollAttacking = false;
+            CurrentRollAttackIndex = 0;
+
+            onRollAttackFinished?.Invoke();
+        }
+
+        public void ResetRollAttackCombo()
+        {
+            CurrentRollAttackIndex = 0;
         }
     }
 }

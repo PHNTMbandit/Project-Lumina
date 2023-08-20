@@ -96,7 +96,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.46153846
-    functionName: FinishAttack
+    functionName: FinishAerialAttackCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

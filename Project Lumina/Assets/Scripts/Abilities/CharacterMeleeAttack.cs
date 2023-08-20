@@ -15,34 +15,15 @@ namespace ProjectLumina.Abilities
         public int CurrentMeleeAttackIndex
         {
             get => _currentMeleeAttackIndex;
-            set => _currentMeleeAttackIndex = value <= 0 ? 0 : value >= 4 ? 4 : value;
+            set => _currentMeleeAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
         }
 
-        [ToggleGroup("Slash1"), SerializeField]
-        private bool Slash1;
+        [BoxGroup("Attack Combos"), SerializeField]
+        private Attack[] _attackCombos;
 
-        [ToggleGroup("Slash1"), SerializeField]
-        private Attack Slash1Attack;
 
-        [ToggleGroup("Slash2"), SerializeField]
-        private bool Slash2;
-
-        [ToggleGroup("Slash2"), SerializeField]
-        private Attack Slash2Attack;
-
-        [ToggleGroup("Slam"), SerializeField]
-        private bool Slam;
-
-        [ToggleGroup("Slam"), SerializeField]
-        private Attack SlamAttack;
-
-        [ToggleGroup("Spin"), SerializeField]
-        private bool Spin;
-
-        [ToggleGroup("Spin"), SerializeField]
-        private Attack SpinAttack;
-
-        private int _currentMeleeAttackIndex = 1;
+        private int _currentMeleeAttackIndex = 0;
+        private Attack _currentMeleeAttack;
         private Animator _animator;
 
         public UnityAction onComboFinished;
@@ -54,79 +35,37 @@ namespace ProjectLumina.Abilities
 
         public void UseMeleeAttack()
         {
-            switch (CurrentMeleeAttackIndex)
+            _currentMeleeAttack = _attackCombos[CurrentMeleeAttackIndex];
+
+            if (_currentMeleeAttack.IsUnlocked)
             {
-                case 1:
-                    if (Slash1)
-                    {
-                        _animator.SetInteger("melee attack", CurrentMeleeAttackIndex);
-                        CurrentMeleeAttackIndex++;
-                    }
-                    break;
+                _animator.Play(_currentMeleeAttack.AttackAnimation.name);
 
-                case 2:
-                    if (Slash2)
-                    {
-                        _animator.SetInteger("melee attack", CurrentMeleeAttackIndex);
-                        CurrentMeleeAttackIndex++;
-                    }
-                    break;
-
-                case 3:
-                    if (Slam)
-                    {
-                        _animator.SetInteger("melee attack", CurrentMeleeAttackIndex);
-                        CurrentMeleeAttackIndex++;
-                    }
-                    break;
-
-                case 4:
-                    if (Spin)
-                    {
-                        _animator.SetInteger("melee attack", CurrentMeleeAttackIndex);
-                        CurrentMeleeAttackIndex++;
-                    }
-                    break;
+                CurrentMeleeAttackIndex++;
             }
+
         }
 
         public void MeleeAttack()
         {
-            switch (CurrentMeleeAttackIndex)
+            foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                case 1:
-                    Damage(Slash1Attack);
-                    break;
+                damageable.Damage(_currentMeleeAttack.Damage);
 
-                case 2:
-                    Damage(Slash2Attack);
-                    break;
-
-                case 3:
-                    Damage(SlamAttack);
-                    break;
-
-                case 4:
-                    Damage(SpinAttack);
-                    break;
+                ObjectPoolController.Instance.GetPooledObject(_currentMeleeAttack.HitFX.name, damageable.transform.position, false);
             }
         }
 
-        public void ResetCombo()
+        public void FinishMeleeAttackCombo()
         {
-            CurrentMeleeAttackIndex = 1;
+            CurrentMeleeAttackIndex = 0;
 
             onComboFinished?.Invoke();
         }
 
-        private void Damage(Attack attack)
+        public void ResetMeleeAttackCombo()
         {
-            foreach (Damageable damageable in attack.Sensor.GetDetectedComponents(new List<Damageable>()))
-            {
-                damageable.Damage(attack.Damage);
-
-                ObjectPoolController.Instance.GetPooledObject(attack.HitFX.name, damageable.transform.position, false);
-            }
+            CurrentMeleeAttackIndex = 0;
         }
     }
 }
