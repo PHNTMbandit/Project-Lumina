@@ -23,5 +23,10 @@ namespace ProjectLumina.Capabilities
 
             onDamage?.Invoke();
         }
+
+        public void DestroySelf()
+        {
+            Destroy(gameObject);
+        }
     }
 }
