@@ -123,6 +123,7 @@ namespace ProjectLumina.Abilities
             foreach (Damageable damageable in attack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(attack.Damage);
+                Instantiate(attack.HitFX, damageable.transform, false);
             }
         }
     }
