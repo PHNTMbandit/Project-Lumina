@@ -12,6 +12,9 @@ namespace ProjectLumina.Data
         public float Damage { get; private set; }
 
         [field: SerializeField]
+        public GameObject HitFX;
+
+        [field: SerializeField]
         public RangeSensor2D Sensor { get; private set; }
     }
 }

@@ -8,8 +8,6 @@ namespace ProjectLumina.Capabilities
     [AddComponentMenu("Capabilities/Damageable")]
     public class Damageable : MonoBehaviour
     {
-        public UnityEvent onDamage;
-
         private Health _health;
 
         private void Awake()
@@ -20,8 +18,6 @@ namespace ProjectLumina.Capabilities
         public virtual void Damage(float damage)
         {
             _health.ChangeHealth(-damage);
-
-            onDamage?.Invoke();
         }
 
         public void DestroySelf()

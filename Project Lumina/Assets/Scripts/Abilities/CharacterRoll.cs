@@ -14,6 +14,9 @@ namespace ProjectLumina.Abilities
         [ToggleGroup("Roll"), SerializeField]
         private bool Roll;
 
+        [ToggleGroup("Roll"), SerializeField]
+        private CapsuleCollider2D _collider;
+
         [ToggleGroup("Roll"), Range(0, 10), SerializeField]
         private float _rollSpeed;
 
@@ -21,13 +24,11 @@ namespace ProjectLumina.Abilities
         private float _colliderSizeY, _colliderOffsetY;
 
         private float _defaultColliderOffsetY, _defaultColliderSizeY;
-        private BoxCollider2D _collider;
         private CharacterMove _characterMove;
         private Rigidbody2D _rb;
 
         private void Awake()
         {
-            _collider = GetComponent<BoxCollider2D>();
             _characterMove = GetComponent<CharacterMove>();
             _rb = GetComponent<Rigidbody2D>();
 

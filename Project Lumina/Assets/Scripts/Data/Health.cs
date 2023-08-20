@@ -30,12 +30,12 @@ namespace ProjectLumina.Data
         {
             CurrentHealth += amount;
 
+            OnHealthChanged?.Invoke(CurrentHealth, _maxHealth);
+
             if (CurrentHealth <= 0)
             {
                 onZeroHealth?.Invoke();
             }
-
-            OnHealthChanged?.Invoke(CurrentHealth, _maxHealth);
         }
 
         private Color GetHealthBarColour(float value)
