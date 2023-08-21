@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using Micosmo.SensorToolkit;
 using ProjectLumina.Capabilities;
+using ProjectLumina.Controllers;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,66 +8,65 @@ using UnityEngine.Events;
 
 namespace ProjectLumina.Abilities
 {
+    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Fall Attack")]
     public class CharacterFallAttack : CharacterAbility
     {
-        public bool IsFallAttacking { get; private set; }
-        public bool FallAttackCharge { get; private set; } = true;
+        public int CurrentFallAttackIndex
+        {
+            get => _currentFallAttackIndex;
+            set => _currentFallAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
+        }
 
-        [ToggleGroup("FallAttack"), SerializeField]
-        private bool FallAttack;
+        [BoxGroup("Attack Combos"), SerializeField]
+        private Attack[] _attackCombos;
 
-        [ToggleGroup("FallAttack"), SerializeField]
-        private Attack _fallAttack;
-
-        [ToggleGroup("BulletTime")]
-        public bool BulletTime;
-
-        [ToggleGroup("BulletTime"), Range(0, 1), SerializeField]
-        private float _bulletTimeMultiplier;
-
+        private int _currentFallAttackIndex = 0;
+        private Attack _currentFallAttack;
         private Rigidbody2D _rb;
+        private Animator _animator;
 
         public UnityAction onFallAttackFinished;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _animator = GetComponent<Animator>();
         }
 
         public void UseFallAttack()
         {
-            IsFallAttacking = true;
+            _currentFallAttack = _attackCombos[CurrentFallAttackIndex];
+
+            if (_currentFallAttack.IsUnlocked)
+            {
+                _animator.Play(_currentFallAttack.AttackAnimation.name);
+
+                CurrentFallAttackIndex++;
+            }
         }
 
-        public void DealFallAttack()
+        public void FallAttack()
         {
-            foreach (Damageable damageable in _fallAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            foreach (Damageable damageable in _currentFallAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.Damage(_fallAttack.Damage);
+                damageable.Damage(_currentFallAttack.Damage);
+
+                ObjectPoolController.Instance.GetPooledObject(_currentFallAttack.HitFX.name, damageable.transform.position, false);
             }
         }
 
         public void FinishFallAttack()
         {
-            IsFallAttacking = false;
-            FallAttackCharge = false;
+            CurrentFallAttackIndex = 0;
 
             onFallAttackFinished?.Invoke();
         }
 
-        public void ResetFallAttack()
+        public void ResetFallAttackCombo()
         {
-            FallAttackCharge = true;
-        }
-
-        public void SetGravityScale()
-        {
-            if (BulletTime)
-            {
-                _rb.velocity *= _bulletTimeMultiplier;
-            }
+            CurrentFallAttackIndex = 0;
         }
     }
 }

@@ -10,11 +10,12 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter(stateController);
 
+            stateController.InputReader.onAttack = TryAttack;
+
             if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
             {
                 characterAerialAttack.UseAerialAttack();
                 characterAerialAttack.onComboFinished = ChangeToFall;
-                stateController.InputReader.onAttack = characterAerialAttack.UseAerialAttack;
             }
         }
 
@@ -22,10 +23,11 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Exit(stateController);
 
+            stateController.InputReader.onAttack -= TryAttack;
+
             if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
             {
                 characterAerialAttack.onComboFinished -= ChangeToFall;
-                stateController.InputReader.onAttack -= characterAerialAttack.UseAerialAttack;
             }
         }
 
@@ -46,20 +48,21 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.PhysicsUpdate(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
-                characterAerialAttack.SetGravityScale();
+                if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+                {
+                    if (characterAerialAttack.IsSlowStop == false)
+                    {
+                        characterFall.SetGravityScale();
+                    }
+                }
             }
 
             if (stateController.HasCharacterAbility(out CharacterMove characterMove))
             {
                 characterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
             }
-        }
-
-        private void ChangeToFall()
-        {
-            stateController.ChangeState(stateController.GetState("Fall"));
         }
     }
 }

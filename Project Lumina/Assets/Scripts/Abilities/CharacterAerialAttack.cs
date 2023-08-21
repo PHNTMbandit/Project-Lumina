@@ -1,6 +1,8 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
+using ProjectLumina.Controllers;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -8,37 +10,37 @@ using UnityEngine.Events;
 
 namespace ProjectLumina.Abilities
 {
+    [RequireComponent(typeof(CharacterMove))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Aerial Attack")]
     public class CharacterAerialAttack : CharacterAbility
     {
-        public bool AerialAttackCharge { get; private set; } = true;
+        public bool IsSlowStop { get; private set; }
+
         public int CurrentAerialAttackIndex
         {
             get => _currentAerialAttackIndex;
-            set => _currentAerialAttackIndex = value <= 0 ? 0 : value >= 2 ? 2 : value;
+            set => _currentAerialAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
         }
 
-        [ToggleGroup("AerialSlash1"), SerializeField]
-        private bool AerialSlash1;
+        [BoxGroup("Attack Combos"), SerializeField]
+        private Attack[] _attackCombos;
 
-        [ToggleGroup("AerialSlash1"), SerializeField]
-        private Attack AerialSlash1Attack;
+        [ToggleGroup("SlowStop")]
+        public bool SlowStop;
 
-        [ToggleGroup("AerialSlash2"), SerializeField]
-        private bool AerialSlash2;
+        [ToggleGroup("SlowStop"), Range(0, 10), SerializeField]
+        private float _slowStopGravityScale;
 
-        [ToggleGroup("AerialSlash2"), SerializeField]
-        private Attack AerialSlash2Attack;
+        [ToggleGroup("SlowStop"), Range(0, 10), SerializeField]
+        private float _slowStopVelocityScale;
 
-        [ToggleGroup("BulletTime")]
-        public bool BulletTime;
+        [ToggleGroup("SlowStop"), SerializeField, Range(0, 5)]
+        private float _slowStopTimer;
 
-        [ToggleGroup("BulletTime"), Range(0, 1), SerializeField]
-        private float _bulletTimeMultiplier;
-
-        private int _currentAerialAttackIndex = 1;
+        private int _currentAerialAttackIndex = 0;
+        private Attack _currentAerialAttack;
         private Rigidbody2D _rb;
         private Animator _animator;
 
@@ -52,68 +54,53 @@ namespace ProjectLumina.Abilities
 
         public void UseAerialAttack()
         {
-            switch (CurrentAerialAttackIndex)
-            {
-                case 1:
-                    if (AerialSlash1)
-                    {
-                        _animator.SetInteger("aerial attack", CurrentAerialAttackIndex);
-                        CurrentAerialAttackIndex++;
-                    }
-                    break;
+            _currentAerialAttack = _attackCombos[CurrentAerialAttackIndex];
 
-                case 2:
-                    if (AerialSlash2)
-                    {
-                        _animator.SetInteger("aerial attack", CurrentAerialAttackIndex);
-                        CurrentAerialAttackIndex++;
-                    }
-                    break;
+            if (_currentAerialAttack.IsUnlocked)
+            {
+                _animator.Play(_currentAerialAttack.AttackAnimation.name);
+
+                CurrentAerialAttackIndex++;
             }
         }
 
         public void AerialAttack()
         {
-            switch (CurrentAerialAttackIndex)
+            foreach (Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                case 1:
-                    Damage(AerialSlash1Attack);
-                    break;
+                damageable.Damage(_currentAerialAttack.Damage);
 
-                case 2:
-                    Damage(AerialSlash2Attack);
-                    break;
+                ObjectPoolController.Instance.GetPooledObject(_currentAerialAttack.HitFX.name, damageable.transform.position, false);
+
+                if (SlowStop)
+                {
+                    StartCoroutine(StartSlowStop());
+                }
             }
         }
 
-        public void FinishAttack()
+        public void FinishAerialAttackCombo()
         {
-            AerialAttackCharge = false;
+            CurrentAerialAttackIndex = 0;
 
             onComboFinished?.Invoke();
         }
 
-        public void ResetAerialCombo()
+        public void ResetAerialAttackCombo()
         {
-            AerialAttackCharge = true;
-
-            CurrentAerialAttackIndex = 1;
+            CurrentAerialAttackIndex = 0;
         }
 
-        public void SetGravityScale()
+        private IEnumerator StartSlowStop()
         {
-            if (BulletTime)
-            {
-                _rb.velocity *= _bulletTimeMultiplier;
-            }
-        }
+            IsSlowStop = true;
 
-        private void Damage(Attack attack)
-        {
-            foreach (Damageable damageable in attack.Sensor.GetDetectedComponents(new List<Damageable>()))
-            {
-                damageable.Damage(attack.Damage);
-            }
+            _rb.gravityScale = _slowStopGravityScale;
+            _rb.velocity /= _slowStopVelocityScale;
+
+            yield return new WaitForSeconds(_slowStopTimer);
+
+            IsSlowStop = false;
         }
     }
 }

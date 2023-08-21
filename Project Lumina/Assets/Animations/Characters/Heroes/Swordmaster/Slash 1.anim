@@ -95,8 +95,8 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.53846157
-    functionName: ResetCombo
+  - time: 0.46153846
+    functionName: FinishMeleeAttackCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

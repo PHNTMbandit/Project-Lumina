@@ -19,12 +19,7 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
             {
-                characterAerialAttack.ResetAerialCombo();
-            }
-
-            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
-            {
-                characterFallAttack.ResetFallAttack();
+                characterAerialAttack.ResetAerialAttackCombo();
             }
 
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
@@ -75,6 +70,11 @@ namespace ProjectLumina.Player.StateMachine.States
         protected void TryRoll()
         {
             stateController.ChangeState(stateController.GetState("Roll"));
+        }
+
+        protected void ChangeToIdle()
+        {
+            stateController.ChangeState(stateController.GetState("Idle"));
         }
     }
 }

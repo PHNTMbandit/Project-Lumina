@@ -40,10 +40,5 @@ namespace ProjectLumina.Player.StateMachine.States
                 characterMove.MoveCharacter(moveInput);
             }
         }
-
-        private void ChangeToIdle()
-        {
-            stateController.ChangeState(stateController.GetState("Idle"));
-        }
     }
 }
