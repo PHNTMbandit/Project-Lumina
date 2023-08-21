@@ -50,7 +50,13 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
-                characterFall.SetGravityScale();
+                if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+                {
+                    if (characterAerialAttack.IsSlowStop == false)
+                    {
+                        characterFall.SetGravityScale();
+                    }
+                }
             }
 
             if (stateController.HasCharacterAbility(out CharacterMove characterMove))

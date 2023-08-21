@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
@@ -9,11 +10,14 @@ using UnityEngine.Events;
 
 namespace ProjectLumina.Abilities
 {
+    [RequireComponent(typeof(CharacterMove))]
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Aerial Attack")]
     public class CharacterAerialAttack : CharacterAbility
     {
+        public bool IsSlowStop { get; private set; }
+
         public int CurrentAerialAttackIndex
         {
             get => _currentAerialAttackIndex;
@@ -22,6 +26,18 @@ namespace ProjectLumina.Abilities
 
         [BoxGroup("Attack Combos"), SerializeField]
         private Attack[] _attackCombos;
+
+        [ToggleGroup("SlowStop")]
+        public bool SlowStop;
+
+        [ToggleGroup("SlowStop"), Range(0, 10), SerializeField]
+        private float _slowStopGravityScale;
+
+        [ToggleGroup("SlowStop"), Range(0, 10), SerializeField]
+        private float _slowStopVelocityScale;
+
+        [ToggleGroup("SlowStop"), SerializeField, Range(0, 5)]
+        private float _slowStopTimer;
 
         private int _currentAerialAttackIndex = 0;
         private Attack _currentAerialAttack;
@@ -55,6 +71,11 @@ namespace ProjectLumina.Abilities
                 damageable.Damage(_currentAerialAttack.Damage);
 
                 ObjectPoolController.Instance.GetPooledObject(_currentAerialAttack.HitFX.name, damageable.transform.position, false);
+
+                if (SlowStop)
+                {
+                    StartCoroutine(StartSlowStop());
+                }
             }
         }
 
@@ -68,6 +89,18 @@ namespace ProjectLumina.Abilities
         public void ResetAerialAttackCombo()
         {
             CurrentAerialAttackIndex = 0;
+        }
+
+        private IEnumerator StartSlowStop()
+        {
+            IsSlowStop = true;
+
+            _rb.gravityScale = _slowStopGravityScale;
+            _rb.velocity /= _slowStopVelocityScale;
+
+            yield return new WaitForSeconds(_slowStopTimer);
+
+            IsSlowStop = false;
         }
     }
 }
