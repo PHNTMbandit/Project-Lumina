@@ -21,7 +21,6 @@ namespace ProjectLumina.Abilities
         [BoxGroup("Attack Combos"), SerializeField]
         private Attack[] _attackCombos;
 
-
         private int _currentMeleeAttackIndex = 0;
         private Attack _currentMeleeAttack;
         private Animator _animator;
