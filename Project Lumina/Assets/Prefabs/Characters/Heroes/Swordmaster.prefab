@@ -399,7 +399,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   DetectionMode: 0
-  IgnoreTriggerColliders: 0
+  IgnoreTriggerColliders: 1
   MinimumSlopeAngle: 0
   SlopeUpDirection: {x: 0, y: 1}
   pulseRoutine:
@@ -762,7 +762,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7857708129487907294}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 74975acfe2ed40b4db84014175775995, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -822,7 +822,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3518663555988437935
@@ -1120,9 +1120,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   Move: 1
-  _moveSpeed: 9
+  <MoveSpeed>k__BackingField: 9
+  <Acceleration>k__BackingField: 9
   _velocity: 1.2
-  _acceleration: 9
   Stop: 1
   _decceleration: 9
   _frictionAmount: 0.2

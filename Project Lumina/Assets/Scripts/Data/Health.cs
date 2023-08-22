@@ -22,7 +22,7 @@ namespace ProjectLumina.Data
         private float _currentHealth;
 
         [Space]
-        public UnityEvent<float, float> OnHealthChanged;
+        public UnityEvent OnHealthChanged;
 
         public UnityEvent onZeroHealth;
 
@@ -30,11 +30,13 @@ namespace ProjectLumina.Data
         {
             CurrentHealth += amount;
 
-            OnHealthChanged?.Invoke(CurrentHealth, _maxHealth);
-
             if (CurrentHealth <= 0)
             {
                 onZeroHealth?.Invoke();
+            }
+            else
+            {
+                OnHealthChanged?.Invoke();
             }
         }
 

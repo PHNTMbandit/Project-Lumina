@@ -51,7 +51,7 @@ namespace ProjectLumina.Abilities
             {
                 damageable.Damage(_currentMeleeAttack.Damage);
 
-                ObjectPoolController.Instance.GetPooledObject(_currentMeleeAttack.HitFX.name, damageable.transform.position, false);
+                ObjectPoolController.Instance.GetPooledObject(_currentMeleeAttack.HitFX.name, damageable.transform.position, new Quaternion(0, transform.localScale.x, 0, 0), false);
             }
         }
 
