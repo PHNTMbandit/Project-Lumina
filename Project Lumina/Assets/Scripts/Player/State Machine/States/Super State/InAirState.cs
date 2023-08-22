@@ -72,7 +72,10 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void ChangeToFall()
         {
-            stateController.ChangeState(stateController.GetState("Fall"));
+            if (stateController.HasCharacterAbility(out CharacterFall characterFall))
+            {
+                stateController.ChangeState(stateController.GetState("Fall"));
+            }
         }
     }
 }

@@ -53,7 +53,11 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryAttack()
         {
-            stateController.ChangeState(stateController.GetState("Melee Attack"));
+            if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
+            {
+                stateController.ChangeState(stateController.GetState("Melee Attack"));
+
+            }
         }
 
         protected void TryJump()
@@ -69,7 +73,10 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryRoll()
         {
-            stateController.ChangeState(stateController.GetState("Roll"));
+            if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
+            {
+                stateController.ChangeState(stateController.GetState("Roll"));
+            }
         }
 
         protected void ChangeToIdle()
