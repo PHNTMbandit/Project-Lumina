@@ -41,6 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3388855987
+    locked: 0
   - name: Enemy
     uniqueID: 1804728149
     locked: 0
@@ -49,6 +52,15 @@ TagManager:
     locked: 0
   - name: FX
     uniqueID: 2394658799
+    locked: 0
+  - name: Platform
+    uniqueID: 2438038717
+    locked: 0
+  - name: Walls
+    uniqueID: 1376474679
+    locked: 0
+  - name: Platforms
+    uniqueID: 1372517769
     locked: 0
   - name: Foreground
     uniqueID: 2039444603
