@@ -20,12 +20,9 @@ namespace ProjectLumina.AI.Conditionals
         {
             base.OnUpdate();
 
-            if (_characterShoot.CanShoot())
-            {
-                _characterShoot.UseShoot();
-            }
+            _characterShoot.UseShoot();
 
-            return TaskStatus.Running;
+            return TaskStatus.Success;
         }
     }
 }
