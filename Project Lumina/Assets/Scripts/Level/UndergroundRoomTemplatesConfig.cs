@@ -7,13 +7,13 @@ namespace ProjectLumina.Level
     [Serializable, HideLabel]
     public class UndergroundRoomTemplatesConfig
     {
+        public GameObject[] CorridorRoomTemplates;
         public GameObject[] DefaultRoomTemplates;
+        public GameObject[] EntranceRoomTemplates;
+        public GameObject[] ExitRoomTemplates;
         public GameObject[] ShopRoomTemplates;
         public GameObject[] TeleportRoomTemplates;
         public GameObject[] TreasureRoomTemplates;
-        public GameObject[] EntranceRoomTemplates;
-        public GameObject[] ExitRoomTemplates;
-        public GameObject[] CorridorRoomTemplates;
 
         public GameObject[] GetRoomTemplates(LuminaRoom room)
         {

@@ -1,11 +1,13 @@
 using System.Collections.Generic;
 using Edgar.Unity;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Level
 {
     public class LuminaRoom : RoomBase
     {
+        [EnumPaging]
         public LuminaRoomType Type;
 
         public bool Outside;

@@ -50,11 +50,17 @@ TagManager:
   - name: Player
     uniqueID: 589063617
     locked: 0
+  - name: FX
+    uniqueID: 2394658799
+    locked: 0
   - name: Platform
     uniqueID: 2438038717
     locked: 0
-  - name: FX
-    uniqueID: 2394658799
+  - name: Walls
+    uniqueID: 1376474679
+    locked: 0
+  - name: Platforms
+    uniqueID: 1372517769
     locked: 0
   - name: Foreground
     uniqueID: 2039444603

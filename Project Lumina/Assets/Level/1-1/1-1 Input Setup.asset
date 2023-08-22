@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd6b1150135b5524a8a62bb5da76babe, type: 3}
-  m_Name: Underground Input Setup
+  m_Name: 1-1 Input Setup
   m_EditorClassIdentifier: 
-  LevelGraph: {fileID: 0}
+  LevelGraph: {fileID: 11400000, guid: 7dbc62a387fe1db4ea0cc42e1714ae73, type: 2}
   RoomTemplates:
+    CorridorRoomTemplates: []
     DefaultRoomTemplates: []
+    EntranceRoomTemplates:
+    - {fileID: 3246689559998049252, guid: 4dd62041b55b0a7449b4a8637862735f, type: 3}
+    ExitRoomTemplates: []
     ShopRoomTemplates: []
     TeleportRoomTemplates: []
     TreasureRoomTemplates: []
-    EntranceRoomTemplates: []
-    ExitRoomTemplates: []
-    CorridorRoomTemplates: []
