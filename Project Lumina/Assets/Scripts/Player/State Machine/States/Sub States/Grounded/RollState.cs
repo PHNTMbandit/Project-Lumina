@@ -20,10 +20,13 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.LogicUpdate(stateController);
 
-            if (stateController.InputReader.AttackInput)
+            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {
-                stateController.ChangeState(stateController.GetState("Roll Attack"));
+                if (stateController.InputReader.AttackInput)
+                {
+                    stateController.ChangeState(stateController.GetState("Roll Attack"));
 
+                }
             }
             else if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
             {
