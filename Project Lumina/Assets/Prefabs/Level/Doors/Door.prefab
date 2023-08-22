@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 2820644679973011755}
   - component: {fileID: 9118932076769288224}
   - component: {fileID: 3420910568697442318}
-  m_Layer: 0
+  - component: {fileID: 3823314806249344487}
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,6 +393,22 @@ CompositeCollider2D:
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 5900356949286564483}
+--- !u!114 &3823314806249344487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5900356949286564483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d17c1df40f2d184581e905e31daf47e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <InteractText>k__BackingField: Open
+  onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6911332498121068585
 GameObject:
   m_ObjectHideFlags: 0
@@ -402,7 +419,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8657761056756415968}
   - component: {fileID: 7113035677462613988}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}

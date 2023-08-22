@@ -12,13 +12,14 @@ namespace ProjectLumina.Input
         public GameControls GameControls { get; private set; }
         public bool AttackInput { get; private set; }
         public bool DashInput { get; private set; }
+        public bool InteractInput { get; private set; }
         public bool JumpInputPress { get; private set; }
         public bool JumpInputRelease { get; private set; }
         public Vector2 MoveInput { get; private set; }
         public bool RollInput { get; private set; }
         public bool SprintInput { get; private set; }
 
-        public UnityAction onAttack, onDash, onJump, onRoll, onSprint;
+        public UnityAction onAttack, onDash, onInteract, onJump, onRoll, onSprint;
 
         #endregion Variables
 
@@ -68,6 +69,20 @@ namespace ProjectLumina.Input
             else if (context.canceled)
             {
                 DashInput = false;
+            }
+        }
+
+        public void OnInteract(InputAction.CallbackContext context)
+        {
+            if (context.performed)
+            {
+                InteractInput = true;
+
+                onInteract?.Invoke();
+            }
+            else if (context.canceled)
+            {
+                InteractInput = false;
             }
         }
 

@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "9fd1479a-30ed-4c83-b643-c22a3d8af8c4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Jump",
                     "type": "Button",
                     "id": "fa48ecf0-b7e7-44c9-9b7a-2ad777467399",
@@ -313,6 +322,28 @@
                     "action": "Sprint",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "65d93838-befd-4409-9134-60cd5d63093d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d3edfe2b-6eeb-466f-921f-6ed729565fc7",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
