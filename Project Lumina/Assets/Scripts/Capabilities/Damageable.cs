@@ -10,6 +10,8 @@ namespace ProjectLumina.Capabilities
     {
         private Health _health;
 
+        public UnityEvent onDamaged;
+
         private void Awake()
         {
             _health = GetComponent<Health>();
@@ -18,6 +20,8 @@ namespace ProjectLumina.Capabilities
         public virtual void Damage(float damage)
         {
             _health.ChangeHealth(-damage);
+
+            onDamaged?.Invoke();
         }
 
         public void DestroySelf()

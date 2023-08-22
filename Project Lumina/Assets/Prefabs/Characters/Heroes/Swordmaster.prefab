@@ -399,7 +399,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   DetectionMode: 0
-  IgnoreTriggerColliders: 0
+  IgnoreTriggerColliders: 1
   MinimumSlopeAngle: 0
   SlopeUpDirection: {x: 0, y: 1}
   pulseRoutine:
@@ -603,6 +603,8 @@ GameObject:
   - component: {fileID: 5234622297951310634}
   - component: {fileID: 2041146607062771200}
   - component: {fileID: 3518663555988437935}
+  - component: {fileID: 7944689914820168971}
+  - component: {fileID: 5188672235610599560}
   - component: {fileID: 792269993774783077}
   - component: {fileID: 1119459725394500653}
   - component: {fileID: 1717507716594173446}
@@ -762,7 +764,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 7857708129487907294}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 74975acfe2ed40b4db84014175775995, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -822,7 +824,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 1
-  m_SleepingMode: 0
+  m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3518663555988437935
@@ -931,6 +933,53 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7944689914820168971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 100
+  _currentHealth: 100
+  OnHealthChanged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 276948481718647338}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hit
+          m_BoolArgument: 0
+        m_CallState: 2
+  onZeroHealth:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &5188672235610599560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb834ca0cab12114f82af7d9148d3539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &792269993774783077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -974,13 +1023,11 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 464b6336648434845bf94af978993be0, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 15
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 9df17107e74be9b47aab1b91d163b340, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
@@ -1037,7 +1084,6 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: ed0e548bd9ea1c8478ec5020e6fdcd58, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 3195123333087440787}
@@ -1084,25 +1130,21 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: e6e25ebfc8d83214584a1749ec72b898, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 15
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <IsUnlocked>k__BackingField: 1
+  - <IsUnlocked>k__BackingField: 0
     <Damage>k__BackingField: 20
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <IsUnlocked>k__BackingField: 1
+  - <IsUnlocked>k__BackingField: 0
     <Damage>k__BackingField: 5
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
@@ -1120,9 +1162,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   Move: 1
-  _moveSpeed: 9
+  <MoveSpeed>k__BackingField: 9
+  <Acceleration>k__BackingField: 9
   _velocity: 1.2
-  _acceleration: 9
   Stop: 1
   _decceleration: 9
   _frictionAmount: 0.2
@@ -1160,7 +1202,6 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 9
-    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 1491267b59419d845a9a13d350e095c0, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}

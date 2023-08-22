@@ -11,8 +11,14 @@ namespace ProjectLumina.Abilities
         [ToggleGroup("Move"), SerializeField]
         private bool Move;
 
+        [field: ToggleGroup("Move"), SerializeField, Range(0, 25)]
+        public float MoveSpeed { get; private set; }
+
+        [field: ToggleGroup("Move"), SerializeField, Range(0, 25)]
+        public float Acceleration { get; private set; }
+
         [ToggleGroup("Move"), SerializeField, Range(0, 25)]
-        private float _moveSpeed, _velocity, _acceleration;
+        private float _velocity;
 
         [ToggleGroup("Stop"), SerializeField]
         private bool Stop;
@@ -40,9 +46,9 @@ namespace ProjectLumina.Abilities
 
         public void MoveCharacter(float move)
         {
-            float targetSpeed = move * _moveSpeed;
+            float targetSpeed = move * MoveSpeed;
             float speedDiff = targetSpeed - _rb.velocity.x;
-            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? _acceleration : _decceleration;
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Acceleration : _decceleration;
             float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, _velocity) * Mathf.Sign(speedDiff);
 
             _moveInput = move;

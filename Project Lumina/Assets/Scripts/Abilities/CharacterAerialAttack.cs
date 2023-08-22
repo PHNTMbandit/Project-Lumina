@@ -70,7 +70,7 @@ namespace ProjectLumina.Abilities
             {
                 damageable.Damage(_currentAerialAttack.Damage);
 
-                ObjectPoolController.Instance.GetPooledObject(_currentAerialAttack.HitFX.name, damageable.transform.position, false);
+                ObjectPoolController.Instance.GetPooledObject(_currentAerialAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
 
                 if (SlowStop)
                 {

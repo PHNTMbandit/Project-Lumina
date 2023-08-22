@@ -100,6 +100,25 @@ namespace ProjectLumina.Controllers
             return objectToSpawn;
         }
 
+        public GameObject GetPooledObject(string tag, Vector3 position, Quaternion rotation, bool worldPositionStays)
+        {
+            if (!poolDictionary.ContainsKey(tag))
+            {
+                Debug.LogWarning($"Pool with tag {tag} doesn't exist.");
+                return null;
+            }
+
+            GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+
+            objectToSpawn.SetActive(true);
+            objectToSpawn.transform.SetPositionAndRotation(position, rotation);
+            objectToSpawn.transform.SetParent(transform, worldPositionStays);
+
+            poolDictionary[tag].Enqueue(objectToSpawn);
+
+            return objectToSpawn;
+        }
+
         public GameObject GetPooledObject(string tag, Vector3 position, bool worldPositionStays)
         {
             if (!poolDictionary.ContainsKey(tag))

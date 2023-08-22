@@ -53,7 +53,7 @@ namespace ProjectLumina.Abilities
             {
                 damageable.Damage(_currentFallAttack.Damage);
 
-                ObjectPoolController.Instance.GetPooledObject(_currentFallAttack.HitFX.name, damageable.transform.position, false);
+                ObjectPoolController.Instance.GetPooledObject(_currentFallAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
             }
         }
 

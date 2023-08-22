@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
+using ProjectLumina.Controllers;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -48,6 +49,8 @@ namespace ProjectLumina.Abilities
             foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(_currentRollAttack.Damage);
+
+                ObjectPoolController.Instance.GetPooledObject(_currentRollAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
             }
         }
 
