@@ -16,6 +16,9 @@ namespace ProjectLumina.UI
         [SerializeField]
         private TextMeshProUGUI _text;
 
+        [SerializeField]
+        private bool _alwaysVisible;
+
         private void Awake()
         {
             _health.OnHealthChanged.AddListener(UpdateUI);
@@ -31,6 +34,18 @@ namespace ProjectLumina.UI
             if (_text != null)
             {
                 _text.SetText($"{_health.CurrentHealth}");
+            }
+
+            if (_alwaysVisible == false)
+            {
+                if (_health.CurrentHealth >= _health.MaxHealth || _health.CurrentHealth <= 0)
+                {
+                    gameObject.SetActive(false);
+                }
+                else
+                {
+                    gameObject.SetActive(true);
+                }
             }
         }
     }
