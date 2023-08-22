@@ -28,7 +28,10 @@ namespace ProjectLumina.UI
             _slider.maxValue = _health.MaxHealth;
             _slider.value = _health.CurrentHealth;
 
-            _text.SetText($"{_health.CurrentHealth}");
+            if (_text != null)
+            {
+                _text.SetText($"{_health.CurrentHealth}");
+            }
         }
     }
 }

@@ -34,10 +34,8 @@ namespace ProjectLumina.Data
             {
                 onZeroHealth?.Invoke();
             }
-            else
-            {
-                OnHealthChanged?.Invoke();
-            }
+
+            OnHealthChanged?.Invoke();
         }
 
         private Color GetHealthBarColour(float value)
