@@ -1626,7 +1626,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 95
+    m_Bits: 223
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -17934,6 +17934,42 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 1490008890}
+    Ordinal: 42
+    Priority: 0
+    IconType: 1
+    IconTexture: {fileID: 2800000, guid: e34ab08f67fe3b24595fae22e4de321b, type: 3}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 1
+    Name: Canvas
+    GameObject: {fileID: 0}
+    Ordinal: 43
+    Priority: 0
+    IconType: 161000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 7961452278417800842}
+    Ordinal: 44
+    Priority: 0
+    IconType: 125250
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &1267731885
 Transform:
   m_ObjectHideFlags: 0
@@ -18480,6 +18516,11 @@ MonoBehaviour:
     UpdateFunction: 0
     Interval:
       value: 1
+--- !u!1 &1490008890 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3565832569184901082, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+  m_PrefabInstance: {fileID: 7961452278417800841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1525885089
 GameObject:
   m_ObjectHideFlags: 0
@@ -34927,23 +34968,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordmaster
       objectReference: {fileID: 0}
-    - target: {fileID: 7944689914820168971, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
-      propertyPath: onZeroHealth.m_PersistentCalls.m_Calls.Array.size
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7944689914820168971, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
-      propertyPath: onZeroHealth.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7944689914820168971, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
-      propertyPath: onZeroHealth.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+--- !u!1 &7961452278417800842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2833440158046621441, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+  m_PrefabInstance: {fileID: 7961452278417800841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &7961452278417800856 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7944689914820168971, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
