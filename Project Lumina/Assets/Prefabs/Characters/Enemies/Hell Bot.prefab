@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1238640973413864869}
   - component: {fileID: 5314705485935313885}
-  - component: {fileID: 4108265014001221586}
+  - component: {fileID: 2428650064022259290}
   m_Layer: 6
-  m_Name: Target Sensor
+  m_Name: Sight Sensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -59,7 +59,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   inputSensor:
-    value: {fileID: 4108265014001221586}
+    value: {fileID: 2428650064022259290}
   pulseRoutine:
     Mode:
       value: 2
@@ -68,7 +68,7 @@ MonoBehaviour:
       value: 1
   BlocksLineOfSight:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 0
   IgnoreTriggerColliders: 1
   PointSamplingMethod: 0
   TestLOSTargetsOnly: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   FOVConstraintMethod: 0
---- !u!114 &4108265014001221586
+--- !u!114 &2428650064022259290
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -160,7 +160,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 123162348014418885}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67743d858b7a45d39461726716d6af2e, type: 3}
+  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   signalProcessors: []
@@ -176,43 +176,29 @@ MonoBehaviour:
   OnNoDetection:
     m_PersistentCalls:
       m_Calls: []
-  Shape: 0
-  Circle:
-    Radius: 1
-  Box:
-    HalfExtents: {x: 0.5, y: 0.5}
-  Capsule:
-    Radius: 0.5
-    Height: 1
   signalFilter:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 10
-  Direction: {x: 0, y: 1}
-  WorldSpace: 0
+  DetectionMode: 1
+  Shape: 1
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.87, y: 7}
+  Capsule:
+    Radius: 0.5
+    Height: 1
   DetectsOnLayers:
     serializedVersion: 2
     m_Bits: 8
-  ObstructedByLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  DetectionMode: 1
   IgnoreTriggerColliders: 0
-  MinimumSlopeAngle: 0
-  SlopeUpDirection: {x: 0, y: 1}
   pulseRoutine:
     Mode:
       value: 2
     UpdateFunction: 0
     Interval:
       value: 1
-  onObstruction:
-    m_PersistentCalls:
-      m_Calls: []
-  onClear:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &1130710176691965015
 GameObject:
   m_ObjectHideFlags: 0
@@ -274,7 +260,7 @@ MonoBehaviour:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  DetectionMode: 0
+  DetectionMode: 1
   Shape: 1
   Circle:
     Radius: 1
@@ -504,6 +490,7 @@ GameObject:
   - component: {fileID: 4525009610691105383}
   - component: {fileID: 2766563775868989475}
   - component: {fileID: 7783316659044857216}
+  - component: {fileID: 4581091988254112944}
   - component: {fileID: 8913216245909492744}
   - component: {fileID: 3573416232631176223}
   - component: {fileID: 1559403312632348967}
@@ -527,7 +514,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -32.7, y: -0.23, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5920593116854775563}
@@ -697,34 +684,10 @@ MonoBehaviour:
   _currentHealth: 25
   OnHealthChanged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3509532169929447608}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Hit
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onZeroHealth:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3509532169929447608}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Hit
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 7783316659044857216}
         m_TargetAssemblyTypeName: ProjectLumina.AI.CharacterAI, Assembly-CSharp
         m_MethodName: ChangeState
@@ -763,7 +726,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3509532169929447608}
+        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
+        m_MethodName: Play
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Hit
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7783316659044857216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,6 +760,25 @@ MonoBehaviour:
   - run
   - shoot
   _defaultAIState: idle
+--- !u!114 &4581091988254112944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c0b52ed5844f364bb2dee37001139d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
+  _attackCombos:
+  - <IsUnlocked>k__BackingField: 1
+    <Damage>k__BackingField: 3
+    AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
+    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    <Sensor>k__BackingField: {fileID: 8030033580177232402}
 --- !u!114 &8913216245909492744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,9 +838,9 @@ MonoBehaviour:
   logTaskChanges: 0
   group: 0
   resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: 5568eb38b72a9e54daf701367dc8265b, type: 2}
+  externalBehavior: {fileID: 11400000, guid: f730e980df5395f47993e495e292310d, type: 2}
   mBehaviorSource:
-    behaviorName: Attack
+    behaviorName: Shoot
     behaviorDescription: 
     mTaskData:
       types: []
@@ -854,8 +848,10 @@ MonoBehaviour:
       startIndex: 
       variableStartIndex: 
       JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.AI.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.Abilities.CharacterMove/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
-        Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Target
-        Sensor","IsShared":true,"SensormValue":2}]}'
+        Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Melee
+        Attack Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
+        Sensor","IsShared":true,"SensormValue":3},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting
+        Sensor","IsShared":true,"SensormValue":4}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -864,7 +860,9 @@ MonoBehaviour:
         unityObjects:
         - {fileID: 5805500066460283248}
         - {fileID: 5805500066460283248}
+        - {fileID: 8030033580177232402}
         - {fileID: 5314705485935313885}
+        - {fileID: 3657249586278866276}
         byteData: 
         byteDataArray: 
       Version: 1.7.7
@@ -911,8 +909,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 5
-  radius: 1.15
-  height: 0.01
+  radius: 1.12
+  height: 2
   canMove: 1
   maxSpeed: 1
   gravity: {x: NaN, y: NaN, z: NaN}
@@ -926,16 +924,16 @@ MonoBehaviour:
   enableRotation: 0
   autoRepath:
     mode: 2
-    period: 0.5
+    period: NaN
     sensitivity: 10
     maximumPeriod: 2
     visualizeSensitivity: 0
   targetCompatibility: {fileID: 0}
-  maxAcceleration: 9
-  rotationSpeed: 360
-  slowdownDistance: 1.5
-  pickNextWaypointDist: 2
-  endReachedDistance: 1.15
+  maxAcceleration: 10
+  rotationSpeed: 32400
+  slowdownDistance: 2.6
+  pickNextWaypointDist: 4
+  endReachedDistance: 2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0

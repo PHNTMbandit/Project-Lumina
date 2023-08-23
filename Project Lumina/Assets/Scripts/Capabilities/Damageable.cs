@@ -21,7 +21,10 @@ namespace ProjectLumina.Capabilities
         {
             _health.ChangeHealth(-damage);
 
-            onDamaged?.Invoke();
+            if (_health.CurrentHealth > 0)
+            {
+                onDamaged?.Invoke();
+            }
         }
 
         public void DestroySelf()

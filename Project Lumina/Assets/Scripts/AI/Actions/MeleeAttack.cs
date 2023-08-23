@@ -4,25 +4,22 @@ using ProjectLumina.Abilities;
 namespace ProjectLumina.AI.Conditionals
 {
     [TaskCategory("Attack")]
-    public class Shoot : Action
+    public class MeleeAttack : Action
     {
-        private CharacterShoot _characterShoot;
+        private CharacterMeleeAttack _characterMeleeAttack;
 
         public override void OnAwake()
         {
             base.OnAwake();
 
-            _characterShoot = GetComponent<CharacterShoot>();
+            _characterMeleeAttack = GetComponent<CharacterMeleeAttack>();
         }
 
         public override void OnStart()
         {
             base.OnStart();
 
-            if (_characterShoot.CanShoot())
-            {
-                _characterShoot.UseShoot();
-            }
+            _characterMeleeAttack.UseMeleeAttack();
         }
     }
 }
