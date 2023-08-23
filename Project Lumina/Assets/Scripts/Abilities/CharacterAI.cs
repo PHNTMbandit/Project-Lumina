@@ -43,6 +43,11 @@ namespace ProjectLumina.AI
             InitialiseState();
         }
 
+        private void Update()
+        {
+
+        }
+
         private void InitialiseState()
         {
             _currentState = _defaultAIState;
@@ -59,7 +64,7 @@ namespace ProjectLumina.AI
         private void SetFacingDirection()
         {
             Vector3 direction = _AIPath.steeringTarget - transform.position;
-            print(direction);
+
             if (direction.x < 0)
             {
                 transform.localScale = new Vector3(-1, 1, 1);
