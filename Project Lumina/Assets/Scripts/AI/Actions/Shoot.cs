@@ -1,6 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
 using ProjectLumina.Abilities;
-using UnityEngine;
 
 namespace ProjectLumina.AI.Conditionals
 {
@@ -16,13 +15,14 @@ namespace ProjectLumina.AI.Conditionals
             _characterShoot = GetComponent<CharacterShoot>();
         }
 
-        public override TaskStatus OnUpdate()
+        public override void OnStart()
         {
-            base.OnUpdate();
+            base.OnStart();
 
-            _characterShoot.UseShoot();
-
-            return TaskStatus.Success;
+            if (_characterShoot.CanShoot())
+            {
+                _characterShoot.UseShoot();
+            }
         }
     }
 }

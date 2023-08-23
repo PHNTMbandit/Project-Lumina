@@ -29,6 +29,8 @@ namespace ProjectLumina.AI
             _AIPath = GetComponent<AIPath>();
             _animator = GetComponent<Animator>();
             _characterMove = GetComponent<CharacterMove>();
+
+            _AIPath.onSearchPath += SetFacingDirection;
         }
 
         private void Start()
@@ -52,6 +54,20 @@ namespace ProjectLumina.AI
             _animator.SetBool(_currentState, false);
             _currentState = AIState;
             _animator.SetBool(_currentState, true);
+        }
+
+        private void SetFacingDirection()
+        {
+            Vector3 direction = _AIPath.steeringTarget - transform.position;
+            print(direction);
+            if (direction.x < 0)
+            {
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector3(1, 1, 1);
+            }
         }
     }
 }

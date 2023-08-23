@@ -33,7 +33,7 @@ namespace ProjectLumina.UI
 
             if (_text != null)
             {
-                _text.SetText($"{_health.CurrentHealth}");
+                _text.SetText($"{_health.CurrentHealth}/{_health.MaxHealth}");
             }
 
             if (_alwaysVisible == false)
