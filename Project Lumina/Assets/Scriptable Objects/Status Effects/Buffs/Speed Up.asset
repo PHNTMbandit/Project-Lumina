@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43c6d8b94c48d546b72879050922c90, type: 3}
+  m_Name: Speed Up
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 86536215, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
+  <StatusEffectType>k__BackingField: 0
+  <StatusEffectName>k__BackingField: Speed Up
+  <Description>k__BackingField: 
+  <Modules>k__BackingField:
+  - rid: 1405437018734329873
+  references:
+    version: 2
+    RefIds:
+    - rid: 1405437018734329873
+      type: {class: SpeedModule, ns: , asm: Assembly-CSharp}
+      data:
+        _moveSpeedModifier: 36

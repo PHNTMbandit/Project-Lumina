@@ -878,6 +878,7 @@ GameObject:
   - component: {fileID: 1588857731240795399}
   - component: {fileID: 5987676301644156327}
   - component: {fileID: 4429014146250662890}
+  - component: {fileID: 1494634681898418241}
   - component: {fileID: 8936565788166426222}
   m_Layer: 3
   m_Name: Swordmaster
@@ -1539,6 +1540,20 @@ MonoBehaviour:
   _acceleration: 9
   _decceleration: 9
   _frictionAmount: 0.2
+--- !u!114 &1494634681898418241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeStatusEffects:
+  - {fileID: 11400000, guid: b32eaf57e1eb1f642876c0f1cd724ec9, type: 2}
 --- !u!114 &8936565788166426222
 MonoBehaviour:
   m_ObjectHideFlags: 0
