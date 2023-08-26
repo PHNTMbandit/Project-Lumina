@@ -13,15 +13,7 @@ MonoBehaviour:
   m_Name: Speed Up
   m_EditorClassIdentifier: 
   <Icon>k__BackingField: {fileID: 86536215, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
-  <StatusEffectType>k__BackingField: 0
   <StatusEffectName>k__BackingField: Speed Up
+  <StatusEffectType>k__BackingField: 0
+  <StatusEffectLevel>k__BackingField: 0
   <Description>k__BackingField: 
-  <Modules>k__BackingField:
-  - rid: 1405437018734329873
-  references:
-    version: 2
-    RefIds:
-    - rid: 1405437018734329873
-      type: {class: SpeedModule, ns: , asm: Assembly-CSharp}
-      data:
-        _moveSpeedModifier: 36
