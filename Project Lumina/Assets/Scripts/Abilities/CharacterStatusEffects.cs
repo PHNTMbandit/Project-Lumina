@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using ProjectLumina.StatusEffects;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Abilities
@@ -53,6 +52,11 @@ namespace ProjectLumina.Abilities
         public StatusEffectSO GetStatusEffect(StatusEffectSO statusEffect)
         {
             return _activeStatusEffects.Find(i => i == statusEffect);
+        }
+
+        public StatusEffectSO[] GetStatusEffectsByType(StatusEffectType statusEffectType)
+        {
+            return _activeStatusEffects.FindAll(i => i.StatusEffectType == statusEffectType).ToArray();
         }
     }
 }

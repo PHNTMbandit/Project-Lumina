@@ -4,6 +4,13 @@ using UnityEngine;
 
 namespace ProjectLumina.StatusEffects
 {
+    [Serializable]
+    public enum StatusEffectType
+    {
+        Buff,
+        Debuff,
+    }
+
     [CreateAssetMenu(fileName = "New Status Effect", menuName = "Project Lumina/Status Effect", order = 3)]
     public class StatusEffectSO : ScriptableObject
     {
@@ -15,6 +22,9 @@ namespace ProjectLumina.StatusEffects
 
         [field: SerializeField, TextArea]
         public string Description { get; private set; }
+
+        [field: SerializeField, EnumToggleButtons]
+        public StatusEffectType StatusEffectType { get; private set; }
 
         [SerializeField, EnumToggleButtons]
         private TierLevel _currentTierLevel;
