@@ -1,6 +1,6 @@
 using Micosmo.SensorToolkit;
 using ProjectLumina.Capabilities;
-using ProjectLumina.Input;
+using ProjectLumina.Player.Input;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
