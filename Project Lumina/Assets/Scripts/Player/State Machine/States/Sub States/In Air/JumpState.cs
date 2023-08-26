@@ -3,12 +3,15 @@ using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
-    [CreateAssetMenu(fileName = "Jump State", menuName = "Project Lumina/States/Jump State")]
     public class JumpState : InAirState
     {
-        public override void Enter(StateController stateController)
+        public JumpState(string stateName, string animationStateName, StateController stateController) : base(stateName, animationStateName, stateController)
         {
-            base.Enter(stateController);
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
 
             if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {
@@ -18,16 +21,16 @@ namespace ProjectLumina.Player.StateMachine.States
             stateController.InputReader.onAttack = TryAttack;
         }
 
-        public override void Exit(StateController stateController)
+        public override void Exit()
         {
-            base.Exit(stateController);
+            base.Exit();
 
             stateController.InputReader.onAttack -= TryAttack;
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void LogicUpdate()
         {
-            base.LogicUpdate(stateController);
+            base.LogicUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
@@ -38,9 +41,9 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void PhysicsUpdate(StateController stateController)
+        public override void PhysicsUpdate()
         {
-            base.PhysicsUpdate(stateController);
+            base.PhysicsUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterJump characterJump))
             {

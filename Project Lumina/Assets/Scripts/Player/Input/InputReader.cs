@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
-namespace ProjectLumina.Input
+namespace ProjectLumina.Player.Input
 {
     [CreateAssetMenu(fileName = "Input Reader", menuName = "Project Lumina/Input Reader", order = 0)]
     public class InputReader : ScriptableObject, GameControls.IPlayerActions

@@ -3,12 +3,15 @@ using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
-    [CreateAssetMenu(fileName = "Roll State", menuName = "Project Lumina/States/Roll State")]
     public class RollState : GroundedState
     {
-        public override void Enter(StateController stateController)
+        public RollState(string stateName, string animationStateName, StateController stateController) : base(stateName, animationStateName, stateController)
         {
-            base.Enter(stateController);
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
 
             if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
             {
@@ -16,9 +19,9 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void LogicUpdate()
         {
-            base.LogicUpdate(stateController);
+            base.LogicUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {

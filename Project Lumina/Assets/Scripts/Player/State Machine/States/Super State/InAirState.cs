@@ -5,13 +5,13 @@ namespace ProjectLumina.Player.StateMachine.States
 {
     public class InAirState : State
     {
-        protected StateController stateController;
-
-        public override void Enter(StateController stateController)
+        public InAirState(string stateName, string animationStateName, StateController stateController) : base(stateName, animationStateName, stateController)
         {
-            base.Enter(stateController);
+        }
 
-            this.stateController = stateController;
+        public override void Enter()
+        {
+            base.Enter();
 
             stateController.InputReader.onDash = TryDash;
 
@@ -21,16 +21,16 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void Exit(StateController stateController)
+        public override void Exit()
         {
-            base.Exit(stateController);
+            base.Exit();
 
             stateController.InputReader.onDash -= TryDash;
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void LogicUpdate()
         {
-            base.LogicUpdate(stateController);
+            base.LogicUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
             {

@@ -2,26 +2,34 @@
 
 namespace ProjectLumina.Player.StateMachine
 {
-    public abstract class State : ScriptableObject
+    public abstract class State
     {
-        [SerializeField]
-        private string _animationStateName;
+        public string stateName;
+        protected string animationStateName;
+        protected StateController stateController;
 
-        public virtual void Enter(StateController stateController)
+        public State(string stateName, string animationStateName, StateController stateController)
         {
-            stateController.Animator.SetBool(_animationStateName, true);
+            this.stateName = stateName;
+            this.animationStateName = animationStateName;
+            this.stateController = stateController;
         }
 
-        public virtual void Exit(StateController stateController)
+        public virtual void Enter()
         {
-            stateController.Animator.SetBool(_animationStateName, false);
+            stateController.Animator.SetBool(animationStateName, true);
         }
 
-        public virtual void LogicUpdate(StateController stateController)
+        public virtual void Exit()
+        {
+            stateController.Animator.SetBool(animationStateName, false);
+        }
+
+        public virtual void LogicUpdate()
         {
         }
 
-        public virtual void PhysicsUpdate(StateController stateController)
+        public virtual void PhysicsUpdate()
         {
         }
     }
