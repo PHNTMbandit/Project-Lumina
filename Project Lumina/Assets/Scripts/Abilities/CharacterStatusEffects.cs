@@ -8,8 +8,13 @@ namespace ProjectLumina.Abilities
     [AddComponentMenu("Character/Character Status Effects")]
     public class CharacterStatusEffects : MonoBehaviour
     {
-        [TableList, SerializeField]
+        [SerializeField]
         private List<StatusEffectSO> _activeStatusEffects;
+
+        private void Start()
+        {
+            UpdateStatusEffects();
+        }
 
         public void AddStatusEffect(StatusEffectSO statusEffect)
         {
@@ -27,7 +32,16 @@ namespace ProjectLumina.Abilities
             {
                 _activeStatusEffects.Remove(statusEffect);
 
-                statusEffect.Remove(gameObject);
+                statusEffect.Revert(gameObject);
+            }
+        }
+
+        public void UpdateStatusEffects()
+        {
+            foreach (StatusEffectSO statusEffect in _activeStatusEffects)
+            {
+                statusEffect.Revert(gameObject);
+                statusEffect.Apply(gameObject);
             }
         }
 

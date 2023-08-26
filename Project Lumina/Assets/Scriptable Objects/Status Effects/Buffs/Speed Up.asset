@@ -18,7 +18,8 @@ MonoBehaviour:
   _currentTierLevel: 0
   _tierStatusEffects:
   - tierLevel: 0
-    tierStatusEffects: []
+    tierStatusEffects:
+    - rid: 7374641685468807168
   - tierLevel: 1
     tierStatusEffects: []
   - tierLevel: 2
@@ -37,4 +38,8 @@ MonoBehaviour:
     tierStatusEffects: []
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 7374641685468807168
+      type: {class: MoveSpeedStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        _moveSpeedModifier: 10

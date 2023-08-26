@@ -30,11 +30,11 @@ namespace ProjectLumina.StatusEffects
             }
         }
 
-        public virtual void Remove(GameObject target)
+        public virtual void Revert(GameObject target)
         {
             foreach (IStatusEffect statusEffect in GetCurrentStatusEffectTier().tierStatusEffects)
             {
-                statusEffect.Activate(target);
+                statusEffect.Deactivate(target);
             }
         }
 

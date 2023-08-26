@@ -12,6 +12,7 @@ namespace ProjectLumina.AI
     public class CharacterAI : CharacterAbility
     {
         public GameObject Target { get; private set; }
+        public float MoveSpeed { get; private set; }
 
         [BoxGroup("AI States"), SerializeField]
         private string[] _AIStates;
@@ -37,15 +38,11 @@ namespace ProjectLumina.AI
         {
             Target = GameObject.FindGameObjectWithTag("Player");
 
-            _AIPath.maxSpeed = _characterMove.MoveSpeed;
-            _AIPath.maxAcceleration = _characterMove.Acceleration;
+            MoveSpeed = _characterMove.MoveSpeed.Value;
+            _AIPath.maxSpeed = MoveSpeed;
+            _AIPath.maxAcceleration = _characterMove.MoveSpeed.Value;
 
             InitialiseState();
-        }
-
-        private void Update()
-        {
-
         }
 
         private void InitialiseState()
