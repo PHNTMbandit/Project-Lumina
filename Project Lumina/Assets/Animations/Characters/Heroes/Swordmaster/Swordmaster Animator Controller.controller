@@ -26,7 +26,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: fall attacking
+    m_ConditionEvent: fall attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -51,7 +51,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: attacking
+    m_ConditionEvent: melee attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -103,7 +103,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: sprinting
+    m_ConditionEvent: sprint
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -180,7 +180,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: moving
+    m_ConditionEvent: move
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -272,7 +272,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: dashing
+    m_ConditionEvent: dash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -297,7 +297,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: dashing
+    m_ConditionEvent: dash
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4582733863047308110}
@@ -314,7 +314,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: jumping
+    m_ConditionEvent: jump
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -358,7 +358,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: jumping
+    m_ConditionEvent: jump
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8293474736916353272}
@@ -437,7 +437,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: attacking
+    m_ConditionEvent: melee attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -462,7 +462,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: fall attacking
+    m_ConditionEvent: fall attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -3884198500518499198}
@@ -479,7 +479,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: falling
+    m_ConditionEvent: fall
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -540,7 +540,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: attacking
+    m_ConditionEvent: melee attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -619,7 +619,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: aerial attacking
+    m_ConditionEvent: aerial attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -743,7 +743,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: attacking
+    m_ConditionEvent: melee attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 0}
@@ -777,7 +777,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: aerial attacking
+    m_ConditionEvent: aerial attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 1833265824520280794}
   m_DstState: {fileID: 0}
@@ -945,7 +945,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: sprinting
+    m_ConditionEvent: sprint
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4988953651376849213}
@@ -1064,27 +1064,27 @@ AnimatorStateMachine:
   - {fileID: -2363034149686139228}
   - {fileID: -1611658160620988054}
   m_StateMachineTransitions:
-  - first: {fileID: -7503967200542770779}
-    second:
-    - {fileID: -9137364760054282784}
-  - first: {fileID: -7320202668032549936}
-    second:
-    - {fileID: -242249927272367648}
   - first: {fileID: -7198535514675776607}
     second:
     - {fileID: -6115951697592915418}
   - first: {fileID: -2189210652078115740}
     second:
     - {fileID: -6777103644960012251}
-  - first: {fileID: 1833265824520280794}
-    second:
-    - {fileID: -4436867727618157654}
   - first: {fileID: 7519061622292420098}
     second:
     - {fileID: -3858907964209994604}
+  - first: {fileID: 1833265824520280794}
+    second:
+    - {fileID: -4436867727618157654}
+  - first: {fileID: -7503967200542770779}
+    second:
+    - {fileID: -9137364760054282784}
   - first: {fileID: 8736704852050089792}
     second:
     - {fileID: 1071851172714726426}
+  - first: {fileID: -7320202668032549936}
+    second:
+    - {fileID: -242249927272367648}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: -80, z: 0}
   m_EntryPosition: {x: 60, y: 350, z: 0}
@@ -1100,7 +1100,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: falling
+    m_ConditionEvent: fall
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -1142,102 +1142,102 @@ AnimatorController:
   m_Name: Swordmaster Animator Controller
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: aerial attacking
+  - m_Name: aerial attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: attacking
+    m_Controller: {fileID: 0}
+  - m_Name: melee attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: dashing
+    m_Controller: {fileID: 0}
+  - m_Name: dash
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: dead
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: falling
+    m_Controller: {fileID: 0}
+  - m_Name: fall
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: fall attacking
+    m_Controller: {fileID: 0}
+  - m_Name: fall attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: hit
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: idle
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: jumping
+    m_Controller: {fileID: 0}
+  - m_Name: jump
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: moving
+    m_Controller: {fileID: 0}
+  - m_Name: move
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: roll
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: roll attacking
+    m_Controller: {fileID: 0}
+  - m_Name: roll attack
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
-  - m_Name: sprinting
+    m_Controller: {fileID: 0}
+  - m_Name: sprint
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: teleport
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: wall slide
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   - m_Name: speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1260,7 +1260,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: aerial attacking
+    m_ConditionEvent: aerial attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -1288,7 +1288,7 @@ AnimatorStateTransition:
     m_ConditionEvent: roll
     m_EventTreshold: 0
   - m_ConditionMode: 2
-    m_ConditionEvent: roll attacking
+    m_ConditionEvent: roll attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -1451,7 +1451,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: aerial attacking
+    m_ConditionEvent: aerial attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -1555,7 +1555,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: moving
+    m_ConditionEvent: move
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5877501765671146098}
@@ -1653,7 +1653,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: attacking
+    m_ConditionEvent: melee attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -1790,7 +1790,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: roll attacking
+    m_ConditionEvent: roll attack
     m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: roll
@@ -1818,7 +1818,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: falling
+    m_ConditionEvent: fall
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4123472864872010470}
@@ -1835,7 +1835,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: attacking
+    m_ConditionEvent: melee attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 7519061622292420098}
   m_DstState: {fileID: 0}
@@ -1910,7 +1910,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: jumping
+    m_ConditionEvent: jump
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -208034922452617088}
   m_DstState: {fileID: 0}
@@ -1935,7 +1935,7 @@ AnimatorTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: jumping
+    m_ConditionEvent: jump
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: -2189210652078115740}
   m_DstState: {fileID: 0}
@@ -2031,7 +2031,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: falling
+    m_ConditionEvent: fall
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4948398883985690105}

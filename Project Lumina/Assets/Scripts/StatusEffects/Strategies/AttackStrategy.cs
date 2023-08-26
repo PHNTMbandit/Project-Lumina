@@ -1,14 +1,13 @@
 using ProjectLumina.Abilities;
-using ProjectLumina.StatusEffects.Modules;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-public class AttackModule : Module
+public class AttackStrategy : IStatusEffect
 {
     [Range(-100, 100), SuffixLabel("%"), SerializeField]
     private float _attackModifier;
 
-    public override void Activate(GameObject target)
+    public void Activate(GameObject target)
     {
         if (target.TryGetComponent(out CharacterAerialAttack aerialAttack))
         {
@@ -31,7 +30,7 @@ public class AttackModule : Module
         }
     }
 
-    public override void Deactivate(GameObject target)
+    public void Deactivate(GameObject target)
     {
         if (target.TryGetComponent(out CharacterAerialAttack aerialAttack))
         {

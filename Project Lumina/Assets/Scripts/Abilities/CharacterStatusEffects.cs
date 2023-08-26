@@ -17,7 +17,7 @@ namespace ProjectLumina.Abilities
             {
                 _activeStatusEffects.Add(statusEffect);
 
-                statusEffect.ApplyStatusEffect(gameObject);
+                statusEffect.Apply(gameObject);
             }
         }
 
@@ -27,7 +27,7 @@ namespace ProjectLumina.Abilities
             {
                 _activeStatusEffects.Remove(statusEffect);
 
-                statusEffect.RemoveStatusEffect(gameObject);
+                statusEffect.Remove(gameObject);
             }
         }
 
@@ -39,11 +39,6 @@ namespace ProjectLumina.Abilities
         public StatusEffectSO GetStatusEffect(StatusEffectSO statusEffect)
         {
             return _activeStatusEffects.Find(i => i == statusEffect);
-        }
-
-        public StatusEffectSO[] GetStatusEffects(StatusEffectType statusEffectType)
-        {
-            return _activeStatusEffects.FindAll(i => i.StatusEffectType == statusEffectType).ToArray();
         }
     }
 }
