@@ -957,10 +957,10 @@ GameObject:
   - component: {fileID: 6544038380653437511}
   - component: {fileID: 969693562633438370}
   - component: {fileID: 539630210308743331}
+  - component: {fileID: 1494634681898418241}
   - component: {fileID: 1588857731240795399}
   - component: {fileID: 5987676301644156327}
   - component: {fileID: 4429014146250662890}
-  - component: {fileID: 1494634681898418241}
   - component: {fileID: 8936565788166426222}
   - component: {fileID: 7145477492940236767}
   m_Layer: 3
@@ -1321,6 +1321,25 @@ MonoBehaviour:
   _maxLevel: 99
   _currentLevel: 1
   _baseXP: 32
+  onXPGain:
+    m_PersistentCalls:
+      m_Calls: []
+  onLevelUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ProjectLumina.Neuroglyphs.NeuroglyphController,
+          Assembly-CSharp
+        m_MethodName: ShowNeuroglyphSelectionScreen
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &5188672235610599560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1587,6 +1606,19 @@ MonoBehaviour:
   Stop: 1
   _decceleration: 9
   _frictionAmount: 0.2
+--- !u!114 &1494634681898418241
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _activeNeuroglyphs: []
 --- !u!114 &1588857731240795399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,20 +1674,6 @@ MonoBehaviour:
   _acceleration: 9
   _decceleration: 9
   _frictionAmount: 0.2
---- !u!114 &1494634681898418241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7857708129487907294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _activeStatusEffects:
-  - {fileID: 11400000, guid: b32eaf57e1eb1f642876c0f1cd724ec9, type: 2}
 --- !u!114 &8936565788166426222
 MonoBehaviour:
   m_ObjectHideFlags: 0

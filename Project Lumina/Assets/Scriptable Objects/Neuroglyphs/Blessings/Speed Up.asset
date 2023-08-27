@@ -12,34 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43c6d8b94c48d546b72879050922c90, type: 3}
   m_Name: Speed Up
   m_EditorClassIdentifier: 
+  <NeuroglyphID>k__BackingField: 0
   <Icon>k__BackingField: {fileID: 86536215, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
-  <StatusEffectName>k__BackingField: Speed Up
-  <Description>k__BackingField: 
-  _currentTierLevel: 0
-  _tierStatusEffects:
+  <NeuroglyphName>k__BackingField: Speed Up
+  <Description>k__BackingField: Temporarily enhances the player's movement speed
+  <NeuroglyphType>k__BackingField: 0
+  <CurrentTierLevel>k__BackingField: 0
+  _neuroglyphTierEffects:
   - tierLevel: 0
-    tierStatusEffects:
-    - rid: 7374641685468807168
+    tierEffects: []
   - tierLevel: 1
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 2
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 3
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 4
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 5
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 6
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 7
-    tierStatusEffects: []
+    tierEffects: []
   - tierLevel: 8
-    tierStatusEffects: []
+    tierEffects: []
   references:
     version: 2
-    RefIds:
-    - rid: 7374641685468807168
-      type: {class: MoveSpeedStrategy, ns: , asm: Assembly-CSharp}
-      data:
-        _moveSpeedModifier: 10
+    RefIds: []

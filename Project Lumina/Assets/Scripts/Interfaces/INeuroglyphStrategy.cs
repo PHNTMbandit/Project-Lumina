@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public interface IStatusEffect
+public interface INeuroglyphStrategy
 {
     void Activate(GameObject target);
     void Deactivate(GameObject target);

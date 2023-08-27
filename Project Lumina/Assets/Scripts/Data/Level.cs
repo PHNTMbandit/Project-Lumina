@@ -28,7 +28,7 @@ namespace ProjectLumina.Data
         [BoxGroup("XP"), SerializeField]
         private int _baseXP = 100;
 
-        public UnityAction onXPGain;
+        public UnityEvent onXPGain, onLevelUp;
 
         private void Awake()
         {
@@ -51,12 +51,14 @@ namespace ProjectLumina.Data
 
             onXPGain?.Invoke();
         }
-
+        [Button]
         private void LevelUp()
         {
             _currentLevel++;
             CurrentXP -= RequiredXP;
             CalculateRequiredXP();
+
+            onLevelUp?.Invoke();
         }
     }
 }
