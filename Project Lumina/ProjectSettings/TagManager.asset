@@ -13,7 +13,7 @@ TagManager:
   - UI
   - Enemy
   - Interactables
-  - 
+  - Pickupables
   - 
   - 
   - 
@@ -61,6 +61,9 @@ TagManager:
     locked: 0
   - name: Platforms
     uniqueID: 1372517769
+    locked: 0
+  - name: Pickup
+    uniqueID: 714389541
     locked: 0
   - name: Foreground
     uniqueID: 2039444603

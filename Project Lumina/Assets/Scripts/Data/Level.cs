@@ -19,7 +19,7 @@ namespace ProjectLumina.Data
         [BoxGroup("Level"), ProgressBar(1, "_maxLevel"), SerializeField]
         private int _currentLevel = 1;
 
-        [field: BoxGroup("XP"), ProgressBar(0, "_requiredXP"), ReadOnly, ShowInInspector]
+        [field: BoxGroup("XP"), ProgressBar(0, "RequiredXP"), ReadOnly, ShowInInspector]
         public int CurrentXP { get; private set; }
 
         [field: BoxGroup("XP"), ReadOnly, ShowInInspector]

@@ -14,7 +14,7 @@ namespace ProjectLumina.UI
         private Slider _slider;
 
         [SerializeField]
-        private TextMeshProUGUI _text;
+        private TextMeshProUGUI _amount, _levelText;
 
         private void Start()
         {
@@ -28,7 +28,8 @@ namespace ProjectLumina.UI
             _slider.maxValue = _level.RequiredXP;
             _slider.value = _level.CurrentXP;
 
-            _text.SetText($"{_level.CurrentXP}/{_level.RequiredXP}");
+            _amount.SetText($"{_level.CurrentXP}/{_level.RequiredXP}");
+            _levelText.SetText($"LVL {_level.CurrentLevel}");
         }
     }
 }

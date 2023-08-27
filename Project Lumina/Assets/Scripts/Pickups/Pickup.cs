@@ -13,6 +13,8 @@ namespace ProjectLumina.Pickups
         public void TryPickup(GameObject target)
         {
             pickupType?.Pickup(target, _amount);
+
+            gameObject.SetActive(false);
         }
     }
 }

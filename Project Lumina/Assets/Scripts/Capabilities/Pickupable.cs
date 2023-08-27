@@ -1,26 +1,26 @@
-using Micosmo.SensorToolkit;
+using ProjectLumina.Pickups;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace ProjectLumina.Capabilities
 {
-    [AddComponentMenu("Capabilities/Pickupable")]
+    [RequireComponent(typeof(Pickup))]
     public class Pickupable : MonoBehaviour
     {
-        [SerializeField]
-        private RangeSensor2D _sensor;
+        private Pickup _pickup;
 
-        [Space]
-        public UnityEvent<GameObject> onPickup;
+        public UnityEvent onPickup;
 
         private void Awake()
         {
-            _sensor.OnDetected.AddListener(Pickup);
+            _pickup = GetComponent<Pickup>();
         }
 
-        private void Pickup(GameObject target, Sensor sensor)
+        public void Pickup(GameObject target)
         {
-            onPickup?.Invoke(target);
+            _pickup.TryPickup(target);
+
+            onPickup?.Invoke();
         }
     }
 }
