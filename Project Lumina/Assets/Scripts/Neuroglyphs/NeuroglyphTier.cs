@@ -5,7 +5,7 @@ using UnityEngine;
 namespace ProjectLumina.Neuroglyphs
 {
     [Serializable]
-    public enum TierLevel
+    public enum NeuroglyphTierLevel
     {
         Tier1,
         Tier2,
@@ -22,7 +22,7 @@ namespace ProjectLumina.Neuroglyphs
     public class NeuroglyphTier
     {
         [EnumPaging]
-        public TierLevel tierLevel;
+        public NeuroglyphTierLevel tierLevel;
 
         [SerializeReference]
         public INeuroglyphStrategy[] tierEffects;

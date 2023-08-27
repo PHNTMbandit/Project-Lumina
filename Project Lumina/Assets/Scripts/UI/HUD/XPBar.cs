@@ -18,7 +18,7 @@ namespace ProjectLumina.UI
 
         private void Start()
         {
-            _level.onXPGain += UpdateUI;
+            _level.onXPGain.AddListener(UpdateUI);
 
             UpdateUI();
         }

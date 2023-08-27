@@ -14,6 +14,9 @@ namespace ProjectLumina.Neuroglyphs
     [CreateAssetMenu(fileName = "New Neuroglyph", menuName = "Project Lumina/Neuroglyph", order = 3)]
     public class Neuroglyph : ScriptableObject
     {
+        [field: SerializeField, Range(0, 35)]
+        public int NeuroglyphID { get; private set; }
+
         [field: SerializeField, PreviewField(Alignment = ObjectFieldAlignment.Left)]
         public Sprite Icon { get; private set; }
 
@@ -26,15 +29,15 @@ namespace ProjectLumina.Neuroglyphs
         [field: SerializeField, EnumToggleButtons]
         public NeuroglyphType NeuroglyphType { get; private set; }
 
-        [SerializeField, EnumToggleButtons]
-        private TierLevel _currentTierLevel;
+        [field: SerializeField, EnumToggleButtons]
+        public NeuroglyphTierLevel CurrentTierLevel { get; private set; }
 
         [SerializeField, HideLabel, TableList(AlwaysExpanded = true)]
         private NeuroglyphTier[] _neuroglyphTierEffects = new NeuroglyphTier[9];
 
         public virtual void Apply(GameObject target)
         {
-            foreach (INeuroglyphStrategy statusEffect in GetCurrentStatusEffectTier().tierEffects)
+            foreach (INeuroglyphStrategy statusEffect in GetCurrentTier().tierEffects)
             {
                 statusEffect.Activate(target);
             }
@@ -42,20 +45,20 @@ namespace ProjectLumina.Neuroglyphs
 
         public virtual void Revert(GameObject target)
         {
-            foreach (INeuroglyphStrategy statusEffect in GetCurrentStatusEffectTier().tierEffects)
+            foreach (INeuroglyphStrategy statusEffect in GetCurrentTier().tierEffects)
             {
                 statusEffect.Deactivate(target);
             }
         }
 
-        public NeuroglyphTier GetStatusEffectTierByLevel(TierLevel level)
+        public NeuroglyphTier GetCurrentTier()
         {
-            return Array.Find(_neuroglyphTierEffects, i => i.tierLevel == level);
+            return Array.Find(_neuroglyphTierEffects, i => i.tierLevel == CurrentTierLevel);
         }
 
-        public NeuroglyphTier GetCurrentStatusEffectTier()
+        public void Upgrade(int levelUpAmount)
         {
-            return Array.Find(_neuroglyphTierEffects, i => i.tierLevel == _currentTierLevel);
+            CurrentTierLevel = (NeuroglyphTierLevel)levelUpAmount;
         }
     }
 }

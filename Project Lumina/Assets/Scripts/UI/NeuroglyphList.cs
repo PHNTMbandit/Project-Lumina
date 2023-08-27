@@ -8,15 +8,18 @@ namespace ProjectLumina.UI
     public class NeuroglyphList : MonoBehaviour
     {
         [SerializeField]
+        private NeuroglyphController _controller;
+
+        [SerializeField]
         private CharacterNeuroglyphs _characterNeuroglyphs;
 
         [SerializeField]
-        private NeuroglyphIcon _templateNeuroglyphIcon;
+        private NeuroglyphButton _templateNeuroglyphIcon;
 
         [SerializeField]
         private Transform _transform;
 
-        private readonly List<NeuroglyphIcon> _icons = new();
+        private readonly List<NeuroglyphButton> _buttons = new();
 
         private void Awake()
         {
@@ -27,26 +30,30 @@ namespace ProjectLumina.UI
         {
             ResetList();
 
-            foreach (Neuroglyph statusEffect in neuroglyphs)
+            foreach (Neuroglyph neuroglyph in neuroglyphs)
             {
-                NeuroglyphIcon neuroglyphIcon = Instantiate(_templateNeuroglyphIcon.gameObject, _transform).GetComponent<NeuroglyphIcon>();
-                neuroglyphIcon.gameObject.SetActive(true);
-                neuroglyphIcon.SetIcon(statusEffect.Icon);
+                NeuroglyphButton button = Instantiate(_templateNeuroglyphIcon.gameObject, _transform).GetComponent<NeuroglyphButton>();
+                button.gameObject.SetActive(true);
+                button.SetIcon(neuroglyph.Icon);
+                button.SetDescription(neuroglyph.Description);
+                button.SetName(neuroglyph.NeuroglyphName);
+                button.SetNeuroglyph(neuroglyph);
+                button.SetTierImage(_controller.GetTierSprite(neuroglyph.CurrentTierLevel));
 
-                _icons.Add(neuroglyphIcon);
+                _buttons.Add(button);
             }
         }
 
         private void ResetList()
         {
-            if (_icons.Count > 0)
+            if (_buttons.Count > 0)
             {
-                foreach (NeuroglyphIcon neuroglyphIcon in _icons)
+                foreach (NeuroglyphButton neuroglyphIcon in _buttons)
                 {
                     Destroy(neuroglyphIcon.gameObject);
                 }
 
-                _icons.Clear();
+                _buttons.Clear();
             }
         }
     }

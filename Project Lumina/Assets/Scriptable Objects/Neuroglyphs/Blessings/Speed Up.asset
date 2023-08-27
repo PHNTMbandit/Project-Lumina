@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b43c6d8b94c48d546b72879050922c90, type: 3}
   m_Name: Speed Up
   m_EditorClassIdentifier: 
+  <NeuroglyphID>k__BackingField: 0
   <Icon>k__BackingField: {fileID: 86536215, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
-  <NeuroglyphName>k__BackingField: Speed Blessing
-  <Description>k__BackingField: 
+  <NeuroglyphName>k__BackingField: Speed Up
+  <Description>k__BackingField: Temporarily enhances the player's movement speed
   <NeuroglyphType>k__BackingField: 0
-  _currentTierLevel: 0
+  <CurrentTierLevel>k__BackingField: 0
   _neuroglyphTierEffects:
   - tierLevel: 0
     tierEffects: []

@@ -8,10 +8,13 @@ namespace ProjectLumina.UI
     public class HUDNeuroglyphList : MonoBehaviour
     {
         [SerializeField]
+        private NeuroglyphController _controller;
+
+        [SerializeField]
         private CharacterNeuroglyphs _characterNeuroglyphs;
 
         [SerializeField]
-        private HUDNeuroglyphIcon _templateNeuroglyphIcon;
+        private HUDNeuroglyphIcon _templateBlessingNeuroglyphIcon, _templateHexNeuroglyphIcon;
 
         [SerializeField]
         private Transform _buffTransform, _debuffTransform;
@@ -20,29 +23,39 @@ namespace ProjectLumina.UI
 
         private void Awake()
         {
-            _templateNeuroglyphIcon.gameObject.SetActive(false);
+            _templateBlessingNeuroglyphIcon.gameObject.SetActive(false);
+            _templateHexNeuroglyphIcon.gameObject.SetActive(false);
+
+            _characterNeuroglyphs.onNeuroglyphListRefresh += GenerateList;
+        }
+
+        private void Start()
+        {
+            GenerateList();
         }
 
         public void GenerateList()
         {
             ResetList();
 
-            foreach (Neuroglyph statusEffect in _characterNeuroglyphs.GetNeuroglyphsByType(NeuroglyphType.Blessing))
+            foreach (Neuroglyph neuroglyph in _characterNeuroglyphs.GetNeuroglyphsByType(NeuroglyphType.Blessing))
             {
-                HUDNeuroglyphIcon neuroglyphIcon = Instantiate(_templateNeuroglyphIcon.gameObject, _buffTransform).GetComponent<HUDNeuroglyphIcon>();
-                neuroglyphIcon.gameObject.SetActive(true);
-                neuroglyphIcon.SetIcon(statusEffect.Icon);
+                HUDNeuroglyphIcon icon = Instantiate(_templateBlessingNeuroglyphIcon.gameObject, _buffTransform).GetComponent<HUDNeuroglyphIcon>();
+                icon.gameObject.SetActive(true);
+                icon.SetIcon(neuroglyph.Icon);
+                icon.SetTierImage(_controller.GetTierSprite(neuroglyph.CurrentTierLevel));
 
-                _icons.Add(neuroglyphIcon);
+                _icons.Add(icon);
             }
 
-            foreach (Neuroglyph statusEffect in _characterNeuroglyphs.GetNeuroglyphsByType(NeuroglyphType.Hex))
+            foreach (Neuroglyph neuroglyph in _characterNeuroglyphs.GetNeuroglyphsByType(NeuroglyphType.Hex))
             {
-                HUDNeuroglyphIcon neuroglyphIcon = Instantiate(_templateNeuroglyphIcon.gameObject, _debuffTransform).GetComponent<HUDNeuroglyphIcon>();
-                neuroglyphIcon.gameObject.SetActive(true);
-                neuroglyphIcon.SetIcon(statusEffect.Icon);
+                HUDNeuroglyphIcon icon = Instantiate(_templateHexNeuroglyphIcon.gameObject, _debuffTransform).GetComponent<HUDNeuroglyphIcon>();
+                icon.gameObject.SetActive(true);
+                icon.SetIcon(neuroglyph.Icon);
+                icon.SetTierImage(_controller.GetTierSprite(neuroglyph.CurrentTierLevel));
 
-                _icons.Add(neuroglyphIcon);
+                _icons.Add(icon);
             }
         }
 
