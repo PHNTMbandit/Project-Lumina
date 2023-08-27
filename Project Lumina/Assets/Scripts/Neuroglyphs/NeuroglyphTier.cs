@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.StatusEffects
+namespace ProjectLumina.Neuroglyphs
 {
     [Serializable]
     public enum TierLevel
@@ -19,12 +19,12 @@ namespace ProjectLumina.StatusEffects
     }
 
     [Serializable]
-    public class StatusEffectTier
+    public class NeuroglyphTier
     {
         [EnumPaging]
         public TierLevel tierLevel;
 
         [SerializeReference]
-        public IStatusEffect[] tierStatusEffects;
+        public INeuroglyphStrategy[] tierEffects;
     }
 }

@@ -1,13 +1,13 @@
-using ProjectLumina.StatusEffects;
+using ProjectLumina.Neuroglyphs;
 using UnityEngine;
 
 namespace ProjectLumina.Factories
 {
     public class StatusEffectFactory
     {
-        public StatusEffectSO GetStatusEffect(StatusEffectSO statusEffect)
+        public Neuroglyph GetStatusEffect(Neuroglyph neuroglyph)
         {
-            return ScriptableObject.CreateInstance<StatusEffectSO>();
+            return ScriptableObject.CreateInstance(neuroglyph.name) as Neuroglyph;
         }
     }
 }
