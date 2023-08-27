@@ -5581,9 +5581,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterStatusEffects: {fileID: 7961452278417800858}
-  _templateStatusEffectIcon: {fileID: 0}
-  _buffTransform: {fileID: 0}
-  _debuffTransform: {fileID: 0}
+  _templateStatusEffectIcon: {fileID: 1119153055}
+  _buffTransform: {fileID: 378676357}
+  _debuffTransform: {fileID: 184728720}
 --- !u!1 &746048170
 GameObject:
   m_ObjectHideFlags: 0
@@ -18735,7 +18735,6 @@ GameObject:
   m_Component:
   - component: {fileID: 979705284}
   - component: {fileID: 979705285}
-  - component: {fileID: 979705286}
   m_Layer: 5
   m_Name: Template Buff
   m_TagString: Untagged
@@ -18794,7 +18793,6 @@ GameObject:
   - component: {fileID: 1015317870}
   - component: {fileID: 1015317869}
   - component: {fileID: 1015317868}
-  - component: {fileID: 1015317867}
   m_Layer: 0
   m_Name: PlaylistController
   m_TagString: Untagged
@@ -18802,44 +18800,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1015317866}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1aee0c42cfbeb2b45b09ce685ab0323c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startPlaylistOnAwake: 1
-  isShuffle: 0
-  isAutoAdvance: 1
-  loopPlaylist: 1
-  _playlistVolume: 1
-  isMuted: 0
-  startPlaylistName: 
-  syncGroupNum: -1
-  ignoreListenerPause: 0
-  mixerChannel: {fileID: 0}
-  spatialBlendType: 0
-  spatialBlend: 0
-  initializedEventExpanded: 0
-  initializedCustomEvent: 
-  crossfadeStartedExpanded: 0
-  crossfadeStartedCustomEvent: 
-  songChangedEventExpanded: 0
-  songChangedCustomEvent: 
-  songEndedEventExpanded: 0
-  songEndedCustomEvent: 
-  songLoopedEventExpanded: 0
-  songLoopedCustomEvent: 
-  playlistStartedEventExpanded: 0
-  playlistStartedCustomEvent: 
-  playlistEndedEventExpanded: 0
-  playlistEndedCustomEvent: 
-  _frames: 0
 --- !u!82 &1015317868
 AudioSource:
   m_ObjectHideFlags: 0
@@ -33204,7 +33164,7 @@ MonoBehaviour:
     IsHidden: 0
   - Type: 0
     Name: 
-    GameObject: {fileID: 1847532223}
+    GameObject: {fileID: 0}
     Ordinal: 51
     Priority: 0
     IconType: 134000
@@ -37494,52 +37454,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1847532223
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1847532225}
-  - component: {fileID: 1847532224}
-  m_Layer: 0
-  m_Name: Audio Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1847532224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847532223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a919f12bdbede447a3b8e2b7087c17c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _sounds:
-  - {audioClip: {fileID: 8300000, guid: 5993ede7312b90044962b9fde16c1c87, type: 3}, volume: 1, pitch: 1, loop: 0, audioSource: {fileID: 0}}
---- !u!4 &1847532225
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1847532223}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1867924481
 GameObject:
   m_ObjectHideFlags: 0
@@ -37550,6 +37464,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1867924483}
   - component: {fileID: 1867924482}
+  - component: {fileID: 1867924484}
   m_Layer: 5
   m_Name: XP Bar
   m_TagString: Untagged
@@ -37590,6 +37505,21 @@ RectTransform:
   m_AnchoredPosition: {x: -27.707, y: 6.5999756}
   m_SizeDelta: {x: 55.414, y: 6.066}
   m_Pivot: {x: 0, y: 0.5}
+--- !u!114 &1867924484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1867924481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75b99aafb96354348930b8121a873639, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _level: {fileID: 7961452278417800880}
+  _slider: {fileID: 1028859725}
+  _text: {fileID: 592293634}
 --- !u!1 &1875344857
 GameObject:
   m_ObjectHideFlags: 0
@@ -38675,18 +38605,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 539630210308743331, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
-      propertyPath: _moveSpeed
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 539630210308743331, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
-      propertyPath: _acceleration
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1494634681898418241, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
-      propertyPath: _activeStatusEffects.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3518663555988437935, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_Camera
       value: 
@@ -38771,6 +38689,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7961452278417800880 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6872371990101784772, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+  m_PrefabInstance: {fileID: 7961452278417800841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ce577bd093f8a74faf1cfd9f0b0c6cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -38782,7 +38711,6 @@ SceneRoots:
   - {fileID: 825276824}
   - {fileID: 7961452278417800841}
   - {fileID: 1525885090}
-  - {fileID: 1847532225}
   - {fileID: 2142240498}
   - {fileID: 1958599767}
   - {fileID: 1015317870}

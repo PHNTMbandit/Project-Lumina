@@ -21,10 +21,10 @@ namespace ProjectLumina.Abilities
 
         private void Awake()
         {
-            _inputReader.onInteract += OnInteract;
 
             _sensor.OnDetected.AddListener(OnInteractableDetected);
             _sensor.OnLostDetection.AddListener(OnInteractableLost);
+            _inputReader.onInteract += OnInteract;
         }
 
         public void OnInteract()

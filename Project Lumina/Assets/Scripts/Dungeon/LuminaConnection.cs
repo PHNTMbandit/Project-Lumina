@@ -1,6 +1,6 @@
 using Edgar.Unity;
 
-namespace ProjectLumina.Level
+namespace ProjectLumina.Dungeon
 {
     public class LuminaConnection : Connection
     {
