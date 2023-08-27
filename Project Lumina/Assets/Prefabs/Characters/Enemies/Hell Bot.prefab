@@ -793,8 +793,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   Move: 1
-  <MoveSpeed>k__BackingField: 4
-  <Acceleration>k__BackingField: 9
+  _moveSpeed: 9
+  _acceleration: 9
   _velocity: 1.2
   Stop: 1
   _decceleration: 9
@@ -847,7 +847,7 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.AI.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.Abilities.CharacterMove/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
+      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.AI.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.AI.CharacterAI/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
         Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Melee
         Attack Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
         Sensor","IsShared":true,"SensormValue":3},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting

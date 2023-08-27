@@ -5487,6 +5487,7 @@ GameObject:
   - component: {fileID: 707213694}
   - component: {fileID: 707213695}
   - component: {fileID: 707213696}
+  - component: {fileID: 707213697}
   m_Layer: 5
   m_Name: Status Effects
   m_TagString: Untagged
@@ -5567,6 +5568,22 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &707213697
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707213691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9304e47c80781443b65f7844206d514, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _characterStatusEffects: {fileID: 7961452278417800858}
+  _templateStatusEffectIcon: {fileID: 0}
+  _buffTransform: {fileID: 0}
+  _debuffTransform: {fileID: 0}
 --- !u!1 &746048170
 GameObject:
   m_ObjectHideFlags: 0
@@ -18718,6 +18735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 979705284}
   - component: {fileID: 979705285}
+  - component: {fileID: 979705286}
   m_Layer: 5
   m_Name: Template Buff
   m_TagString: Untagged
@@ -18784,7 +18802,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1015317867
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -31992,6 +32009,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1119153053}
   - component: {fileID: 1119153054}
+  - component: {fileID: 1119153055}
   m_Layer: 5
   m_Name: Template Debuff
   m_TagString: Untagged
@@ -32039,6 +32057,19 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &1119153055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119153052}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 594012669bc4e154da72c52e49434cb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _icon: {fileID: 1159702212}
 --- !u!1 &1148866636 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1981203632118253482, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
@@ -38644,6 +38675,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 539630210308743331, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+      propertyPath: _moveSpeed
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 539630210308743331, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+      propertyPath: _acceleration
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494634681898418241, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+      propertyPath: _activeStatusEffects.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3518663555988437935, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_Camera
       value: 
@@ -38715,6 +38758,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7961452278417800858 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1494634681898418241, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+  m_PrefabInstance: {fileID: 7961452278417800841}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1244203708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807

@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using ProjectLumina.Data;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Abilities
@@ -8,17 +9,14 @@ namespace ProjectLumina.Abilities
     [AddComponentMenu("Character/Character Move")]
     public class CharacterMove : CharacterAbility
     {
+        public Stat Acceleration { get; private set; }
+        public Stat MoveSpeed { get; private set; }
+
         [ToggleGroup("Move"), SerializeField]
         private bool Move;
 
-        [field: ToggleGroup("Move"), SerializeField, Range(0, 25)]
-        public float MoveSpeed { get; private set; }
-
-        [field: ToggleGroup("Move"), SerializeField, Range(0, 25)]
-        public float Acceleration { get; private set; }
-
         [ToggleGroup("Move"), SerializeField, Range(0, 25)]
-        private float _velocity;
+        private float _moveSpeed, _acceleration, _velocity;
 
         [ToggleGroup("Stop"), SerializeField]
         private bool Stop;
@@ -34,6 +32,9 @@ namespace ProjectLumina.Abilities
         {
             _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
+
+            Acceleration = new Stat(_acceleration);
+            MoveSpeed = new Stat(_moveSpeed);
         }
 
         private void Update()
@@ -46,9 +47,9 @@ namespace ProjectLumina.Abilities
 
         public void MoveCharacter(float move)
         {
-            float targetSpeed = move * MoveSpeed;
+            float targetSpeed = move * MoveSpeed.Value;
             float speedDiff = targetSpeed - _rb.velocity.x;
-            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Acceleration : _decceleration;
+            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Acceleration.Value : _decceleration;
             float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, _velocity) * Mathf.Sign(speedDiff);
 
             _moveInput = move;

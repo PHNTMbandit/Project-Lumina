@@ -1,5 +1,6 @@
 ﻿using ProjectLumina.Abilities;
-using ProjectLumina.Input;
+using ProjectLumina.Player.Input;
+using ProjectLumina.Player.StateMachine.States;
 using System;
 using UnityEngine;
 
@@ -28,13 +29,7 @@ namespace ProjectLumina.Player.StateMachine
         #endregion States
 
         #region Variables
-
-        [SerializeField]
-        private State _defaultState;
-
-        [SerializeField]
         private State[] _states;
-
 
         #endregion Variables
 
@@ -44,21 +39,37 @@ namespace ProjectLumina.Player.StateMachine
         {
             Animator = GetComponent<Animator>();
             CharacterAbilities = GetComponents<CharacterAbility>();
+
+            _states = new State[]
+            {
+                new AerialAttackState("Aerial Attack", "aerial attack", this),
+                new DashState("Dash", "dash", this),
+                new FallState("Fall", "fall", this),
+                new FallAttackState("Fall Attack", "fall attack", this),
+                new IdleState("Idle", "idle", this),
+                new JumpState("Jump", "jump", this),
+                new MeleeAttackState("Melee Attack", "melee attack", this),
+                new MoveState("Move", "move", this),
+                new RollAttackState("Roll Attack", "roll attack", this),
+                new RollState("Roll", "roll", this),
+                new SprintState("Sprint", "sprint", this),
+                new WallSlideState("Wall Slide", "wall slide", this)
+            };
         }
 
         private void Start()
         {
-            Initialise(_defaultState);
+            Initialise(GetState("Idle"));
         }
 
         private void Update()
         {
-            CurrentState.LogicUpdate(this);
+            CurrentState.LogicUpdate();
         }
 
         private void FixedUpdate()
         {
-            CurrentState.PhysicsUpdate(this);
+            CurrentState.PhysicsUpdate();
         }
 
         #endregion Unity Callback Functions
@@ -68,23 +79,23 @@ namespace ProjectLumina.Player.StateMachine
         public void Initialise(State startingState)
         {
             CurrentState = startingState;
-            CurrentState.Enter(this);
+            CurrentState.Enter();
         }
 
         public void ChangeState(State newState)
         {
             if (newState != null)
             {
-                CurrentState.Exit(this);
+                CurrentState.Exit();
                 PreviousState = CurrentState;
                 CurrentState = newState;
-                CurrentState.Enter(this);
+                CurrentState.Enter();
             }
         }
 
         public State GetState(string stateName)
         {
-            return Array.Find(_states, i => i.name == $"{stateName} State");
+            return Array.Find(_states, i => i.stateName == stateName);
         }
 
         public bool HasCharacterAbility<T>(out T characterAbility) where T : CharacterAbility

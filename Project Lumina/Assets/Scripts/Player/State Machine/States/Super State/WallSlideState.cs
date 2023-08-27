@@ -3,30 +3,29 @@ using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
-    [CreateAssetMenu(fileName = "Wall Slide State", menuName = "Project Lumina/States/Wall Slide State")]
     public class WallSlideState : State
     {
-        protected StateController stateController;
-
-        public override void Enter(StateController stateController)
+        public WallSlideState(string stateName, string animationStateName, StateController stateController) : base(stateName, animationStateName, stateController)
         {
-            base.Enter(stateController);
+        }
 
-            this.stateController = stateController;
+        public override void Enter()
+        {
+            base.Enter();
 
             stateController.InputReader.onJump = TryWallJump;
         }
 
-        public override void Exit(StateController stateController)
+        public override void Exit()
         {
-            base.Exit(stateController);
+            base.Exit();
 
             stateController.InputReader.onJump -= TryWallJump;
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void LogicUpdate()
         {
-            base.LogicUpdate(stateController);
+            base.LogicUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
             {
@@ -45,9 +44,9 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void PhysicsUpdate(StateController stateController)
+        public override void PhysicsUpdate()
         {
-            base.PhysicsUpdate(stateController);
+            base.PhysicsUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
             {

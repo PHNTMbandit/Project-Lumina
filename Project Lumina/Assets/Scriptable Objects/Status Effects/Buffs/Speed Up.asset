@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43c6d8b94c48d546b72879050922c90, type: 3}
+  m_Name: Speed Up
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: 86536215, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
+  <StatusEffectName>k__BackingField: Speed Up
+  <Description>k__BackingField: 
+  _currentTierLevel: 0
+  _tierStatusEffects:
+  - tierLevel: 0
+    tierStatusEffects:
+    - rid: 7374641685468807168
+  - tierLevel: 1
+    tierStatusEffects: []
+  - tierLevel: 2
+    tierStatusEffects: []
+  - tierLevel: 3
+    tierStatusEffects: []
+  - tierLevel: 4
+    tierStatusEffects: []
+  - tierLevel: 5
+    tierStatusEffects: []
+  - tierLevel: 6
+    tierStatusEffects: []
+  - tierLevel: 7
+    tierStatusEffects: []
+  - tierLevel: 8
+    tierStatusEffects: []
+  references:
+    version: 2
+    RefIds:
+    - rid: 7374641685468807168
+      type: {class: MoveSpeedStrategy, ns: , asm: Assembly-CSharp}
+      data:
+        _moveSpeedModifier: 10

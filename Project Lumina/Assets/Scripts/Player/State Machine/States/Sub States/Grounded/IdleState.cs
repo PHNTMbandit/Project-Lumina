@@ -3,26 +3,29 @@ using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
-    [CreateAssetMenu(fileName = "Idle State", menuName = "Project Lumina/States/Idle State")]
     public class IdleState : GroundedState
     {
-        public override void Enter(StateController stateController)
+        public IdleState(string stateName, string animationStateName, StateController stateController) : base(stateName, animationStateName, stateController)
         {
-            base.Enter(stateController);
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
 
             stateController.InputReader.onAttack = TryAttack;
         }
 
-        public override void Exit(StateController stateController)
+        public override void Exit()
         {
-            base.Exit(stateController);
+            base.Exit();
 
             stateController.InputReader.onAttack -= TryAttack;
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void LogicUpdate()
         {
-            base.LogicUpdate(stateController);
+            base.LogicUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterMove characterMove))
             {
@@ -33,9 +36,9 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void PhysicsUpdate(StateController stateController)
+        public override void PhysicsUpdate()
         {
-            base.PhysicsUpdate(stateController);
+            base.PhysicsUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterMove characterMove))
             {

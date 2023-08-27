@@ -6,13 +6,14 @@ namespace ProjectLumina.Player.StateMachine.States
     public class GroundedState : State
     {
         protected float moveInput;
-        protected StateController stateController;
 
-        public override void Enter(StateController stateController)
+        public GroundedState(string stateName, string animationStateName, StateController stateController) : base(stateName, animationStateName, stateController)
         {
-            base.Enter(stateController);
+        }
 
-            this.stateController = stateController;
+        public override void Enter()
+        {
+            base.Enter();
 
             stateController.InputReader.onJump = TryJump;
             stateController.InputReader.onRoll = TryRoll;
@@ -28,17 +29,17 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
-        public override void Exit(StateController stateController)
+        public override void Exit()
         {
-            base.Exit(stateController);
+            base.Exit();
 
             stateController.InputReader.onJump -= TryJump;
             stateController.InputReader.onRoll -= TryRoll;
         }
 
-        public override void LogicUpdate(StateController stateController)
+        public override void LogicUpdate()
         {
-            base.LogicUpdate(stateController);
+            base.LogicUpdate();
 
             moveInput = stateController.InputReader.MoveInput.x;
 
