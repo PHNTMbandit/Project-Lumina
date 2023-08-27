@@ -1,4 +1,4 @@
-namespace ProjectLumina.Level
+namespace ProjectLumina.Dungeon
 {
     public enum LuminaLevelType
     {

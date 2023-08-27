@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d65438b071f2474781d289b991b568b, type: 3}
   m_Name: 1-1 Post Processing Task
   m_EditorClassIdentifier: 
-  SpawnEnemies: 0
+  SpawnEnemies: 1
   Enemies:
   - {fileID: 5805500066460283248, guid: 4232a67ec9d472946a271d9802572780, type: 3}

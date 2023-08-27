@@ -2,7 +2,7 @@ using System;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Level
+namespace ProjectLumina.Dungeon
 {
     [Serializable, HideLabel]
     public class RooftopRoomTemplatesConfig

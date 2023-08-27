@@ -3,7 +3,7 @@ using Edgar.Unity;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Level
+namespace ProjectLumina.Dungeon
 {
     public class LuminaRoom : RoomBase
     {

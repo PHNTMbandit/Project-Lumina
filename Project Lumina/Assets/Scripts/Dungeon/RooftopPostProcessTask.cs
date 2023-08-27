@@ -3,7 +3,7 @@ using Edgar.Unity;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace ProjectLumina.Level
+namespace ProjectLumina.Dungeon
 {
     [CreateAssetMenu(menuName = "Project Lumina/Level/Rooftop/Post Process Task", fileName = "Rooftop Post Process Task")]
     public class RooftopPostProcessTask : DungeonGeneratorPostProcessingGrid2D

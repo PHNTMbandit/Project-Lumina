@@ -1,8 +1,8 @@
 using System.Linq;
-using ProjectLumina.Level;
+using Edgar.Unity;
 using UnityEngine;
 
-namespace Edgar.Unity.Examples.Metroidvania
+namespace ProjectLumina.Dungeon
 {
     [CreateAssetMenu(menuName = "Project Lumina/Level/Underground/Input Setup", fileName = "Underground Input Setup")]
     public class UndergroundInputSetupTask : DungeonGeneratorInputBaseGrid2D

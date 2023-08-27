@@ -488,6 +488,7 @@ GameObject:
   - component: {fileID: 6213919294952068375}
   - component: {fileID: 2040424351302497929}
   - component: {fileID: 4525009610691105383}
+  - component: {fileID: 3228559339102267121}
   - component: {fileID: 2766563775868989475}
   - component: {fileID: 7783316659044857216}
   - component: {fileID: 4581091988254112944}
@@ -712,6 +713,28 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &3228559339102267121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c28e0a9762082448ef22d038b7bf0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _loot:
+    lootItems:
+    - pickupable: {fileID: 7027514335520055267, guid: 26581d6524b9be943945d92faf526b43, type: 3}
+      dropWeight: 10
+      amount: 1
+  _minPosition: {x: 0, y: 0}
+  _maxPosition: {x: 0, y: 0}
+  OnLootDrop:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!114 &2766563775868989475
 MonoBehaviour:
   m_ObjectHideFlags: 0

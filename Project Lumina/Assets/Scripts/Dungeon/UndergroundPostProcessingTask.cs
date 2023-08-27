@@ -4,7 +4,7 @@ using Edgar.Unity;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Level
+namespace ProjectLumina.Dungeon
 {
     [CreateAssetMenu(menuName = "Project Lumina/Level/Underground/Post Processing Task", fileName = "Underground Post Processing Task")]
     public class UndergroundPostProcessingTask : DungeonGeneratorPostProcessingGrid2D
