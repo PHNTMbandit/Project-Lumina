@@ -18,7 +18,15 @@ namespace ProjectLumina.UI
 
         public void SetTierImage(Sprite sprite)
         {
-            _tierImage.sprite = sprite;
+            if (sprite != null)
+            {
+                _tierImage.enabled = true;
+                _tierImage.sprite = sprite;
+            }
+            else
+            {
+                _tierImage.enabled = false;
+            }
         }
     }
 }
