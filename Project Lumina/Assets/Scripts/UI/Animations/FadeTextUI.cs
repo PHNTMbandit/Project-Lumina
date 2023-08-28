@@ -32,6 +32,7 @@ namespace ProjectLumina.UI.Animations
         {
             foreach (TextMeshProUGUI text in _texts)
             {
+                text.DORewind();
                 text.DOFade(1, _fadeInDuration)
                     .SetEase(_fadeEase);
             }
@@ -41,6 +42,7 @@ namespace ProjectLumina.UI.Animations
         {
             foreach (TextMeshProUGUI text in _texts)
             {
+                text.DORewind();
                 text.DOFade(0, _fadeOutDuration)
                     .SetEase(_fadeEase);
             }

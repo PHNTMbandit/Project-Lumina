@@ -10,19 +10,25 @@ namespace ProjectLumina.UI.Animations
         [BoxGroup("Transform"), SerializeField]
         private Transform[] _transforms;
 
-        [BoxGroup("Tween"), Range(0, 1), SerializeField]
+        [BoxGroup("Tween"), Range(0, 5), SerializeField]
         private float _growSize, _growDuration;
 
         [BoxGroup("Tween"), EnumPaging, SerializeField]
         private Ease _growEase;
+
+        private Vector3 _originalScale;
+
+        private void Awake()
+        {
+            _originalScale = transform.localScale;
+        }
 
         public void Enlarge()
         {
             foreach (var transform in _transforms)
             {
                 transform.DOScale(new Vector3(_growSize, _growSize, _growSize), _growDuration)
-                         .SetEase(_growEase)
-                         .SetRelative(true);
+                         .SetEase(_growEase);
             }
         }
 
@@ -30,9 +36,8 @@ namespace ProjectLumina.UI.Animations
         {
             foreach (var transform in _transforms)
             {
-                transform.DOScale(new Vector3(-_growSize, -_growSize, -_growSize), _growDuration)
-                         .SetEase(_growEase)
-                         .SetRelative(true);
+                transform.DOScale(_originalScale, _growDuration)
+                         .SetEase(_growEase);
             }
         }
     }
