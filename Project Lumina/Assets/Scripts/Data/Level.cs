@@ -13,7 +13,7 @@ namespace ProjectLumina.Data
             set => _currentLevel = value <= 0 ? 0 : value >= _maxLevel ? _maxLevel : value;
         }
 
-        [BoxGroup("Level"), Range(1, 99), SerializeField]
+        [BoxGroup("Level"), Range(1, 200), SerializeField]
         private int _maxLevel;
 
         [BoxGroup("Level"), ProgressBar(1, "_maxLevel"), SerializeField]
