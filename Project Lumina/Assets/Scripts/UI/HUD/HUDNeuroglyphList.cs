@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using ProjectLumina.Abilities;
+using ProjectLumina.Data;
 using ProjectLumina.Neuroglyphs;
 using UnityEngine;
 
@@ -14,17 +15,16 @@ namespace ProjectLumina.UI
         private CharacterNeuroglyphs _characterNeuroglyphs;
 
         [SerializeField]
-        private HUDNeuroglyphIcon _templateBlessingNeuroglyphIcon, _templateHexNeuroglyphIcon;
+        private HUDNeuroglyphIcon _templateNeuroglyphIcon;
 
         [SerializeField]
-        private Transform _buffTransform, _debuffTransform;
+        private Transform _transform;
 
         private readonly List<HUDNeuroglyphIcon> _icons = new();
 
         private void Awake()
         {
-            _templateBlessingNeuroglyphIcon.gameObject.SetActive(false);
-            _templateHexNeuroglyphIcon.gameObject.SetActive(false);
+            _templateNeuroglyphIcon.gameObject.SetActive(false);
 
             _characterNeuroglyphs.onNeuroglyphListRefresh += GenerateList;
         }
@@ -38,22 +38,20 @@ namespace ProjectLumina.UI
         {
             ResetList();
 
-            foreach (Neuroglyph neuroglyph in _characterNeuroglyphs.GetNeuroglyphsByType(NeuroglyphType.Blessing))
+            foreach (NeuroglyphSlot slot in _characterNeuroglyphs.GetSlots())
             {
-                HUDNeuroglyphIcon icon = Instantiate(_templateBlessingNeuroglyphIcon.gameObject, _buffTransform).GetComponent<HUDNeuroglyphIcon>();
+                HUDNeuroglyphIcon icon = Instantiate(_templateNeuroglyphIcon.gameObject, _transform).GetComponent<HUDNeuroglyphIcon>();
                 icon.gameObject.SetActive(true);
-                icon.SetIcon(neuroglyph.Icon);
-                icon.SetTierImage(_controller.GetTierSprite(neuroglyph.CurrentTierLevel));
 
-                _icons.Add(icon);
-            }
-
-            foreach (Neuroglyph neuroglyph in _characterNeuroglyphs.GetNeuroglyphsByType(NeuroglyphType.Hex))
-            {
-                HUDNeuroglyphIcon icon = Instantiate(_templateHexNeuroglyphIcon.gameObject, _debuffTransform).GetComponent<HUDNeuroglyphIcon>();
-                icon.gameObject.SetActive(true);
-                icon.SetIcon(neuroglyph.Icon);
-                icon.SetTierImage(_controller.GetTierSprite(neuroglyph.CurrentTierLevel));
+                if (slot.Neuroglyph != null)
+                {
+                    icon.SetIcon(slot.Neuroglyph.Icon);
+                    icon.SetTierImage(_controller.GetTierSprite(slot.Neuroglyph.CurrentTierLevel));
+                }
+                else
+                {
+                    icon.SetTierImage(null);
+                }
 
                 _icons.Add(icon);
             }

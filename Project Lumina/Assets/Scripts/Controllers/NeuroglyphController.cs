@@ -51,7 +51,7 @@ namespace ProjectLumina.Neuroglyphs
                 }
                 else if (_characterNeuroglyphs.HasNeuroglyph(randomNeuroglyph))
                 {
-                    randomNeuroglyph.Upgrade((int)_characterNeuroglyphs.GetNeuroglyph(randomNeuroglyph).CurrentTierLevel + 1);
+                    randomNeuroglyph.Upgrade((int)_characterNeuroglyphs.GetSlot(randomNeuroglyph).Neuroglyph.CurrentTierLevel + 1);
                     neuroglyphs.Add(randomNeuroglyph);
                 }
                 else
