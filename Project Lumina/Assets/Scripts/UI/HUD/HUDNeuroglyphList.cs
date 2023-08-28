@@ -15,16 +15,16 @@ namespace ProjectLumina.UI
         private CharacterNeuroglyphs _characterNeuroglyphs;
 
         [SerializeField]
-        private HUDNeuroglyphIcon _templateNeuroglyphIcon;
+        private HUDNeuroglyphSlot _templateNeuroglyphSlot;
 
         [SerializeField]
         private Transform _transform;
 
-        private readonly List<HUDNeuroglyphIcon> _icons = new();
+        private readonly List<HUDNeuroglyphSlot> _UISlots = new();
 
         private void Awake()
         {
-            _templateNeuroglyphIcon.gameObject.SetActive(false);
+            _templateNeuroglyphSlot.gameObject.SetActive(false);
 
             _characterNeuroglyphs.onNeuroglyphListRefresh += GenerateList;
         }
@@ -40,33 +40,56 @@ namespace ProjectLumina.UI
 
             foreach (NeuroglyphSlot slot in _characterNeuroglyphs.GetSlots())
             {
-                HUDNeuroglyphIcon icon = Instantiate(_templateNeuroglyphIcon.gameObject, _transform).GetComponent<HUDNeuroglyphIcon>();
-                icon.gameObject.SetActive(true);
+                HUDNeuroglyphSlot UISlot = Instantiate(_templateNeuroglyphSlot.gameObject, _transform).GetComponent<HUDNeuroglyphSlot>();
+                UISlot.gameObject.SetActive(true);
 
                 if (slot.Neuroglyph != null)
                 {
-                    icon.SetIcon(slot.Neuroglyph.Icon);
-                    icon.SetTierImage(_controller.GetTierSprite(slot.Neuroglyph.CurrentTierLevel));
+                    UISlot.SetIcon(slot.Neuroglyph.Icon);
+                    UISlot.SetNeuroglyph(slot.Neuroglyph);
+                    UISlot.SetTierImage(_controller.GetTierSprite(slot.Neuroglyph.CurrentTierLevel));
                 }
                 else
                 {
-                    icon.SetTierImage(null);
+                    UISlot.SetTierImage(null);
                 }
 
-                _icons.Add(icon);
+                _UISlots.Add(UISlot);
             }
         }
 
         private void ResetList()
         {
-            if (_icons.Count > 0)
+            if (_UISlots.Count > 0)
             {
-                foreach (HUDNeuroglyphIcon neuroglyphIcon in _icons)
+                foreach (HUDNeuroglyphSlot slotUI in _UISlots)
                 {
-                    Destroy(neuroglyphIcon.gameObject);
+                    Destroy(slotUI.gameObject);
                 }
 
-                _icons.Clear();
+                _UISlots.Clear();
+            }
+        }
+
+        public void HighlightSlot(NeuroglyphSlot slot)
+        {
+            foreach (var UISlot in _UISlots)
+            {
+                if (slot != null && UISlot != null)
+                {
+                    if (UISlot.Neuroglyph == slot.Neuroglyph)
+                    {
+                        UISlot.Highlight();
+                    }
+                    else
+                    {
+                        UISlot.Unhighlight();
+                    }
+                }
+                else
+                {
+                    UISlot.Unhighlight();
+                }
             }
         }
     }
