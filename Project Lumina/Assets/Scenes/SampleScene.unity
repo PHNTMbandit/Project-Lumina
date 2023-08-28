@@ -4368,7 +4368,7 @@ MonoBehaviour:
   soundPlayedEventActive: 0
   soundPlayedCustomEvent: 
   willCleanUpDelegatesAfterStop: 1
-  frames: 5784
+  frames: 6026
 --- !u!1 &642947203
 GameObject:
   m_ObjectHideFlags: 0
