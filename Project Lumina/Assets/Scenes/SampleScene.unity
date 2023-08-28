@@ -33061,9 +33061,9 @@ GameObject:
   - component: {fileID: 1164870070}
   - component: {fileID: 1164870069}
   - component: {fileID: 1164870072}
+  - component: {fileID: 1164870074}
   - component: {fileID: 1164870073}
   - component: {fileID: 1164870075}
-  - component: {fileID: 1164870074}
   - component: {fileID: 1164870071}
   - component: {fileID: 1164870068}
   m_Layer: 5
