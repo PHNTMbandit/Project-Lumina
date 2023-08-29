@@ -26,15 +26,7 @@ namespace ProjectLumina.Abilities
 
         public void AddNeuroglyph(Neuroglyph neuroglyph)
         {
-            if (!HasNeuroglyph(neuroglyph))
-            {
-                GetFirstEmptySlot().SetSlot(neuroglyph);
-            }
-            else
-            {
-                GetSlot(neuroglyph).SetSlot(neuroglyph);
-            }
-
+            GetAvailableSlot(neuroglyph).SetSlot(neuroglyph);
             UpdateNeuroglyphs();
 
             onNeuroglyphListRefresh?.Invoke();
@@ -69,6 +61,18 @@ namespace ProjectLumina.Abilities
             }
 
             return false;
+        }
+
+        public NeuroglyphSlot GetAvailableSlot(Neuroglyph neuroglyph)
+        {
+            if (!HasNeuroglyph(neuroglyph))
+            {
+                return GetFirstEmptySlot();
+            }
+            else
+            {
+                return GetSlot(neuroglyph);
+            }
         }
 
         public NeuroglyphSlot GetFirstEmptySlot()

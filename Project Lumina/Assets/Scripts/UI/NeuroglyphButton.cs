@@ -11,6 +11,9 @@ namespace ProjectLumina.UI
         public Neuroglyph Neuroglyph { get; private set; }
 
         [SerializeField]
+        private HUDNeuroglyphList _HUDNeuroglyphList;
+
+        [SerializeField]
         private CharacterNeuroglyphs _characterNeuroglyphs;
 
         [SerializeField]
@@ -25,6 +28,16 @@ namespace ProjectLumina.UI
         public void OnClick()
         {
             _characterNeuroglyphs.AddNeuroglyph(Neuroglyph);
+        }
+
+        public void HighlightSlot()
+        {
+            _HUDNeuroglyphList.HighlightSlot(_characterNeuroglyphs.GetAvailableSlot(Neuroglyph));
+        }
+
+        public void UnhighlightSlot()
+        {
+            _HUDNeuroglyphList.HighlightSlot(null);
         }
 
         public void SetDescription(string description)
