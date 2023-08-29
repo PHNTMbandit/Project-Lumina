@@ -676,7 +676,7 @@ MonoBehaviour:
   isRelative: 0
   isFrom: 1
   isIndependentUpdate: 0
-  autoKill: 1
+  autoKill: 0
   autoGenerate: 1
   isActive: 1
   isValid: 1
@@ -684,7 +684,7 @@ MonoBehaviour:
   animationType: 7
   targetType: 15
   forcedTargetType: 0
-  autoPlay: 1
+  autoPlay: 0
   useTargetAsV3: 0
   endValueFloat: 0
   endValueV3: {x: 0, y: 0, z: 0}
@@ -1743,7 +1743,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _activeNeuroglyphs: []
+  _maximumSlots: 5
+  _neuroglyphSlots: []
 --- !u!114 &1588857731240795399
 MonoBehaviour:
   m_ObjectHideFlags: 0

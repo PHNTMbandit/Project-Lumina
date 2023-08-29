@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ProjectLumina.Dungeon
 {
-    [CreateAssetMenu(menuName = "Project Lumina/Level/Underground/Input Setup", fileName = "Underground Input Setup")]
+    [CreateAssetMenu(menuName = "Project Lumina/Dungeon/Underground/Input Setup", fileName = "Underground Input Setup")]
     public class UndergroundInputSetupTask : DungeonGeneratorInputBaseGrid2D
     {
         public LevelGraph LevelGraph;
