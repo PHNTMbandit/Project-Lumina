@@ -44,6 +44,12 @@ TagManager:
   - name: Background
     uniqueID: 3388855987
     locked: 0
+  - name: Buildings
+    uniqueID: 507074935
+    locked: 0
+  - name: Objects
+    uniqueID: 490406745
+    locked: 0
   - name: Enemy
     uniqueID: 1804728149
     locked: 0
