@@ -19,12 +19,18 @@ namespace ProjectLumina.Abilities
         public UnityEvent<Interactable> onInteractableDetected;
         public UnityEvent onInteractableLost, onInteract;
 
-        private void Awake()
+        private void OnEnable()
         {
-
             _sensor.OnDetected.AddListener(OnInteractableDetected);
             _sensor.OnLostDetection.AddListener(OnInteractableLost);
             _inputReader.onInteract += OnInteract;
+        }
+
+        private void OnDisable()
+        {
+            _sensor.OnDetected.RemoveListener(OnInteractableDetected);
+            _sensor.OnLostDetection.RemoveListener(OnInteractableLost);
+            _inputReader.onInteract -= OnInteract;
         }
 
         public void OnInteract()

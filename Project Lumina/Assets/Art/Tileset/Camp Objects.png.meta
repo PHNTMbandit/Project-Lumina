@@ -116,7 +116,7 @@ TextureImporter:
         x: 9
         y: 128
         width: 14
-        height: 64
+        height: 60
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,7 +137,7 @@ TextureImporter:
         x: 39
         y: 128
         width: 18
-        height: 64
+        height: 50
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -327,8 +327,8 @@ TextureImporter:
         y: 32
         width: 44
         height: 112
-      alignment: 9
-      pivot: {x: 0.5, y: 0.22}
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -389,7 +389,7 @@ TextureImporter:
         x: 37
         y: 112
         width: 6
-        height: 16
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -410,7 +410,7 @@ TextureImporter:
         x: 67
         y: 32
         width: 10
-        height: 96
+        height: 112
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -431,9 +431,9 @@ TextureImporter:
         x: 139
         y: 32
         width: 36
-        height: 96
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+        height: 112
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -494,7 +494,7 @@ TextureImporter:
         x: 37
         y: 96
         width: 6
-        height: 16
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -515,7 +515,7 @@ TextureImporter:
         x: 5
         y: 80
         width: 21
-        height: 16
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -536,7 +536,7 @@ TextureImporter:
         x: 34
         y: 80
         width: 11
-        height: 16
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -557,7 +557,7 @@ TextureImporter:
         x: 5
         y: 64
         width: 19
-        height: 16
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -578,7 +578,7 @@ TextureImporter:
         x: 35
         y: 64
         width: 9
-        height: 16
+        height: 5
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -599,7 +599,7 @@ TextureImporter:
         x: 50
         y: 64
         width: 12
-        height: 16
+        height: 8
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -620,9 +620,9 @@ TextureImporter:
         x: 7
         y: 32
         width: 51
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -641,9 +641,9 @@ TextureImporter:
         x: 5
         y: 0
         width: 64
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -662,9 +662,9 @@ TextureImporter:
         x: 83
         y: 0
         width: 93
-        height: 32
-      alignment: 9
-      pivot: {x: 0.5, y: 0.25}
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -680,27 +680,6 @@ TextureImporter:
       name: Camp Objects_29
       rect:
         serializedVersion: 2
-        x: 100
-        y: 144
-        width: 23
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2fb945bef95e6bc4ea3ecf8233f4cbb4
-      internalID: -1763284416
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Camp Objects_6
-      rect:
-        serializedVersion: 2
         x: 188
         y: 48
         width: 68
@@ -712,14 +691,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45ff05e955c167243b40c7b29dde3bed
-      internalID: -1536258609
+      spriteID: 171ecc55282b60847a098e62a09688a4
+      internalID: -1763284416
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Camp Objects_7
+      name: Camp Objects_30
       rect:
         serializedVersion: 2
         x: 188
@@ -733,8 +712,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 653b36a50f568024bb39b13447a718f8
-      internalID: -40850307
+      spriteID: 9b8e22d6b82e37d4fb466a3ffe1cbc2d
+      internalID: -30773126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Camp Objects_31
+      rect:
+        serializedVersion: 2
+        x: 100
+        y: 144
+        width: 23
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d23ec7cca81184348bd948413258a701
+      internalID: 335915376
       vertices: []
       indices: 
       edges: []
@@ -774,6 +774,8 @@ TextureImporter:
       Camp Objects_28: 1657905269
       Camp Objects_29: -1763284416
       Camp Objects_3: 532190115
+      Camp Objects_30: -30773126
+      Camp Objects_31: 335915376
       Camp Objects_4: 717984878
       Camp Objects_5: 1689370526
       Camp Objects_6: -1536258609
