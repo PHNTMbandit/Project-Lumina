@@ -1163,7 +1163,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 589063617
-  m_SortingLayer: 3
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 486713097, guid: 40185c8ba2b2a494aa26be7b7da06f47, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1797,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe1aa44ca8942548a1ca7b9e2e09361, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _moveSpeed: 13
   _velocity: 1.2
   _acceleration: 9
@@ -3377,7 +3377,7 @@ MonoBehaviour:
   m_saveAcrossSceneChanges: 1
   m_restoreStateOnStart: 0
   m_target: {fileID: 0}
-  m_usePlayerSpawnpoint: 0
+  m_usePlayerSpawnpoint: 1
   m_multiscene: 1
 --- !u!1 &8569390281608226959
 GameObject:

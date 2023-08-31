@@ -269,7 +269,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &70013104
@@ -420,7 +420,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InteractText>k__BackingField: Talk
+  onDetected:
+    m_PersistentCalls:
+      m_Calls: []
   onInteracted:
+    m_PersistentCalls:
+      m_Calls: []
+  onLost:
     m_PersistentCalls:
       m_Calls: []
 --- !u!61 &91075354
@@ -1186,6 +1192,37 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &257300789
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 257300790}
+  m_Layer: 0
+  m_Name: Cave Spawn Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &257300790
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 257300789}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.13, y: -1.776, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &313710091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1940,7 +1977,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 8.4375
+  orthographic size: 6.75
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1965,7 +2002,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.999984, y: 3.5500097, z: -10}
+  m_LocalPosition: {x: -9.562, y: 1.0239997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2036,10 +2073,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 180
-  m_CropFrame: 4
-  m_GridSnapping: 0
+  m_RefResolutionX: 1920
+  m_RefResolutionY: 1080
+  m_CropFrame: 1
+  m_GridSnapping: 2
   m_FilterMode: 1
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -2366,7 +2403,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1244203709}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 8.99
+    OrthographicSize: 7
     NearClipPlane: 0
     FarClipPlane: 5000
     Dutch: 0
@@ -2392,7 +2429,7 @@ Transform:
   m_GameObject: {fileID: 642947203}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.0000005, y: -1.6599998, z: -10}
+  m_LocalPosition: {x: -9.562, y: 1.0239997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3607,7 +3644,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &1137066909
@@ -4031,6 +4068,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <InteractText>k__BackingField: Enter
+  onDetected:
+    m_PersistentCalls:
+      m_Calls: []
   onInteracted:
     m_PersistentCalls:
       m_Calls:
@@ -4046,6 +4086,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  onLost:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!61 &1200140760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4104,8 +4147,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_requiredTag: Player
-  m_destinationSceneName: Level 1-1
-  m_spawnpointNameInDestinationScene: 
+  m_destinationSceneName: Cave
+  m_spawnpointNameInDestinationScene: Camp Spawn Position
   m_onUsePortal:
     m_PersistentCalls:
       m_Calls: []
@@ -5330,6 +5373,18 @@ MonoBehaviour:
     BackgroundTexture: {fileID: 0}
     IsBackgroundRecursive: 0
     IsHidden: 0
+  - Type: 0
+    Name: 
+    GameObject: {fileID: 257300789}
+    Ordinal: 98
+    Priority: 0
+    IconType: 114000
+    IconTexture: {fileID: 0}
+    IsIconRecursive: 0
+    BackgroundType: 0
+    BackgroundTexture: {fileID: 0}
+    IsBackgroundRecursive: 0
+    IsHidden: 0
 --- !u!4 &1267731885
 Transform:
   m_ObjectHideFlags: 0
@@ -5619,7 +5674,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &1340038688
@@ -7280,10 +7335,10 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 76, y: 15}
-      - {x: -91.49, y: 15}
-      - {x: -91.49, y: -5.88}
-      - {x: 76, y: -5.88}
+    - - {x: 76, y: 29.05}
+      - {x: -91.49, y: 29.05}
+      - {x: -91.49, y: -22.28}
+      - {x: 76, y: -22.28}
   m_UseDelaunayMesh: 0
 --- !u!4 &1743810611
 Transform:
@@ -7727,14 +7782,14 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2039444603
-  m_SortingLayer: 11
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &1771443613
@@ -8085,7 +8140,7 @@ MonoBehaviour:
   m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
-  m_ScreenY: 0.5
+  m_ScreenY: 0.7
   m_CameraDistance: 10
   m_DeadZoneWidth: 0.2
   m_DeadZoneHeight: 0.1
@@ -8198,7 +8253,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &1920155259
@@ -8580,14 +8635,14 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1376474679
-  m_SortingLayer: 8
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &2063923141
@@ -19087,11 +19142,11 @@ PrefabInstance:
       objectReference: {fileID: 853046128}
     - target: {fileID: 7364123420893204485, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -7
+      value: -9.562
       objectReference: {fileID: 0}
     - target: {fileID: 7364123420893204485, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6599998
+      value: -1.776
       objectReference: {fileID: 0}
     - target: {fileID: 7364123420893204485, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -19159,3 +19214,4 @@ SceneRoots:
   - {fileID: 1738069796}
   - {fileID: 853046127}
   - {fileID: 1267731885}
+  - {fileID: 257300790}

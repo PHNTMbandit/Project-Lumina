@@ -368,12 +368,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99738be95cdf96a4c83561277430a7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseDuringTransition: 1
+  pauseDuringTransition: 0
   leaveSceneTransition:
     animator: {fileID: 8970912076105076519}
     trigger: Show
     animationDuration: 1
-    minTransitionDuration: 1
+    minTransitionDuration: 2
     onTransitionStart:
       m_PersistentCalls:
         m_Calls: []
@@ -384,8 +384,8 @@ MonoBehaviour:
   enterSceneTransition:
     animator: {fileID: 8970912076105076519}
     trigger: Hide
-    animationDuration: 0
-    minTransitionDuration: 0
+    animationDuration: 1
+    minTransitionDuration: 2
     onTransitionStart:
       m_PersistentCalls:
         m_Calls: []
@@ -433,6 +433,10 @@ PrefabInstance:
     - target: {fileID: 113230, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
       propertyPath: m_Name
       value: SceneFaderCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 11417766, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 511
       objectReference: {fileID: 0}
     - target: {fileID: 22409084, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
       propertyPath: m_Pivot.x

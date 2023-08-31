@@ -50,6 +50,8 @@ namespace ProjectLumina.Abilities
             {
                 if (gameObject.TryGetComponent(out Interactable interactable))
                 {
+                    interactable.OnDetected();
+
                     onInteractableDetected?.Invoke(interactable);
                 }
             }
@@ -59,7 +61,12 @@ namespace ProjectLumina.Abilities
         {
             if (IsUnlocked)
             {
-                onInteractableLost?.Invoke();
+                if (gameObject.TryGetComponent(out Interactable interactable))
+                {
+                    interactable.OnLost();
+
+                    onInteractableLost?.Invoke();
+                }
             }
         }
     }
