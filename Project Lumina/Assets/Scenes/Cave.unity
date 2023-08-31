@@ -6270,7 +6270,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.9999905, y: 1.00699, z: -10}
+  m_LocalPosition: {x: -4.5555468, y: 1.00699, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6341,10 +6341,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 1920
-  m_RefResolutionY: 1080
-  m_CropFrame: 1
-  m_GridSnapping: 2
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_CropFrame: 0
+  m_GridSnapping: 0
   m_FilterMode: 0
   m_UpscaleRT: 0
   m_PixelSnapping: 0
@@ -12444,9 +12444,9 @@ MonoBehaviour:
   m_LookaheadTime: 0.3
   m_LookaheadSmoothing: 5
   m_LookaheadIgnoreY: 1
-  m_XDamping: 0
-  m_YDamping: 0
-  m_ZDamping: 0
+  m_XDamping: 1
+  m_YDamping: 1
+  m_ZDamping: 1
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.7
