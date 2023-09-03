@@ -7,6 +7,7 @@ If you have any questions, feature requests or if you have found a bug then plea
 
 
 [CHANGELOG]
+2.5.5 - Fix GC2 integration for latest version
 2.5.4 - Fix for LOS generating invalid points in rare cases when running Quality mode.
 2.5.3 - Fix NRE when pulse mode is set before it has initialized.
 2.5.2 - Sensor UpdateFunction exposed via C#. Boolean sensor supports XOR. Sensors link to their doc pages from inspector.

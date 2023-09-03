@@ -8,11 +8,21 @@ namespace ProjectLumina.Capabilities
         [field: SerializeField]
         public string InteractText { get; private set; }
 
-        public UnityEvent onInteracted;
+        public UnityEvent onDetected, onInteracted, onLost;
+
+        public void OnDetected()
+        {
+            onDetected?.Invoke();
+        }
 
         public void Interact()
         {
             onInteracted?.Invoke();
+        }
+
+        public void OnLost()
+        {
+            onLost?.Invoke();
         }
     }
 }

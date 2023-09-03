@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace ProjectLumina.Dungeon
 {
-    [CreateAssetMenu(menuName = "Project Lumina/Level/Underground/Post Processing Task", fileName = "Underground Post Processing Task")]
+    [CreateAssetMenu(menuName = "Project Lumina/Dungeon/Underground/Post Processing Task", fileName = "Underground Post Processing Task")]
     public class UndergroundPostProcessingTask : DungeonGeneratorPostProcessingGrid2D
     {
         public bool SpawnEnemies;

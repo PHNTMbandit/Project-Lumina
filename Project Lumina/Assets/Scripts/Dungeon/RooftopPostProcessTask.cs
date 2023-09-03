@@ -5,7 +5,7 @@ using UnityEngine.Tilemaps;
 
 namespace ProjectLumina.Dungeon
 {
-    [CreateAssetMenu(menuName = "Project Lumina/Level/Rooftop/Post Process Task", fileName = "Rooftop Post Process Task")]
+    [CreateAssetMenu(menuName = "Project Lumina/Dungeon/Rooftop/Post Process Task", fileName = "Rooftop Post Process Task")]
     public class RooftopPostProcessTask : DungeonGeneratorPostProcessingGrid2D
     {
         public bool AddWalls = true;

@@ -44,7 +44,13 @@ TagManager:
   - name: Background
     uniqueID: 3388855987
     locked: 0
-  - name: Enemy
+  - name: Buildings
+    uniqueID: 507074935
+    locked: 0
+  - name: Objects
+    uniqueID: 490406745
+    locked: 0
+  - name: NPC
     uniqueID: 1804728149
     locked: 0
   - name: Player
@@ -56,9 +62,6 @@ TagManager:
   - name: Platform
     uniqueID: 2438038717
     locked: 0
-  - name: Walls
-    uniqueID: 1376474679
-    locked: 0
   - name: Platforms
     uniqueID: 1372517769
     locked: 0
@@ -67,6 +70,9 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2039444603
+    locked: 0
+  - name: Walls
+    uniqueID: 1376474679
     locked: 0
   - name: UI
     uniqueID: 1676612647

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ProjectLumina.Dungeon
 {
-    [CreateAssetMenu(menuName = "Project Lumina/Level/Rooftop/Input Setup", fileName = "Rooftop Input Setup", order = 1)]
+    [CreateAssetMenu(menuName = "Project Lumina/Dungeon/Rooftop/Input Setup", fileName = "Rooftop Input Setup", order = 1)]
     public class RooftopInputSetup : DungeonGeneratorInputBaseGrid2D
     {
         public LevelGraph LevelGraph;
