@@ -56,7 +56,7 @@ namespace ProjectLumina.Dungeon
                 .FirstOrDefault(x => ((LuminaRoom)x.Room).Type == LuminaRoomType.Entrance) ?? throw new InvalidOperationException("Could not find Entrance room");
 
             var roomTemplateInstance = entranceRoomInstance.RoomTemplateInstance;
-            var spawnPosition = roomTemplateInstance.transform.Find("Spawn Point");
+            var spawnPosition = roomTemplateInstance.transform.Find("Player Spawn Point");
             var player = GameObject.FindWithTag("Player");
             player.transform.position = spawnPosition.position;
         }

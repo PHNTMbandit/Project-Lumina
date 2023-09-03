@@ -14,8 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelGraph: {fileID: 11400000, guid: 7dbc62a387fe1db4ea0cc42e1714ae73, type: 2}
   RoomTemplates:
-    CorridorRoomTemplates: []
-    DefaultRoomTemplates: []
+    CorridorRoomTemplates:
+    - {fileID: 3246689559998049252, guid: 238934a685b8417488dd751bc41be6fe, type: 3}
+    DefaultRoomTemplates:
+    - {fileID: 3246689559998049252, guid: 8f495b8c45189cd4f8820573ea594758, type: 3}
     EntranceRoomTemplates:
     - {fileID: 3246689559998049252, guid: 4dd62041b55b0a7449b4a8637862735f, type: 3}
     ExitRoomTemplates: []
