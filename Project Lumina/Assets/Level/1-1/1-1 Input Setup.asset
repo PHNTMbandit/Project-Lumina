@@ -16,6 +16,7 @@ MonoBehaviour:
   RoomTemplates:
     CorridorRoomTemplates:
     - {fileID: 3246689559998049252, guid: 238934a685b8417488dd751bc41be6fe, type: 3}
+    - {fileID: 3246689559998049252, guid: 0746234e2f8542a44b7c00a8986502be, type: 3}
     DefaultRoomTemplates:
     - {fileID: 3246689559998049252, guid: 8f495b8c45189cd4f8820573ea594758, type: 3}
     EntranceRoomTemplates:

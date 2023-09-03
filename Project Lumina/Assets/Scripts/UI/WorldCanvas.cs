@@ -7,6 +7,7 @@ namespace ProjectLumina.UI
         private void Awake()
         {
             GetComponent<Canvas>().worldCamera = UnityEngine.Camera.main;
+            GetComponent<Canvas>().sortingLayerName = "UI";
         }
     }
 }

@@ -12,8 +12,8 @@ namespace ProjectLumina.Camera
 
         private void Awake()
         {
-            _cameraTransform = UnityEngine.Camera.main.transform;
             _startPosition = transform.position.x;
+            _cameraTransform = UnityEngine.Camera.main.transform;
             _length = GetComponent<SpriteRenderer>().bounds.size.x;
         }
 
