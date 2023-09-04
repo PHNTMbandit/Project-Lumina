@@ -1,3 +1,5 @@
+using System.Collections;
+using Micosmo.SensorToolkit;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -15,6 +17,9 @@ namespace ProjectLumina.Abilities
 
         [BoxGroup("Thresholds"), SerializeField, Range(0, 10)]
         private float _fallingGravityScale, _fallingGravityMultiplier;
+
+        [BoxGroup("Sensors"), SerializeField]
+        private RaySensor2D _sensor;
 
         private Rigidbody2D _rb;
 
@@ -39,6 +44,22 @@ namespace ProjectLumina.Abilities
             {
                 return false;
             }
+        }
+
+        public bool CanFallThrough()
+        {
+            return _sensor.GetDetections().Exists(i => i.layer == LayerMask.NameToLayer("Platform"));
+        }
+
+        public IEnumerator FallThrough()
+        {
+            var platform = _sensor.GetNearestComponent<PlatformEffector2D>();
+
+            platform.colliderMask &= ~(1 << LayerMask.NameToLayer("Player"));
+
+            yield return new WaitForSeconds(0.35f);
+
+            platform.colliderMask |= 1 << LayerMask.NameToLayer("Player");
         }
     }
 }

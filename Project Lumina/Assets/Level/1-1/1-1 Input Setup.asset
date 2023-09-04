@@ -23,6 +23,7 @@ MonoBehaviour:
     - {fileID: 3246689559998049252, guid: 806756d62a577a347bb272fdc7d0cae8, type: 3}
     - {fileID: 3246689559998049252, guid: 79bf28fea1806164aa831c2dbf6df077, type: 3}
     - {fileID: 3246689559998049252, guid: 4e439537de68c3f42a23cd851b3beb2f, type: 3}
+    - {fileID: 3246689559998049252, guid: c1761d192b771074cb4cf819f071ba96, type: 3}
     EntranceRoomTemplates:
     - {fileID: 3246689559998049252, guid: 4dd62041b55b0a7449b4a8637862735f, type: 3}
     ExitRoomTemplates: []
