@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6810509395211131547}
   - component: {fileID: 6488420835924077169}
   - component: {fileID: 5074944293946116454}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Background Overlay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 4445692306099514677}
   - component: {fileID: 4562967005418954656}
   - component: {fileID: 8674520356940470898}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,16 +1138,8 @@ MonoBehaviour:
       To: {x: 13, y: 2, z: 0}
       Direction: 0
       Socket: {fileID: 0}
-    - From: {x: 2, y: 4, z: 0}
-      To: {x: 3, y: 4, z: 0}
-      Direction: 0
-      Socket: {fileID: 0}
     - From: {x: 11, y: 0, z: 0}
       To: {x: 12, y: 0, z: 0}
-      Direction: 0
-      Socket: {fileID: 0}
-    - From: {x: 12, y: 4, z: 0}
-      To: {x: 11, y: 4, z: 0}
       Direction: 0
       Socket: {fileID: 0}
   SimpleDoorModeData:
@@ -1181,7 +1173,7 @@ GameObject:
   - component: {fileID: 2201938278943909652}
   - component: {fileID: 3563147415331809217}
   - component: {fileID: 5587629161904869500}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1968,7 +1960,7 @@ GameObject:
   - component: {fileID: 7646353772578702652}
   - component: {fileID: 6024499870239587535}
   - component: {fileID: 8928563487417923339}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Background Under
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2091,7 +2083,7 @@ GameObject:
   - component: {fileID: 75667219698442134}
   - component: {fileID: 6177583237013639351}
   - component: {fileID: 3163541664590096996}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Collideable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2319,7 +2311,7 @@ GameObject:
   - component: {fileID: 2868742568708552339}
   - component: {fileID: 9018182535567712931}
   - component: {fileID: 117925986901824774}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Other 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2443,7 +2435,7 @@ GameObject:
   - component: {fileID: 2616384814158289800}
   - component: {fileID: 6819391539559851445}
   - component: {fileID: 2735022707863609924}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Platforms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2825,7 +2817,7 @@ GameObject:
   - component: {fileID: 2830594336795923686}
   - component: {fileID: 6010369966720104818}
   - component: {fileID: 1620761217282243760}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Foreground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3035,7 +3027,7 @@ GameObject:
   - component: {fileID: 8392581825503722773}
   - component: {fileID: 656322506340515792}
   - component: {fileID: 3408945249329980813}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Other 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -31,8 +31,10 @@ namespace ProjectLumina.Player.StateMachine.States
 
                 }
             }
-            else if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
+
+            if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
             {
+                Debug.Log(characterRoll.IsRolling);
                 if (characterRoll.IsRolling == false)
                 {
                     stateController.ChangeState(stateController.GetState("Idle"));

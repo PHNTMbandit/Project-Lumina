@@ -43,7 +43,7 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryAttack()
         {
-            if (stateController.InputReader.MoveInput.y < 0)
+            if (stateController.InputReader.MoveInput.y < -0.9f)
             {
                 if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
                 {

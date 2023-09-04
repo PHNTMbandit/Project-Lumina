@@ -122,7 +122,7 @@ MonoBehaviour:
   - {fileID: 3907554092561867614}
   - {fileID: -2251485162708910823}
   EditorData:
-    PanOffset: {x: -102.40577, y: 200.83281}
+    PanOffset: {x: -301.37524, y: 222.83435}
     Zoom: 1.0453866
   RoomType: ProjectLumina.Dungeon.LuminaRoom
   ConnectionType: ProjectLumina.Dungeon.LuminaConnection
