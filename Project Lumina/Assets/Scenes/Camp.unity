@@ -2792,7 +2792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be65ff35681a4404ea401d7a072d24b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHour: 12
+  startHour: 22
   _timeRate: 1
   _cycleCurve:
     serializedVersion: 2

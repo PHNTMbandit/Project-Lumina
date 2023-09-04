@@ -49,7 +49,7 @@ namespace ProjectLumina.Player.StateMachine.States
                 {
                     stateController.ChangeState(stateController.GetState("Fall"));
                 }
-                else if (characterFall.CanFallThrough() && stateController.InputReader.MoveInput.y == -1)
+                else if (characterFall.CanFallThrough() && stateController.InputReader.MoveInput.y <= -0.8f)
                 {
                     characterFall.StartCoroutine(characterFall.FallThrough());
                 }

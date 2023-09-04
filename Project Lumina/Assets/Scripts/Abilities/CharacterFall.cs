@@ -55,10 +55,12 @@ namespace ProjectLumina.Abilities
         {
             var platform = _sensor.GetNearestComponent<PlatformEffector2D>();
 
+            _sensor.DetectsOnLayers &= ~(1 << LayerMask.NameToLayer("Platform"));
             platform.colliderMask &= ~(1 << LayerMask.NameToLayer("Player"));
 
             yield return new WaitForSeconds(0.35f);
 
+            _sensor.DetectsOnLayers |= 1 << LayerMask.NameToLayer("Platform");
             platform.colliderMask |= 1 << LayerMask.NameToLayer("Player");
         }
     }

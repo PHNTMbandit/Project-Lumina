@@ -812,7 +812,7 @@ Transform:
   m_GameObject: {fileID: 5450329459321428989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.031, y: -0.057, z: 0}
+  m_LocalPosition: {x: 0.031, y: 0.086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,7 +847,7 @@ MonoBehaviour:
   Circle:
     Radius: 1
   Box:
-    HalfExtents: {x: 0.2, y: 0.05}
+    HalfExtents: {x: 0.32, y: 0.05}
   Capsule:
     Radius: 0.5
     Height: 1
@@ -855,12 +855,12 @@ MonoBehaviour:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 0.34
+  Length: 0.3
   Direction: {x: 0, y: -1}
   WorldSpace: 0
   DetectsOnLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1536
   ObstructedByLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   WorldSpace: 0
   DetectsOnLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   ObstructedByLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1264,7 +1264,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025677681, y: -0.09593427}
+  m_Offset: {x: 0.031699657, y: -0.09593427}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1275,7 +1275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39747047, y: 0.18881536}
+  m_Size: {x: 0.3194151, y: 0.18881536}
   m_EdgeRadius: 0
 --- !u!50 &2041146607062771200
 Rigidbody2D:
@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLevel: 162
   _currentLevel: 1
-  _baseXP: 32
+  _baseXP: 7
   onXPGain:
     m_PersistentCalls:
       m_Calls: []
@@ -1574,6 +1574,7 @@ MonoBehaviour:
   _maxFallGravitySpeed: -50
   _fallingGravityScale: 1
   _fallingGravityMultiplier: 1.9
+  _sensor: {fileID: 7748382401517197955}
 --- !u!114 &4774242768844332152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1704,12 +1705,12 @@ MonoBehaviour:
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <IsUnlocked>k__BackingField: 0
+  - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 20
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <IsUnlocked>k__BackingField: 0
+  - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 5
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
