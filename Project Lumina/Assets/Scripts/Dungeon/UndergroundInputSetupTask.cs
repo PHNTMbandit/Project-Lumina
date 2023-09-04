@@ -23,7 +23,14 @@ namespace ProjectLumina.Dungeon
             {
                 var corridorRoom = CreateInstance<LuminaRoom>();
                 corridorRoom.Type = LuminaRoomType.Corridor;
-                levelDescription.AddCorridorConnection(connection, corridorRoom, RoomTemplates.CorridorRoomTemplates.ToList());
+                if (connection.RoomTemplates.Count == 0)
+                {
+                    levelDescription.AddCorridorConnection(connection, corridorRoom, RoomTemplates.CorridorRoomTemplates.ToList());
+                }
+                else
+                {
+                    levelDescription.AddCorridorConnection(connection, corridorRoom, connection.RoomTemplates.ToList());
+                }
             }
 
             return levelDescription;

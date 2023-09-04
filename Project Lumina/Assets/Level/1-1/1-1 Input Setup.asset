@@ -16,9 +16,13 @@ MonoBehaviour:
   RoomTemplates:
     CorridorRoomTemplates:
     - {fileID: 3246689559998049252, guid: 238934a685b8417488dd751bc41be6fe, type: 3}
-    - {fileID: 3246689559998049252, guid: 0746234e2f8542a44b7c00a8986502be, type: 3}
+    - {fileID: 3246689559998049252, guid: 208965a3c863ed74e9b20aed4605c75a, type: 3}
     DefaultRoomTemplates:
     - {fileID: 3246689559998049252, guid: 8f495b8c45189cd4f8820573ea594758, type: 3}
+    - {fileID: 3246689559998049252, guid: 9d3193a82225c894e888d02cd5846730, type: 3}
+    - {fileID: 3246689559998049252, guid: 806756d62a577a347bb272fdc7d0cae8, type: 3}
+    - {fileID: 3246689559998049252, guid: 79bf28fea1806164aa831c2dbf6df077, type: 3}
+    - {fileID: 3246689559998049252, guid: 4e439537de68c3f42a23cd851b3beb2f, type: 3}
     EntranceRoomTemplates:
     - {fileID: 3246689559998049252, guid: 4dd62041b55b0a7449b4a8637862735f, type: 3}
     ExitRoomTemplates: []
