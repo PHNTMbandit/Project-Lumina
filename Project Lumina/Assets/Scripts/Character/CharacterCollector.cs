@@ -1,11 +1,10 @@
 using Micosmo.SensorToolkit;
-using ProjectLumina.Abilities;
 using ProjectLumina.Capabilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ProjectLumina.Capabitlies
+namespace ProjectLumina.Character
 {
     [AddComponentMenu("Character/Character Collector")]
     public class CharacterCollector : CharacterAbility

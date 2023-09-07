@@ -1,4 +1,4 @@
-﻿using ProjectLumina.Abilities;
+﻿using ProjectLumina.Character;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
@@ -17,11 +17,6 @@ namespace ProjectLumina.Player.StateMachine.States
 
             stateController.InputReader.onJump = TryJump;
             stateController.InputReader.onRoll = TryRoll;
-
-            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
-            {
-                characterAerialAttack.ResetAerialAttackCombo();
-            }
 
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
@@ -60,8 +55,10 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
             {
-                stateController.ChangeState(stateController.GetState("Melee Attack"));
-
+                if (characterMeleeAttack.IsAttacking == false)
+                {
+                    stateController.ChangeState(stateController.GetState("Melee Attack"));
+                }
             }
         }
 

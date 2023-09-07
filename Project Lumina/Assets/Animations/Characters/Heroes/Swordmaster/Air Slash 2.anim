@@ -83,14 +83,21 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.1
-    functionName: AerialAttack
+    functionName: AerialAttackDamage
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.2
+    functionName: ContinueAerialAttackCombo
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.4
-    functionName: FinishAerialAttackCombo
+    functionName: FinishAerialAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

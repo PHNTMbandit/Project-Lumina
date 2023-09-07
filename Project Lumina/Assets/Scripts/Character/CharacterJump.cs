@@ -3,7 +3,7 @@ using ProjectLumina.Player.Input;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Abilities
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Jump")]

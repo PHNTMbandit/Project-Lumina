@@ -563,7 +563,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1804728149
-  m_SortingLayer: 2
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -198834934, guid: a80e532af88b16a49b5226b4269d88c5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -798,7 +798,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 3
+    <Damage>k__BackingField: 13
     AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8030033580177232402}
@@ -816,7 +816,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   Move: 1
-  _moveSpeed: 9
+  _moveSpeed: 4
   _acceleration: 9
   _velocity: 1.2
   Stop: 1
@@ -837,7 +837,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 3
+    <Damage>k__BackingField: 8
     AttackAnimation: {fileID: 7400000, guid: 666ed651a4e3d6842b284f0ddd8512e9, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
     <Sensor>k__BackingField: {fileID: 3657249586278866276}
@@ -870,7 +870,7 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.AI.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.AI.CharacterAI/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
+      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.Character.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.Character.CharacterAI/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
         Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Melee
         Attack Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
         Sensor","IsShared":true,"SensormValue":3},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting

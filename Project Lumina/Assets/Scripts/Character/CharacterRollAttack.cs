@@ -1,50 +1,56 @@
+using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace ProjectLumina.Abilities
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Roll Attack")]
     public class CharacterRollAttack : CharacterAbility
     {
-        public int CurrentRollAttackIndex
-        {
-            get => _currentRollAttackIndex;
-            set => _currentRollAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
-        }
+        public bool IsRollAttacking { get; private set; }
 
         [BoxGroup("Attack Combos"), SerializeField]
         private Attack[] _attackCombos;
 
-        private int _currentRollAttackIndex = 0;
+        private int _comboIndex = 0;
+        private bool _canContinueCombo = true;
         private Attack _currentRollAttack;
         private Animator _animator;
-
-        public UnityAction onRollAttackFinished;
+        private Rigidbody2D _rb;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-        }
-
-        public void UseRollAttack()
-        {
-            _currentRollAttack = _attackCombos[CurrentRollAttackIndex];
-
-            if (_currentRollAttack.IsUnlocked)
-            {
-                _animator.Play(_currentRollAttack.AttackAnimation.name);
-
-                CurrentRollAttackIndex++;
-            }
+            _rb = GetComponent<Rigidbody2D>();
         }
 
         public void RollAttack()
+        {
+            if (_canContinueCombo)
+            {
+                _rb.velocity = new Vector2(0, 0);
+
+                _comboIndex++;
+
+                if (_comboIndex > _attackCombos.Length)
+                {
+                    _comboIndex = 1;
+                }
+
+                _currentRollAttack = _attackCombos[_comboIndex - 1];
+                _animator.SetTrigger($"roll attack {_comboIndex}");
+
+                _canContinueCombo = false;
+                IsRollAttacking = true;
+            }
+        }
+
+        public void RollAttackDamage()
         {
             foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
@@ -54,16 +60,16 @@ namespace ProjectLumina.Abilities
             }
         }
 
-        public void FinishRollAttack()
+        public void ContinueRollAttackCombo()
         {
-            CurrentRollAttackIndex = 0;
-
-            onRollAttackFinished?.Invoke();
+            _canContinueCombo = true;
         }
 
-        public void ResetRollAttackCombo()
+        public void FinishRollAttack()
         {
-            CurrentRollAttackIndex = 0;
+            _comboIndex = 0;
+            _canContinueCombo = true;
+            IsRollAttacking = false;
         }
     }
 }

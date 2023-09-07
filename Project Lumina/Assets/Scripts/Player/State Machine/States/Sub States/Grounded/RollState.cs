@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Abilities;
-using UnityEngine;
+﻿using ProjectLumina.Character;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -27,8 +26,10 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (stateController.InputReader.AttackInput)
                 {
-                    stateController.ChangeState(stateController.GetState("Roll Attack"));
-
+                    if (characterRollAttack.IsRollAttacking == false)
+                    {
+                        stateController.ChangeState(stateController.GetState("Roll Attack"));
+                    }
                 }
             }
 

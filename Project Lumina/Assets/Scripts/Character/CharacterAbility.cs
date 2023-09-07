@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Abilities
+namespace ProjectLumina.Character
 {
     public abstract class CharacterAbility : MonoBehaviour
     {

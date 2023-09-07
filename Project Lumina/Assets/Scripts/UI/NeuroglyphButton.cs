@@ -1,4 +1,4 @@
-using ProjectLumina.Abilities;
+using ProjectLumina.Character;
 using ProjectLumina.Neuroglyphs;
 using TMPro;
 using UnityEngine;

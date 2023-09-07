@@ -6,9 +6,8 @@ using ProjectLumina.Controllers;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace ProjectLumina.Abilities
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(CharacterMove))]
     [RequireComponent(typeof(Rigidbody2D))]
@@ -16,13 +15,8 @@ namespace ProjectLumina.Abilities
     [AddComponentMenu("Character/Character Aerial Attack")]
     public class CharacterAerialAttack : CharacterAbility
     {
+        public bool IsAttacking { get; private set; }
         public bool IsSlowStop { get; private set; }
-
-        public int CurrentAerialAttackIndex
-        {
-            get => _currentAerialAttackIndex;
-            set => _currentAerialAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
-        }
 
         [BoxGroup("Attack Combos"), SerializeField]
         private Attack[] _attackCombos;
@@ -39,12 +33,12 @@ namespace ProjectLumina.Abilities
         [ToggleGroup("SlowStop"), SerializeField, Range(0, 5)]
         private float _slowStopTimer;
 
-        private int _currentAerialAttackIndex = 0;
+        private int _comboIndex = 0;
+        private bool _canContinueCombo = true;
         private Attack _currentAerialAttack;
         private Rigidbody2D _rb;
         private Animator _animator;
 
-        public UnityAction onComboFinished;
 
         private void Awake()
         {
@@ -52,19 +46,26 @@ namespace ProjectLumina.Abilities
             _animator = GetComponent<Animator>();
         }
 
-        public void UseAerialAttack()
+        public void AerialAttack()
         {
-            _currentAerialAttack = _attackCombos[CurrentAerialAttackIndex];
-
-            if (_currentAerialAttack.IsUnlocked)
+            if (_canContinueCombo)
             {
-                _animator.Play(_currentAerialAttack.AttackAnimation.name);
+                _comboIndex++;
 
-                CurrentAerialAttackIndex++;
+                if (_comboIndex > _attackCombos.Length)
+                {
+                    _comboIndex = 1;
+                }
+
+                _currentAerialAttack = _attackCombos[_comboIndex - 1];
+                _animator.SetTrigger($"aerial attack {_comboIndex}");
+
+                _canContinueCombo = false;
+                IsAttacking = true;
             }
         }
 
-        public void AerialAttack()
+        public void AerialAttackDamage()
         {
             foreach (Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
@@ -79,18 +80,6 @@ namespace ProjectLumina.Abilities
             }
         }
 
-        public void FinishAerialAttackCombo()
-        {
-            CurrentAerialAttackIndex = 0;
-
-            onComboFinished?.Invoke();
-        }
-
-        public void ResetAerialAttackCombo()
-        {
-            CurrentAerialAttackIndex = 0;
-        }
-
         private IEnumerator StartSlowStop()
         {
             IsSlowStop = true;
@@ -101,6 +90,18 @@ namespace ProjectLumina.Abilities
             yield return new WaitForSeconds(_slowStopTimer);
 
             IsSlowStop = false;
+        }
+
+        public void ContinueAerialAttackCombo()
+        {
+            _canContinueCombo = true;
+        }
+
+        public void FinishAerialAttack()
+        {
+            _comboIndex = 0;
+            _canContinueCombo = true;
+            IsAttacking = false;
         }
     }
 }

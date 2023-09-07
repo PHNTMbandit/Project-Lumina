@@ -1,4 +1,4 @@
-using ProjectLumina.Abilities;
+using ProjectLumina.Character;
 using Sirenix.OdinInspector;
 using UnityEngine;
 

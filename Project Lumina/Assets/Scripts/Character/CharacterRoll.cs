@@ -1,7 +1,7 @@
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Abilities
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(CharacterMove))]

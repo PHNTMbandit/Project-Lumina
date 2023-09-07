@@ -1,53 +1,53 @@
+using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
 using Sirenix.OdinInspector;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace ProjectLumina.Abilities
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Fall Attack")]
     public class CharacterFallAttack : CharacterAbility
     {
-        public int CurrentFallAttackIndex
-        {
-            get => _currentFallAttackIndex;
-            set => _currentFallAttackIndex = value <= 0 ? 0 : value >= _attackCombos.Length - 1 ? _attackCombos.Length - 1 : value;
-        }
+        public bool IsFallAttacking { get; private set; }
 
         [BoxGroup("Attack Combos"), SerializeField]
         private Attack[] _attackCombos;
 
-        private int _currentFallAttackIndex = 0;
+        private int _comboIndex = 0;
+        private bool _canContinueCombo;
         private Attack _currentFallAttack;
-        private Rigidbody2D _rb;
         private Animator _animator;
-
-        public UnityAction onFallAttackFinished;
 
         private void Awake()
         {
-            _rb = GetComponent<Rigidbody2D>();
             _animator = GetComponent<Animator>();
         }
 
-        public void UseFallAttack()
+        public void FallAttack()
         {
-            _currentFallAttack = _attackCombos[CurrentFallAttackIndex];
-
-            if (_currentFallAttack.IsUnlocked)
+            if (_canContinueCombo)
             {
-                _animator.Play(_currentFallAttack.AttackAnimation.name);
+                _comboIndex++;
 
-                CurrentFallAttackIndex++;
+                if (_comboIndex > _attackCombos.Length)
+                {
+                    _comboIndex = 1;
+                }
+
+                _currentFallAttack = _attackCombos[_comboIndex - 1];
+                _animator.SetTrigger($"fall attack {_comboIndex}");
+
+                _canContinueCombo = false;
+                IsFallAttacking = true;
             }
         }
 
-        public void FallAttack()
+        public void FallAttackDamage()
         {
             foreach (Damageable damageable in _currentFallAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
@@ -57,16 +57,16 @@ namespace ProjectLumina.Abilities
             }
         }
 
-        public void FinishFallAttack()
+        public void ContinueFallAttackCombo()
         {
-            CurrentFallAttackIndex = 0;
-
-            onFallAttackFinished?.Invoke();
+            _canContinueCombo = true;
         }
 
-        public void ResetFallAttackCombo()
+        public void FinishFallAttack()
         {
-            CurrentFallAttackIndex = 0;
+            _comboIndex = 0;
+            _canContinueCombo = true;
+            IsFallAttacking = false;
         }
     }
 }

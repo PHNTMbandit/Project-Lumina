@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
+using ProjectLumina.Character;
 
 namespace ProjectLumina.AI.Actions
 {

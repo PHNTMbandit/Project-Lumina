@@ -1,9 +1,8 @@
 using Pathfinding;
-using ProjectLumina.Abilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.AI
+namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(AIPath))]
     [RequireComponent(typeof(Animator))]

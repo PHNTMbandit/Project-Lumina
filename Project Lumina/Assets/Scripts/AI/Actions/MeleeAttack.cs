@@ -1,5 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
-using ProjectLumina.Abilities;
+using ProjectLumina.Character;
 
 namespace ProjectLumina.AI.Conditionals
 {
@@ -19,7 +19,7 @@ namespace ProjectLumina.AI.Conditionals
         {
             base.OnStart();
 
-            _characterMeleeAttack.UseMeleeAttack();
+            _characterMeleeAttack.MeleeAttack();
         }
     }
 }
