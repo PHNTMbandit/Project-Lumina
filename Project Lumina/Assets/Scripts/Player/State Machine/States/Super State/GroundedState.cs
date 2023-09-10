@@ -68,6 +68,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterJump.CanJump())
                 {
+                    Debug.Log(characterJump.CanJump());
                     stateController.ChangeState(stateController.GetState("Jump"));
                 }
             }

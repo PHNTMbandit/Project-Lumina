@@ -5,12 +5,18 @@ namespace ProjectLumina.Dungeon
 {
     public class DungeonGenerator : MonoBehaviour
     {
+        [SerializeField]
+        private bool _generateOnStart;
+
         public void Awake()
         {
-            var generator = GetComponent<PlatformerGeneratorGrid2D>();
-            StartCoroutine(generator.GenerateCoroutine());
+            if (_generateOnStart)
+            {
+                var generator = GetComponent<PlatformerGeneratorGrid2D>();
+                StartCoroutine(generator.GenerateCoroutine());
 
-            AstarPath.active.Scan();
+                AstarPath.active.Scan();
+            }
         }
     }
 }

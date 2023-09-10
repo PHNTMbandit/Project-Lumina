@@ -657,7 +657,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -681,8 +681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 40
-  _currentHealth: 40
+  _maxHealth: 12
+  _currentHealth: 12
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -798,7 +798,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 13
+    <Damage>k__BackingField: 9
     AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8030033580177232402}

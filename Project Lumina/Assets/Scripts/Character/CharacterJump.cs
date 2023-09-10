@@ -52,13 +52,19 @@ namespace ProjectLumina.Character
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
-
-            _sensor.OnDetected.AddListener(delegate { IsGrounded = true; });
-            _sensor.OnLostDetection.AddListener(delegate { IsGrounded = false; });
         }
 
         private void Update()
         {
+            if (_sensor.GetNearestDetection() != null)
+            {
+                IsGrounded = true;
+            }
+            else
+            {
+                IsGrounded = false;
+            }
+
             if (IsGrounded)
             {
                 _lastGroundedTime = _jumpCoyoteTime;
@@ -117,6 +123,7 @@ namespace ProjectLumina.Character
 
         public void Jump()
         {
+            print("jump");
             if (AddForce)
             {
                 _lastGroundedTime = 0f;
