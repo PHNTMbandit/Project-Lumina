@@ -1764,7 +1764,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   Roll: 1
   _collider: {fileID: 8642475815790382610}
-  _rollSpeed: 7
+  _rollSpeed: 9
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
 --- !u!114 &5987676301644156327
@@ -1786,6 +1786,7 @@ MonoBehaviour:
     AttackAnimation: {fileID: 7400000, guid: 1491267b59419d845a9a13d350e095c0, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
+  _rollAttackSpeed: 2
 --- !u!114 &4429014146250662890
 MonoBehaviour:
   m_ObjectHideFlags: 0

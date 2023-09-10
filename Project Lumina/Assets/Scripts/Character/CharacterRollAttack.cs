@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
@@ -17,6 +16,9 @@ namespace ProjectLumina.Character
         [BoxGroup("Attack Combos"), SerializeField]
         private Attack[] _attackCombos;
 
+        [BoxGroup("Settings"), Range(0, 10), SerializeField]
+        private float _rollAttackSpeed;
+
         private int _comboIndex = 0;
         private bool _canContinueCombo = true;
         private Attack _currentRollAttack;
@@ -33,7 +35,7 @@ namespace ProjectLumina.Character
         {
             if (_canContinueCombo)
             {
-                _rb.velocity = new Vector2(0, 0);
+                _rb.velocity /= _rollAttackSpeed;
 
                 _comboIndex++;
 

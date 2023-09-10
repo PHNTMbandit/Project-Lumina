@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &44800255
 Transform:
   m_ObjectHideFlags: 0
@@ -2792,7 +2792,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be65ff35681a4404ea401d7a072d24b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startHour: 22
+  startHour: 12
   _timeRate: 1
   _cycleCurve:
     serializedVersion: 2
@@ -6279,7 +6279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1568500967
 Transform:
   m_ObjectHideFlags: 0
@@ -8427,7 +8427,7 @@ GameObject:
   - component: {fileID: 2063923145}
   - component: {fileID: 2063923144}
   - component: {fileID: 2063923143}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -279,86 +279,6 @@ MonoBehaviour:
     UpdateFunction: 0
     Interval:
       value: 1
---- !u!1 &3373598995684258959
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2588935686614148590}
-  - component: {fileID: 8030033580177232402}
-  m_Layer: 6
-  m_Name: Melee Attack Sensor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2588935686614148590
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373598995684258959}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0.902, y: -0.264, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 9055267345663398333}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
---- !u!114 &8030033580177232402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3373598995684258959}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2d86e514f647b4b1f579a4f0ab9022, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  signalProcessors: []
-  OnDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  OnLostDetection:
-    m_PersistentCalls:
-      m_Calls: []
-  OnSomeDetection:
-    m_PersistentCalls:
-      m_Calls: []
-  OnNoDetection:
-    m_PersistentCalls:
-      m_Calls: []
-  signalFilter:
-    IgnoreList: []
-    EnableTagFilter: 0
-    AllowedTags: []
-  DetectionMode: 0
-  Shape: 1
-  Circle:
-    Radius: 1
-  Box:
-    HalfExtents: {x: 0.76, y: 0.56}
-  Capsule:
-    Radius: 0.5
-    Height: 1
-  DetectsOnLayers:
-    serializedVersion: 2
-    m_Bits: 8
-  IgnoreTriggerColliders: 0
-  pulseRoutine:
-    Mode:
-      value: 2
-    UpdateFunction: 0
-    Interval:
-      value: 1
 --- !u!1 &4790704238009844778
 GameObject:
   m_ObjectHideFlags: 0
@@ -491,7 +411,6 @@ GameObject:
   - component: {fileID: 3228559339102267121}
   - component: {fileID: 2766563775868989475}
   - component: {fileID: 7783316659044857216}
-  - component: {fileID: 4581091988254112944}
   - component: {fileID: 8913216245909492744}
   - component: {fileID: 3573416232631176223}
   - component: {fileID: 1559403312632348967}
@@ -499,7 +418,7 @@ GameObject:
   - component: {fileID: 5863213540184753335}
   - component: {fileID: 4224349700809815099}
   m_Layer: 6
-  m_Name: Hell Bot
+  m_Name: Wheel Bot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -520,7 +439,6 @@ Transform:
   m_Children:
   - {fileID: 5920593116854775563}
   - {fileID: 1238640973413864869}
-  - {fileID: 2588935686614148590}
   - {fileID: 3262186032855506188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -565,7 +483,7 @@ SpriteRenderer:
   m_SortingLayerID: 1804728149
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -198834934, guid: a80e532af88b16a49b5226b4269d88c5, type: 3}
+  m_Sprite: {fileID: -972945929, guid: a1f0b5dee6c9a0d46ad590e411041df5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -586,7 +504,7 @@ Animator:
   m_GameObject: {fileID: 5805500066460283248}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8f01dc41e5bf41a42b979106ba1269ae, type: 2}
+  m_Controller: {fileID: 9100000, guid: 84ececd7d5ab9d541a5d5b0506ce5dc1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -629,18 +547,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.060979843, y: -0.27766842}
+  m_Offset: {x: 0.024572372, y: -0.12855852}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.25, y: 2.25}
+    oldSize: {x: 9.875, y: 1.625}
     newSize: {x: 7.8125, y: 3.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.52996063, y: 1.58099}
+  m_Size: {x: 0.7068138, y: 1.2827702}
   m_EdgeRadius: 0
 --- !u!50 &2040424351302497929
 Rigidbody2D:
@@ -776,32 +694,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   _AIStates:
+  - dash
   - dead
   - hit
   - idle
-  - melee attack
-  - run
+  - move
   - shoot
   _defaultAIState: idle
---- !u!114 &4581091988254112944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805500066460283248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c0b52ed5844f364bb2dee37001139d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 13
-    AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    <Sensor>k__BackingField: {fileID: 8030033580177232402}
 --- !u!114 &8913216245909492744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,7 +737,7 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
-    AttackAnimation: {fileID: 7400000, guid: 666ed651a4e3d6842b284f0ddd8512e9, type: 2}
+    AttackAnimation: {fileID: 7400000, guid: caaa27303ab5d2f4d9bed0553fb4bee2, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
     <Sensor>k__BackingField: {fileID: 3657249586278866276}
   _fireRate: 1.55
@@ -871,10 +770,9 @@ MonoBehaviour:
       startIndex: 
       variableStartIndex: 
       JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.Character.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.Character.CharacterAI/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
-        Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Melee
-        Attack Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
-        Sensor","IsShared":true,"SensormValue":3},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting
-        Sensor","IsShared":true,"SensormValue":4}]}'
+        Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
+        Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting
+        Sensor","IsShared":true,"SensormValue":3}]}'
       fieldSerializationData:
         typeName: []
         fieldNameHash: 
@@ -883,7 +781,6 @@ MonoBehaviour:
         unityObjects:
         - {fileID: 5805500066460283248}
         - {fileID: 5805500066460283248}
-        - {fileID: 8030033580177232402}
         - {fileID: 5314705485935313885}
         - {fileID: 3657249586278866276}
         byteData: 
