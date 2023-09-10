@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Abilities;
-using UnityEngine;
+﻿using ProjectLumina.Character;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -14,11 +13,6 @@ namespace ProjectLumina.Player.StateMachine.States
             base.Enter();
 
             stateController.InputReader.onDash = TryDash;
-
-            if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
-            {
-                characterMeleeAttack.ResetMeleeAttackCombo();
-            }
         }
 
         public override void Exit()
@@ -43,18 +37,24 @@ namespace ProjectLumina.Player.StateMachine.States
 
         protected void TryAttack()
         {
-            if (stateController.InputReader.MoveInput.y < 0)
+            if (stateController.InputReader.MoveInput.y < -0.9f)
             {
                 if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
                 {
-                    stateController.ChangeState(stateController.GetState("Fall Attack"));
+                    if (characterFallAttack.IsFallAttacking == false)
+                    {
+                        stateController.ChangeState(stateController.GetState("Fall Attack"));
+                    }
                 }
             }
             else
             {
                 if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
                 {
-                    stateController.ChangeState(stateController.GetState("Aerial Attack"));
+                    if (characterAerialAttack.IsAttacking == false)
+                    {
+                        stateController.ChangeState(stateController.GetState("Aerial Attack"));
+                    }
                 }
             }
         }

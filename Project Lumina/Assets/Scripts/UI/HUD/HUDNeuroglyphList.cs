@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using ProjectLumina.Abilities;
+using ProjectLumina.Character;
 using ProjectLumina.Data;
 using ProjectLumina.Neuroglyphs;
 using UnityEngine;

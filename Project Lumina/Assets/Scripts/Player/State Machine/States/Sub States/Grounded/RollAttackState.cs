@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Abilities;
-using UnityEngine;
+﻿using ProjectLumina.Character;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -15,8 +14,8 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {
-                characterRollAttack.UseRollAttack();
-                characterRollAttack.onRollAttackFinished = ChangeToIdle;
+                characterRollAttack.RollAttack();
+                stateController.InputReader.onAttack += characterRollAttack.RollAttack;
             }
         }
 
@@ -26,7 +25,21 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
             {
-                characterRollAttack.onRollAttackFinished -= ChangeToIdle;
+                stateController.InputReader.onAttack -= characterRollAttack.RollAttack;
+                characterRollAttack.FinishRollAttack();
+            }
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
+            {
+                if (characterRollAttack.IsRollAttacking == false)
+                {
+                    ChangeToIdle();
+                }
             }
         }
     }

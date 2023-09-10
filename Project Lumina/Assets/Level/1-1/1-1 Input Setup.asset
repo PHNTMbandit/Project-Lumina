@@ -14,10 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelGraph: {fileID: 11400000, guid: 7dbc62a387fe1db4ea0cc42e1714ae73, type: 2}
   RoomTemplates:
-    CorridorRoomTemplates: []
-    DefaultRoomTemplates: []
+    CorridorRoomTemplates:
+    - {fileID: 3246689559998049252, guid: 238934a685b8417488dd751bc41be6fe, type: 3}
+    - {fileID: 3246689559998049252, guid: 208965a3c863ed74e9b20aed4605c75a, type: 3}
+    DefaultRoomTemplates:
+    - {fileID: 3246689559998049252, guid: 72e4847196f160144a3015fe7e926bdd, type: 3}
+    - {fileID: 3246689559998049252, guid: 939df4d4893f0cd47a4efd1a49a9f852, type: 3}
+    - {fileID: 3246689559998049252, guid: 7138471d3a4333241bf49d9690687f73, type: 3}
+    - {fileID: 3246689559998049252, guid: 44c2149274ef5db439711b88c2ce2886, type: 3}
     EntranceRoomTemplates:
-    - {fileID: 3246689559998049252, guid: 4dd62041b55b0a7449b4a8637862735f, type: 3}
+    - {fileID: 3246689559998049252, guid: 8f495b8c45189cd4f8820573ea594758, type: 3}
     ExitRoomTemplates: []
     ShopRoomTemplates: []
     TeleportRoomTemplates: []

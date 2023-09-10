@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Abilities;
-using UnityEngine;
+﻿using ProjectLumina.Character;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -15,8 +14,8 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
             {
-                characterFallAttack.UseFallAttack();
-                characterFallAttack.onFallAttackFinished = ChangeToFall;
+                characterFallAttack.FallAttack();
+                stateController.InputReader.onAttack += characterFallAttack.FallAttack;
             }
         }
 
@@ -26,7 +25,8 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
             {
-                characterFallAttack.onFallAttackFinished -= ChangeToFall;
+                stateController.InputReader.onAttack -= characterFallAttack.FallAttack;
+                characterFallAttack.FinishFallAttack();
             }
         }
 
@@ -39,6 +39,14 @@ namespace ProjectLumina.Player.StateMachine.States
                 if (characterJump.IsGrounded)
                 {
                     stateController.ChangeState(stateController.GetState("Idle"));
+                }
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterFallAttack characterFallAttack))
+            {
+                if (characterFallAttack.IsFallAttacking == false)
+                {
+                    ChangeToFall();
                 }
             }
         }

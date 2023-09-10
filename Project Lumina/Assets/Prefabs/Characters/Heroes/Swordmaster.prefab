@@ -186,7 +186,7 @@ Transform:
   m_GameObject: {fileID: 1478108500072449347}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.566, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -224,7 +224,7 @@ MonoBehaviour:
   DetectionMode: 0
   Shape: 0
   Circle:
-    Radius: 1
+    Radius: 0.76
   Box:
     HalfExtents: {x: 0.5, y: 0.5}
   Capsule:
@@ -812,7 +812,7 @@ Transform:
   m_GameObject: {fileID: 5450329459321428989}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.031, y: -0.057, z: 0}
+  m_LocalPosition: {x: 0.031, y: 0.086, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -847,7 +847,7 @@ MonoBehaviour:
   Circle:
     Radius: 1
   Box:
-    HalfExtents: {x: 0.2, y: 0.05}
+    HalfExtents: {x: 0.32, y: 0.05}
   Capsule:
     Radius: 0.5
     Height: 1
@@ -855,12 +855,12 @@ MonoBehaviour:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 0.34
+  Length: 0.3
   Direction: {x: 0, y: -1}
   WorldSpace: 0
   DetectsOnLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 1536
   ObstructedByLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1034,7 +1034,7 @@ MonoBehaviour:
   WorldSpace: 0
   DetectsOnLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 512
   ObstructedByLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1264,7 +1264,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.025677681, y: -0.09593427}
+  m_Offset: {x: 0.031699657, y: -0.09593427}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1275,7 +1275,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.39747047, y: 0.18881536}
+  m_Size: {x: 0.3194151, y: 0.18881536}
   m_EdgeRadius: 0
 --- !u!50 &2041146607062771200
 Rigidbody2D:
@@ -1426,8 +1426,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  _currentHealth: 100
+  _maxHealth: 50
+  _currentHealth: 50
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1448,7 +1448,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _maxLevel: 162
   _currentLevel: 1
-  _baseXP: 32
+  _baseXP: 7
   onXPGain:
     m_PersistentCalls:
       m_Calls: []
@@ -1508,7 +1508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c724a419a40fa0046a18768b8a17f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
@@ -1553,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df0f22d52e401504b97a3f81c74f7b3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   Dash: 1
   _dashCharges: 1
   _dashSpeed: 20
@@ -1574,6 +1574,7 @@ MonoBehaviour:
   _maxFallGravitySpeed: -50
   _fallingGravityScale: 1
   _fallingGravityMultiplier: 1.9
+  _sensor: {fileID: 7748382401517197955}
 --- !u!114 &4774242768844332152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1586,7 +1587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ecf0ad249f9640ba55a747628b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
@@ -1695,22 +1696,22 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 10
+    <Damage>k__BackingField: 4
     AttackAnimation: {fileID: 7400000, guid: e6e25ebfc8d83214584a1749ec72b898, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 15
+    <Damage>k__BackingField: 6
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <IsUnlocked>k__BackingField: 0
-    <Damage>k__BackingField: 20
+  - <IsUnlocked>k__BackingField: 1
+    <Damage>k__BackingField: 10
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <IsUnlocked>k__BackingField: 0
-    <Damage>k__BackingField: 5
+  - <IsUnlocked>k__BackingField: 1
+    <Damage>k__BackingField: 8
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
@@ -1760,10 +1761,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad2200e7a863cd14f83ea50b6cb4ab06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   Roll: 1
   _collider: {fileID: 8642475815790382610}
-  _rollSpeed: 7
+  _rollSpeed: 9
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
 --- !u!114 &5987676301644156327
@@ -1778,13 +1779,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963aca35f631eae489db10b7bfd89c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 9
     AttackAnimation: {fileID: 7400000, guid: 1491267b59419d845a9a13d350e095c0, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
+  _rollAttackSpeed: 2
 --- !u!114 &4429014146250662890
 MonoBehaviour:
   m_ObjectHideFlags: 0

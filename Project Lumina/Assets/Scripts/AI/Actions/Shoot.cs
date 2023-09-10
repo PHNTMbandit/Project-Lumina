@@ -1,5 +1,6 @@
 using BehaviorDesigner.Runtime.Tasks;
-using ProjectLumina.Abilities;
+using ProjectLumina.Character;
+using UnityEngine;
 
 namespace ProjectLumina.AI.Conditionals
 {
@@ -7,21 +8,32 @@ namespace ProjectLumina.AI.Conditionals
     public class Shoot : Action
     {
         private CharacterShoot _characterShoot;
+        private bool _isShooting;
 
         public override void OnAwake()
         {
             base.OnAwake();
 
             _characterShoot = GetComponent<CharacterShoot>();
+            _characterShoot.onShootFinished += delegate { _isShooting = true; };
         }
 
-        public override void OnStart()
+        public override TaskStatus OnUpdate()
         {
-            base.OnStart();
-
-            if (_characterShoot.CanShoot())
+            if (_isShooting == false)
             {
-                _characterShoot.UseShoot();
+                if (_characterShoot.CanShoot())
+                {
+                    _characterShoot.UseShoot();
+                }
+
+                return TaskStatus.Running;
+            }
+            else
+            {
+                _isShooting = false;
+
+                return TaskStatus.Success;
             }
         }
     }

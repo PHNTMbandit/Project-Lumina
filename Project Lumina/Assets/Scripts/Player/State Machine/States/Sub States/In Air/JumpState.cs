@@ -1,4 +1,4 @@
-﻿using ProjectLumina.Abilities;
+﻿using ProjectLumina.Character;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States

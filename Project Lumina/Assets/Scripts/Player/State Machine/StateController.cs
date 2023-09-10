@@ -1,4 +1,4 @@
-﻿using ProjectLumina.Abilities;
+﻿using ProjectLumina.Character;
 using ProjectLumina.Player.Input;
 using ProjectLumina.Player.StateMachine.States;
 using System;

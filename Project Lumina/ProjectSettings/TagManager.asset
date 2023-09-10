@@ -12,12 +12,12 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - Interactables
-  - Pickupables
-  - 
-  - 
-  - 
-  - 
+  - Interactable
+  - Pickupable
+  - Wall
+  - Platform
+  - Background
+  - Foreground
   - 
   - 
   - 
@@ -71,7 +71,7 @@ TagManager:
   - name: Foreground
     uniqueID: 2039444603
     locked: 0
-  - name: Walls
+  - name: Wall
     uniqueID: 1376474679
     locked: 0
   - name: UI

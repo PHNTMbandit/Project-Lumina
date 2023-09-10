@@ -1,4 +1,4 @@
-﻿using ProjectLumina.Abilities;
+﻿using ProjectLumina.Character;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
@@ -13,12 +13,10 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter();
 
-            stateController.InputReader.onAttack = TryAttack;
-
             if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
             {
-                characterMeleeAttack.UseMeleeAttack();
-                characterMeleeAttack.onComboFinished = ChangeToIdle;
+                characterMeleeAttack.MeleeAttack();
+                stateController.InputReader.onAttack += characterMeleeAttack.MeleeAttack;
             }
         }
 
@@ -26,11 +24,23 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Exit();
 
-            stateController.InputReader.onAttack -= TryAttack;
+            if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
+            {
+                stateController.InputReader.onAttack -= characterMeleeAttack.MeleeAttack;
+                characterMeleeAttack.FinishMeleeAttack();
+            }
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
 
             if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
             {
-                characterMeleeAttack.onComboFinished -= ChangeToIdle;
+                if (characterMeleeAttack.IsAttacking == false)
+                {
+                    ChangeToIdle();
+                }
             }
         }
 

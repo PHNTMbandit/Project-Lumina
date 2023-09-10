@@ -3,6 +3,7 @@ using UnityEngine.Events;
 
 namespace ProjectLumina.Capabilities
 {
+    [AddComponentMenu("Capabilities/Interactable")]
     public class Interactable : MonoBehaviour
     {
         [field: SerializeField]

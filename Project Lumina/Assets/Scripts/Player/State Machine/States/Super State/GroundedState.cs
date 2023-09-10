@@ -1,4 +1,4 @@
-﻿using ProjectLumina.Abilities;
+﻿using ProjectLumina.Character;
 using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
@@ -17,11 +17,6 @@ namespace ProjectLumina.Player.StateMachine.States
 
             stateController.InputReader.onJump = TryJump;
             stateController.InputReader.onRoll = TryRoll;
-
-            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
-            {
-                characterAerialAttack.ResetAerialAttackCombo();
-            }
 
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
@@ -49,6 +44,10 @@ namespace ProjectLumina.Player.StateMachine.States
                 {
                     stateController.ChangeState(stateController.GetState("Fall"));
                 }
+                else if (characterFall.CanFallThrough() && stateController.InputReader.MoveInput.y <= -0.8f)
+                {
+                    characterFall.StartCoroutine(characterFall.FallThrough());
+                }
             }
         }
 
@@ -56,8 +55,10 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             if (stateController.HasCharacterAbility(out CharacterMeleeAttack characterMeleeAttack))
             {
-                stateController.ChangeState(stateController.GetState("Melee Attack"));
-
+                if (characterMeleeAttack.IsAttacking == false)
+                {
+                    stateController.ChangeState(stateController.GetState("Melee Attack"));
+                }
             }
         }
 
@@ -67,6 +68,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterJump.CanJump())
                 {
+                    Debug.Log(characterJump.CanJump());
                     stateController.ChangeState(stateController.GetState("Jump"));
                 }
             }

@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Abilities;
-using UnityEngine;
+﻿using ProjectLumina.Character;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -13,12 +12,10 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Enter();
 
-            stateController.InputReader.onAttack = TryAttack;
-
             if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
             {
-                characterAerialAttack.UseAerialAttack();
-                characterAerialAttack.onComboFinished = ChangeToFall;
+                characterAerialAttack.AerialAttack();
+                stateController.InputReader.onAttack += characterAerialAttack.AerialAttack;
             }
         }
 
@@ -26,11 +23,10 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             base.Exit();
 
-            stateController.InputReader.onAttack -= TryAttack;
-
             if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
             {
-                characterAerialAttack.onComboFinished -= ChangeToFall;
+                stateController.InputReader.onAttack -= characterAerialAttack.AerialAttack;
+                characterAerialAttack.FinishAerialAttack();
             }
         }
 
@@ -43,6 +39,14 @@ namespace ProjectLumina.Player.StateMachine.States
                 if (characterJump.IsGrounded)
                 {
                     stateController.ChangeState(stateController.GetState("Idle"));
+                }
+            }
+
+            if (stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack))
+            {
+                if (characterAerialAttack.IsAttacking == false)
+                {
+                    ChangeToFall();
                 }
             }
         }
