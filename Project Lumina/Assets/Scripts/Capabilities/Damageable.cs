@@ -1,4 +1,6 @@
+using ProjectLumina.Controllers;
 using ProjectLumina.Data;
+using ProjectLumina.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,6 +27,10 @@ namespace ProjectLumina.Capabilities
             {
                 onDamaged?.Invoke();
             }
+
+            ObjectPoolController.Instance.GetPooledObject("Damage Indicator", transform.position, false)
+                                         .GetComponent<DamageIndicator>()
+                                         .ShowIndicator(damage.ToString(), transform);
         }
 
         public void DestroySelf()
