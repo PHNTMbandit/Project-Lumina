@@ -11,11 +11,14 @@ namespace ProjectLumina.Capabilities
     public class Damageable : MonoBehaviour
     {
         private Health _health;
+        private Canvas _canvas;
+        private UnityEngine.Camera _camera;
 
         public UnityEvent onDamaged;
 
         private void Awake()
         {
+            _camera = UnityEngine.Camera.main;
             _health = GetComponent<Health>();
         }
 
@@ -27,10 +30,6 @@ namespace ProjectLumina.Capabilities
             {
                 onDamaged?.Invoke();
             }
-
-            ObjectPoolController.Instance.GetPooledObject("Damage Indicator", transform.position, false)
-                                         .GetComponent<DamageIndicator>()
-                                         .ShowIndicator(damage.ToString(), transform);
         }
 
         public void DestroySelf()
