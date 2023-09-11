@@ -123,7 +123,6 @@ namespace ProjectLumina.Character
 
         public void Jump()
         {
-            print("jump");
             if (AddForce)
             {
                 _lastGroundedTime = 0f;

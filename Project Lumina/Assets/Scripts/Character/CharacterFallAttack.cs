@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
+using ProjectLumina.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -54,6 +55,9 @@ namespace ProjectLumina.Character
                 damageable.Damage(_currentFallAttack.Damage);
 
                 ObjectPoolController.Instance.GetPooledObject(_currentFallAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
+                ObjectPoolController.Instance.GetPooledObject("Damage Indicator", damageable.transform.position, ObjectPoolController.Instance.transform, true)
+                                             .GetComponent<DamageIndicator>()
+                                             .ShowIndicator(_currentFallAttack.Damage.ToString(), transform.position, damageable.transform.position);
             }
         }
 

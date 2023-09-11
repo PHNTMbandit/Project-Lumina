@@ -17234,6 +17234,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pools:
+  - prefab: {fileID: 6410646736517924247, guid: fc0954492c82167439d16aee6371144d, type: 3}
+    size: 100
   - prefab: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     size: 25
   - prefab: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
@@ -40639,7 +40641,7 @@ GameObject:
   - component: {fileID: 825276821}
   m_Layer: 5
   m_Name: HUD
-  m_TagString: Untagged
+  m_TagString: HUD
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -113467,9 +113469,9 @@ SceneRoots:
   - {fileID: 1525885090}
   - {fileID: 2142240498}
   - {fileID: 873396654}
+  - {fileID: 382680805}
   - {fileID: 1958599767}
   - {fileID: 1015317870}
   - {fileID: 1738069796}
   - {fileID: 853046127}
-  - {fileID: 382680805}
   - {fileID: 1267731885}

@@ -1,4 +1,6 @@
+using ProjectLumina.Controllers;
 using ProjectLumina.Data;
+using ProjectLumina.UI;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,11 +11,14 @@ namespace ProjectLumina.Capabilities
     public class Damageable : MonoBehaviour
     {
         private Health _health;
+        private Canvas _canvas;
+        private UnityEngine.Camera _camera;
 
         public UnityEvent onDamaged;
 
         private void Awake()
         {
+            _camera = UnityEngine.Camera.main;
             _health = GetComponent<Health>();
         }
 
