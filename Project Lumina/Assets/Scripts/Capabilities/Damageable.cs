@@ -24,12 +24,12 @@ namespace ProjectLumina.Capabilities
 
         public void Damage(float damage)
         {
-            _health.ChangeHealth(-damage);
-
             if (_health.CurrentHealth > 0)
             {
                 onDamaged?.Invoke();
             }
+
+            _health.ChangeHealth(-damage);
         }
 
         public void HitStop(float duration)

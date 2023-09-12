@@ -50,10 +50,10 @@ namespace ProjectLumina.Character
         {
             foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.Damage(_currentMeleeAttack.Damage);
                 damageable.HitStop(_currentMeleeAttack.HitStopDuration);
                 damageable.ShowDamageIndicator(_currentMeleeAttack.Damage, transform.position);
                 damageable.ShowHitFX(_currentMeleeAttack.HitFX.name);
+                damageable.Damage(_currentMeleeAttack.Damage);
             }
         }
 
