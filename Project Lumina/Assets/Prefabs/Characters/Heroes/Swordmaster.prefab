@@ -1725,25 +1725,25 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 4
-    <HitStopDuration>k__BackingField: 0.03
+    <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: e6e25ebfc8d83214584a1749ec72b898, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 6
-    <HitStopDuration>k__BackingField: 0.03
+    <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0.03
+    <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0.03
+    <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
