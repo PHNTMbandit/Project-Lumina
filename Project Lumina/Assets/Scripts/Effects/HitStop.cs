@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ProjectLumina.Effects
 {
+    [AddComponentMenu("Effects/Hit Stop")]
     public class HitStop : MonoBehaviour
     {
         private bool _waiting = false;

@@ -1,14 +1,15 @@
-using System;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
+using ProjectLumina.Effects;
 using ProjectLumina.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Character
 {
+    [RequireComponent(typeof(HitStop))]
     [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Melee Attack")]
     public class CharacterMeleeAttack : CharacterAbility
@@ -22,10 +23,12 @@ namespace ProjectLumina.Character
         private bool _canContinueCombo = true;
         private Attack _currentMeleeAttack;
         private Animator _animator;
+        private HitStop _hitStop;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
+            _hitStop = GetComponent<HitStop>();
         }
 
         public void MeleeAttack()
@@ -52,6 +55,8 @@ namespace ProjectLumina.Character
             foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(_currentMeleeAttack.Damage);
+
+                _hitStop.Stop(_currentMeleeAttack.HitStopDuration);
 
                 ObjectPoolController.Instance.GetPooledObject(_currentMeleeAttack.HitFX.name, damageable.transform.position, new Quaternion(0, transform.localScale.x, 0, 0), true);
                 ObjectPoolController.Instance.GetPooledObject("Damage Indicator", damageable.transform.position, ObjectPoolController.Instance.transform, true)
