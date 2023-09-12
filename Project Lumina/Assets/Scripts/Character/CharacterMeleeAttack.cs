@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
@@ -52,11 +51,9 @@ namespace ProjectLumina.Character
             foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(_currentMeleeAttack.Damage);
-
-                ObjectPoolController.Instance.GetPooledObject(_currentMeleeAttack.HitFX.name, damageable.transform.position, new Quaternion(0, transform.localScale.x, 0, 0), true);
-                ObjectPoolController.Instance.GetPooledObject("Damage Indicator", damageable.transform.position, ObjectPoolController.Instance.transform, true)
-                                             .GetComponent<DamageIndicator>()
-                                             .ShowIndicator(_currentMeleeAttack.Damage.ToString(), transform.position, damageable.transform.position);
+                damageable.HitStop(_currentMeleeAttack.HitStopDuration);
+                damageable.ShowDamageIndicator(_currentMeleeAttack.Damage, transform.position);
+                damageable.ShowHitFX(_currentMeleeAttack.HitFX.name);
             }
         }
 

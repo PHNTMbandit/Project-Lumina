@@ -1,9 +1,10 @@
 using System.Collections;
 using UnityEngine;
 
-namespace ProjectLumina.Effects
+namespace ProjectLumina.Capabilities
 {
-    public class HitStop : MonoBehaviour
+    [AddComponentMenu("Capabilities/Hit Stoppable")]
+    public class HitStoppable : MonoBehaviour
     {
         private bool _waiting = false;
 

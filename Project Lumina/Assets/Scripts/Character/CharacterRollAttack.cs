@@ -58,11 +58,9 @@ namespace ProjectLumina.Character
             foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(_currentRollAttack.Damage);
-
-                ObjectPoolController.Instance.GetPooledObject(_currentRollAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
-                ObjectPoolController.Instance.GetPooledObject("Damage Indicator", damageable.transform.position, ObjectPoolController.Instance.transform, true)
-                                             .GetComponent<DamageIndicator>()
-                                             .ShowIndicator(_currentRollAttack.Damage.ToString(), transform.position, damageable.transform.position);
+                damageable.HitStop(_currentRollAttack.HitStopDuration);
+                damageable.ShowDamageIndicator(_currentRollAttack.Damage, transform.position);
+                damageable.ShowHitFX(_currentRollAttack.HitFX.name);
             }
         }
 

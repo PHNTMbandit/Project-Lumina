@@ -490,6 +490,7 @@ GameObject:
   - component: {fileID: 4525009610691105383}
   - component: {fileID: 3228559339102267121}
   - component: {fileID: 2766563775868989475}
+  - component: {fileID: 6081448381402035829}
   - component: {fileID: 7783316659044857216}
   - component: {fileID: 4581091988254112944}
   - component: {fileID: 8913216245909492744}
@@ -713,6 +714,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2766563775868989475}
+        m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3228559339102267121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -762,6 +775,18 @@ MonoBehaviour:
           m_StringArgument: Hit
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6081448381402035829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f795bfbb8485b24e919c6e9a461d758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7783316659044857216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -799,6 +824,7 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 9
+    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8030033580177232402}
@@ -838,6 +864,7 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
+    <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 666ed651a4e3d6842b284f0ddd8512e9, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
     <Sensor>k__BackingField: {fileID: 3657249586278866276}
