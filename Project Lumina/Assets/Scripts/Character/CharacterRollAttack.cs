@@ -57,10 +57,10 @@ namespace ProjectLumina.Character
         {
             foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.Damage(_currentRollAttack.Damage);
                 damageable.HitStop(_currentRollAttack.HitStopDuration);
                 damageable.ShowDamageIndicator(_currentRollAttack.Damage, transform.position);
                 damageable.ShowHitFX(_currentRollAttack.HitFX.name);
+                damageable.Damage(_currentRollAttack.Damage);
             }
         }
 

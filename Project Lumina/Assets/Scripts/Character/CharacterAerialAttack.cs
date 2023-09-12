@@ -68,10 +68,10 @@ namespace ProjectLumina.Character
         {
             foreach (Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.Damage(_currentAerialAttack.Damage);
                 damageable.HitStop(_currentAerialAttack.HitStopDuration);
                 damageable.ShowDamageIndicator(_currentAerialAttack.Damage, transform.position);
                 damageable.ShowHitFX(_currentAerialAttack.HitFX.name);
+                damageable.Damage(_currentAerialAttack.Damage);
 
                 if (SlowStop)
                 {
