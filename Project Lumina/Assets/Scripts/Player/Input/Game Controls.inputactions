@@ -46,7 +46,7 @@
                     "type": "Value",
                     "id": "69628f1d-9f83-42b1-8435-ce8405718f04",
                     "expectedControlType": "Vector2",
-                    "processors": "StickDeadzone",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
                 },
@@ -75,7 +75,7 @@
                     "id": "af1ae1fe-a93c-4a7e-a88b-f36dff94037f",
                     "path": "<Gamepad>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.6)",
                     "groups": "Gamepad",
                     "action": "Move",
                     "isComposite": false,
