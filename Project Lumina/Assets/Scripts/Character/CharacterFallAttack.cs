@@ -2,14 +2,12 @@ using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
-using ProjectLumina.Effects;
 using ProjectLumina.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Character
 {
-    [RequireComponent(typeof(HitStop))]
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Fall Attack")]
@@ -24,12 +22,10 @@ namespace ProjectLumina.Character
         private bool _canContinueCombo;
         private Attack _currentFallAttack;
         private Animator _animator;
-        private HitStop _hitStop;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _hitStop = GetComponent<HitStop>();
         }
 
         public void FallAttack()
@@ -56,13 +52,9 @@ namespace ProjectLumina.Character
             foreach (Damageable damageable in _currentFallAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(_currentFallAttack.Damage);
-
-                _hitStop.Stop(_currentFallAttack.HitStopDuration);
-
-                ObjectPoolController.Instance.GetPooledObject(_currentFallAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
-                ObjectPoolController.Instance.GetPooledObject("Damage Indicator", damageable.transform.position, ObjectPoolController.Instance.transform, true)
-                                             .GetComponent<DamageIndicator>()
-                                             .ShowIndicator(_currentFallAttack.Damage.ToString(), transform.position, damageable.transform.position);
+                damageable.HitStop(_currentFallAttack.HitStopDuration);
+                damageable.ShowDamageIndicator(_currentFallAttack.Damage, transform.position);
+                damageable.ShowHitFX(_currentFallAttack.HitFX.name);
             }
         }
 

@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
-using ProjectLumina.Effects;
 using ProjectLumina.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -10,7 +9,6 @@ using UnityEngine;
 namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Animator))]
-    [RequireComponent(typeof(HitStop))]
     [AddComponentMenu("Character/Character Roll Attack")]
     public class CharacterRollAttack : CharacterAbility
     {
@@ -26,13 +24,11 @@ namespace ProjectLumina.Character
         private bool _canContinueCombo = true;
         private Attack _currentRollAttack;
         private Animator _animator;
-        private HitStop _hitStop;
         private Rigidbody2D _rb;
 
         private void Awake()
         {
             _animator = GetComponent<Animator>();
-            _hitStop = GetComponent<HitStop>();
             _rb = GetComponent<Rigidbody2D>();
         }
 
@@ -62,13 +58,9 @@ namespace ProjectLumina.Character
             foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
                 damageable.Damage(_currentRollAttack.Damage);
-
-                _hitStop.Stop(_currentRollAttack.HitStopDuration);
-
-                ObjectPoolController.Instance.GetPooledObject(_currentRollAttack.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
-                ObjectPoolController.Instance.GetPooledObject("Damage Indicator", damageable.transform.position, ObjectPoolController.Instance.transform, true)
-                                             .GetComponent<DamageIndicator>()
-                                             .ShowIndicator(_currentRollAttack.Damage.ToString(), transform.position, damageable.transform.position);
+                damageable.HitStop(_currentRollAttack.HitStopDuration);
+                damageable.ShowDamageIndicator(_currentRollAttack.Damage, transform.position);
+                damageable.ShowHitFX(_currentRollAttack.HitFX.name);
             }
         }
 

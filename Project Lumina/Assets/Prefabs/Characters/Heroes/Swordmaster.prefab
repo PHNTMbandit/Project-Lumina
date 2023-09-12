@@ -1072,6 +1072,7 @@ GameObject:
   - component: {fileID: 7944689914820168971}
   - component: {fileID: 6872371990101784772}
   - component: {fileID: 5188672235610599560}
+  - component: {fileID: 4671467922048386086}
   - component: {fileID: 792269993774783077}
   - component: {fileID: 1119459725394500653}
   - component: {fileID: 3896303241643222283}
@@ -1091,7 +1092,6 @@ GameObject:
   - component: {fileID: 3504262518790176029}
   - component: {fileID: 6834157492437730684}
   - component: {fileID: 8570051140213536526}
-  - component: {fileID: 4671467922048386086}
   m_Layer: 3
   m_Name: Swordmaster
   m_TagString: Player
@@ -1496,6 +1496,18 @@ MonoBehaviour:
           m_StringArgument: Hit
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4671467922048386086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f795bfbb8485b24e919c6e9a461d758, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &792269993774783077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1525,13 +1537,13 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: 464b6336648434845bf94af978993be0, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 15
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: 9df17107e74be9b47aab1b91d163b340, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
@@ -1606,7 +1618,7 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: ed0e548bd9ea1c8478ec5020e6fdcd58, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 3195123333087440787}
@@ -1713,25 +1725,25 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 4
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: e6e25ebfc8d83214584a1749ec72b898, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 6
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.03
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
@@ -1803,7 +1815,7 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 9
-    <HitStopDuration>k__BackingField: 0.06
+    <HitStopDuration>k__BackingField: 0.07
     AttackAnimation: {fileID: 7400000, guid: 1491267b59419d845a9a13d350e095c0, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
@@ -3402,18 +3414,6 @@ MonoBehaviour:
   m_target: {fileID: 0}
   m_usePlayerSpawnpoint: 1
   m_multiscene: 1
---- !u!114 &4671467922048386086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7857708129487907294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f795bfbb8485b24e919c6e9a461d758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &8569390281608226959
 GameObject:
   m_ObjectHideFlags: 0
