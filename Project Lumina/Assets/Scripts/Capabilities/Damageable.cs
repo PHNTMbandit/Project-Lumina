@@ -11,6 +11,8 @@ namespace ProjectLumina.Capabilities
     [AddComponentMenu("Capabilities/Damageable")]
     public class Damageable : MonoBehaviour
     {
+        public bool IsDamageable { get; private set; } = true;
+
         private Health _health;
         private HitStoppable _hitStoppable;
 
@@ -24,17 +26,24 @@ namespace ProjectLumina.Capabilities
 
         public void Damage(float damage)
         {
-            if (_health.CurrentHealth > 0)
+            if (IsDamageable)
             {
-                onDamaged?.Invoke();
-            }
+                if (_health.CurrentHealth > 0)
+                {
+                    onDamaged?.Invoke();
+                }
+                else
+                {
+                    IsDamageable = false;
+                }
 
-            _health.ChangeHealth(-damage);
+                _health.ChangeHealth(-damage);
+            }
         }
 
         public void HitStop(float duration)
         {
-            if (_health.CurrentHealth > 0)
+            if (IsDamageable)
             {
                 _hitStoppable.Stop(duration);
             }
@@ -42,7 +51,7 @@ namespace ProjectLumina.Capabilities
 
         public void ShowDamageIndicator(float damage, Vector2 origin)
         {
-            if (_health.CurrentHealth > 0)
+            if (IsDamageable)
             {
                 ObjectPoolController.Instance.GetPooledObject("Damage Indicator", transform.position, ObjectPoolController.Instance.transform, true)
                                              .GetComponent<DamageIndicator>()
@@ -52,7 +61,7 @@ namespace ProjectLumina.Capabilities
 
         public void ShowHitFX(string FXName)
         {
-            if (_health.CurrentHealth > 0)
+            if (IsDamageable)
             {
                 ObjectPoolController.Instance.GetPooledObject(FXName, transform.position, new Quaternion(0, transform.localScale.x, 0, 0), true);
             }
@@ -61,6 +70,11 @@ namespace ProjectLumina.Capabilities
         public void DestroySelf()
         {
             Destroy(gameObject);
+        }
+
+        public void SetDamageable(bool isDamageable)
+        {
+            IsDamageable = isDamageable;
         }
     }
 }

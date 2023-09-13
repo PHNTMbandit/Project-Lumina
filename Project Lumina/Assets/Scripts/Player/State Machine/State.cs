@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ProjectLumina.Player.StateMachine
+﻿namespace ProjectLumina.Player.StateMachine
 {
     public abstract class State
     {
@@ -18,11 +16,14 @@ namespace ProjectLumina.Player.StateMachine
         public virtual void Enter()
         {
             stateController.Animator.SetBool(animationStateName, true);
+            stateController.Damageable.onDamaged.AddListener(ChangeToHit);
+
         }
 
         public virtual void Exit()
         {
             stateController.Animator.SetBool(animationStateName, false);
+            stateController.Damageable.onDamaged.RemoveListener(ChangeToHit);
         }
 
         public virtual void LogicUpdate()
@@ -31,6 +32,11 @@ namespace ProjectLumina.Player.StateMachine
 
         public virtual void PhysicsUpdate()
         {
+        }
+
+        protected void ChangeToHit()
+        {
+            stateController.ChangeState("Hit");
         }
     }
 }

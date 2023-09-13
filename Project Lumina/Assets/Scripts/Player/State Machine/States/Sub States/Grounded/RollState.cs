@@ -18,6 +18,16 @@ namespace ProjectLumina.Player.StateMachine.States
             }
         }
 
+        public override void Exit()
+        {
+            base.Exit();
+
+            if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
+            {
+                characterRoll.FinishRoll();
+            }
+        }
+
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -28,7 +38,7 @@ namespace ProjectLumina.Player.StateMachine.States
                 {
                     if (characterRollAttack.IsRollAttacking == false)
                     {
-                        stateController.ChangeState(stateController.GetState("Roll Attack"));
+                        stateController.ChangeState("Roll Attack");
                     }
                 }
             }
@@ -37,7 +47,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterRoll.IsRolling == false)
                 {
-                    stateController.ChangeState(stateController.GetState("Idle"));
+                    stateController.ChangeState("Idle");
                 }
             }
         }

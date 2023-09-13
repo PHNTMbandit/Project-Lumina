@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+using UnityEngine.Events;
 using Debug = UnityEngine.Debug;
 using Random = System.Random;
 
@@ -14,6 +15,7 @@ namespace Edgar.Unity
     /// <typeparam name="TPayload"></typeparam>
     public abstract class LevelGeneratorBase<TPayload> : VersionedMonoBehaviour, ILevelGenerator where TPayload : class
     {
+        public UnityAction onFinishGeneration;
         private readonly Random seedsGenerator = new Random();
 
         protected readonly PipelineRunner<TPayload> PipelineRunner = new PipelineRunner<TPayload>();
@@ -71,10 +73,13 @@ namespace Edgar.Unity
                 {
                 }
             }
-            
+
             yield return payload;
 
             Debug.Log($"--- Level generated in {stopwatch.ElapsedMilliseconds / 1000f:F}s ---");
+
+            onFinishGeneration?.Invoke();
+
         }
 
         protected abstract (List<IPipelineTask<TPayload>> pipelineItems, TPayload payload) GetPipelineItemsAndPayload();

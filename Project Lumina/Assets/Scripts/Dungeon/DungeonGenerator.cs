@@ -13,9 +13,8 @@ namespace ProjectLumina.Dungeon
             if (_generateOnStart)
             {
                 var generator = GetComponent<PlatformerGeneratorGrid2D>();
+                generator.onFinishGeneration += delegate { AstarPath.active.Scan(); };
                 StartCoroutine(generator.GenerateCoroutine());
-
-                AstarPath.active.Scan();
             }
         }
     }

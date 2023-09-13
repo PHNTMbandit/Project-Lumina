@@ -55,9 +55,10 @@ namespace ProjectLumina.Character
         {
             foreach (Damageable damageable in _currentShoot.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
+                damageable.HitStop(_currentShoot.HitStopDuration);
+                damageable.ShowDamageIndicator(_currentShoot.Damage, transform.position);
+                damageable.ShowHitFX(_currentShoot.HitFX.name);
                 damageable.Damage(_currentShoot.Damage);
-
-                ObjectPoolController.Instance.GetPooledObject(_currentShoot.HitFX.name, damageable.transform.position, new Quaternion(transform.localScale.x, 0, 0, 0), false);
             }
         }
 

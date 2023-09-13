@@ -30,7 +30,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterJump.IsGrounded)
                 {
-                    stateController.ChangeState(stateController.GetState("Idle"));
+                    stateController.ChangeState("Idle");
                 }
             }
         }

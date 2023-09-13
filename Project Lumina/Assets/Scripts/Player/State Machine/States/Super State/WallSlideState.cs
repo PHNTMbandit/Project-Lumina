@@ -30,7 +30,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterWallSlide.CanWallSlide == false)
                 {
-                    stateController.ChangeState(stateController.GetState("Fall"));
+                    stateController.ChangeState("Fall");
                 }
             }
 
@@ -38,7 +38,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterJump.IsGrounded)
                 {
-                    stateController.ChangeState(stateController.GetState("Idle"));
+                    stateController.ChangeState("Idle");
                 }
             }
         }
@@ -60,7 +60,7 @@ namespace ProjectLumina.Player.StateMachine.States
                 characterWallSlide.Jump();
             }
 
-            stateController.ChangeState(stateController.GetState("Jump"));
+            stateController.ChangeState("Jump");
         }
     }
 }
