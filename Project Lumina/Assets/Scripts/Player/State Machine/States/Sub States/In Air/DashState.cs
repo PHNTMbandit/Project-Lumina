@@ -26,7 +26,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterDash.IsDashing == false)
                 {
-                    stateController.ChangeState(stateController.GetState("Fall"));
+                    stateController.ChangeState("Fall");
                 }
             }
         }

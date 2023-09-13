@@ -30,7 +30,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (moveInput != 0)
                 {
-                    stateController.ChangeState(stateController.GetState("Move"));
+                    stateController.ChangeState("Move");
                 }
             }
         }

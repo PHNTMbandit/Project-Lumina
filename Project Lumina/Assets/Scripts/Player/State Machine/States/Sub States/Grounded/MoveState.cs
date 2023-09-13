@@ -28,12 +28,12 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (moveInput == 0)
             {
-                stateController.ChangeState(stateController.GetState("Idle"));
+                stateController.ChangeState("Idle");
             }
 
             if (stateController.InputReader.SprintInput)
             {
-                stateController.ChangeState(stateController.GetState("Sprint"));
+                stateController.ChangeState("Sprint");
             }
         }
 

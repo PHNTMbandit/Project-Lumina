@@ -297,7 +297,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
+  m_VertexColorAlwaysGammaSpace: 1
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 1676612647
@@ -528,6 +528,7 @@ GameObject:
   - component: {fileID: 86794948612482693}
   - component: {fileID: 7100732647239430845}
   - component: {fileID: 8926686780049726444}
+  - component: {fileID: 1985241757317275683}
   m_Layer: 3
   m_Name: Interact UI
   m_TagString: Untagged
@@ -684,10 +685,118 @@ MonoBehaviour:
   animationType: 7
   targetType: 15
   forcedTargetType: 0
-  autoPlay: 0
+  autoPlay: 1
   useTargetAsV3: 0
   endValueFloat: 0
   endValueV3: {x: 0, y: 0, z: 0}
+  endValueV2: {x: 0, y: 0}
+  endValueColor: {r: 1, g: 1, b: 1, a: 1}
+  endValueString: 
+  endValueRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 0
+    height: 0
+  endValueTransform: {fileID: 0}
+  optionalBool0: 0
+  optionalBool1: 0
+  optionalFloat0: 0
+  optionalInt0: 0
+  optionalRotationMode: 0
+  optionalScrambleMode: 0
+  optionalShakeRandomnessMode: 0
+  optionalString: 
+--- !u!114 &1985241757317275683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2833440158046621441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0390bd8b8ffd640b34fe25065ff1df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  updateType: 0
+  isSpeedBased: 0
+  hasOnStart: 0
+  hasOnPlay: 0
+  hasOnUpdate: 0
+  hasOnStepComplete: 0
+  hasOnComplete: 0
+  hasOnTweenCreated: 0
+  hasOnRewind: 0
+  onStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onPlay:
+    m_PersistentCalls:
+      m_Calls: []
+  onUpdate:
+    m_PersistentCalls:
+      m_Calls: []
+  onStepComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onComplete:
+    m_PersistentCalls:
+      m_Calls: []
+  onTweenCreated:
+    m_PersistentCalls:
+      m_Calls: []
+  onRewind:
+    m_PersistentCalls:
+      m_Calls: []
+  targetIsSelf: 1
+  targetGO: {fileID: 0}
+  tweenTargetIsTargetGO: 1
+  delay: 0
+  duration: 0.75
+  easeType: 27
+  easeCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  loopType: 0
+  loops: 1
+  id: 
+  isRelative: 1
+  isFrom: 1
+  isIndependentUpdate: 0
+  autoKill: 1
+  autoGenerate: 1
+  isActive: 1
+  isValid: 1
+  target: {fileID: 2481359107659909052}
+  animationType: 1
+  targetType: 5
+  forcedTargetType: 0
+  autoPlay: 1
+  useTargetAsV3: 0
+  endValueFloat: 0
+  endValueV3: {x: 0, y: -0.5, z: 0}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 
@@ -1427,8 +1536,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 50
-  _currentHealth: 50
+  _maxHealth: 30
+  _currentHealth: 30
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1483,19 +1592,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamaged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 276948481718647338}
-        m_TargetAssemblyTypeName: UnityEngine.Animator, UnityEngine
-        m_MethodName: Play
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Hit
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4671467922048386086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1533,7 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c724a419a40fa0046a18768b8a17f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 1
+  <IsUnlocked>k__BackingField: 0
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
@@ -1614,7 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ecf0ad249f9640ba55a747628b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 1
+  <IsUnlocked>k__BackingField: 0
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
@@ -1735,13 +1832,13 @@ MonoBehaviour:
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <IsUnlocked>k__BackingField: 1
+  - <IsUnlocked>k__BackingField: 0
     <Damage>k__BackingField: 10
     <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <IsUnlocked>k__BackingField: 1
+  - <IsUnlocked>k__BackingField: 0
     <Damage>k__BackingField: 8
     <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
@@ -1796,7 +1893,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   Roll: 1
   _collider: {fileID: 8642475815790382610}
-  _rollSpeed: 9
+  _rollSpeed: 6
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
 --- !u!114 &5987676301644156327
@@ -1811,7 +1908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963aca35f631eae489db10b7bfd89c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 1
+  <IsUnlocked>k__BackingField: 0
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 9
@@ -3489,7 +3586,7 @@ MonoBehaviour:
   m_fontColor32:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 0.9999971}
+  m_fontColor: {r: 1, g: 1, b: 1, a: 0.9999538}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

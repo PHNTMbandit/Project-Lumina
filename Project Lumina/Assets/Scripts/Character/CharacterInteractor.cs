@@ -48,11 +48,14 @@ namespace ProjectLumina.Character
         {
             if (IsUnlocked)
             {
-                if (gameObject.TryGetComponent(out Interactable interactable))
+                if (gameObject != null)
                 {
-                    interactable.OnDetected();
+                    if (gameObject.TryGetComponent(out Interactable interactable))
+                    {
+                        interactable.OnDetected();
 
-                    onInteractableDetected?.Invoke(interactable);
+                        onInteractableDetected?.Invoke(interactable);
+                    }
                 }
             }
         }
@@ -61,11 +64,14 @@ namespace ProjectLumina.Character
         {
             if (IsUnlocked)
             {
-                if (gameObject.TryGetComponent(out Interactable interactable))
+                if (gameObject != null)
                 {
-                    interactable.OnLost();
+                    if (gameObject.TryGetComponent(out Interactable interactable))
+                    {
+                        interactable.OnLost();
 
-                    onInteractableLost?.Invoke();
+                        onInteractableLost?.Invoke();
+                    }
                 }
             }
         }

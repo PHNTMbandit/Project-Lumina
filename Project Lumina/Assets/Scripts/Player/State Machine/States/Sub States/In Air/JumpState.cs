@@ -36,7 +36,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterFall.IsFalling())
                 {
-                    stateController.ChangeState(stateController.GetState("Fall"));
+                    stateController.ChangeState("Fall");
                 }
             }
         }

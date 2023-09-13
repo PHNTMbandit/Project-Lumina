@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &-5836606025105261224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ea16b1ad283ad41ba3be4148f1813d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 784, y: -256}
+  Type: 0
+  Outside: 0
+--- !u!114 &-5500475460026330350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ea16b1ad283ad41ba3be4148f1813d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 784, y: -176}
+  Type: 0
+  Outside: 0
 --- !u!114 &-5498783102060538387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15,6 +45,21 @@ MonoBehaviour:
   Position: {x: 336, y: -96}
   Type: 0
   Outside: 0
+--- !u!114 &-4076126804413837940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af1652b97e869144993194b9346d258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -5836606025105261224}
+  To: {fileID: -5500475460026330350}
+  RoomTemplates: []
 --- !u!114 &-3997029628991433773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,6 +89,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   From: {fileID: 1608451156009436913}
   To: {fileID: 9003079952626084630}
+  RoomTemplates: []
+--- !u!114 &-1601709806303676725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af1652b97e869144993194b9346d258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -5500475460026330350}
+  To: {fileID: 353619734985139569}
   RoomTemplates: []
 --- !u!114 &-805598723739556656
 MonoBehaviour:
@@ -78,6 +138,11 @@ MonoBehaviour:
   - {fileID: -3123546234693530166}
   - {fileID: -3997029628991433773}
   - {fileID: 122575359021390365}
+  - {fileID: 8824889946691043842}
+  - {fileID: 3648504822387141092}
+  - {fileID: -4076126804413837940}
+  - {fileID: -1601709806303676725}
+  - {fileID: 4450465533779541562}
   CorridorIndividualRoomTemplates: []
   CorridorRoomTemplateSets: []
   DefaultIndividualRoomTemplates: []
@@ -89,9 +154,14 @@ MonoBehaviour:
   - {fileID: 9003079952626084630}
   - {fileID: 2437106566347575333}
   - {fileID: -5498783102060538387}
+  - {fileID: 3427213117998607785}
+  - {fileID: -5500475460026330350}
+  - {fileID: -5836606025105261224}
+  - {fileID: 353619734985139569}
+  - {fileID: 8860922980500574144}
   EditorData:
-    PanOffset: {x: -86.15772, y: 376.32227}
-    Zoom: 0.90817505
+    PanOffset: {x: 162.72552, y: 385.1233}
+    Zoom: 0.94053173
   RoomType: ProjectLumina.Dungeon.LuminaRoom
   ConnectionType: ProjectLumina.Dungeon.LuminaConnection
   IsDirected: 0
@@ -110,6 +180,21 @@ MonoBehaviour:
   From: {fileID: -5498783102060538387}
   To: {fileID: 2437106566347575333}
   RoomTemplates: []
+--- !u!114 &353619734985139569
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ea16b1ad283ad41ba3be4148f1813d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 672, y: -176}
+  Type: 0
+  Outside: 0
 --- !u!114 &588783985724930882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,6 +255,51 @@ MonoBehaviour:
   From: {fileID: -805598723739556656}
   To: {fileID: 588783985724930882}
   RoomTemplates: []
+--- !u!114 &3427213117998607785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ea16b1ad283ad41ba3be4148f1813d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 448, y: -176}
+  Type: 0
+  Outside: 0
+--- !u!114 &3648504822387141092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af1652b97e869144993194b9346d258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: -5500475460026330350}
+  To: {fileID: 1608451156009436913}
+  RoomTemplates: []
+--- !u!114 &4450465533779541562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af1652b97e869144993194b9346d258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 8860922980500574144}
+  To: {fileID: 2437106566347575333}
+  RoomTemplates: []
 --- !u!114 &6898800989159236096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +315,36 @@ MonoBehaviour:
   From: {fileID: 588783985724930882}
   To: {fileID: 1608451156009436913}
   RoomTemplates: []
+--- !u!114 &8824889946691043842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1af1652b97e869144993194b9346d258, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  From: {fileID: 3427213117998607785}
+  To: {fileID: 2437106566347575333}
+  RoomTemplates: []
+--- !u!114 &8860922980500574144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ea16b1ad283ad41ba3be4148f1813d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 448, y: -16}
+  Type: 0
+  Outside: 0
 --- !u!114 &9003079952626084630
 MonoBehaviour:
   m_ObjectHideFlags: 0

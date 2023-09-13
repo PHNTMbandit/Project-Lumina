@@ -1,4 +1,5 @@
-﻿using ProjectLumina.Character;
+﻿using ProjectLumina.Capabilities;
+using ProjectLumina.Character;
 using ProjectLumina.Player.Input;
 using ProjectLumina.Player.StateMachine.States;
 using System;
@@ -8,6 +9,7 @@ namespace ProjectLumina.Player.StateMachine
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(CharacterMove))]
+    [RequireComponent(typeof(Damageable))]
     [AddComponentMenu("Player/State Controller")]
     public class StateController : MonoBehaviour
     {
@@ -18,6 +20,7 @@ namespace ProjectLumina.Player.StateMachine
 
         public Animator Animator { get; private set; }
         public CharacterAbility[] CharacterAbilities { get; private set; }
+        public Damageable Damageable { get; private set; }
 
         #endregion Properties
 
@@ -39,6 +42,7 @@ namespace ProjectLumina.Player.StateMachine
         {
             Animator = GetComponent<Animator>();
             CharacterAbilities = GetComponents<CharacterAbility>();
+            Damageable = GetComponent<Damageable>();
 
             _states = new State[]
             {
@@ -46,6 +50,7 @@ namespace ProjectLumina.Player.StateMachine
                 new DashState("Dash", "dash", this),
                 new FallState("Fall", "fall", this),
                 new FallAttackState("Fall Attack", "fall attack", this),
+                new HitState("Hit", "hit", this),
                 new IdleState("Idle", "idle", this),
                 new JumpState("Jump", "jump", this),
                 new MeleeAttackState("Melee Attack", "melee attack", this),
@@ -82,8 +87,10 @@ namespace ProjectLumina.Player.StateMachine
             CurrentState.Enter();
         }
 
-        public void ChangeState(State newState)
+        public void ChangeState(string stateName)
         {
+            var newState = GetState(stateName);
+
             if (newState != null)
             {
                 CurrentState.Exit();

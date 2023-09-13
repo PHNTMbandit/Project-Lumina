@@ -30,7 +30,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterWallSlide.CanWallSlide && stateController.InputReader.MoveInput.x != 0)
                 {
-                    stateController.ChangeState(stateController.GetState("Wall Slide"));
+                    stateController.ChangeState("Wall Slide");
                 }
             }
         }
@@ -43,7 +43,7 @@ namespace ProjectLumina.Player.StateMachine.States
                 {
                     if (characterFallAttack.IsFallAttacking == false)
                     {
-                        stateController.ChangeState(stateController.GetState("Fall Attack"));
+                        stateController.ChangeState("Fall Attack");
                     }
                 }
             }
@@ -53,7 +53,7 @@ namespace ProjectLumina.Player.StateMachine.States
                 {
                     if (characterAerialAttack.IsAttacking == false)
                     {
-                        stateController.ChangeState(stateController.GetState("Aerial Attack"));
+                        stateController.ChangeState("Aerial Attack");
                     }
                 }
             }
@@ -65,7 +65,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterDash.CurrentDashCharges > 0)
                 {
-                    stateController.ChangeState(stateController.GetState("Dash"));
+                    stateController.ChangeState("Dash");
                 }
             }
         }
@@ -74,7 +74,7 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             if (stateController.HasCharacterAbility(out CharacterFall characterFall))
             {
-                stateController.ChangeState(stateController.GetState("Fall"));
+                stateController.ChangeState("Fall");
             }
         }
     }

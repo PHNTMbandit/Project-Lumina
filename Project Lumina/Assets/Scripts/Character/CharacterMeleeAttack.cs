@@ -32,17 +32,24 @@ namespace ProjectLumina.Character
             if (_canContinueCombo)
             {
                 _comboIndex++;
+                _currentMeleeAttack = _attackCombos[_comboIndex - 1];
 
-                if (_comboIndex > _attackCombos.Length)
+                if (_currentMeleeAttack.IsUnlocked)
+                {
+                    if (_comboIndex > _attackCombos.Length)
+                    {
+                        _comboIndex = 1;
+                    }
+
+                    _animator.SetTrigger($"melee attack {_comboIndex}");
+
+                    _canContinueCombo = false;
+                    IsAttacking = true;
+                }
+                else
                 {
                     _comboIndex = 1;
                 }
-
-                _currentMeleeAttack = _attackCombos[_comboIndex - 1];
-                _animator.SetTrigger($"melee attack {_comboIndex}");
-
-                _canContinueCombo = false;
-                IsAttacking = true;
             }
         }
 

@@ -1,8 +1,10 @@
+using ProjectLumina.Capabilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Character
 {
+    [RequireComponent(typeof(Damageable))]
     [RequireComponent(typeof(BoxCollider2D))]
     [RequireComponent(typeof(CharacterMove))]
     [RequireComponent(typeof(Rigidbody2D))]
@@ -24,11 +26,13 @@ namespace ProjectLumina.Character
         private float _colliderSizeY, _colliderOffsetY;
 
         private float _defaultColliderOffsetY, _defaultColliderSizeY;
+        private Damageable _damageable;
         private CharacterMove _characterMove;
         private Rigidbody2D _rb;
 
         private void Awake()
         {
+            _damageable = GetComponent<Damageable>();
             _characterMove = GetComponent<CharacterMove>();
             _rb = GetComponent<Rigidbody2D>();
 
@@ -36,9 +40,12 @@ namespace ProjectLumina.Character
             _defaultColliderOffsetY = _collider.offset.y;
         }
 
+
         public void RollCharacter()
         {
             IsRolling = true;
+
+            _damageable.SetDamageable(false);
 
             _collider.size = new Vector2(_collider.size.x, _colliderSizeY);
             _collider.offset = new Vector2(_collider.offset.x, _colliderOffsetY);
@@ -48,6 +55,8 @@ namespace ProjectLumina.Character
         public void FinishRoll()
         {
             IsRolling = false;
+
+            _damageable.SetDamageable(true);
 
             _collider.size = new Vector2(_collider.size.x, _defaultColliderSizeY);
             _collider.offset = new Vector2(_collider.offset.x, _defaultColliderOffsetY);

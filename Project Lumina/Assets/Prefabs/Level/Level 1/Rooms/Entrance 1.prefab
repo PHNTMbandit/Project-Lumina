@@ -5699,8 +5699,6 @@ GameObject:
   - component: {fileID: 2934303068777766701}
   - component: {fileID: 3959927154730209779}
   - component: {fileID: 2501871512482966905}
-  - component: {fileID: 4042092329028021808}
-  - component: {fileID: 5741252409616013044}
   m_Layer: 7
   m_Name: Ancient Tech Portal
   m_TagString: Untagged
@@ -5821,46 +5819,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9113498, y: 4.475978}
   m_EdgeRadius: 0
---- !u!114 &4042092329028021808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5139506157097693470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d17c1df40f2d184581e905e31daf47e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <InteractText>k__BackingField: Use
-  onDetected:
-    m_PersistentCalls:
-      m_Calls: []
-  onInteracted:
-    m_PersistentCalls:
-      m_Calls: []
-  onLost:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5741252409616013044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5139506157097693470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7203074dfbd78bc4fa51314c98bf4720, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_requiredTag: Player
-  m_destinationSceneName: Level 1-1
-  m_spawnpointNameInDestinationScene: 
-  m_onUsePortal:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &7213800097439725978
 GameObject:
   m_ObjectHideFlags: 0

@@ -38,12 +38,14 @@ namespace ProjectLumina.Dungeon
 
                 if (enemySpawnPoints != null)
                 {
-                    foreach (Transform enemySpawnPoint in enemySpawnPoints)
+                    int randomSpawn = UnityEngine.Random.Range(1, enemySpawnPoints.childCount);
+
+                    for (int i = 0; i < randomSpawn; i++)
                     {
                         var enemyPrefab = Enemies[Random.Next(Enemies.Length)];
                         var enemy = Instantiate(enemyPrefab);
                         enemy.transform.parent = roomTemplate.transform;
-                        enemy.transform.position = enemySpawnPoint.position;
+                        enemy.transform.position = enemySpawnPoints.GetChild(i).position;
                     }
                 }
             }

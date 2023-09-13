@@ -42,7 +42,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterFall.IsFalling())
                 {
-                    stateController.ChangeState(stateController.GetState("Fall"));
+                    stateController.ChangeState("Fall");
                 }
                 else if (characterFall.CanFallThrough() && stateController.InputReader.MoveInput.y <= -0.8f)
                 {
@@ -57,7 +57,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterMeleeAttack.IsAttacking == false)
                 {
-                    stateController.ChangeState(stateController.GetState("Melee Attack"));
+                    stateController.ChangeState("Melee Attack");
                 }
             }
         }
@@ -68,7 +68,7 @@ namespace ProjectLumina.Player.StateMachine.States
             {
                 if (characterJump.CanJump())
                 {
-                    stateController.ChangeState(stateController.GetState("Jump"));
+                    stateController.ChangeState("Jump");
                 }
             }
         }
@@ -77,13 +77,13 @@ namespace ProjectLumina.Player.StateMachine.States
         {
             if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
             {
-                stateController.ChangeState(stateController.GetState("Roll"));
+                stateController.ChangeState("Roll");
             }
         }
 
         protected void ChangeToIdle()
         {
-            stateController.ChangeState(stateController.GetState("Idle"));
+            stateController.ChangeState("Idle");
         }
     }
 }
