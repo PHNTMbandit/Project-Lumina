@@ -40,7 +40,6 @@ namespace ProjectLumina.Character
             _defaultColliderOffsetY = _collider.offset.y;
         }
 
-
         public void RollCharacter()
         {
             IsRolling = true;
@@ -60,7 +59,6 @@ namespace ProjectLumina.Character
 
             _collider.size = new Vector2(_collider.size.x, _defaultColliderSizeY);
             _collider.offset = new Vector2(_collider.offset.x, _defaultColliderOffsetY);
-            _rb.velocity = new Vector2(0, 0);
         }
     }
 }
