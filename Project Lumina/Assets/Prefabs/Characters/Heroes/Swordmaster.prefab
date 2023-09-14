@@ -1181,7 +1181,6 @@ GameObject:
   - component: {fileID: 7944689914820168971}
   - component: {fileID: 6872371990101784772}
   - component: {fileID: 5188672235610599560}
-  - component: {fileID: 4671467922048386086}
   - component: {fileID: 792269993774783077}
   - component: {fileID: 1119459725394500653}
   - component: {fileID: 3896303241643222283}
@@ -1197,6 +1196,7 @@ GameObject:
   - component: {fileID: 5987676301644156327}
   - component: {fileID: 4429014146250662890}
   - component: {fileID: 8936565788166426222}
+  - component: {fileID: 1505913605161621145}
   - component: {fileID: 7145477492940236767}
   - component: {fileID: 3504262518790176029}
   - component: {fileID: 6834157492437730684}
@@ -1543,7 +1543,44 @@ MonoBehaviour:
       m_Calls: []
   onZeroHealth:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 792269993774783077}
+        m_TargetAssemblyTypeName: ProjectLumina.Player.StateMachine.StateController,
+          Assembly-CSharp
+        m_MethodName: ChangeState
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Dead
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7857708129487907294}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: set_layer
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 11400000, guid: 0e26745c091a5d54fbd1839ee83cdf2b, type: 2}
+        m_TargetAssemblyTypeName: ProjectLumina.Events.GameEvent, Assembly-CSharp
+        m_MethodName: Trigger
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6872371990101784772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1593,18 +1630,6 @@ MonoBehaviour:
   onDamaged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4671467922048386086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7857708129487907294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f795bfbb8485b24e919c6e9a461d758, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &792269993774783077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,7 +1655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c724a419a40fa0046a18768b8a17f719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
@@ -1711,7 +1736,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ecf0ad249f9640ba55a747628b45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
@@ -1832,13 +1857,13 @@ MonoBehaviour:
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <IsUnlocked>k__BackingField: 0
+  - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
     <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <IsUnlocked>k__BackingField: 0
+  - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
     <HitStopDuration>k__BackingField: 0.045
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
@@ -1908,7 +1933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 963aca35f631eae489db10b7bfd89c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 9
@@ -1947,13 +1972,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029f624239724d4489f0eb9b7d82e6b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 0
+  <IsUnlocked>k__BackingField: 1
   WallSlide: 1
   _wallSlideSpeed: 2
   WallJump: 1
   _wallJumpUpForce: 4
   _wallJumpForce: 40
   _sensor: {fileID: 2053428681226868005}
+--- !u!114 &1505913605161621145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd74873f8d1283448b49f8af71324b54, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7145477492940236767
 MonoBehaviour:
   m_ObjectHideFlags: 0
