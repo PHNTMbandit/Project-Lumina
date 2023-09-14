@@ -18,7 +18,6 @@ MonoBehaviour:
     - {fileID: 3246689559998049252, guid: 238934a685b8417488dd751bc41be6fe, type: 3}
     - {fileID: 3246689559998049252, guid: 208965a3c863ed74e9b20aed4605c75a, type: 3}
     - {fileID: 3246689559998049252, guid: a7c65bb12002c0c4287bf5b388c2696c, type: 3}
-    - {fileID: 3246689559998049252, guid: 226a5faa2d562984f8e2cd1bc919225b, type: 3}
     DefaultRoomTemplates:
     - {fileID: 3246689559998049252, guid: 72e4847196f160144a3015fe7e926bdd, type: 3}
     - {fileID: 3246689559998049252, guid: 939df4d4893f0cd47a4efd1a49a9f852, type: 3}

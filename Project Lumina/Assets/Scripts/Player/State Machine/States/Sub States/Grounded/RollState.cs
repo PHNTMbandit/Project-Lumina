@@ -1,4 +1,5 @@
 ﻿using ProjectLumina.Character;
+using UnityEngine;
 
 namespace ProjectLumina.Player.StateMachine.States
 {
@@ -45,9 +46,12 @@ namespace ProjectLumina.Player.StateMachine.States
 
             if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
             {
-                if (characterRoll.IsRolling == false)
+                if (stateController.InputReader.AttackInput == false)
                 {
-                    stateController.ChangeState("Idle");
+                    if (characterRoll.IsRolling == false)
+                    {
+                        stateController.ChangeState("Idle");
+                    }
                 }
             }
         }

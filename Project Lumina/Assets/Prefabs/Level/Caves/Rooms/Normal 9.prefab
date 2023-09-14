@@ -2839,7 +2839,7 @@ MonoBehaviour:
       Direction: 0
       Socket: {fileID: 0}
     - From: {x: 20, y: -3, z: 0}
-      To: {x: 24, y: -3, z: 0}
+      To: {x: 23, y: -3, z: 0}
       Direction: 0
       Socket: {fileID: 0}
   SimpleDoorModeData:
