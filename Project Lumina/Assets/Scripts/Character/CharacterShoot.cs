@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Controllers;
 using ProjectLumina.Data;
+using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -55,10 +56,25 @@ namespace ProjectLumina.Character
         {
             foreach (Damageable damageable in _currentShoot.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.HitStop(_currentShoot.HitStopDuration);
-                damageable.ShowDamageIndicator(_currentShoot.Damage, transform.position);
-                damageable.ShowHitFX(_currentShoot.HitFX.name);
-                damageable.Damage(_currentShoot.Damage);
+                if (damageable.IsDamageable)
+                {
+                    damageable.Damage(_currentShoot.Damage);
+
+                    if (damageable.TryGetComponent(out HitFX hitFX))
+                    {
+                        hitFX.ShowHitFX(_currentShoot.HitFX.name);
+                    }
+
+                    if (damageable.TryGetComponent(out HitStop hitStop))
+                    {
+                        hitStop.Stop(_currentShoot.HitStopDuration);
+                    }
+
+                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
+                    {
+                        damageIndicator.ShowDamageIndicator(_currentShoot.Damage, transform.position);
+                    }
+                }
             }
         }
 

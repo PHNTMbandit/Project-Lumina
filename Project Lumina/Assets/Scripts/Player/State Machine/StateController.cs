@@ -48,6 +48,7 @@ namespace ProjectLumina.Player.StateMachine
             {
                 new AerialAttackState("Aerial Attack", "aerial attack", this),
                 new DashState("Dash", "dash", this),
+                new DeadState("Dead", "dead", this),
                 new FallState("Fall", "fall", this),
                 new FallAttackState("Fall Attack", "fall attack", this),
                 new HitState("Hit", "hit", this),

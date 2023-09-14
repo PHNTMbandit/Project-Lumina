@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Data;
+using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -68,14 +69,29 @@ namespace ProjectLumina.Character
         {
             foreach (Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                damageable.HitStop(_currentAerialAttack.HitStopDuration);
-                damageable.ShowDamageIndicator(_currentAerialAttack.Damage, transform.position);
-                damageable.ShowHitFX(_currentAerialAttack.HitFX.name);
-                damageable.Damage(_currentAerialAttack.Damage);
-
-                if (SlowStop)
+                if (damageable.IsDamageable)
                 {
-                    StartCoroutine(StartSlowStop());
+                    damageable.Damage(_currentAerialAttack.Damage);
+
+                    if (damageable.TryGetComponent(out HitFX hitFX))
+                    {
+                        hitFX.ShowHitFX(_currentAerialAttack.HitFX.name);
+                    }
+
+                    if (damageable.TryGetComponent(out HitStop hitStop))
+                    {
+                        hitStop.Stop(_currentAerialAttack.HitStopDuration);
+                    }
+
+                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
+                    {
+                        damageIndicator.ShowDamageIndicator(_currentAerialAttack.Damage, transform.position);
+                    }
+
+                    if (SlowStop)
+                    {
+                        StartCoroutine(StartSlowStop());
+                    }
                 }
             }
         }

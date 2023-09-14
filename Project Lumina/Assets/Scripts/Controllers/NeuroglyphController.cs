@@ -18,13 +18,13 @@ namespace ProjectLumina.Neuroglyphs
         [BoxGroup("UI"), SerializeField]
         private UIPanel _neuroglyphSelectionScreen;
 
-        [BoxGroup("Settings"), SerializeField]
+        [BoxGroup("Settings"), Range(1, 5), SerializeField]
         private int _neuroglyphSelectionAmount;
 
         [BoxGroup("Neuroglyphs"), TableList, SerializeField]
         private Neuroglyph[] _availableNeuroglyphs;
 
-        [BoxGroup("References"), SerializeField]
+        [FoldoutGroup("References"), SerializeField]
         private CharacterNeuroglyphs _characterNeuroglyphs;
 
         private readonly NeuroglyphFactory _factory = new();
