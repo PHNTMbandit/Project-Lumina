@@ -1152,7 +1152,7 @@ namespace PixelCrushers.DialogueSystem.ArcweaveSupport
         protected static Regex BlockRegex = new Regex(@"<p[^>]*>|</p>|<blockquote[^>]*>|</blockquote>|<span[^>]*>|</span>");
         protected static Regex CodeStartRegex = new Regex(@"<pre[^>]*><code>");
         protected static Regex CodeEndRegex = new Regex(@"</code></pre>");
-        protected static Regex IdentifierRegex = new Regex(@"(?<![^\s+!*/-])\w+(?![^\s+*/-])");
+        protected static Regex IdentifierRegex = new Regex(@"(?<![^\s+,(!*/-])\w+(?![^\s)+,*/-])");
         protected static Regex IncrementorRegex = new Regex(@"\+=|\-=");
         protected static Regex VisitsRegex = new Regex(@"visits\(<[^\)]+\)");
         protected static List<string> ReservedKeywords = new List<string>("if|elseif|else|endif|is|not|and|or|true|false|abs|sqr|sqrt|random|reset|resetAll|roll|show|visits".Split('|'));

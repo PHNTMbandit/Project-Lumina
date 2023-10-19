@@ -1,12 +1,10 @@
-// Recompile at 30/08/2023 7:53:48 PM
-// Copyright (c) Pixel Crushers. All rights reserved.
+﻿// Copyright (c) Pixel Crushers. All rights reserved.
 
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 namespace PixelCrushers.DialogueSystem
 {
@@ -185,7 +183,21 @@ namespace PixelCrushers.DialogueSystem
                     return;
                 }
             }
+            CheckForBlankResponses(responses);
             ShowResponsesNow(subtitle, responses, target);
+        }
+
+        private void CheckForBlankResponses(Response[] responses)
+        {
+            if (!DialogueDebug.logWarnings) return;
+            if (responses == null) return;
+            foreach (Response response in responses)
+            {
+                if (string.IsNullOrEmpty(response.formattedText.text))
+                {
+                    Debug.LogWarning($"Dialogue System: Response [{response.destinationEntry.conversationID}:{response.destinationEntry.id}] has no text for a response button.");
+                }
+            }
         }
 
         protected virtual void ShowResponsesNow(Subtitle subtitle, Response[] responses, Transform target)
@@ -674,9 +686,9 @@ namespace PixelCrushers.DialogueSystem
                     methodInfo.Invoke(button, new object[] { 3, true }); // 3 = SelectionState.Selected
                 }
             }
-            if (EventSystem.current != null)
+            if (eventSystem != null)
             {
-                var inputModule = EventSystem.current.GetComponent<PointerInputModule>();
+                var inputModule = eventSystem.GetComponent<UnityEngine.EventSystems.PointerInputModule>();
                 if (inputModule != null) inputModule.enabled = value;
             }
             UIButtonKeyTrigger.monitorInput = value;

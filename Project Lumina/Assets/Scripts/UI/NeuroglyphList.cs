@@ -34,6 +34,7 @@ namespace ProjectLumina.UI
             {
                 NeuroglyphButton button = Instantiate(_templateNeuroglyphIcon.gameObject, _transform).GetComponent<NeuroglyphButton>();
                 button.gameObject.SetActive(true);
+
                 button.SetIcon(neuroglyph.Icon);
                 button.SetDescription(neuroglyph.Description);
                 button.SetName(neuroglyph.NeuroglyphName);

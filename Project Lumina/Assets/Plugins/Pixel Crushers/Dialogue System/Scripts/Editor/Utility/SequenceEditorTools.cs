@@ -493,6 +493,13 @@ namespace PixelCrushers.DialogueSystem
                     foreach (var type in assembly.GetTypes().Where(t => typeof(PixelCrushers.DialogueSystem.SequencerCommands.SequencerCommand).IsAssignableFrom(t)))
                     {
                         var commandName = type.Name.Substring("SequencerCommand".Length);
+
+                        var attr = Attribute.GetCustomAttribute(type, typeof(SequencerCommandGroupAttribute)) as SequencerCommandGroupAttribute;
+                        if (attr != null && !string.IsNullOrEmpty(attr.submenu))
+                        {
+                            menu.AddItem(new GUIContent(attr.submenu + "/" + commandName), false, StartSequencerCommand, commandName);
+                        }
+
                         list.Add(commandName);
                     }
                 }
