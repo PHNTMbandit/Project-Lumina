@@ -1,45 +1,30 @@
 using System.Collections.Generic;
 using ProjectLumina.Character;
 using ProjectLumina.Factories;
-using ProjectLumina.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.Neuroglyphs
 {
-    public class NeuroglyphController : MonoBehaviour
+    [CreateAssetMenu(fileName = "Neuroglyph Controller", menuName = "Project Lumina/Controllers/Neuroglyph", order = 0)]
+    public class NeuroglyphController : ScriptableObject
     {
-        [BoxGroup("UI"), SerializeField]
-        private Sprite[] _tierSprites;
-
-        [BoxGroup("UI"), SerializeField]
-        private NeuroglyphList _neuroglyphList;
-
-        [BoxGroup("UI"), SerializeField]
-        private UIPanel _neuroglyphSelectionScreen;
+        [BoxGroup("Neuroglyphs"), TableList, SerializeField]
+        private Neuroglyph[] _availableNeuroglyphs;
 
         [BoxGroup("Settings"), Range(1, 5), SerializeField]
         private int _neuroglyphSelectionAmount;
 
-        [BoxGroup("Neuroglyphs"), TableList, SerializeField]
-        private Neuroglyph[] _availableNeuroglyphs;
-
-        [FoldoutGroup("References"), SerializeField]
-        private CharacterNeuroglyphs _characterNeuroglyphs;
+        [BoxGroup("UI"), PreviewField, SerializeField]
+        private Sprite[] _tierSprites;
 
         private readonly NeuroglyphFactory _factory = new();
 
-        public void ShowNeuroglyphSelectionScreen()
-        {
-            _neuroglyphList.GenerateList(GetNeuroglyphs(_neuroglyphSelectionAmount));
-            _neuroglyphSelectionScreen.Open();
-        }
-
-        public Neuroglyph[] GetNeuroglyphs(int amount)
+        public Neuroglyph[] GetNeuroglyphs(CharacterNeuroglyphs characterNeuroglyphs)
         {
             List<Neuroglyph> neuroglyphs = new();
 
-            for (int i = 0; i < amount; i++)
+            for (int i = 0; i < _neuroglyphSelectionAmount; i++)
             {
                 Neuroglyph randomNeuroglyph = _factory.GetNeuroglyph(_availableNeuroglyphs[Random.Range(0, _availableNeuroglyphs.Length)]);
 
@@ -49,9 +34,9 @@ namespace ProjectLumina.Neuroglyphs
 
                     continue;
                 }
-                else if (_characterNeuroglyphs.HasNeuroglyph(randomNeuroglyph))
+                else if (characterNeuroglyphs.HasNeuroglyph(randomNeuroglyph))
                 {
-                    randomNeuroglyph.Upgrade((int)_characterNeuroglyphs.GetSlot(randomNeuroglyph).Neuroglyph.CurrentTierLevel + 1);
+                    randomNeuroglyph.Upgrade((int)characterNeuroglyphs.GetSlot(randomNeuroglyph).Neuroglyph.CurrentTierLevel + 1);
                     neuroglyphs.Add(randomNeuroglyph);
                 }
                 else

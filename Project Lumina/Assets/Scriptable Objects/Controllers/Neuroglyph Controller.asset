@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b85393bba6384245bd9fffd28c7dd58, type: 3}
+  m_Name: Neuroglyph Controller
+  m_EditorClassIdentifier: 
+  _availableNeuroglyphs:
+  - {fileID: 11400000, guid: 21c0522408c28b548ab53c620de4929a, type: 2}
+  _neuroglyphSelectionAmount: 1
+  _tierSprites:
+  - {fileID: 1317372690, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: -596296207, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: -1177695294, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: -401526693, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: 915479356, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: -41298851, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: -1864025435, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: 44162558, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: -40981633, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
+  - {fileID: 1581185809, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
