@@ -14,19 +14,31 @@ namespace ProjectLumina.Neuroglyphs.Components
         [Range(0, 100), SuffixLabel("%"), SerializeField]
         private float _afflictionChance;
 
-        public override void Activate(GameObject target)
+        public override void Activate(GameObject user)
+        {
+            if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
+            {
+                meleeAttack.onHit += TryApplyStatusEffect;
+            }
+        }
+
+        public override void Deactivate(GameObject user)
+        {
+            if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
+            {
+                meleeAttack.onHit -= TryApplyStatusEffect;
+            }
+        }
+
+        private void TryApplyStatusEffect(GameObject target)
         {
             if (target.TryGetComponent(out CharacterStatusEffects characterStatusEffects))
             {
-                if (Random.Range(0, 100) > _afflictionChance)
+                if (Random.Range(0, 100) < _afflictionChance)
                 {
                     characterStatusEffects.AddStatusEffect(_statusEffect);
                 }
             }
-        }
-
-        public override void Deactivate(GameObject target)
-        {
         }
     }
 }

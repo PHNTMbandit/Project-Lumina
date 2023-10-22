@@ -37,19 +37,19 @@ namespace ProjectLumina.Neuroglyphs
         [SerializeField, TableList(AlwaysExpanded = true)]
         private NeuroglyphTier[] _neuroglyphTierEffects = new NeuroglyphTier[9];
 
-        public virtual void Apply(GameObject target)
+        public virtual void Apply(GameObject user)
         {
             foreach (NeuroglyphComponent statusEffect in GetCurrentTier().tierEffects)
             {
-                statusEffect.Activate(target);
+                statusEffect.Activate(user);
             }
         }
 
-        public virtual void Revert(GameObject target)
+        public virtual void Revert(GameObject user)
         {
             foreach (NeuroglyphComponent statusEffect in GetCurrentTier().tierEffects)
             {
-                statusEffect.Deactivate(target);
+                statusEffect.Deactivate(user);
             }
         }
 

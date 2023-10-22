@@ -1,44 +1,49 @@
 using System.Collections.Generic;
 using ProjectLumina.Data.StatusEffects;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
+    [AddComponentMenu("Character/Character Status Effects")]
     public class CharacterStatusEffects : MonoBehaviour
     {
-        [SerializeField]
-        private List<StatusEffect> _statusEffects;
+        [field: SerializeField]
+        public List<StatusEffect> StatusEffects { get; private set; }
+
+        public UnityAction onStatusEffectsChanged;
 
         private void Update()
         {
-            if (_statusEffects.Count > 0)
+            if (StatusEffects.Count > 0)
             {
-                for (int i = 0; i < _statusEffects.Count; i++)
+                for (int i = 0; i < StatusEffects.Count; i++)
                 {
-                    _statusEffects[i].UpdateStatusEffect();
+                    StatusEffects[i].UpdateStatusEffect();
                 }
             }
         }
 
         public void AddStatusEffect(StatusEffect statusEffect)
         {
-            if (!_statusEffects.Contains(statusEffect))
+            if (!StatusEffects.Contains(statusEffect))
             {
-                statusEffect.onStatusEffectDeactivated += RemoveStatusEffect;
-                _statusEffects.Add(statusEffect);
+                statusEffect.onStatusEffectTimerEnd += RemoveStatusEffect;
+                StatusEffects.Add(statusEffect);
+
+                onStatusEffectsChanged?.Invoke();
             }
 
-            _statusEffects.Find(i => i.StatusEffectName == statusEffect.StatusEffectName).ActivateStatusEffect(gameObject);
+            StatusEffects.Find(i => i.StatusEffectName == statusEffect.StatusEffectName).AddStatusEffect(gameObject);
         }
 
         public void RemoveStatusEffect(StatusEffect statusEffect)
         {
-            _statusEffects.Find(i => i.StatusEffectName == statusEffect.StatusEffectName).DeactivateStatusEffect();
-
-            if (_statusEffects.Contains(statusEffect))
+            if (StatusEffects.Contains(statusEffect))
             {
-                statusEffect.onStatusEffectDeactivated -= RemoveStatusEffect;
-                _statusEffects.Remove(statusEffect);
+                StatusEffects.Remove(statusEffect);
+
+                onStatusEffectsChanged?.Invoke();
             }
         }
     }

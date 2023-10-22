@@ -4,7 +4,7 @@ namespace ProjectLumina.Neuroglyphs.Components
 {
     public abstract class NeuroglyphComponent : ScriptableObject
     {
-        public abstract void Activate(GameObject target);
-        public abstract void Deactivate(GameObject target);
+        public abstract void Activate(GameObject user);
+        public abstract void Deactivate(GameObject user);
     }
 }

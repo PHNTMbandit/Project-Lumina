@@ -11,17 +11,17 @@ namespace ProjectLumina.Neuroglyphs.Components
         [Range(-100, 100), SuffixLabel("%"), SerializeField]
         private float _moveSpeedModifier;
 
-        public override void Activate(GameObject target)
+        public override void Activate(GameObject user)
         {
-            if (target.TryGetComponent(out CharacterMove characterMove))
+            if (user.TryGetComponent(out CharacterMove characterMove))
             {
                 characterMove.MoveSpeed.AddModifier(new PercentageStatModifier(_moveSpeedModifier));
             }
         }
 
-        public override void Deactivate(GameObject target)
+        public override void Deactivate(GameObject user)
         {
-            if (target.TryGetComponent(out CharacterMove characterMove))
+            if (user.TryGetComponent(out CharacterMove characterMove))
             {
                 characterMove.MoveSpeed.ClearModifiers();
             }

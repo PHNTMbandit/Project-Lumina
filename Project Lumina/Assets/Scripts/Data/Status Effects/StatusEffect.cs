@@ -1,13 +1,20 @@
-using System.Linq;
+using ProjectLumina.Capabilities;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace ProjectLumina.Data.StatusEffects
 {
-    [CreateAssetMenu(fileName = "New Status Effect", menuName = "Project Lumina/Status Effects/Status Effect", order = 0)]
-    public class StatusEffect : ScriptableObject
+    public abstract class StatusEffect : ScriptableObject
     {
+        public float StackTimer { get; private set; }
+
+        public int CurrentStack
+        {
+            get => _currentStacks;
+            set => _currentStacks = value <= 0 ? 0 : value >= _maxStacks ? _maxStacks : value;
+        }
+
         [field: TabGroup("Details"), PreviewField(Alignment = ObjectFieldAlignment.Left), SerializeField]
         public Sprite Icon { get; private set; }
 
@@ -17,40 +24,61 @@ namespace ProjectLumina.Data.StatusEffects
         [field: TabGroup("Details"), TextArea, SerializeField]
         public string Description { get; private set; }
 
-        [TabGroup("Components"), ShowInInspector, SerializeField]
-        private StatusEffectComponent[] _components;
+        [TabGroup("Stats"), Range(0, 10), SerializeField]
+        private float _damage, _duration;
 
-        public UnityAction<StatusEffect> onStatusEffectDeactivated;
+        [TabGroup("Stats"), Range(0, 10), SerializeField]
+        private int _maxStacks = 10;
 
-        public void ActivateStatusEffect(GameObject target)
+        [TabGroup("Stats"), Range(0, 10), SerializeField]
+        private float _tickInterval = 1.0f;
+
+        protected Stat damage;
+        protected Damageable target;
+        private int _currentStacks = 0;
+        private float _timeSinceLastTick;
+
+        public UnityAction<StatusEffect> onStatusEffectTimerEnd;
+
+        protected abstract void ActivateStatusEffect();
+
+        public void AddStatusEffect(GameObject target)
         {
-            for (int i = 0; i < _components.Length; i++)
+            CurrentStack++;
+            _timeSinceLastTick = 0;
+            StackTimer = _duration;
+            damage = new(_damage * _currentStacks);
+
+            if (target.TryGetComponent(out Damageable damageable))
             {
-                _components[i].ApplyEffect(target);
+                this.target = damageable;
             }
         }
 
         public void UpdateStatusEffect()
         {
-            for (int i = 0; i < _components.Length; i++)
+            _timeSinceLastTick += Time.deltaTime;
+
+            if (_timeSinceLastTick >= _tickInterval)
             {
-                _components[i].UpdateEffect();
+                _timeSinceLastTick = 0;
+
+                ActivateStatusEffect();
             }
 
-            if (_components.All(i => i.IsRunning() == false))
-            {
-                DeactivateStatusEffect();
-            }
-        }
+            StackTimer -= Time.deltaTime;
 
-        public void DeactivateStatusEffect()
-        {
-            for (int i = 0; i < _components.Length; i++)
+            if (StackTimer <= 0)
             {
-                _components[i].RemoveEffect();
-            }
+                CurrentStack--;
+                damage = new(_damage / _currentStacks);
+                StackTimer = _duration;
 
-            onStatusEffectDeactivated?.Invoke(this);
+                if (CurrentStack <= 0)
+                {
+                    onStatusEffectTimerEnd?.Invoke(this);
+                }
+            }
         }
     }
 }

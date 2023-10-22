@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60e07dfb778b1954988f1f9bd92f87e6, type: 3}
   m_Name: Apply Poison Component Tier 1
   m_EditorClassIdentifier: 
-  _slowTimeAmount: 0.037
-  _slowTimerSeconds: 0
+  _statusEffect: {fileID: 11400000, guid: 03f00fe505f366d4f8d3972aab978992, type: 2}
+  _afflictionChance: 100

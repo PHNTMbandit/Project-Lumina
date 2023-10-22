@@ -11,23 +11,22 @@ namespace ProjectLumina.Neuroglyphs.Components
         [Range(0, 1), SerializeField]
         private float _slowTimeAmount;
 
-
         [Range(0, 1000), SuffixLabel("seconds"), SerializeField]
         private float _slowTimerSeconds;
 
         private bool _waiting = false;
 
-        public override void Activate(GameObject target)
+        public override void Activate(GameObject user)
         {
-            if (target.TryGetComponent(out CharacterRoll roll))
+            if (user.TryGetComponent(out CharacterRoll roll))
             {
                 Stop(roll, _slowTimerSeconds);
             }
         }
 
-        public override void Deactivate(GameObject target)
+        public override void Deactivate(GameObject user)
         {
-            if (target.TryGetComponent(out CharacterRoll roll))
+            if (user.TryGetComponent(out CharacterRoll roll))
             {
                 roll.StopCoroutine(Wait(_slowTimerSeconds));
             }
