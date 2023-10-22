@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Linq;
 using ProjectLumina.Data;
 using ProjectLumina.Neuroglyphs;
-using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -11,11 +9,8 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Neuroglyphs")]
     public class CharacterNeuroglyphs : MonoBehaviour
     {
-        [Range(0, 25), SerializeField]
-        private int _maximumSlots;
-
-        [RequiredListLength("@this._maximumSlots"), SerializeField]
-        private List<NeuroglyphSlot> _neuroglyphSlots;
+        [SerializeField]
+        private NeuroglyphSlot[] _neuroglyphSlots;
 
         public UnityAction onNeuroglyphListRefresh;
 

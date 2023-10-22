@@ -10,33 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b43c6d8b94c48d546b72879050922c90, type: 3}
-  m_Name: Slow
+  m_Name: Poison Strike Neuroglyph
   m_EditorClassIdentifier: 
   <NeuroglyphID>k__BackingField: 0
-  <Icon>k__BackingField: {fileID: -906629354, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
-  <NeuroglyphName>k__BackingField: Slow
-  <Description>k__BackingField: Slows down time on a perfect dodge
+  <Icon>k__BackingField: {fileID: -1174443677, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
+  <NeuroglyphName>k__BackingField: Poison Strike
+  <Description>k__BackingField: Has change to apply poison on hit
   <NeuroglyphType>k__BackingField: 0
   <CurrentTierLevel>k__BackingField: 0
   _neuroglyphTierEffects:
   - tierLevel: 0
+    tierEffects:
+    - {fileID: 11400000, guid: a17776e6744dd6d47be513e0098545c2, type: 2}
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 1
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 2
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 3
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 4
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 5
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 6
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 7
+  - tierLevel: 0
     tierEffects: []
-  - tierLevel: 8
-    tierEffects: []
-  references:
-    version: 2
-    RefIds: []

@@ -4,6 +4,7 @@ using ProjectLumina.Data;
 using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
@@ -20,6 +21,8 @@ namespace ProjectLumina.Character
         private bool _canContinueCombo = true;
         private Attack _currentMeleeAttack;
         private Animator _animator;
+
+        public UnityAction<GameObject> onHit;
 
         private void Awake()
         {
@@ -74,6 +77,8 @@ namespace ProjectLumina.Character
                     {
                         damageIndicator.ShowDamageIndicator(_currentMeleeAttack.Damage, transform.position);
                     }
+
+                    onHit?.Invoke(damageable.gameObject);
                 }
             }
         }

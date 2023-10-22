@@ -1,4 +1,6 @@
 using System;
+using ProjectLumina.Interfaces;
+using ProjectLumina.Neuroglyphs.Components;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -11,7 +13,7 @@ namespace ProjectLumina.Neuroglyphs
         Hex,
     }
 
-    [CreateAssetMenu(fileName = "New Neuroglyph", menuName = "Project Lumina/Neuroglyph", order = 3)]
+    [CreateAssetMenu(fileName = "New Neuroglyph", menuName = "Project Lumina/Neuroglyphs/Neuroglyph", order = 3)]
     public class Neuroglyph : ScriptableObject
     {
         [field: SerializeField, Range(0, 35)]
@@ -32,22 +34,22 @@ namespace ProjectLumina.Neuroglyphs
         [field: SerializeField, EnumToggleButtons]
         public NeuroglyphTierLevel CurrentTierLevel { get; private set; }
 
-        [SerializeField, HideLabel, TableList(AlwaysExpanded = true)]
+        [SerializeField, TableList(AlwaysExpanded = true)]
         private NeuroglyphTier[] _neuroglyphTierEffects = new NeuroglyphTier[9];
 
-        public virtual void Apply(GameObject target)
+        public virtual void Apply(GameObject user)
         {
-            foreach (INeuroglyphStrategy statusEffect in GetCurrentTier().tierEffects)
+            foreach (NeuroglyphComponent statusEffect in GetCurrentTier().tierEffects)
             {
-                statusEffect.Activate(target);
+                statusEffect.Activate(user);
             }
         }
 
-        public virtual void Revert(GameObject target)
+        public virtual void Revert(GameObject user)
         {
-            foreach (INeuroglyphStrategy statusEffect in GetCurrentTier().tierEffects)
+            foreach (NeuroglyphComponent statusEffect in GetCurrentTier().tierEffects)
             {
-                statusEffect.Deactivate(target);
+                statusEffect.Deactivate(user);
             }
         }
 

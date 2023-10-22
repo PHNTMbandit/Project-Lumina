@@ -14,7 +14,7 @@ namespace ProjectLumina.Data
         [field: Range(0, 100), SerializeField]
         public float Damage { get; private set; }
 
-        [field: Range(0, 1), SerializeField]
+        [field: Range(0, 0.1f), SerializeField]
         public float HitStopDuration { get; private set; }
 
         [field: SerializeField]

@@ -26,14 +26,15 @@ namespace ProjectLumina.UI
             _templateNeuroglyphIcon.gameObject.SetActive(false);
         }
 
-        public void GenerateList(Neuroglyph[] neuroglyphs)
+        public void GenerateList()
         {
             ResetList();
 
-            foreach (Neuroglyph neuroglyph in neuroglyphs)
+            foreach (Neuroglyph neuroglyph in _controller.GetNeuroglyphs(_characterNeuroglyphs))
             {
                 NeuroglyphButton button = Instantiate(_templateNeuroglyphIcon.gameObject, _transform).GetComponent<NeuroglyphButton>();
                 button.gameObject.SetActive(true);
+
                 button.SetIcon(neuroglyph.Icon);
                 button.SetDescription(neuroglyph.Description);
                 button.SetName(neuroglyph.NeuroglyphName);

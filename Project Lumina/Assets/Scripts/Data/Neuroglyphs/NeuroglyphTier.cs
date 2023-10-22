@@ -1,6 +1,6 @@
 using System;
+using ProjectLumina.Neuroglyphs.Components;
 using Sirenix.OdinInspector;
-using UnityEngine;
 
 namespace ProjectLumina.Neuroglyphs
 {
@@ -24,7 +24,6 @@ namespace ProjectLumina.Neuroglyphs
         [EnumPaging]
         public NeuroglyphTierLevel tierLevel;
 
-        [SerializeReference]
-        public INeuroglyphStrategy[] tierEffects;
+        public NeuroglyphComponent[] tierEffects;
     }
 }

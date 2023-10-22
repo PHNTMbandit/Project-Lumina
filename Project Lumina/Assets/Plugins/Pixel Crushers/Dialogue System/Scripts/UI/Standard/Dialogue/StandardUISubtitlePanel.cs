@@ -537,7 +537,7 @@ namespace PixelCrushers.DialogueSystem
         /// <param name="allowStealFocus">Select continue button even if another element is already selected.</param>
         public virtual void Select(bool allowStealFocus = true)
         {
-            UITools.Select(continueButton, allowStealFocus);
+            UITools.Select(continueButton, allowStealFocus, eventSystem);
         }
 
         /// <summary>
@@ -650,6 +650,13 @@ namespace PixelCrushers.DialogueSystem
             textField.color = (formattedText.emphases != null && formattedText.emphases.Length > 0) ? formattedText.emphases[0].color : originalColor;
         }
 
+        public virtual void SetPortraitName(string actorName)
+        {
+            if (portraitName == null) return;
+            portraitName.gameObject.SetActive(!string.IsNullOrEmpty(actorName));
+            portraitName.text = actorName;
+        }
+
         public virtual void SetActorPortraitSprite(string actorName, Sprite portraitSprite)
         {
             if (portraitImage == null) return;
@@ -657,7 +664,7 @@ namespace PixelCrushers.DialogueSystem
             SetPortraitImage(sprite);
         }
 
-        protected virtual void SetPortraitImage(Sprite sprite)
+        public virtual void SetPortraitImage(Sprite sprite)
         {
             if (portraitImage == null) return;
             Tools.SetGameObjectActive(portraitImage, sprite != null);

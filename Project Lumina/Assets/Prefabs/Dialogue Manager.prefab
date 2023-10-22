@@ -77,7 +77,7 @@ MonoBehaviour:
   m_BlockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 511
 --- !u!114 &6193717574850487428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,11 +113,11 @@ GameObject:
   - component: {fileID: 11426072}
   - component: {fileID: 11471062}
   - component: {fileID: 11424616}
-  - component: {fileID: 4837560671600200141}
-  - component: {fileID: 4179896031519688862}
-  - component: {fileID: 4325512677477582768}
-  - component: {fileID: 4636269430286091633}
-  - component: {fileID: 9180604702566972783}
+  - component: {fileID: 7924455743731578382}
+  - component: {fileID: 3133276930752498317}
+  - component: {fileID: 3433990631917478773}
+  - component: {fileID: 6299981852366182879}
+  - component: {fileID: 2320429849570925004}
   m_Layer: 0
   m_Name: Dialogue Manager
   m_TagString: Untagged
@@ -139,7 +139,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 22425850}
-  - {fileID: 8970912076084464995}
+  - {fileID: 8021856354817012034}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &11426072
@@ -196,7 +196,7 @@ MonoBehaviour:
       skipPCSubtitleAfterResponseMenu: 1
       subtitleCharsPerSecond: 30
       minSubtitleSeconds: 2
-      continueButton: 1
+      continueButton: 0
       requireContinueOnLastLine: 0
       richTextEmphases: 1
       informSequenceStartAndEnd: 0
@@ -322,7 +322,26 @@ MonoBehaviour:
   onUseTouch:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4837560671600200141
+--- !u!114 &7924455743731578382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e168378c6dd4b8408a51d7be3b9c422, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_currentLanguagePlayerPrefsKey: Language
+  m_textTable: {fileID: 0}
+  m_additionalTextTables: []
+  m_localizedFonts: {fileID: 0}
+  m_saveLanguageInPlayerPrefs: 1
+  m_alsoUpdateInactiveLocalizeUI: 1
+  m_useDefaultLanguageForBlankTranslations: 1
+--- !u!114 &3133276930752498317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -338,7 +357,7 @@ MonoBehaviour:
   m_saveCurrentScene: 1
   m_framesToWaitBeforeApplyData: 0
   m_debug: 0
---- !u!114 &4179896031519688862
+--- !u!114 &3433990631917478773
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -356,7 +375,7 @@ MonoBehaviour:
   m_restoreStateOnStart: 0
   skipApplyDataAfterFramesIfApplyImmediate: 1
   saveRawData: 0
---- !u!114 &4325512677477582768
+--- !u!114 &6299981852366182879
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -368,31 +387,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99738be95cdf96a4c83561277430a7a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseDuringTransition: 0
+  pauseDuringTransition: 1
   leaveSceneTransition:
-    animator: {fileID: 8970912076105076519}
+    animator: {fileID: 8021856354846405382}
     trigger: Show
     animationDuration: 1
-    minTransitionDuration: 2
+    minTransitionDuration: 1
     onTransitionStart:
       m_PersistentCalls:
         m_Calls: []
     onTransitionEnd:
       m_PersistentCalls:
         m_Calls: []
-  loadingSceneName: Loading Screen
+  loadingSceneName: 
   enterSceneTransition:
-    animator: {fileID: 8970912076105076519}
+    animator: {fileID: 8021856354846405382}
     trigger: Hide
-    animationDuration: 1
-    minTransitionDuration: 2
+    animationDuration: 0
+    minTransitionDuration: 0
     onTransitionStart:
       m_PersistentCalls:
         m_Calls: []
     onTransitionEnd:
       m_PersistentCalls:
         m_Calls: []
---- !u!114 &4636269430286091633
+--- !u!114 &2320429849570925004
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -404,25 +423,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbafe64f40b0694b8d4ec9c082f8bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_prettyPrint: 1
---- !u!114 &9180604702566972783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce15367ff646a9f448ec0e0bce64c2c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  storeSaveFilesIn: 0
-  customPath: 
-  encrypt: 1
-  encryptionPassword: My Password
-  m_debug: 0
---- !u!1001 &8970912076097856031
+  m_prettyPrint: 0
+--- !u!1001 &8021856354837077566
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -433,10 +435,6 @@ PrefabInstance:
     - target: {fileID: 113230, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
       propertyPath: m_Name
       value: SceneFaderCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 11417766, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
-      propertyPath: m_BlockingMask.m_Bits
-      value: 511
       objectReference: {fileID: 0}
     - target: {fileID: 22409084, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
       propertyPath: m_Pivot.x
@@ -523,13 +521,13 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
---- !u!224 &8970912076084464995 stripped
+--- !u!224 &8021856354817012034 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22409084, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
-  m_PrefabInstance: {fileID: 8970912076097856031}
+  m_PrefabInstance: {fileID: 8021856354837077566}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &8970912076105076519 stripped
+--- !u!95 &8021856354846405382 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9596216, guid: 57901d8399fd6e74fbabbc9956f39557, type: 3}
-  m_PrefabInstance: {fileID: 8970912076097856031}
+  m_PrefabInstance: {fileID: 8021856354837077566}
   m_PrefabAsset: {fileID: 0}

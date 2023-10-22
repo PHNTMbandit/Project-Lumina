@@ -3,30 +3,30 @@ using ProjectLumina.Character;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace ProjectLumina.Neuroglyphs.Strategies
+namespace ProjectLumina.Neuroglyphs.Components
 {
-    public class SlowDownTimeStrategy : INeuroglyphStrategy
+    [CreateAssetMenu(fileName = "New Slow Down Time Component", menuName = "Project Lumina/Neuroglyphs/Components/Slow Down Time", order = 0)]
+    public class SlowDownTimeComponent : NeuroglyphComponent
     {
         [Range(0, 1), SerializeField]
         private float _slowTimeAmount;
-
 
         [Range(0, 1000), SuffixLabel("seconds"), SerializeField]
         private float _slowTimerSeconds;
 
         private bool _waiting = false;
 
-        public void Activate(GameObject target)
+        public override void Activate(GameObject user)
         {
-            if (target.TryGetComponent(out CharacterRoll roll))
+            if (user.TryGetComponent(out CharacterRoll roll))
             {
                 Stop(roll, _slowTimerSeconds);
             }
         }
 
-        public void Deactivate(GameObject target)
+        public override void Deactivate(GameObject user)
         {
-            if (target.TryGetComponent(out CharacterRoll roll))
+            if (user.TryGetComponent(out CharacterRoll roll))
             {
                 roll.StopCoroutine(Wait(_slowTimerSeconds));
             }

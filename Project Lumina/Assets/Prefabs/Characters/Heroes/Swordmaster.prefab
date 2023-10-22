@@ -1195,6 +1195,7 @@ GameObject:
   - component: {fileID: 1588857731240795399}
   - component: {fileID: 5987676301644156327}
   - component: {fileID: 4429014146250662890}
+  - component: {fileID: 4016446487865762295}
   - component: {fileID: 8936565788166426222}
   - component: {fileID: 1505913605161621145}
   - component: {fileID: 7145477492940236767}
@@ -1593,19 +1594,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ce577bd093f8a74faf1cfd9f0b0c6cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxLevel: 162
+  _maxLevel: 100
   _currentLevel: 1
-  _baseXP: 7
+  _baseXP: 5
   onXPGain:
     m_PersistentCalls:
       m_Calls: []
   onLevelUp:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ProjectLumina.Neuroglyphs.NeuroglyphController,
-          Assembly-CSharp
-        m_MethodName: ShowNeuroglyphSelectionScreen
+      - m_Target: {fileID: 11400000, guid: a8c9f2b7e1ae1c14180a54841063fc90, type: 2}
+        m_TargetAssemblyTypeName: ProjectLumina.Events.GameEvent, Assembly-CSharp
+        m_MethodName: Trigger
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1847,25 +1847,25 @@ MonoBehaviour:
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 4
-    <HitStopDuration>k__BackingField: 0.045
+    <HitStopDuration>k__BackingField: 0.04
     AttackAnimation: {fileID: 7400000, guid: e6e25ebfc8d83214584a1749ec72b898, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 6
-    <HitStopDuration>k__BackingField: 0.045
+    <HitStopDuration>k__BackingField: 0.04
     AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0.045
+    <HitStopDuration>k__BackingField: 0.04
     AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
   - <IsUnlocked>k__BackingField: 1
     <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0.045
+    <HitStopDuration>k__BackingField: 0.04
     AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
@@ -1901,7 +1901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7bbb7c99d7146d48b211cd9a3874b92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maximumSlots: 5
   _neuroglyphSlots: []
 --- !u!114 &1588857731240795399
 MonoBehaviour:
@@ -1960,6 +1959,19 @@ MonoBehaviour:
   _acceleration: 9
   _decceleration: 9
   _frictionAmount: 0.2
+--- !u!114 &4016446487865762295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da3871255f391c242802aaf20fcdbaa2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _statusEffects: []
 --- !u!114 &8936565788166426222
 MonoBehaviour:
   m_ObjectHideFlags: 0

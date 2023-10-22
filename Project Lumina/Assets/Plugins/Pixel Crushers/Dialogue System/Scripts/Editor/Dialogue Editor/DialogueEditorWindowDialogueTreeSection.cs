@@ -1003,8 +1003,6 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             if (serializedObject == null)
             {
                 serializedObject = new SerializedObject(database);
-                //EditorGUILayout.LabelField("Error displaying UnityEvent. Please report to developer.");
-                //return;
             }
             if (serializedObjectCurrentEntry != currentEntry)
             {
@@ -1060,8 +1058,16 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             }
             else
             {
-                // Otherwise check if the entry's scene event is defined in this scene:
-                sceneEventIndex = DialogueSystemSceneEvents.GetDialogueEntrySceneEventIndex(sceneEventGuid);
+                // Make sure our serialized object points to this scene's DialogueSystemSceneEvents:
+                if (dialogueSystemSceneEvents == null|| dialogueSystemSceneEventsSerializedObject == null)
+                {
+                    dialogueSystemSceneEvents = GameObjectUtility.FindFirstObjectByType<DialogueSystemSceneEvents>();
+                    dialogueSystemSceneEventsSerializedObject = (dialogueSystemSceneEvents != null)
+                        ? new SerializedObject(dialogueSystemSceneEvents) : null;
+                }
+
+                // Then check if the entry's scene event is defined in this scene:
+                sceneEventIndex = DialogueSystemSceneEvents.GetDialogueEntrySceneEventIndex(sceneEventGuid, dialogueSystemSceneEvents);
             }
             if (sceneEventIndex == -1 && !string.IsNullOrEmpty(sceneEventGuid))
             {
@@ -1070,15 +1076,6 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
                 if (GUILayout.Button("Delete Scene Event"))
                 {
                     currentEntry.sceneEventGuid = string.Empty;
-                }
-            }
-            if (sceneEventIndex != -1)
-            {
-                // Make sure our serialized object points to this scene's DialogueSystemSceneEvents:
-                if (dialogueSystemSceneEvents != DialogueSystemSceneEvents.sceneInstance || dialogueSystemSceneEventsSerializedObject == null)
-                {
-                    dialogueSystemSceneEvents = DialogueSystemSceneEvents.sceneInstance;
-                    dialogueSystemSceneEventsSerializedObject = new SerializedObject(dialogueSystemSceneEvents);
                 }
             }
             if (sceneEventIndex != -1 && dialogueSystemSceneEventsSerializedObject != null)
@@ -1109,12 +1106,15 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
         private void MakeSureDialogueSystemSceneEventsExists()
         {
-            if (DialogueSystemSceneEvents.sceneInstance == null)
+            if (dialogueSystemSceneEvents == null)
             {
-                var go = new GameObject("Dialogue System Scene Events");
-                DialogueSystemSceneEvents.sceneInstance = go.AddComponent(PixelCrushers.TypeUtility.GetWrapperType(typeof(DialogueSystemSceneEvents))) as DialogueSystemSceneEvents;
-                UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
-                dialogueSystemSceneEvents = null;
+                dialogueSystemSceneEvents = GameObjectUtility.FindFirstObjectByType<DialogueSystemSceneEvents>();
+                if (dialogueSystemSceneEvents == null)
+                {
+                    var go = new GameObject("Dialogue System Scene Events");
+                    dialogueSystemSceneEvents = go.AddComponent(PixelCrushers.TypeUtility.GetWrapperType(typeof(DialogueSystemSceneEvents))) as DialogueSystemSceneEvents;
+                    UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
+                }
             }
         }
 

@@ -279,7 +279,7 @@ namespace PixelCrushers.DialogueSystem
             var panel = go.GetComponent<StandardUISubtitlePanel>();
             if (panel.addSpeakerName)
             {
-                subtitle.formattedText.text = string.Format(panel.addSpeakerNameFormat, new object[] { subtitle.speakerInfo.Name, subtitle.formattedText.text });
+                subtitle.formattedText.text = FormattedText.Parse(string.Format(panel.addSpeakerNameFormat, new object[] { subtitle.speakerInfo.Name, subtitle.formattedText.text })).text;
             }
             if (dialogueActor != null && dialogueActor.standardDialogueUISettings.setSubtitleColor)
             {

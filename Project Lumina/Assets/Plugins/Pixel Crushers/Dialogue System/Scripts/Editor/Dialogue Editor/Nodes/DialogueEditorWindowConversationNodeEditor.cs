@@ -176,7 +176,6 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             }
 
             if (nodeEditorDeleteCurrentConversation) DeleteCurrentConversationInNodeEditor();
-            //--- Unnecessary: if (inspectorSelection == null) inspectorSelection = currentConversation;
 
             DrawNodeEditorTopControls();
 
@@ -877,6 +876,12 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
         private void DrawQuickDialogueTextEntry()
         {
+            if (Event.current.keyCode == KeyCode.Escape)
+            {
+                showQuickDialogueTextEntry = false;
+                Repaint();
+                return;
+            }
             if (currentEntry == null) return;
             GUI.SetNextControlName("QuickDialogueText");
             EditorGUI.BeginChangeCheck();
@@ -1708,6 +1713,9 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
 
             AddCanvasContextMenuGotoItems(contextMenu);
 
+            contextMenu.AddSeparator(string.Empty);
+            contextMenu.AddItem(new GUIContent("Play From Start"), false, PlayConversationFromEntry, 0);
+
             contextMenu.ShowAsContext();
             contextMenuPosition = Event.current.mousePosition;
 
@@ -1725,6 +1733,9 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             contextMenu.AddItem(new GUIContent("Arrange Nodes/Horizontally"), false, ArrangeNodesCallback, AutoArrangeStyle.Horizontally);
 
             AddCanvasContextMenuGotoItems(contextMenu);
+
+            contextMenu.AddSeparator(string.Empty);
+            contextMenu.AddItem(new GUIContent("Play From Start"), false, PlayConversationFromEntry, 0);
 
             contextMenu.ShowAsContext();
             contextMenuPosition = Event.current.mousePosition;
@@ -1785,6 +1796,9 @@ namespace PixelCrushers.DialogueSystem.DialogueEditor
             contextMenu.AddItem(new GUIContent("Snap All Nodes to Grid"), false, SnapAllNodesToGrid);
 
             AddCanvasContextMenuGotoItems(contextMenu);
+
+            contextMenu.AddSeparator(string.Empty);
+            contextMenu.AddItem(new GUIContent("Play From Here..."), false, PlayConversationFromEntry, currentEntry.id);
 
             contextMenu.ShowAsContext();
             contextMenuPosition = Event.current.mousePosition;
