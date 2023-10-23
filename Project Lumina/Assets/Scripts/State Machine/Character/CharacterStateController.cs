@@ -22,6 +22,7 @@ namespace ProjectLumina.StateMachine.Character
             Animator = GetComponent<Animator>();
             CharacterFall = GetComponent<CharacterFall>();
             CharacterMove = GetComponent<CharacterMove>();
+            abilities = GetComponents<CharacterAbility>();
         }
 
         public bool HasCharacterAbility<T>(out T characterAbility) where T : CharacterAbility

@@ -29,8 +29,6 @@ namespace ProjectLumina.StateMachine.Character.Player
         {
             base.Awake();
 
-            abilities = GetComponents<CharacterAbility>();
-
             AerialAttackState = new(this, "aerial attack");
             DashState = new(this, "dash");
             DeadState = new(this, "dead");

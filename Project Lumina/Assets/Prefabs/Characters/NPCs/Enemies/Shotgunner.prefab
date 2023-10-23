@@ -1070,7 +1070,6 @@ GameObject:
   - component: {fileID: 4525009610691105383}
   - component: {fileID: 3228559339102267121}
   - component: {fileID: 2766563775868989475}
-  - component: {fileID: 7783316659044857216}
   - component: {fileID: 2821735799035637192}
   - component: {fileID: 4581091988254112944}
   - component: {fileID: 8913216245909492744}
@@ -1245,7 +1244,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 74975acfe2ed40b4db84014175775995, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1288,18 +1287,6 @@ MonoBehaviour:
   onZeroHealth:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7783316659044857216}
-        m_TargetAssemblyTypeName: ProjectLumina.AI.CharacterAI, Assembly-CSharp
-        m_MethodName: ChangeState
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: dead
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1559403312632348967}
         m_TargetAssemblyTypeName: BehaviorDesigner.Runtime.Behavior, BehaviorDesigner.Runtime
         m_MethodName: DisableBehavior
@@ -1373,7 +1360,7 @@ MonoBehaviour:
   onDamaged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 7783316659044857216}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: ProjectLumina.Character.CharacterAI, Assembly-CSharp
         m_MethodName: ChangeState
         m_Mode: 5
@@ -1397,18 +1384,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &7783316659044857216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805500066460283248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8df7bd3aebdbdc849aade226a27e3e8c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &2821735799035637192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1563,7 +1538,7 @@ MonoBehaviour:
       parentIndex: 
       startIndex: 
       variableStartIndex: 
-      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.Character.CharacterAI/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.Character.CharacterAI/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
+      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.StateMachine.Character.NPC.NPCStateController/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.StateMachine.Character.NPC.NPCStateController/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
         Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
         Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting
         Sensor","IsShared":true,"SensormValue":3}]}'
