@@ -7,7 +7,7 @@ using UnityEngine.Events;
 namespace ProjectLumina.Character
 {
     [AddComponentMenu("Character/Character Collector")]
-    public class CharacterCollector : CharacterAbility
+    public class CharacterCollector : MonoBehaviour
     {
         [FoldoutGroup("References"), SerializeField]
         private RangeSensor2D _sensor;

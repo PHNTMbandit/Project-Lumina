@@ -429,6 +429,100 @@ MonoBehaviour:
     UpdateFunction: 0
     Interval:
       value: 1
+--- !u!1 &1154424742273385264
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7973264357337733316}
+  - component: {fileID: 7881441357277341367}
+  m_Layer: 3
+  m_Name: Grounded Sensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7973264357337733316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154424742273385264}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.123, y: -0.807, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9055267345663398333}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7881441357277341367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1154424742273385264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67743d858b7a45d39461726716d6af2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalProcessors: []
+  OnDetected:
+    m_PersistentCalls:
+      m_Calls: []
+  OnLostDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnSomeDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  OnNoDetection:
+    m_PersistentCalls:
+      m_Calls: []
+  Shape: 2
+  Circle:
+    Radius: 1
+  Box:
+    HalfExtents: {x: 0.32, y: 0.05}
+  Capsule:
+    Radius: 0.5
+    Height: 1
+  signalFilter:
+    IgnoreList: []
+    EnableTagFilter: 0
+    AllowedTags: []
+  Length: 0.3
+  Direction: {x: 0, y: -1}
+  WorldSpace: 0
+  DetectsOnLayers:
+    serializedVersion: 2
+    m_Bits: 1536
+  ObstructedByLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  DetectionMode: 0
+  IgnoreTriggerColliders: 1
+  MinimumSlopeAngle: 0
+  SlopeUpDirection: {x: 0, y: 1}
+  pulseRoutine:
+    Mode:
+      value: 2
+    UpdateFunction: 0
+    Interval:
+      value: 1
+  onObstruction:
+    m_PersistentCalls:
+      m_Calls: []
+  onClear:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1819485712547844758
 GameObject:
   m_ObjectHideFlags: 0
@@ -972,10 +1066,12 @@ GameObject:
   - component: {fileID: 3509532169929447608}
   - component: {fileID: 6213919294952068375}
   - component: {fileID: 2040424351302497929}
+  - component: {fileID: 6486949022328041400}
   - component: {fileID: 4525009610691105383}
   - component: {fileID: 3228559339102267121}
   - component: {fileID: 2766563775868989475}
   - component: {fileID: 7783316659044857216}
+  - component: {fileID: 2821735799035637192}
   - component: {fileID: 4581091988254112944}
   - component: {fileID: 8913216245909492744}
   - component: {fileID: 3573416232631176223}
@@ -1008,10 +1104,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 3262186032855506188}
+  - {fileID: 7973264357337733316}
+  - {fileID: 2588935686614148590}
   - {fileID: 5920593116854775563}
   - {fileID: 1238640973413864869}
-  - {fileID: 2588935686614148590}
-  - {fileID: 3262186032855506188}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6197378124130839952
@@ -1159,6 +1256,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
+--- !u!114 &6486949022328041400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4525009610691105383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1300,15 +1409,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df7bd3aebdbdc849aade226a27e3e8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 1
-  _AIStates:
-  - dead
-  - hit
-  - idle
-  - melee attack
-  - run
-  - shoot
-  _defaultAIState: idle
+--- !u!114 &2821735799035637192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19011604e7e8abf4b89a8a2e06dc22e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fallingThreshold: -1
+  _maxFallGravitySpeed: -50
+  _fallingGravityScale: 1
+  _fallingGravityMultiplier: 1.9
+  _sensor: {fileID: 7881441357277341367}
 --- !u!114 &4581091988254112944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1341,7 +1458,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaaa03a8ba67194ba3d9ee655ad2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <IsUnlocked>k__BackingField: 1
   Move: 1
   _moveSpeed: 4
   _acceleration: 9

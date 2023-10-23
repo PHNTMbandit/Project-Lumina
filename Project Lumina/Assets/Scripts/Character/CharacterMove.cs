@@ -7,7 +7,7 @@ namespace ProjectLumina.Character
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Move")]
-    public class CharacterMove : CharacterAbility
+    public class CharacterMove : MonoBehaviour
     {
         public Stat Acceleration { get; private set; }
         public Stat MoveSpeed { get; private set; }
