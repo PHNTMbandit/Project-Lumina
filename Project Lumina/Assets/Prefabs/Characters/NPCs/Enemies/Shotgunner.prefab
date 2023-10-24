@@ -881,8 +881,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1.5
-  m_fontSizeBase: 1.5
+  m_fontSize: 2.5
+  m_fontSizeBase: 2.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1075,14 +1075,15 @@ GameObject:
   - component: {fileID: 8913216245909492744}
   - component: {fileID: 3573416232631176223}
   - component: {fileID: 8047855507821010640}
+  - component: {fileID: 5983077349427800180}
   - component: {fileID: 2237705098954413475}
   - component: {fileID: 5373567999487011587}
   - component: {fileID: 6081448381402035829}
-  - component: {fileID: 1559403312632348967}
   - component: {fileID: 1202078799147147369}
   - component: {fileID: 5863213540184753335}
   - component: {fileID: 4224349700809815099}
   - component: {fileID: 2297158418459740214}
+  - component: {fileID: 1559403312632348967}
   m_Layer: 6
   m_Name: Shotgunner
   m_TagString: Untagged
@@ -1281,19 +1282,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamaged:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2297158418459740214}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
-        m_MethodName: GenerateImpulse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &4525009610691105383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,6 +1397,7 @@ MonoBehaviour:
     <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    Colour: {r: 0, g: 0, b: 0, a: 0}
     <Sensor>k__BackingField: {fileID: 8030033580177232402}
 --- !u!114 &8913216245909492744
 MonoBehaviour:
@@ -1447,6 +1437,7 @@ MonoBehaviour:
     <HitStopDuration>k__BackingField: 0
     AttackAnimation: {fileID: 7400000, guid: 666ed651a4e3d6842b284f0ddd8512e9, type: 2}
     HitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
+    Colour: {r: 0, g: 0, b: 0, a: 0}
     <Sensor>k__BackingField: {fileID: 3657249586278866276}
   _fireRate: 1.55
 --- !u!114 &8047855507821010640
@@ -1462,6 +1453,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StatusEffects>k__BackingField: []
+--- !u!114 &5983077349427800180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b79f7f17a37dd24ca4193ba047fd82d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2237705098954413475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1498,53 +1501,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f795bfbb8485b24e919c6e9a461d758, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1559403312632348967
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805500066460283248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startWhenEnabled: 1
-  asynchronousLoad: 0
-  pauseWhenDisabled: 0
-  restartWhenComplete: 0
-  logTaskChanges: 0
-  group: 0
-  resetValuesOnRestart: 0
-  externalBehavior: {fileID: 11400000, guid: f730e980df5395f47993e495e292310d, type: 2}
-  mBehaviorSource:
-    behaviorName: Shoot
-    behaviorDescription: 
-    mTaskData:
-      types: []
-      parentIndex: 
-      startIndex: 
-      variableStartIndex: 
-      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.StateMachine.Character.NPC.NPCStateController/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.StateMachine.Character.NPC.NPCStateController/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
-        Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
-        Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting
-        Sensor","IsShared":true,"SensormValue":3}]}'
-      fieldSerializationData:
-        typeName: []
-        fieldNameHash: 
-        startIndex: 
-        dataPosition: 
-        unityObjects:
-        - {fileID: 5805500066460283248}
-        - {fileID: 5805500066460283248}
-        - {fileID: 5314705485935313885}
-        - {fileID: 3657249586278866276}
-        byteData: 
-        byteDataArray: 
-      Version: 1.7.7
-  gizmoViewMode: 2
-  showBehaviorDesignerGizmo: 1
 --- !u!114 &1202078799147147369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1689,7 +1645,54 @@ MonoBehaviour:
     m_DissipationMode: 2
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
-  m_DefaultVelocity: {x: -0.05, y: -0.05, z: 0}
+  m_DefaultVelocity: {x: -0.05, y: 0, z: 0}
+--- !u!114 &1559403312632348967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d7b55c7ecdb49a4a89fa5e6f9022861, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startWhenEnabled: 1
+  asynchronousLoad: 0
+  pauseWhenDisabled: 0
+  restartWhenComplete: 0
+  logTaskChanges: 0
+  group: 0
+  resetValuesOnRestart: 0
+  externalBehavior: {fileID: 11400000, guid: f730e980df5395f47993e495e292310d, type: 2}
+  mBehaviorSource:
+    behaviorName: Shoot
+    behaviorDescription: 
+    mTaskData:
+      types: []
+      parentIndex: 
+      startIndex: 
+      variableStartIndex: 
+      JSONSerialization: '{"Variables":[{"Type":"BehaviorDesigner.Runtime.SharedGameObject","Name":"Target","IsShared":true,"PropertyMapping":"ProjectLumina.StateMachine.Character.NPC.NPCStateController/Target","PropertyMappingOwner":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Speed","IsShared":true,"PropertyMapping":"ProjectLumina.StateMachine.Character.NPC.NPCStateController/MoveSpeed","PropertyMappingOwner":1,"SinglemValue":0},{"Type":"BehaviorDesigner.Runtime.SharedFloat","Name":"Shoot
+        Distance","IsShared":true,"SinglemValue":4.8},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Sight
+        Sensor","IsShared":true,"SensormValue":2},{"Type":"ProjectLumina.AI.SharedTypes.SharedSensor","Name":"Shooting
+        Sensor","IsShared":true,"SensormValue":3}]}'
+      fieldSerializationData:
+        typeName: []
+        fieldNameHash: 
+        startIndex: 
+        dataPosition: 
+        unityObjects:
+        - {fileID: 5805500066460283248}
+        - {fileID: 5805500066460283248}
+        - {fileID: 5314705485935313885}
+        - {fileID: 3657249586278866276}
+        byteData: 
+        byteDataArray: 
+      Version: 1.7.7
+  gizmoViewMode: 2
+  showBehaviorDesignerGizmo: 1
 --- !u!1 &6478380251746701448
 GameObject:
   m_ObjectHideFlags: 0
