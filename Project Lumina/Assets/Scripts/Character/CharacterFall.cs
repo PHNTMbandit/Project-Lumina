@@ -7,7 +7,7 @@ namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Fall")]
-    public class CharacterFall : CharacterAbility
+    public class CharacterFall : MonoBehaviour
     {
         [BoxGroup("Thresholds"), SerializeField, Range(-10, 0)]
         private float _fallingThreshold;

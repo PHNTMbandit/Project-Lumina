@@ -75,7 +75,12 @@ namespace ProjectLumina.Character
 
                     if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
                     {
-                        damageIndicator.ShowDamageIndicator(_currentMeleeAttack.Damage, transform.position);
+                        damageIndicator.ShowDamageIndicator(_currentMeleeAttack.Damage, transform.position, _currentMeleeAttack.Colour);
+                    }
+
+                    if (damageable.TryGetComponent(out CameraShake cameraShake))
+                    {
+                        cameraShake.Shake(_currentMeleeAttack.Damage);
                     }
 
                     onHit?.Invoke(damageable.gameObject);

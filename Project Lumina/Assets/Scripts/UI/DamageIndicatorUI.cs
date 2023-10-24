@@ -25,9 +25,10 @@ namespace ProjectLumina.UI
         [FoldoutGroup("References"), SerializeField]
         private TextMeshPro _text;
 
-        public void ShowIndicator(string text, Vector2 origin, Vector2 target)
+        public void ShowIndicator(string text, Vector2 origin, Vector2 target, Color colour)
         {
             _text.SetText(text);
+            _text.color = colour;
 
             Vector2 direction = origin - target;
             Vector2 distance = new(Random.Range(_xMove.x, _xMove.y), Random.Range(_yMove.x, _yMove.y));

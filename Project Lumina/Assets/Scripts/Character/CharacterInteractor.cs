@@ -8,7 +8,7 @@ using UnityEngine.Events;
 namespace ProjectLumina.Character
 {
     [AddComponentMenu("Character/Character Interactor")]
-    public class CharacterInteractor : CharacterAbility
+    public class CharacterInteractor : MonoBehaviour
     {
         [FoldoutGroup("References"), SerializeField]
         private InputReader _inputReader;
@@ -35,43 +35,34 @@ namespace ProjectLumina.Character
 
         public void OnInteract()
         {
-            if (IsUnlocked)
+            if (_sensor.GetNearestDetection() != null)
             {
-                if (_sensor.GetNearestDetection() != null)
-                {
-                    _sensor.GetNearestComponent<Interactable>().Interact();
-                }
+                _sensor.GetNearestComponent<Interactable>().Interact();
             }
         }
 
         public void OnInteractableDetected(GameObject gameObject, Sensor sensor)
         {
-            if (IsUnlocked)
+            if (gameObject != null)
             {
-                if (gameObject != null)
+                if (gameObject.TryGetComponent(out Interactable interactable))
                 {
-                    if (gameObject.TryGetComponent(out Interactable interactable))
-                    {
-                        interactable.OnDetected();
+                    interactable.OnDetected();
 
-                        onInteractableDetected?.Invoke(interactable);
-                    }
+                    onInteractableDetected?.Invoke(interactable);
                 }
             }
         }
 
         public void OnInteractableLost(GameObject gameObject, Sensor sensor)
         {
-            if (IsUnlocked)
+            if (gameObject != null)
             {
-                if (gameObject != null)
+                if (gameObject.TryGetComponent(out Interactable interactable))
                 {
-                    if (gameObject.TryGetComponent(out Interactable interactable))
-                    {
-                        interactable.OnLost();
+                    interactable.OnLost();
 
-                        onInteractableLost?.Invoke();
-                    }
+                    onInteractableLost?.Invoke();
                 }
             }
         }

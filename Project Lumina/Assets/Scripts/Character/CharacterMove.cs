@@ -7,7 +7,7 @@ namespace ProjectLumina.Character
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(Rigidbody2D))]
     [AddComponentMenu("Character/Character Move")]
-    public class CharacterMove : CharacterAbility
+    public class CharacterMove : MonoBehaviour
     {
         public Stat Acceleration { get; private set; }
         public Stat MoveSpeed { get; private set; }
@@ -72,6 +72,11 @@ namespace ProjectLumina.Character
                 amount *= Mathf.Sign(_rb.velocity.x);
                 _rb.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
             }
+        }
+
+        public void StopCharacter()
+        {
+            _rb.velocity = Vector3.zero;
         }
 
         public Vector2 GetFacingDirection()

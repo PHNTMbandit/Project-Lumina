@@ -5,7 +5,7 @@ namespace ProjectLumina.Factories
 {
     public class StatusEffectFactory
     {
-        public StatusEffect GetNeuroglyph(StatusEffect statusEffect)
+        public StatusEffect GetStatusEffect(StatusEffect statusEffect)
         {
             return Object.Instantiate(statusEffect);
         }

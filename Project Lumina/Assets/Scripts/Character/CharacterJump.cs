@@ -44,9 +44,7 @@ namespace ProjectLumina.Character
         [FoldoutGroup("References"), SerializeField]
         private InputReader _inputReader;
 
-        private float _lastGroundedTime;
-        private float _accelerationRate;
-        private float _targetSpeed;
+        private float _lastGroundedTime, _accelerationRate, _targetSpeed;
         private Rigidbody2D _rb;
 
         private void Awake()

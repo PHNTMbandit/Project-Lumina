@@ -23,6 +23,9 @@ namespace ProjectLumina.Data
         [field: SerializeField]
         public GameObject HitFX;
 
+        [field: ColorPalette, SerializeField]
+        public Color Colour;
+
         [field: SerializeField]
         public RangeSensor2D Sensor { get; private set; }
     }
