@@ -24,6 +24,9 @@ namespace ProjectLumina.Data.StatusEffects
         [field: TabGroup("Details"), TextArea, SerializeField]
         public string Description { get; private set; }
 
+        [field: TabGroup("Details"), ColorPalette, SerializeField]
+        public Color Colour { get; private set; }
+
         [TabGroup("Stats"), Range(0, 10), SerializeField]
         private float _damage, _duration;
 
@@ -47,7 +50,6 @@ namespace ProjectLumina.Data.StatusEffects
             CurrentStack++;
             _timeSinceLastTick = 0;
             StackTimer = _duration;
-            damage = new(_damage * _currentStacks);
 
             if (target.TryGetComponent(out Damageable damageable))
             {
@@ -58,6 +60,7 @@ namespace ProjectLumina.Data.StatusEffects
         public void UpdateStatusEffect()
         {
             _timeSinceLastTick += Time.deltaTime;
+            damage = new(_damage * CurrentStack);
 
             if (_timeSinceLastTick >= _tickInterval)
             {
@@ -71,7 +74,6 @@ namespace ProjectLumina.Data.StatusEffects
             if (StackTimer <= 0)
             {
                 CurrentStack--;
-                damage = new(_damage / _currentStacks);
                 StackTimer = _duration;
 
                 if (CurrentStack <= 0)

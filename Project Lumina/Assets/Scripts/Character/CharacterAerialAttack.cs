@@ -85,7 +85,7 @@ namespace ProjectLumina.Character
 
                     if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
                     {
-                        damageIndicator.ShowDamageIndicator(_currentAerialAttack.Damage, transform.position);
+                        damageIndicator.ShowDamageIndicator(_currentAerialAttack.Damage, transform.position, _currentAerialAttack.Colour);
                     }
 
                     if (SlowStop)

@@ -38,23 +38,26 @@ namespace ProjectLumina.UI
         {
             ResetList();
 
-            foreach (NeuroglyphSlot slot in _characterNeuroglyphs.GetSlots())
+            for (int i = 0; i < _characterNeuroglyphs.NeuroglyphAmount; i++)
             {
                 HUDNeuroglyphSlot UISlot = Instantiate(_templateNeuroglyphSlot.gameObject, _transform).GetComponent<HUDNeuroglyphSlot>();
                 UISlot.gameObject.SetActive(true);
 
-                if (slot.Neuroglyph != null)
+                _UISlots.Add(UISlot);
+            }
+
+            for (int i = 0; i < _characterNeuroglyphs.Neuroglyphs.Count; i++)
+            {
+                if (_characterNeuroglyphs.Neuroglyphs[i] != null)
                 {
-                    UISlot.SetIcon(slot.Neuroglyph.Icon);
-                    UISlot.SetNeuroglyph(slot.Neuroglyph);
-                    UISlot.SetTierImage(_controller.GetTierSprite(slot.Neuroglyph.CurrentTierLevel));
+                    _UISlots[i].SetIcon(_characterNeuroglyphs.Neuroglyphs[i].Icon);
+                    _UISlots[i].SetNeuroglyph(_characterNeuroglyphs.Neuroglyphs[i]);
+                    _UISlots[i].SetTierImage(_controller.GetTierSprite(_characterNeuroglyphs.Neuroglyphs[i].CurrentTierLevel));
                 }
                 else
                 {
-                    UISlot.SetTierImage(null);
+                    _UISlots[i].SetTierImage(null);
                 }
-
-                _UISlots.Add(UISlot);
             }
         }
 
@@ -71,13 +74,13 @@ namespace ProjectLumina.UI
             }
         }
 
-        public void HighlightSlot(NeuroglyphSlot slot)
+        public void HighlightSlot(Neuroglyph neuroglpyh)
         {
             foreach (var UISlot in _UISlots)
             {
-                if (slot != null && UISlot != null)
+                if (neuroglpyh != null && UISlot != null)
                 {
-                    if (UISlot.Neuroglyph == slot.Neuroglyph)
+                    if (UISlot.Neuroglyph == neuroglpyh)
                     {
                         UISlot.Highlight();
                     }

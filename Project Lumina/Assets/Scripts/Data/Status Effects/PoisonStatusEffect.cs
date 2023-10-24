@@ -1,3 +1,4 @@
+using ProjectLumina.Effects;
 using UnityEngine;
 
 namespace ProjectLumina.Data.StatusEffects
@@ -8,6 +9,11 @@ namespace ProjectLumina.Data.StatusEffects
         protected override void ActivateStatusEffect()
         {
             target.Damage(damage.Value);
+
+            if (target.TryGetComponent(out DamageIndicator damageIndicator))
+            {
+                damageIndicator.ShowDamageIndicator(damage.Value, target.transform.position, Colour);
+            }
         }
     }
 }

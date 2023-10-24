@@ -1,5 +1,6 @@
 using ProjectLumina.Character;
 using ProjectLumina.Data.StatusEffects;
+using ProjectLumina.Factories;
 using Sirenix.OdinInspector;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace ProjectLumina.Neuroglyphs.Components
 
         [Range(0, 100), SuffixLabel("%"), SerializeField]
         private float _afflictionChance;
+
+        private readonly StatusEffectFactory _statusEffectFactory = new();
 
         public override void Activate(GameObject user)
         {
@@ -34,9 +37,9 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (target.TryGetComponent(out CharacterStatusEffects characterStatusEffects))
             {
-                if (Random.Range(0, 100) < _afflictionChance)
+                if (Random.Range(0, 100) <= _afflictionChance)
                 {
-                    characterStatusEffects.AddStatusEffect(_statusEffect);
+                    characterStatusEffects.AddStatusEffect(_statusEffectFactory.GetStatusEffect(_statusEffect));
                 }
             }
         }

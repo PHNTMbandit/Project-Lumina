@@ -1,6 +1,4 @@
-﻿using UnityEngine;
-
-namespace ProjectLumina.StateMachine.Character.NPC
+﻿namespace ProjectLumina.StateMachine.Character.NPC
 {
     public abstract class NPCState : State
     {
@@ -25,6 +23,10 @@ namespace ProjectLumina.StateMachine.Character.NPC
 
         public override void OnUpdate()
         {
+            if (stateController.Health.CurrentHealth <= 0)
+            {
+                stateController.StateMachine.ChangeState(stateController.DeadState);
+            }
         }
 
         public override void OnFixedUpdate()

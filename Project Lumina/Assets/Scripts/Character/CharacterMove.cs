@@ -74,6 +74,11 @@ namespace ProjectLumina.Character
             }
         }
 
+        public void StopCharacter()
+        {
+            _rb.velocity = Vector3.zero;
+        }
+
         public Vector2 GetFacingDirection()
         {
             if (transform.localScale.x == 1)

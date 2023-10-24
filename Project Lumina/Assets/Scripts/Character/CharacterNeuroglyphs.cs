@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using System.Linq;
-using ProjectLumina.Data;
 using ProjectLumina.Neuroglyphs;
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,8 +9,11 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Neuroglyphs")]
     public class CharacterNeuroglyphs : MonoBehaviour
     {
-        [SerializeField]
-        private NeuroglyphSlot[] _neuroglyphSlots;
+        [field: Range(1, 10), SerializeField]
+        public int NeuroglyphAmount { get; private set; }
+
+        [field: SerializeField]
+        public List<Neuroglyph> Neuroglyphs { get; private set; }
 
         public UnityAction onNeuroglyphListRefresh;
 
@@ -21,7 +24,11 @@ namespace ProjectLumina.Character
 
         public void AddNeuroglyph(Neuroglyph neuroglyph)
         {
-            GetAvailableSlot(neuroglyph).SetSlot(neuroglyph);
+            if ((Neuroglyphs.Count + 1) <= NeuroglyphAmount)
+            {
+                Neuroglyphs.Add(neuroglyph);
+            }
+
             UpdateNeuroglyphs();
 
             onNeuroglyphListRefresh?.Invoke();
@@ -31,7 +38,7 @@ namespace ProjectLumina.Character
         {
             if (HasNeuroglyph(neuroglyph))
             {
-                GetSlot(neuroglyph).SetSlot(null);
+                Neuroglyphs.Remove(neuroglyph);
             }
 
             UpdateNeuroglyphs();
@@ -41,48 +48,31 @@ namespace ProjectLumina.Character
 
         public void UpdateNeuroglyphs()
         {
-            foreach (NeuroglyphSlot neuroglyphSlot in _neuroglyphSlots)
+            foreach (Neuroglyph neuroglyph in Neuroglyphs)
             {
-                neuroglyphSlot.RevertSlot(gameObject);
-                neuroglyphSlot.ApplySlot(gameObject);
+                neuroglyph.Revert(gameObject);
+                neuroglyph.Apply(gameObject);
             }
+        }
+
+        public Neuroglyph GetNeuroglyph(Neuroglyph neuroglyph)
+        {
+            return Neuroglyphs.First(i => i == neuroglyph);
+        }
+
+        public Neuroglyph GetNeuroglyph(int ID)
+        {
+            return Neuroglyphs.First(i => i.NeuroglyphID == ID);
+        }
+
+        public Neuroglyph GetNeuroglyph(string name)
+        {
+            return Neuroglyphs.First(i => i.NeuroglyphName == name);
         }
 
         public bool HasNeuroglyph(Neuroglyph neuroglyph)
         {
-            foreach (var slot in _neuroglyphSlots.Where(slot => slot.Neuroglyph != null && slot.Neuroglyph.NeuroglyphID == neuroglyph.NeuroglyphID))
-            {
-                return slot.Neuroglyph;
-            }
-
-            return false;
-        }
-
-        public NeuroglyphSlot GetAvailableSlot(Neuroglyph neuroglyph)
-        {
-            if (!HasNeuroglyph(neuroglyph))
-            {
-                return GetFirstEmptySlot();
-            }
-            else
-            {
-                return GetSlot(neuroglyph);
-            }
-        }
-
-        public NeuroglyphSlot GetFirstEmptySlot()
-        {
-            return _neuroglyphSlots.First(i => i.Neuroglyph == null);
-        }
-
-        public NeuroglyphSlot GetSlot(Neuroglyph neuroglyph)
-        {
-            return _neuroglyphSlots.First(i => i.Neuroglyph.NeuroglyphID == neuroglyph.NeuroglyphID);
-        }
-
-        public NeuroglyphSlot[] GetSlots()
-        {
-            return _neuroglyphSlots.ToArray();
+            return Neuroglyphs.Any(i => i != null && i.NeuroglyphID == neuroglyph.NeuroglyphID);
         }
     }
 }

@@ -7,6 +7,8 @@ namespace ProjectLumina.StateMachine.Character.Player
     [AddComponentMenu("Character/Player/Player State Controller")]
     public class PlayerStateController : CharacterStateController
     {
+        #region Properties
+
         [field: SerializeField]
         public InputReader InputReader { get; private set; }
 
@@ -24,6 +26,10 @@ namespace ProjectLumina.StateMachine.Character.Player
         public PlayerRollAttackState RollAttackState { get; private set; }
         public PlayerSprintState SprintState { get; private set; }
         public PlayerWallSlideState WallSlideState { get; private set; }
+
+        #endregion
+
+        #region Unity Callback Functions
 
         protected override void Awake()
         {
@@ -49,6 +55,18 @@ namespace ProjectLumina.StateMachine.Character.Player
         {
             StateMachine.Initialise(IdleState);
         }
+
+        public void ChangeToHitState()
+        {
+            StateMachine.ChangeState(HitState);
+        }
+
+        public void ChangeToIdleState()
+        {
+            StateMachine.ChangeState(IdleState);
+        }
+
+        #endregion
 
         #region Ability Functions
 

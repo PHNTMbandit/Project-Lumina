@@ -1,5 +1,7 @@
 using System;
+using ProjectLumina.Capabilities;
 using ProjectLumina.Character;
+using ProjectLumina.Data;
 using UnityEngine;
 
 namespace ProjectLumina.StateMachine.Character
@@ -7,11 +9,15 @@ namespace ProjectLumina.StateMachine.Character
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(CharacterFall))]
     [RequireComponent(typeof(CharacterMove))]
+    [RequireComponent(typeof(Damageable))]
+    [RequireComponent(typeof(Health))]
     public abstract class CharacterStateController : StateController
     {
         public Animator Animator { get; private set; }
         public CharacterFall CharacterFall { get; private set; }
         public CharacterMove CharacterMove { get; private set; }
+        public Damageable Damageable { get; private set; }
+        public Health Health { get; private set; }
 
         protected CharacterAbility[] abilities;
 
@@ -19,10 +25,12 @@ namespace ProjectLumina.StateMachine.Character
         {
             base.Awake();
 
+            abilities = GetComponents<CharacterAbility>();
             Animator = GetComponent<Animator>();
             CharacterFall = GetComponent<CharacterFall>();
             CharacterMove = GetComponent<CharacterMove>();
-            abilities = GetComponents<CharacterAbility>();
+            Damageable = GetComponent<Damageable>();
+            Health = GetComponent<Health>();
         }
 
         public bool HasCharacterAbility<T>(out T characterAbility) where T : CharacterAbility

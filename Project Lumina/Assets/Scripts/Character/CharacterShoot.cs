@@ -72,7 +72,7 @@ namespace ProjectLumina.Character
 
                     if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
                     {
-                        damageIndicator.ShowDamageIndicator(_currentShoot.Damage, transform.position);
+                        damageIndicator.ShowDamageIndicator(_currentShoot.Damage, transform.position, _currentShoot.Colour);
                     }
                 }
             }

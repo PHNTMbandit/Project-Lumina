@@ -1067,9 +1067,9 @@ GameObject:
   - component: {fileID: 6213919294952068375}
   - component: {fileID: 2040424351302497929}
   - component: {fileID: 6486949022328041400}
+  - component: {fileID: 2766563775868989475}
   - component: {fileID: 4525009610691105383}
   - component: {fileID: 3228559339102267121}
-  - component: {fileID: 2766563775868989475}
   - component: {fileID: 2821735799035637192}
   - component: {fileID: 4581091988254112944}
   - component: {fileID: 8913216245909492744}
@@ -1267,6 +1267,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2766563775868989475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5805500066460283248}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb834ca0cab12114f82af7d9148d3539, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDamaged:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2297158418459740214}
+        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
+        m_MethodName: GenerateImpulse
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4525009610691105383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1279,8 +1306,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 12
-  _currentHealth: 12
+  _maxHealth: 2990
+  _currentHealth: 2990
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1345,45 +1372,6 @@ MonoBehaviour:
   OnLootDrop:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2766563775868989475
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5805500066460283248}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb834ca0cab12114f82af7d9148d3539, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onDamaged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: ProjectLumina.Character.CharacterAI, Assembly-CSharp
-        m_MethodName: ChangeState
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: hit
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2297158418459740214}
-        m_TargetAssemblyTypeName: Cinemachine.CinemachineImpulseSource, Cinemachine
-        m_MethodName: GenerateImpulse
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2821735799035637192
 MonoBehaviour:
   m_ObjectHideFlags: 0

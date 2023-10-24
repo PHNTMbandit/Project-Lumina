@@ -17,6 +17,7 @@ namespace ProjectLumina.StateMachine.Character.Player
 
             stateController.InputReader.onJump = stateController.TryJump;
             stateController.InputReader.onRoll = stateController.TryRoll;
+            stateController.Damageable.onDamaged.AddListener(stateController.ChangeToHitState);
 
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
@@ -30,6 +31,7 @@ namespace ProjectLumina.StateMachine.Character.Player
 
             stateController.InputReader.onJump -= stateController.TryJump;
             stateController.InputReader.onRoll -= stateController.TryRoll;
+            stateController.Damageable.onDamaged.RemoveListener(stateController.ChangeToHitState);
         }
 
         public override void OnUpdate()

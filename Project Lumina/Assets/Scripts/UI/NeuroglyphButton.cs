@@ -32,7 +32,7 @@ namespace ProjectLumina.UI
 
         public void HighlightSlot()
         {
-            _HUDNeuroglyphList.HighlightSlot(_characterNeuroglyphs.GetAvailableSlot(Neuroglyph));
+            _HUDNeuroglyphList.HighlightSlot(Neuroglyph);
         }
 
         public void UnhighlightSlot()
