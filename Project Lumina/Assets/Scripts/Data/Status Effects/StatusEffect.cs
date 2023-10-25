@@ -1,4 +1,5 @@
 using ProjectLumina.Capabilities;
+using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -24,9 +25,6 @@ namespace ProjectLumina.Data.StatusEffects
         [field: TabGroup("Details"), TextArea, SerializeField]
         public string Description { get; private set; }
 
-        [field: TabGroup("Details"), ColorPalette, SerializeField]
-        public Color Colour { get; private set; }
-
         [TabGroup("Stats"), Range(0, 10), SerializeField]
         private float _damage, _duration;
 
@@ -35,6 +33,12 @@ namespace ProjectLumina.Data.StatusEffects
 
         [TabGroup("Stats"), Range(0, 10), SerializeField]
         private float _tickInterval = 1.0f;
+
+        [field: TabGroup("UI"), ColorPalette, SerializeField]
+        public Color Colour { get; private set; }
+
+        [field: TabGroup("UI"), SerializeField]
+        public GameObject Indicator { get; private set; }
 
         protected Stat damage;
         protected Damageable target;
@@ -45,7 +49,7 @@ namespace ProjectLumina.Data.StatusEffects
 
         protected abstract void ActivateStatusEffect();
 
-        public void AddStatusEffect(GameObject target)
+        public virtual void AddStatusEffect(GameObject target)
         {
             CurrentStack++;
             _timeSinceLastTick = 0;
@@ -55,9 +59,14 @@ namespace ProjectLumina.Data.StatusEffects
             {
                 this.target = damageable;
             }
+
+            if (target.TryGetComponent(out StatusEffectIndicator statusEffectIndicator))
+            {
+                statusEffectIndicator.ShowStatusEffectIndicator(Indicator.name);
+            }
         }
 
-        public void UpdateStatusEffect()
+        public virtual void UpdateStatusEffect()
         {
             _timeSinceLastTick += Time.deltaTime;
             damage = new(_damage * CurrentStack);

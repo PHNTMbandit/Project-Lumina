@@ -15,8 +15,9 @@ MonoBehaviour:
   <Icon>k__BackingField: {fileID: 1136038985, guid: 9eaa9b9ce96aade4da55246eedafcdba, type: 3}
   <StatusEffectName>k__BackingField: Poison
   <Description>k__BackingField: 
-  <Colour>k__BackingField: {r: 0.6122643, g: 0, b: 0.6226415, a: 1}
   _damage: 1
   _duration: 2
   _maxStacks: 10
   _tickInterval: 1
+  <Colour>k__BackingField: {r: 0.6122643, g: 0, b: 0.6226415, a: 1}
+  <Indicator>k__BackingField: {fileID: 6900393257970694771, guid: 513b05d4113a51748aad1e806e6271ac, type: 3}
