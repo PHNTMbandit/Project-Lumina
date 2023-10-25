@@ -15,26 +15,25 @@ MonoBehaviour:
   <NeuroglyphID>k__BackingField: 0
   <Icon>k__BackingField: {fileID: -1174443677, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
   <NeuroglyphName>k__BackingField: Poison Strike
-  <Description>k__BackingField: Has change to apply poison on hit
   <NeuroglyphType>k__BackingField: 0
   <CurrentTierLevel>k__BackingField: 0
   _neuroglyphTierEffects:
   - tierLevel: 0
     tierEffects:
     - {fileID: 11400000, guid: a17776e6744dd6d47be513e0098545c2, type: 2}
-  - tierLevel: 0
+  - tierLevel: 1
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 2
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 3
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 4
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 5
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 6
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 7
     tierEffects: []
-  - tierLevel: 0
+  - tierLevel: 8
     tierEffects: []

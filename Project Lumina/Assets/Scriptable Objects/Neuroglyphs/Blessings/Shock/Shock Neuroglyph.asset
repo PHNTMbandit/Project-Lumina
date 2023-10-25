@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b43c6d8b94c48d546b72879050922c90, type: 3}
+  m_Name: Shock Neuroglyph
+  m_EditorClassIdentifier: 
+  <NeuroglyphID>k__BackingField: 1
+  <Icon>k__BackingField: {fileID: 2131231443, guid: a0dc83483eac5d24a8a10f2ba3bbca11, type: 3}
+  <NeuroglyphName>k__BackingField: Shock
+  <NeuroglyphType>k__BackingField: 0
+  <CurrentTierLevel>k__BackingField: 0
+  _neuroglyphTierEffects:
+  - tierLevel: 0
+    tierEffects:
+    - {fileID: 11400000, guid: 90c7e9c1ec3d8ee4d83d6ce5eece7f24, type: 2}
+  - tierLevel: 1
+    tierEffects: []
+  - tierLevel: 2
+    tierEffects: []
+  - tierLevel: 3
+    tierEffects: []
+  - tierLevel: 4
+    tierEffects: []
+  - tierLevel: 5
+    tierEffects: []
+  - tierLevel: 6
+    tierEffects: []
+  - tierLevel: 7
+    tierEffects: []
+  - tierLevel: 8
+    tierEffects: []

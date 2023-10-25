@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Apply Poison Component Tier 1
   m_EditorClassIdentifier: 
   _statusEffect: {fileID: 11400000, guid: 03f00fe505f366d4f8d3972aab978992, type: 2}
-  _afflictionChance: 100
+  _afflictionChance: 3

@@ -1565,8 +1565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d206a831f2bc5c428187454582df729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 3130
-  _currentHealth: 3130
+  _maxHealth: 100
+  _currentHealth: 100
   OnHealthChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1892,8 +1892,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <NeuroglyphAmount>k__BackingField: 3
-  <Neuroglyphs>k__BackingField:
-  - {fileID: 11400000, guid: 21c0522408c28b548ab53c620de4929a, type: 2}
+  <Neuroglyphs>k__BackingField: []
 --- !u!114 &1588857731240795399
 MonoBehaviour:
   m_ObjectHideFlags: 0

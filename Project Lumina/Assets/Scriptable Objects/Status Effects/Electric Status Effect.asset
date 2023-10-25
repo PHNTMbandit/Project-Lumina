@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f46c0be23496f5a4285b077e6113e0b1, type: 3}
+  m_Name: Electric Status Effect
+  m_EditorClassIdentifier: 
+  <Icon>k__BackingField: {fileID: -1398815665, guid: 5dbe39e325694d8428b04c1fe31c6730, type: 3}
+  <StatusEffectName>k__BackingField: Electric
+  <Description>k__BackingField: Damged target if they move
+  _damage: 1
+  _duration: 7
+  _maxStacks: 10
+  <Colour>k__BackingField: {r: 0.996, g: 0.812, b: 0.012, a: 1}
+  <Indicator>k__BackingField: {fileID: 6900393257970694771, guid: 9ac696169ed923c458b6a322198ac146, type: 3}
+  _tickInterval: 0.75

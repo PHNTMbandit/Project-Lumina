@@ -36,7 +36,7 @@ namespace ProjectLumina.UI
                 button.gameObject.SetActive(true);
 
                 button.SetIcon(neuroglyph.Icon);
-                button.SetDescription(neuroglyph.Description);
+                button.SetDescription(neuroglyph.GetNeuroglyphComponentDescriptions());
                 button.SetName(neuroglyph.NeuroglyphName);
                 button.SetNeuroglyph(neuroglyph);
                 button.SetTierImage(_controller.GetTierSprite(neuroglyph.CurrentTierLevel));

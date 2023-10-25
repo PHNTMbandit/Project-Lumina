@@ -25,5 +25,10 @@ namespace ProjectLumina.Neuroglyphs
         public NeuroglyphTierLevel tierLevel;
 
         public NeuroglyphComponent[] tierEffects;
+
+        public NeuroglyphTier(NeuroglyphTierLevel tierLevel)
+        {
+            this.tierLevel = tierLevel;
+        }
     }
 }

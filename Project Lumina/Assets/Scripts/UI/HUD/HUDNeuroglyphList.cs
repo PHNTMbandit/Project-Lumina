@@ -42,6 +42,7 @@ namespace ProjectLumina.UI
             {
                 HUDNeuroglyphSlot UISlot = Instantiate(_templateNeuroglyphSlot.gameObject, _transform).GetComponent<HUDNeuroglyphSlot>();
                 UISlot.gameObject.SetActive(true);
+                UISlot.SetTierImage(null);
 
                 _UISlots.Add(UISlot);
             }
