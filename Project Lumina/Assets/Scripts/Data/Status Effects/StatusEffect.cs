@@ -31,9 +31,6 @@ namespace ProjectLumina.Data.StatusEffects
         [TabGroup("Stats"), Range(0, 10), SerializeField]
         private int _maxStacks = 10;
 
-        [TabGroup("Stats"), Range(0, 10), SerializeField]
-        private float _tickInterval = 1.0f;
-
         [field: TabGroup("UI"), ColorPalette, SerializeField]
         public Color Colour { get; private set; }
 
@@ -43,16 +40,12 @@ namespace ProjectLumina.Data.StatusEffects
         protected Stat damage;
         protected Damageable target;
         private int _currentStacks = 0;
-        private float _timeSinceLastTick;
 
         public UnityAction<StatusEffect> onStatusEffectTimerEnd;
-
-        protected abstract void ActivateStatusEffect();
 
         public virtual void AddStatusEffect(GameObject target)
         {
             CurrentStack++;
-            _timeSinceLastTick = 0;
             StackTimer = _duration;
 
             if (target.TryGetComponent(out Damageable damageable))
@@ -66,17 +59,13 @@ namespace ProjectLumina.Data.StatusEffects
             }
         }
 
+        public virtual void RemoveStatusEffect()
+        {
+        }
+
         public virtual void UpdateStatusEffect()
         {
-            _timeSinceLastTick += Time.deltaTime;
             damage = new(_damage * CurrentStack);
-
-            if (_timeSinceLastTick >= _tickInterval)
-            {
-                _timeSinceLastTick = 0;
-
-                ActivateStatusEffect();
-            }
 
             StackTimer -= Time.deltaTime;
 

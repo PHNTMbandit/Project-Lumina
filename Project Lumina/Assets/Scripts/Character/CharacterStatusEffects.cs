@@ -39,6 +39,8 @@ namespace ProjectLumina.Character
 
         public void RemoveStatusEffect(StatusEffect statusEffect)
         {
+            StatusEffects.Find(i => i.StatusEffectName == statusEffect.StatusEffectName).RemoveStatusEffect();
+
             if (StatusEffects.Contains(statusEffect))
             {
                 StatusEffects.Remove(statusEffect);

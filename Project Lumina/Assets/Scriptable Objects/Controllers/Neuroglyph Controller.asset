@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _availableNeuroglyphs:
   - {fileID: 11400000, guid: 21c0522408c28b548ab53c620de4929a, type: 2}
-  _neuroglyphSelectionAmount: 1
+  - {fileID: 11400000, guid: 0bebfb9f20f2d6845ac0db4d93300021, type: 2}
+  _neuroglyphSelectionAmount: 2
   _tierSprites:
   - {fileID: 1317372690, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
   - {fileID: -596296207, guid: 129a3c223e6f721489d8e09d88e6a251, type: 3}
