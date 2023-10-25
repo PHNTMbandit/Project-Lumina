@@ -26,5 +26,10 @@ namespace ProjectLumina.Neuroglyphs.Components
                 characterMove.MoveSpeed.ClearModifiers();
             }
         }
+
+        public override string GetComponentDescription()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

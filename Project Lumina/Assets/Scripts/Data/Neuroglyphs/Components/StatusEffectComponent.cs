@@ -43,5 +43,10 @@ namespace ProjectLumina.Neuroglyphs.Components
                 }
             }
         }
+
+        public override string GetComponentDescription()
+        {
+            return $"Your attacks have {_afflictionChance}% chance of afflicting {_statusEffect.StatusEffectName}";
+        }
     }
 }

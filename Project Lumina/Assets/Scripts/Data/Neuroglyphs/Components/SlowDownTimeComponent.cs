@@ -32,6 +32,11 @@ namespace ProjectLumina.Neuroglyphs.Components
             }
         }
 
+        public override string GetComponentDescription()
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Stop(CharacterRoll roll, float duration)
         {
             if (_waiting)
