@@ -21,7 +21,7 @@ namespace ProjectLumina.Character
         }
 
         [BoxGroup("Attack Combos"), SerializeField]
-        private Attack[] _attackCombos;
+        private RangedAttack[] _attackCombos;
 
         [BoxGroup("Shooting"), SerializeField, Range(0, 10)]
         private float _fireRate;
@@ -29,14 +29,9 @@ namespace ProjectLumina.Character
         private float _nextFire;
         private int _currentShootIndex = 0;
         private Attack _currentShoot;
-        private Animator _animator;
 
         public UnityAction onShootFinished;
-
-        private void Awake()
-        {
-            _animator = GetComponent<Animator>();
-        }
+        public UnityAction<GameObject> onHit;
 
         public void UseShoot()
         {
@@ -46,34 +41,17 @@ namespace ProjectLumina.Character
 
             if (_currentShoot.IsUnlocked)
             {
-                _animator.Play(_currentShoot.AttackAnimation.name);
-
                 CurrentShootIndex++;
             }
         }
 
-        public void Shoot()
+        public void TryShoot()
         {
             foreach (Damageable damageable in _currentShoot.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                if (damageable.IsDamageable)
+                if (_currentShoot.TryAttack(gameObject, damageable))
                 {
-                    damageable.Damage(_currentShoot.Damage);
-
-                    if (damageable.TryGetComponent(out HitFX hitFX))
-                    {
-                        hitFX.ShowHitFX(_currentShoot.HitFX.name);
-                    }
-
-                    if (damageable.TryGetComponent(out HitStop hitStop))
-                    {
-                        hitStop.Stop(_currentShoot.HitStopDuration);
-                    }
-
-                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
-                    {
-                        damageIndicator.ShowDamageIndicator(_currentShoot.Damage, transform.position, _currentShoot.Colour);
-                    }
+                    onHit?.Invoke(damageable.gameObject);
                 }
             }
         }
@@ -104,6 +82,11 @@ namespace ProjectLumina.Character
             {
                 return false;
             }
+        }
+
+        public RangedAttack[] GetRangedAttacks()
+        {
+            return _attackCombos;
         }
     }
 }

@@ -1,12 +1,22 @@
+using System;
 using System.Collections.Generic;
+using Sirenix.OdinInspector;
 
 namespace ProjectLumina.Data
 {
+    [HideLabel, Serializable]
     public class Stat
     {
-        private float _baseValue;
-        private readonly List<StatModifier> _modifiers = new();
+        public Stat(float baseValue)
+        {
+            _baseValue = baseValue;
+            _modifiers = new();
+        }
 
+        private float _baseValue;
+        private readonly List<StatModifier> _modifiers;
+
+        [ShowInInspector]
         public float Value
         {
             get
@@ -18,11 +28,6 @@ namespace ProjectLumina.Data
                 }
                 return modifiedValue;
             }
-        }
-
-        public Stat(float baseValue)
-        {
-            _baseValue = baseValue;
         }
 
         public void AddModifier(StatModifier modifier)

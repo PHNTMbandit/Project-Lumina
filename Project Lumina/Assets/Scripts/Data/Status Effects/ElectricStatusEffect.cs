@@ -52,7 +52,7 @@ namespace ProjectLumina.Data.StatusEffects
 
             if (target.TryGetComponent(out DamageIndicator damageIndicator))
             {
-                damageIndicator.ShowDamageIndicator(damage.Value, target.transform.position, Colour);
+                damageIndicator.ShowDamageIndicator(false, damage.Value, target.transform.position, Colour);
             }
         }
     }

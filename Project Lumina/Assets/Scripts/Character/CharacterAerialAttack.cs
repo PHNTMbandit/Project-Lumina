@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Data;
-using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
@@ -19,7 +19,7 @@ namespace ProjectLumina.Character
         public bool IsSlowStop { get; private set; }
 
         [BoxGroup("Attack Combos"), SerializeField]
-        private Attack[] _attackCombos;
+        private MeleeAttack[] _attackCombos;
 
         [ToggleGroup("SlowStop")]
         public bool SlowStop;
@@ -39,6 +39,7 @@ namespace ProjectLumina.Character
         private Animator _animator;
         private Rigidbody2D _rb;
 
+        public UnityAction<GameObject> onHit;
 
         private void Awake()
         {
@@ -65,38 +66,18 @@ namespace ProjectLumina.Character
             }
         }
 
-        public void AerialAttackDamage()
+        public void TryAerialAttack1()
         {
             foreach (Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                if (damageable.IsDamageable)
+                if (_currentAerialAttack.TryAttack(gameObject, damageable))
                 {
-                    damageable.Damage(_currentAerialAttack.Damage);
+                    onHit?.Invoke(damageable.gameObject);
+                }
 
-                    if (damageable.TryGetComponent(out HitFX hitFX))
-                    {
-                        hitFX.ShowHitFX(_currentAerialAttack.HitFX.name);
-                    }
-
-                    if (damageable.TryGetComponent(out HitStop hitStop))
-                    {
-                        hitStop.Stop(_currentAerialAttack.HitStopDuration);
-                    }
-
-                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
-                    {
-                        damageIndicator.ShowDamageIndicator(_currentAerialAttack.Damage, transform.position, _currentAerialAttack.Colour);
-                    }
-
-                    if (damageable.TryGetComponent(out CameraShake cameraShake))
-                    {
-                        cameraShake.Shake(_currentAerialAttack.Damage);
-                    }
-
-                    if (SlowStop)
-                    {
-                        StartCoroutine(StartSlowStop());
-                    }
+                if (SlowStop)
+                {
+                    StartCoroutine(StartSlowStop());
                 }
             }
         }
@@ -123,6 +104,11 @@ namespace ProjectLumina.Character
             _comboIndex = 0;
             _canContinueCombo = true;
             IsAttacking = false;
+        }
+
+        public MeleeAttack[] GetAerialAttacks()
+        {
+            return _attackCombos;
         }
     }
 }

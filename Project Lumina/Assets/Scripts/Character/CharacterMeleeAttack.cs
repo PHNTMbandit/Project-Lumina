@@ -15,7 +15,7 @@ namespace ProjectLumina.Character
         public bool IsAttacking { get; private set; }
 
         [BoxGroup("Attack Combos"), SerializeField]
-        private Attack[] _attackCombos;
+        private MeleeAttack[] _attackCombos;
 
         private int _comboIndex = 0;
         private bool _canContinueCombo = true;
@@ -55,34 +55,12 @@ namespace ProjectLumina.Character
             }
         }
 
-        public void MeleeAttackDamage()
+        public void TryMeleeAttack()
         {
             foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                if (damageable.IsDamageable)
+                if (_currentMeleeAttack.TryAttack(gameObject, damageable))
                 {
-                    damageable.Damage(_currentMeleeAttack.Damage);
-
-                    if (damageable.TryGetComponent(out HitFX hitFX))
-                    {
-                        hitFX.ShowHitFX(_currentMeleeAttack.HitFX.name);
-                    }
-
-                    if (damageable.TryGetComponent(out HitStop hitStop))
-                    {
-                        hitStop.Stop(_currentMeleeAttack.HitStopDuration);
-                    }
-
-                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
-                    {
-                        damageIndicator.ShowDamageIndicator(_currentMeleeAttack.Damage, transform.position, _currentMeleeAttack.Colour);
-                    }
-
-                    if (damageable.TryGetComponent(out CameraShake cameraShake))
-                    {
-                        cameraShake.Shake(_currentMeleeAttack.Damage);
-                    }
-
                     onHit?.Invoke(damageable.gameObject);
                 }
             }
@@ -98,6 +76,11 @@ namespace ProjectLumina.Character
             _comboIndex = 0;
             _canContinueCombo = true;
             IsAttacking = false;
+        }
+
+        public MeleeAttack[] GetMeleeAttacks()
+        {
+            return _attackCombos;
         }
     }
 }
