@@ -13,9 +13,13 @@ namespace ProjectLumina.Data
         {
             if (target.IsDamageable)
             {
+                Damage.SetBaseValue(damage);
+                CriticalChance.SetBaseValue(criticalChance);
+                CriticalDamageMultiplier.SetBaseValue(criticalDamageMultiplier);
+
                 if (UnityEngine.Random.Range(0, 100) <= criticalChance)
                 {
-                    float criticalDamage = damage * (criticalDamageMultiplier / 100) + damage;
+                    float criticalDamage = Damage.Value * (criticalDamageMultiplier / 100) + damage;
                     target.Damage(criticalDamage);
 
                     if (target.TryGetComponent(out DamageIndicator damageIndicator))
@@ -30,16 +34,16 @@ namespace ProjectLumina.Data
                 }
                 else
                 {
-                    target.Damage(damage);
+                    target.Damage(Damage.Value);
 
                     if (target.TryGetComponent(out DamageIndicator damageIndicator))
                     {
-                        damageIndicator.ShowDamageIndicator(false, damage, user.transform.position, damageIndicatorColour);
+                        damageIndicator.ShowDamageIndicator(false, Damage.Value, user.transform.position, damageIndicatorColour);
                     }
 
                     if (target.TryGetComponent(out CameraShake cameraShake))
                     {
-                        cameraShake.Shake(damage * 0.5f);
+                        cameraShake.Shake(Damage.Value * 0.5f);
                     }
                 }
 

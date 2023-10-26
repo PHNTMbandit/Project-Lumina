@@ -83,5 +83,10 @@ namespace ProjectLumina.Character
                 return false;
             }
         }
+
+        public RangedAttack[] GetRangedAttacks()
+        {
+            return _attackCombos;
+        }
     }
 }

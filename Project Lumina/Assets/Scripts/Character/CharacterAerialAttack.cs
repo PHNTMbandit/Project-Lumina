@@ -105,5 +105,10 @@ namespace ProjectLumina.Character
             _canContinueCombo = true;
             IsAttacking = false;
         }
+
+        public MeleeAttack[] GetAerialAttacks()
+        {
+            return _attackCombos;
+        }
     }
 }

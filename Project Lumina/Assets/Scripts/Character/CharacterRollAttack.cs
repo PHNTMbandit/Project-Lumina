@@ -77,5 +77,10 @@ namespace ProjectLumina.Character
             _canContinueCombo = true;
             IsRollAttacking = false;
         }
+
+        public MeleeAttack[] GetRollAttacks()
+        {
+            return _attackCombos;
+        }
     }
 }
