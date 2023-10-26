@@ -4,6 +4,7 @@ using ProjectLumina.Data;
 using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
@@ -14,7 +15,7 @@ namespace ProjectLumina.Character
         public bool IsRollAttacking { get; private set; }
 
         [BoxGroup("Attack Combos"), SerializeField]
-        private Attack[] _attackCombos;
+        private MeleeAttack[] _attackCombos;
 
         [BoxGroup("Settings"), Range(0, 10), SerializeField]
         private float _rollAttackSpeed;
@@ -24,6 +25,8 @@ namespace ProjectLumina.Character
         private Attack _currentRollAttack;
         private Animator _animator;
         private Rigidbody2D _rb;
+
+        public UnityAction<GameObject> onHit;
 
         private void Awake()
         {
@@ -52,33 +55,13 @@ namespace ProjectLumina.Character
             }
         }
 
-        public void RollAttackDamage()
+        public void TryRollAttack()
         {
             foreach (Damageable damageable in _currentRollAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                if (damageable.IsDamageable)
+                if (_currentRollAttack.TryAttack(gameObject, damageable))
                 {
-                    damageable.Damage(_currentRollAttack.Damage);
-
-                    if (damageable.TryGetComponent(out HitFX hitFX))
-                    {
-                        hitFX.ShowHitFX(_currentRollAttack.HitFX.name);
-                    }
-
-                    if (damageable.TryGetComponent(out HitStop hitStop))
-                    {
-                        hitStop.Stop(_currentRollAttack.HitStopDuration);
-                    }
-
-                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
-                    {
-                        damageIndicator.ShowDamageIndicator(_currentRollAttack.Damage, transform.position, _currentRollAttack.Colour);
-                    }
-
-                    if (damageable.TryGetComponent(out CameraShake cameraShake))
-                    {
-                        cameraShake.Shake(_currentRollAttack.Damage);
-                    }
+                    onHit?.Invoke(damageable.gameObject);
                 }
             }
         }

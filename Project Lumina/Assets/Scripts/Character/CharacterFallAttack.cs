@@ -4,6 +4,7 @@ using ProjectLumina.Data;
 using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
@@ -15,12 +16,14 @@ namespace ProjectLumina.Character
         public bool IsFallAttacking { get; private set; }
 
         [BoxGroup("Attack Combos"), SerializeField]
-        private Attack[] _attackCombos;
+        private MeleeAttack[] _attackCombos;
 
         private int _comboIndex = 0;
         private bool _canContinueCombo;
         private Attack _currentFallAttack;
         private Animator _animator;
+
+        public UnityAction<GameObject> onHit;
 
         private void Awake()
         {
@@ -46,33 +49,13 @@ namespace ProjectLumina.Character
             }
         }
 
-        public void FallAttackDamage()
+        public void TryFallAttack()
         {
             foreach (Damageable damageable in _currentFallAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
             {
-                if (damageable.IsDamageable)
+                if (_currentFallAttack.TryAttack(gameObject, damageable))
                 {
-                    damageable.Damage(_currentFallAttack.Damage);
-
-                    if (damageable.TryGetComponent(out HitFX hitFX))
-                    {
-                        hitFX.ShowHitFX(_currentFallAttack.HitFX.name);
-                    }
-
-                    if (damageable.TryGetComponent(out HitStop hitStop))
-                    {
-                        hitStop.Stop(_currentFallAttack.HitStopDuration);
-                    }
-
-                    if (damageable.TryGetComponent(out DamageIndicator damageIndicator))
-                    {
-                        damageIndicator.ShowDamageIndicator(_currentFallAttack.Damage, transform.position, _currentFallAttack.Colour);
-                    }
-
-                    if (damageable.TryGetComponent(out CameraShake cameraShake))
-                    {
-                        cameraShake.Shake(_currentFallAttack.Damage);
-                    }
+                    onHit?.Invoke(damageable.gameObject);
                 }
             }
         }

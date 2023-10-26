@@ -1392,14 +1392,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 9
-    <HitStopDuration>k__BackingField: 0
-    AttackAnimation: {fileID: 7400000, guid: 1b677b62067b34046b2c50fa05ce3399, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0, g: 0, b: 0, a: 0}
-    <Sensor>k__BackingField: {fileID: 8030033580177232402}
+  _attackCombos: []
 --- !u!114 &8913216245909492744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,11 +1427,13 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0
-    AttackAnimation: {fileID: 7400000, guid: 666ed651a4e3d6842b284f0ddd8512e9, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
-    Colour: {r: 0, g: 0, b: 0, a: 0}
+    damage: 3
+    criticalChance: 3
+    criticalDamageMultiplier: 15
+    hitStopDuration: 0
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 3657249586278866276}
   _fireRate: 1.55
 --- !u!114 &8047855507821010640

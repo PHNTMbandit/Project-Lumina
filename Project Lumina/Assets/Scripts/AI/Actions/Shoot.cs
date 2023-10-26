@@ -1,6 +1,5 @@
 using BehaviorDesigner.Runtime.Tasks;
 using ProjectLumina.Character;
-using UnityEngine;
 
 namespace ProjectLumina.AI.Conditionals
 {

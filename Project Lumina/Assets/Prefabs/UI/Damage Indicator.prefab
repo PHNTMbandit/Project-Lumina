@@ -99,7 +99,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10
+  m_text: 10.5
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 081e8bd58d6c37049847a23e63755a60, type: 2}
   m_sharedMaterial: {fileID: 7813619320334336178, guid: 081e8bd58d6c37049847a23e63755a60, type: 2}
@@ -206,7 +206,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 12.3, y: -13.2}
-  m_SizeDelta: {x: 0.6655, y: 0.6655}
+  m_SizeDelta: {x: 1.3022, y: 0.6655}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2420248301546929033
 MonoBehaviour:
@@ -220,11 +220,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e7af6fa7dc5bd48b897bc35c047e56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _xMove: {x: -1.021871, y: 1.6471028}
+  _xMove: {x: -1.060375, y: 1.0197866}
   _yMove: {x: -1.1701471, y: 0.26319027}
+  _criticalXMove: {x: -1.5677315, y: 1.5778792}
+  _criticalYMove: {x: -1.1701471, y: 0.26319027}
   _moveDuration: 0.75
+  _criticalMoveDuration: 0.9
   _moveEaseType: 27
+  _criticalMoveEaseType: 27
   _fadeDuration: 0.4
   _fadeDelay: 0.1
+  _criticalFadeDuration: 0.6
+  _criticalFadeDelay: 0.276
   _fadeEaseType: 4
+  _criticalFadeEaseType: 4
+  _textSize: 7
+  _criticalTextSize: 9
   _text: {fileID: 1093008890612716652}

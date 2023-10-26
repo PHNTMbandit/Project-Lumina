@@ -1645,18 +1645,22 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0.03
-    AttackAnimation: {fileID: 7400000, guid: 464b6336648434845bf94af978993be0, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 8
+    criticalChance: 3
+    criticalDamageMultiplier: 15
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 15
-    <HitStopDuration>k__BackingField: 0.03
-    AttackAnimation: {fileID: 7400000, guid: 9df17107e74be9b47aab1b91d163b340, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 10
+    criticalChance: 5
+    criticalDamageMultiplier: 25
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
   SlowStop: 1
   _slowStopGravityScale: 0.3
@@ -1726,11 +1730,13 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0.03
-    AttackAnimation: {fileID: 7400000, guid: ed0e548bd9ea1c8478ec5020e6fdcd58, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 0
+    criticalChance: 0
+    criticalDamageMultiplier: 0
+    hitStopDuration: 0
+    hitFX: {fileID: 0}
+    damageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    criticalDamageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
     <Sensor>k__BackingField: {fileID: 3195123333087440787}
 --- !u!114 &6431609096680149782
 MonoBehaviour:
@@ -1833,32 +1839,40 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 4
-    <HitStopDuration>k__BackingField: 0.04
-    AttackAnimation: {fileID: 7400000, guid: e6e25ebfc8d83214584a1749ec72b898, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 5
+    criticalChance: 3
+    criticalDamageMultiplier: 15
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 6
-    <HitStopDuration>k__BackingField: 0.04
-    AttackAnimation: {fileID: 7400000, guid: 18b8a611ce5d1644a9d33fc1b8f633ba, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 8
+    criticalChance: 5
+    criticalDamageMultiplier: 20
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 10
-    <HitStopDuration>k__BackingField: 0.04
-    AttackAnimation: {fileID: 7400000, guid: 00844d12cc20d254cb4149bb974698da, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 12
+    criticalChance: 7
+    criticalDamageMultiplier: 35
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 8
-    <HitStopDuration>k__BackingField: 0.04
-    AttackAnimation: {fileID: 7400000, guid: 454e26a29c856fa4d9a3d7367aa578b6, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 16
+    criticalChance: 9
+    criticalDamageMultiplier: 50
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
 --- !u!114 &539630210308743331
 MonoBehaviour:
@@ -1926,11 +1940,13 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
   - <IsUnlocked>k__BackingField: 1
-    <Damage>k__BackingField: 9
-    <HitStopDuration>k__BackingField: 0.07
-    AttackAnimation: {fileID: 7400000, guid: 1491267b59419d845a9a13d350e095c0, type: 2}
-    HitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    Colour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    damage: 8
+    criticalChance: 8
+    criticalDamageMultiplier: 35
+    hitStopDuration: 0.065
+    hitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
   _rollAttackSpeed: 2
 --- !u!114 &4429014146250662890
