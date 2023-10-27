@@ -19,7 +19,7 @@ namespace ProjectLumina.Data
 
                 if (UnityEngine.Random.Range(0, 100) <= criticalChance)
                 {
-                    float criticalDamage = Damage.Value * (criticalDamageMultiplier / 100) + damage;
+                    float criticalDamage = Damage.Value + (Damage.Value * (criticalDamageMultiplier / 100));
                     target.Damage(criticalDamage);
 
                     if (target.TryGetComponent(out DamageIndicator damageIndicator))
