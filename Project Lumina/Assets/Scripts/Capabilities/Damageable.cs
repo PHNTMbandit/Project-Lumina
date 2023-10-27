@@ -9,6 +9,7 @@ namespace ProjectLumina.Capabilities
     public class Damageable : MonoBehaviour
     {
         public bool IsDamageable { get; private set; } = true;
+        public Stat DamageReduction { get; private set; } = new(0);
 
         private Health _health;
 
@@ -32,7 +33,8 @@ namespace ProjectLumina.Capabilities
                     IsDamageable = false;
                 }
 
-                _health.ChangeHealth(-damage);
+                float damageReduction = damage - (damage * (DamageReduction.Value / 100));
+                _health.ChangeHealth(-damageReduction);
             }
         }
 
