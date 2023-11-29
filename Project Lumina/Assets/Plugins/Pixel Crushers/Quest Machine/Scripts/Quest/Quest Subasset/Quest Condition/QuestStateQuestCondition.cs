@@ -13,7 +13,11 @@ namespace PixelCrushers.QuestMachine
     public class QuestStateQuestCondition : QuestCondition, IMessageHandler
     {
 
-        [Tooltip("ID of quest to monitor.")]
+        [Tooltip("Quest to monitor. If set, this takes priority over Required Quest ID. If neither is set, uses this quest.")]
+        [SerializeField]
+        private Quest m_requiredQuest;
+
+        [Tooltip("ID of quest to monitor. Used if Required Quest is unassigned. If neither is set, uses this quest.")]
         [SerializeField]
         private StringField m_requiredQuestID;
 
@@ -26,7 +30,16 @@ namespace PixelCrushers.QuestMachine
         private QuestState m_requiredState;
 
         /// <summary>
-        /// ID of quest to monitor.
+        /// Quest to monitor. If set, this takes priority over Required Quest ID. If neither is set, uses this quest.
+        /// </summary>
+        public Quest requiredQuest
+        {
+            get { return m_requiredQuest; }
+            set { m_requiredQuest = value; }
+        }
+
+        /// <summary>
+        /// ID of quest to monitor. Used if Required Quest is unassigned. If neither is set, uses this quest.
         /// </summary>
         public StringField requiredQuestID
         {
@@ -43,6 +56,11 @@ namespace PixelCrushers.QuestMachine
             set { m_isNot = value; }
         }
 
+        public StringField questIDToCheck
+        {
+            get { return (requiredQuest != null) ? requiredQuest.id : requiredQuestID; }
+        }
+
         /// <summary>
         /// State that monitored quest must be in.
         /// </summary>
@@ -54,22 +72,23 @@ namespace PixelCrushers.QuestMachine
 
         public override string GetEditorName()
         {
-            return StringField.IsNullOrEmpty(m_requiredQuestID) ? 
-                ("Quest State: " + (isNot ? "!= " : "== ") + requiredState) : 
-                ("Quest State: " + requiredQuestID.value + (isNot ? " != " : " == ") + requiredState);
+            return (requiredQuest != null)
+                ? ("Quest State: " + requiredQuest.id + (isNot ? " != " : " == ") + requiredState)
+                : StringField.IsNullOrEmpty(m_requiredQuestID) ? 
+                    ("Quest State: " + (isNot ? "!= " : "== ") + requiredState) : 
+                    ("Quest State: " + m_requiredQuestID.value + (isNot ? " != " : " == ") + requiredState);
         }
 
         public override void StartChecking(System.Action trueAction)
         {
             base.StartChecking(trueAction);
-            if (requiredQuestID == null) return;
-            if (IsConditionTrue(QuestMachine.GetQuestState(requiredQuestID)))
+            if (IsConditionTrue(QuestMachine.GetQuestState(questIDToCheck)))
             {
                 SetTrue();
             }
             else
             {
-                MessageSystem.AddListener(this, QuestMachineMessages.QuestStateChangedMessage, requiredQuestID.value);
+                MessageSystem.AddListener(this, QuestMachineMessages.QuestStateChangedMessage, questIDToCheck.value);
             }
         }
 
@@ -81,9 +100,11 @@ namespace PixelCrushers.QuestMachine
 
         void IMessageHandler.OnMessage(MessageArgs messageArgs)
         {
-            if (!isChecking || messageArgs.values == null || messageArgs.values.Length < 2 || requiredQuestID == null) return;
+            if (!isChecking || messageArgs.values == null || messageArgs.values.Length < 2 || 
+                (requiredQuest == null && requiredQuestID == null)) return;
             var questID = messageArgs.parameter;
-            if (!StringField.Equals(requiredQuestID, questID)) return;
+            var isThisQuest = StringField.Equals(questIDToCheck, questID);
+            if (!isThisQuest) return;
             var questNodeID = QuestMachineMessages.ArgToString(messageArgs.values[0]);
             if (!string.IsNullOrEmpty(questNodeID)) return;
             var stateValue = messageArgs.values[1];

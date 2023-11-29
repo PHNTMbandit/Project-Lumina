@@ -10,7 +10,7 @@ namespace Micosmo.SensorToolkit.Editors {
     public class UserSignalsEditor : BaseSensorEditor<UserSignals> {
         SerializedProperty inputSignals;
 
-        protected override bool canTest => false;
+        protected override bool canTest => true;
 
         protected override void OnEnable() {
             base.OnEnable();

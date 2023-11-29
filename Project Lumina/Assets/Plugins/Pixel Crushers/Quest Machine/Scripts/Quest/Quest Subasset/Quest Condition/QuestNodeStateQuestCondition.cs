@@ -13,11 +13,15 @@ namespace PixelCrushers.QuestMachine
     public class QuestNodeStateQuestCondition : QuestCondition, IMessageHandler
     {
 
-        [Tooltip("ID of quest to monitor. Leave blank to monitor this quest.")]
+        [Tooltip("Quest to monitor. If set, this takes priority over Required Quest ID. If neither is set, uses this quest.")]
+        [SerializeField]
+        private Quest m_requiredQuest;
+
+        [Tooltip("ID of quest to monitor. Used if Required Quest is unassigned. If neither is set, uses this quest.")]
         [SerializeField]
         private StringField m_requiredQuestID;
 
-        [Tooltip("ID of quest node to monitor. Leave blank to monitor this quest node.")]
+        [Tooltip("ID of quest node to monitor. Leave blank to monitor this quest node. If neither is set, uses this quest.")]
         [SerializeField]
         private StringField m_requiredQuestNodeID;
 
@@ -30,7 +34,15 @@ namespace PixelCrushers.QuestMachine
         private QuestNodeState m_requiredState;
 
         /// <summary>
-        /// ID of quest to monitor.
+        /// Quest to monitor. If set, this takes priority over Required Quest ID. If neither is set, uses this quest.
+        /// </summary>
+        public Quest requiredQuest
+        {
+            get { return m_requiredQuest; }
+            set { m_requiredQuest = value; }
+        }
+        /// <summary>
+        /// ID of quest node to monitor. Leave blank to monitor this quest node. If neither is set, uses this quest.
         /// </summary>
         public StringField requiredQuestID
         {
@@ -65,37 +77,59 @@ namespace PixelCrushers.QuestMachine
             set { m_requiredState = value; }
         }
 
+        public StringField questIDToCheck
+        {
+            get { return (requiredQuest != null) ? requiredQuest.id : requiredQuestID; }
+        }
+
         public override string GetEditorName()
         {
-            if (StringField.IsNullOrEmpty(requiredQuestID) && StringField.IsNullOrEmpty(requiredQuestNodeID))
+            if (requiredQuest != null)
             {
-                return "Quest Node State: " + (isNot ? "!= " : "== ") + requiredState;
+                if (!StringField.IsNullOrEmpty(requiredQuestNodeID))
+                {
+                    return "Quest Note State: Quest '" + requiredQuest.id + "' Node '" + requiredQuestNodeID + "' " + (isNot ? "!= " : "== ") + requiredState;
+                }
+                else
+                {
+                    return "Quest Note State: Quest '" + requiredQuest.id + "' Node (unspecified) " + (isNot ? "!= " : "== ") + requiredState;
+                }
             }
-            else if (StringField.IsNullOrEmpty(requiredQuestID))
+            else if (!StringField.IsNullOrEmpty(m_requiredQuestID))
             {
-                return "Quest Node State: '" + requiredQuestNodeID + "' State " + (isNot ? "!= " : "== ") + requiredState;
-            }
-            else if (StringField.IsNullOrEmpty(requiredQuestNodeID))
-            {
-                return "Quest Node State: Quest '" + requiredQuestID + "' Node (unspecified) " + (isNot ? "!= " : "== ") + requiredState;
+                if (!StringField.IsNullOrEmpty(requiredQuestNodeID))
+                {
+                    return "Quest Note State: Quest '" + m_requiredQuestID + "' Node '" + requiredQuestNodeID + "' " + (isNot ? "!= " : "== ") + requiredState;
+                }
+                else
+                {
+                    return "Quest Note State: Quest '" + m_requiredQuestID + "' Node (unspecified) " + (isNot ? "!= " : "== ") + requiredState;
+                }
             }
             else
             {
-                return "Quest Note State: Quest '" + requiredQuestID + "' Node '" + requiredQuestNodeID + "' " + (isNot ? "!= " : "== ") + requiredState;
+                if (!StringField.IsNullOrEmpty(requiredQuestNodeID))
+                {
+                    return "Quest Note State: Quest Node '" + requiredQuestNodeID + "' " + (isNot ? "!= " : "== ") + requiredState;
+                }
+                else
+                {
+                    return "Quest Note State: Quest Node (unspecified) " + (isNot ? "!= " : "== ") + requiredState;
+                }
             }
-       }
+        }
 
         public override void StartChecking(System.Action trueAction)
         {
             base.StartChecking(trueAction);
             if (requiredQuestID == null) return;
-            if (IsConditionTrue(QuestMachine.GetQuestNodeState(requiredQuestID, requiredQuestNodeID)))
+            if (IsConditionTrue(QuestMachine.GetQuestNodeState(questIDToCheck, requiredQuestNodeID)))
             {
                 SetTrue();
             }
             else
             {
-                MessageSystem.AddListener(this, QuestMachineMessages.QuestStateChangedMessage, requiredQuestID.value);
+                MessageSystem.AddListener(this, QuestMachineMessages.QuestStateChangedMessage, questIDToCheck.value);
             }
         }
 
@@ -110,7 +144,8 @@ namespace PixelCrushers.QuestMachine
             if (!isChecking) return;
             if (messageArgs.values == null || messageArgs.values.Length < 2 || requiredQuestID == null) return;
             var questID = messageArgs.parameter;
-            if (!string.Equals(questID, StringField.GetStringValue(requiredQuestID))) return;
+            var isThisQuest = StringField.Equals(questIDToCheck, questID);
+            if (!isThisQuest) return;
             var questNodeID = QuestMachineMessages.ArgToString(messageArgs.values[0]);
             if (!string.Equals(questNodeID, requiredQuestNodeID.value)) return;
             var stateValue = messageArgs.values[1];

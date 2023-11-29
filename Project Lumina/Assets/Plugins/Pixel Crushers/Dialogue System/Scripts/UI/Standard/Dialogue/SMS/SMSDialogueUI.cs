@@ -311,6 +311,7 @@ namespace PixelCrushers.DialogueSystem
         public override void ShowContinueButton(Subtitle subtitle)
         {
             shouldShowContinueButton = true;
+            if (continueButton != null) continueButton.gameObject.SetActive(true);
         }
 
         public override void OnContinueConversation()

@@ -46,6 +46,7 @@ namespace PixelCrushers.QuestMachine
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_goalSelectionMode"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_generateQuestOnStart"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_maxQuestsToGenerate"), true);
+            EditorGUILayout.PropertyField(serializedObject.FindProperty("m_excludeEntitiesInQuestJournals"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_requireReturnToComplete"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_generateAbandonableQuests"), true);
             EditorGUILayout.PropertyField(serializedObject.FindProperty("m_rewardsUIContents"), true);

@@ -17,15 +17,19 @@ namespace Micosmo.SensorToolkit.Editors {
                 EditorGUI.BeginChangeCheck();
 
                 string[] areaNames = GameObjectUtility.GetNavMeshAreaNames();
-                string[] completeAreaNames = new string[areaNames.Length];
+                List<string> completeAreaNames = new List<string>();
 
                 foreach (string name in areaNames) {
-                    completeAreaNames[GameObjectUtility.GetNavMeshAreaFromName(name)] = name;
+                    var id = GameObjectUtility.GetNavMeshAreaFromName(name);
+                    while (id >= completeAreaNames.Count) {
+                        completeAreaNames.Add("");
+                    }
+                    completeAreaNames[id] = name;
                 }
 
                 int mask = serializedProperty.intValue;
 
-                mask = EditorGUI.MaskField(position, mask, completeAreaNames);
+                mask = EditorGUI.MaskField(position, mask, completeAreaNames.ToArray());
                 if (EditorGUI.EndChangeCheck()) {
                     serializedProperty.intValue = mask;
                 }

@@ -346,12 +346,17 @@ namespace PixelCrushers.DialogueSystem
         /// not custom panels.
         /// </summary>
         public virtual void RecordActorPanelCache(out List<string> actorGOs, out List<SubtitlePanelNumber> actorGOPanels,
-            out List<int> actorIDs, out List<SubtitlePanelNumber> actorIDPanels)
+            out List<int> actorIDs, out List<SubtitlePanelNumber> actorIDPanels, out List<string> actorNames)
         {
             actorGOs = new List<string>();
             actorGOPanels = new List<SubtitlePanelNumber>();
             actorIDs = new List<int>();
             actorIDPanels = new List<SubtitlePanelNumber>();
+            actorNames = new List<string>();
+            for (int i = 0; i < m_builtinPanels.Count; i++)
+            {
+                actorNames.Add(string.Empty);
+            }
             foreach (var kvp in m_actorPanelCache)
             {
                 if (kvp.Key == null) continue;
@@ -359,11 +364,24 @@ namespace PixelCrushers.DialogueSystem
                 if (panelNumber == SubtitlePanelNumber.Custom) continue;
                 actorGOs.Add(kvp.Key.name);
                 actorGOPanels.Add(panelNumber);
+                if (panelNumber >= SubtitlePanelNumber.Panel0)
+                {
+                    actorNames[(int)panelNumber - (int)SubtitlePanelNumber.Panel0] = kvp.Key.name;
+                }
             }
             foreach (var kvp in m_actorIdOverridePanel)
             {
                 actorIDs.Add(kvp.Key);
-                actorIDPanels.Add((GetSubtitlePanelNumberFromPanel(kvp.Value)));
+                var panelNumber = GetSubtitlePanelNumberFromPanel(kvp.Value);
+                actorIDPanels.Add(panelNumber);
+                if (panelNumber >= SubtitlePanelNumber.Panel0)
+                {
+                    var actor = DialogueManager.masterDatabase.GetActor(kvp.Key);
+                    if (actor != null)
+                    {
+                        actorNames[(int)panelNumber - (int)SubtitlePanelNumber.Panel0] = actor.Name;
+                    }
+                }
             }
         }
 

@@ -696,6 +696,10 @@ namespace PixelCrushers.DialogueSystem
             {
                 RefreshSelectablesList();
                 CheckFocus();
+                if (eventSystem != null && eventSystem.currentSelectedGameObject != null)
+                { // Also show in focused/selected state:
+                    UIUtility.Select(eventSystem.currentSelectedGameObject.GetComponent<UnityEngine.UI.Selectable>());
+                }
             }
         }
         #endregion

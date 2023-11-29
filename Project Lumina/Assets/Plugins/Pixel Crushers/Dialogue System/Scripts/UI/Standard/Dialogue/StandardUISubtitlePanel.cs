@@ -601,7 +601,7 @@ namespace PixelCrushers.DialogueSystem
             {
                 if (numAccumulatedLines < maxLines)
                 {
-                    numAccumulatedLines++;
+                    numAccumulatedLines += (1 + NumCharOccurrences('\n', subtitle.formattedText.text));
                 }
                 else
                 {
@@ -624,6 +624,19 @@ namespace PixelCrushers.DialogueSystem
             {
                 TypewriterUtility.StartTyping(subtitleText, subtitleText.text, previousChars);
             }
+        }
+
+        /// <summary>
+        /// Returns the number of times character c occurs in string s.
+        /// </summary>
+        protected int NumCharOccurrences(char c, string s)
+        {
+            int count = 0;
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (c == s[i]) count++;
+            }
+            return count;
         }
 
         protected virtual IEnumerator StartTypingWhenFocused(UITextField subtitleText, string text, int fromIndex)

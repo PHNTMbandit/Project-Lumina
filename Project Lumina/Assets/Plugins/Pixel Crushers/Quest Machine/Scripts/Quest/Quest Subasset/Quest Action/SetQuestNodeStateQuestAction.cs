@@ -11,7 +11,11 @@ namespace PixelCrushers.QuestMachine
     public class SetQuestNodeStateQuestAction : QuestAction
     {
 
-        [Tooltip("ID of quest. Leave blank to set this quest's state.")]
+        [Tooltip("Quest to set. If assigned, this takes priority over Quest ID. If neither is set, uses this quest.")]
+        [SerializeField]
+        private Quest m_questToSet;
+
+        [Tooltip("ID of quest. Used if Quest To Set is unassigned. Leave both blank to set this quest's state.")]
         [SerializeField]
         private StringField m_questID;
 
@@ -24,7 +28,16 @@ namespace PixelCrushers.QuestMachine
         private QuestNodeState m_state;
 
         /// <summary>
-        /// ID of quest. Leave blank to set this quest's state.
+        /// Quest to set. If assigned, this takes priority over Quest ID. If neither is set, uses this quest.
+        /// </summary>
+        public Quest questToSet
+        {
+            get { return m_questToSet; }
+            set { m_questToSet = value; }
+        }
+
+        /// <summary>
+        /// ID of quest. Used if Quest To Set is unassigned. Leave both blank to set this quest's state.
         /// </summary>
         public StringField questID
         {
@@ -47,31 +60,53 @@ namespace PixelCrushers.QuestMachine
             set { m_state = value; }
         }
 
+        public StringField questIDToSet
+        {
+            get { return (questToSet != null) ? questToSet.id : !StringField.IsNullOrEmpty(questID) ? questID : StringField.empty; }
+        }
+
         public override string GetEditorName()
         {
-            if (StringField.IsNullOrEmpty(questID) && StringField.IsNullOrEmpty(questNodeID))
+            if (questToSet != null)
             {
-                return "Set Quest Node State: " + state;
+                if (!StringField.IsNullOrEmpty(questNodeID))
+                {
+                    return "Set Quest Node State: Quest '" + quest.id + "' Node '" + questNodeID + "' to " + state;
+                }
+                else
+                {
+                    return "Set Quest Node State: Quest '" + quest.id + "' Node (unspecified) to " + state;
+                }
             }
-            else if (StringField.IsNullOrEmpty(questID))
+            else if (!StringField.IsNullOrEmpty(m_questID))
             {
-                return "Set Quest Node State: '" + questNodeID + "' to " + state;
-            }
-            else if (StringField.IsNullOrEmpty(questNodeID))
-            {
-                return "Set Quest Node State: Quest '" + questID + "' Node (unspecified) to " + state;
+                if (!StringField.IsNullOrEmpty(questNodeID))
+                {
+                    return "Set Quest Node State: Quest '" + m_questID + "' Node '" + questNodeID + "' to " + state;
+                }
+                else
+                {
+                    return "Set Quest Node State: Quest '" + m_questID + "' Node (unspecified) to " + state;
+                }
             }
             else
             {
-                return "Set Quest Node State: Quest '" + questID + "' Node '" + questNodeID + "' to " + state;
+                if (!StringField.IsNullOrEmpty(questID))
+                {
+                    return "Set Quest Node State: '" + questNodeID + "' to " + state;
+                }
+                else
+                {
+                    return "Set Quest Node State: " + state;
+                }
             }
         }
 
         public override void Execute()
         {
-            if (QuestMachine.GetQuestNodeState(questID, questNodeID) != state)
+            if (QuestMachine.GetQuestNodeState(questIDToSet, questNodeID) != state)
             {
-                QuestMachine.SetQuestNodeState(questID, questNodeID, state);
+                QuestMachine.SetQuestNodeState(questIDToSet, questNodeID, state);
             }
         }
 

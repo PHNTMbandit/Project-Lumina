@@ -24,63 +24,99 @@ namespace PixelCrushers.QuestMachine
         [HelpBox("Do not remove this GameObject. It contains UnityEvents referenced by Quest Machine quest actions. This GameObject should not be a child of the Dialogue Manager or marked as Don't Destroy On Load.", HelpBoxMessageType.Info)]
         public List<QuestMachineSceneEvent> sceneEvents = new List<QuestMachineSceneEvent>();
 
-        private static QuestMachineSceneEvents m_sceneInstance = null;
-        public static QuestMachineSceneEvents sceneInstance
-        {
-            get
-            {
-                if (m_sceneInstance == null)
-                {
-                    m_sceneInstance = FindObjectOfType<QuestMachineSceneEvents>();
-                }
-                return m_sceneInstance;
-            }
-            set
-            {
-                m_sceneInstance = value;
-            }
-        }
+        /// <summary>
+        /// Runtime list of QuestMachineSceneEvents in all loaded scenes.
+        /// </summary>
+        private static List<QuestMachineSceneEvents> m_sceneInstances = new List<QuestMachineSceneEvents>();
 
 #if UNITY_2019_3_OR_NEWER && UNITY_EDITOR
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         static void InitStaticVariables()
         {
-            m_sceneInstance = null;
+            m_sceneInstances = new List<QuestMachineSceneEvents>();
         }
 #endif
 
         private void Awake()
         {
-            m_sceneInstance = this;
+            RegisterInstance();
         }
 
-        public static int AddNewSceneEvent(out string guid)
+        private void Start()
+        {
+            RegisterInstance();
+        }
+
+        private void OnDestroy()
+        {
+            m_sceneInstances.Remove(this);
+        }
+
+        private void RegisterInstance()
+        {
+            if (!m_sceneInstances.Contains(this))
+            {
+                m_sceneInstances.Add(this);
+            }
+        }
+
+        public static int AddNewSceneEvent(out string guid, QuestMachineSceneEvents sceneInstanceToUse = null)
         {
             guid = string.Empty;
-            if (sceneInstance == null) return -1;
+            if (Application.isPlaying) return -1;
+            if (sceneInstanceToUse == null) sceneInstanceToUse = GameObjectUtility.FindFirstObjectByType<QuestMachineSceneEvents>();
+            if (sceneInstanceToUse == null) return -1;
             guid = Guid.NewGuid().ToString();
             var x = new QuestMachineSceneEvent();
             x.guid = guid;
-            sceneInstance.sceneEvents.Add(x);
-            return sceneInstance.sceneEvents.Count - 1;
+            sceneInstanceToUse.sceneEvents.Add(x);
+            return sceneInstanceToUse.sceneEvents.Count - 1;
         }
 
-        public static void RemoveSceneEvent(string guid)
+        public static void RemoveSceneEvent(string guid, QuestMachineSceneEvents sceneInstanceToUse = null)
         {
-            if (Application.isPlaying || sceneInstance == null) return;
-            sceneInstance.sceneEvents.RemoveAll(x => x.guid == guid);
+            if (Application.isPlaying) return;
+            if (sceneInstanceToUse != null)
+            {
+                sceneInstanceToUse.sceneEvents.RemoveAll(x => x.guid == guid);
+            }
+            else
+            {
+                foreach (var instance in GameObjectUtility.FindObjectsByType<QuestMachineSceneEvents>())
+                {
+                    instance.sceneEvents.RemoveAll(x => x.guid == guid);
+                }
+            }
         }
 
         public static QuestMachineSceneEvent GetSceneEvent(string guid)
         {
-            if (sceneInstance == null) return null;
-            return sceneInstance.sceneEvents.Find(x => x.guid == guid);
+            if (!Application.isPlaying) return null;
+            foreach (var sceneInstance in m_sceneInstances)
+            {
+                if (sceneInstance == null || sceneInstance.sceneEvents == null) continue;
+                var result = sceneInstance.sceneEvents.Find(x => x.guid == guid);
+                if (result != null) return result;
+            }
+            return null;
         }
 
         public static int GetSceneEventIndex(string guid)
         {
-            if (sceneInstance == null) return -1;
-            return sceneInstance.sceneEvents.FindIndex(x => x.guid == guid);
+            if (!Application.isPlaying) return -1;
+            foreach (var sceneInstance in m_sceneInstances)
+            {
+                if (sceneInstance == null || sceneInstance.sceneEvents == null) continue;
+                var result = sceneInstance.sceneEvents.FindIndex(x => x.guid == guid);
+                if (result != -1) return result;
+            }
+            return -1;
+        }
+
+        public static int GetSceneEventIndex(string guid, QuestMachineSceneEvents instance)
+        {
+            if (instance == null) return -1;
+            return instance.sceneEvents.FindIndex(x => x.guid == guid);
         }
 
     }

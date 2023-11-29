@@ -20,18 +20,25 @@ namespace PixelCrushers.QuestMachine
         protected override void OnEnable()
         {
             base.OnEnable();
+            TryGetProperties();
+        }
+
+        protected virtual void TryGetProperties()
+        {
             try
             {
                 gameObjectNameProperty = (serializedObject != null) ? serializedObject.FindProperty("m_gameObjectName") : null;
                 stateProperty = (serializedObject != null) ? serializedObject.FindProperty("m_state") : null;
             }
-            catch (System.ArgumentException) { }
+            catch (System.Exception) { }
         }
 
         protected override void Draw()
         {
             // DrawDefaultInspector();
             serializedObject.Update();
+
+            if (gameObjectNameProperty == null || stateProperty == null) TryGetProperties();
             EditorGUILayout.PropertyField(gameObjectNameProperty);
             if (Event.current.type == EventType.Repaint) gameObjectNameRect = GUILayoutUtility.GetLastRect();
             EditorGUILayout.PropertyField(stateProperty);

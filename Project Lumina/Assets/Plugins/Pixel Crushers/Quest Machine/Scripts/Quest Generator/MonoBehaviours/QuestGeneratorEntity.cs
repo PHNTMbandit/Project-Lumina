@@ -30,6 +30,10 @@ namespace PixelCrushers.QuestMachine
         [SerializeField]
         private QuestDomain[] m_domains = new QuestDomain[0];
 
+        [Tooltip("Don't generate quests about entities that are already in quests in Quest Journals.")]
+        [SerializeField]
+        private bool m_excludeEntitiesInQuestJournals;
+
         [Tooltip("Require the quester to speak to the quest giver to finish the quest.")]
         [SerializeField]
         private bool m_requireReturnToComplete = true;
@@ -79,6 +83,15 @@ namespace PixelCrushers.QuestMachine
         {
             get { return m_domainType; }
             set { m_domainType = value; }
+        }
+
+        /// <summary>
+        /// Don't generate quests about entities that are already in quests in Quest Journals.
+        /// </summary>
+        public bool excludeEntitiesInQuestJournals
+        {
+            get { return m_excludeEntitiesInQuestJournals; }
+            set { m_excludeEntitiesInQuestJournals = value; }
         }
 
         /// <summary>
@@ -252,8 +265,27 @@ namespace PixelCrushers.QuestMachine
             if (m_isGenerating || questListContainer == null || questListContainer.questList == null) return;
             if (GetGeneratedQuestCount() >= maxQuestsToGenerate) return;
             var worldModel = BuildWorldModel();
-            questGenerator.GenerateQuest(this, questGroup, domainType, worldModel, requireReturnToComplete, rewardsUIContents.contentList, rewardSystems, questListContainer.questList, OnGeneratedQuest, goalSelectionMode, generateAbandonableQuests);
+            questGenerator.GenerateQuest(this, questGroup, domainType, worldModel, requireReturnToComplete, rewardsUIContents.contentList, rewardSystems, GetExistingQuests(), OnGeneratedQuest, goalSelectionMode, generateAbandonableQuests);
             m_isGenerating = true;
+        }
+
+        protected virtual List<Quest> GetExistingQuests()
+        {
+            var existingQuests = questListContainer.questList;
+            if (excludeEntitiesInQuestJournals)
+            {
+                existingQuests = new List<Quest>(questListContainer.questList);
+                foreach (var otherQuestListContainer in QuestMachine.GetAllQuestListContainers().Values)
+                {
+                    if (otherQuestListContainer != null &&
+                        otherQuestListContainer != questListContainer &&
+                        otherQuestListContainer is QuestJournal)
+                    {
+                        existingQuests.AddRange(otherQuestListContainer.questList);
+                    }
+                }
+            }
+            return existingQuests;
         }
 
         protected virtual void OnGeneratedQuest(Quest quest)

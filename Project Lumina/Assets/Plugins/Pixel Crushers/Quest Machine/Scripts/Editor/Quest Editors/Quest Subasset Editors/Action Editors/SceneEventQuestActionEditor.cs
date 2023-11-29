@@ -20,7 +20,6 @@ namespace PixelCrushers.QuestMachine
             if (serializedObject == null) return;
             serializedObject.Update();
             EditorGUILayout.HelpBox("This action invokes a UnityEvent in a specific scene.", MessageType.None);
-
             var guidProperty = serializedObject.FindProperty("m_guid");
 
             // Draw scene-specific event:
@@ -38,8 +37,15 @@ namespace PixelCrushers.QuestMachine
             }
             else
             {
-                // Otherwise check if the entry's scene event is defined in this scene:
-                sceneEventIndex = QuestMachineSceneEvents.GetSceneEventIndex(sceneEventGuid);
+                // Make sure our serialized object points to this scene's QuestMachineSceneEvents:
+                if (m_questMachineSceneEvents == null || m_questMachineSceneEventsSerializedObject == null)
+                {
+                    m_questMachineSceneEvents = GameObjectUtility.FindFirstObjectByType<QuestMachineSceneEvents>();
+                    m_questMachineSceneEventsSerializedObject = (m_questMachineSceneEvents != null) 
+                        ? new SerializedObject(m_questMachineSceneEvents) : null;
+                }
+                // Then check if the entry's scene event is defined in this scene:
+                sceneEventIndex = QuestMachineSceneEvents.GetSceneEventIndex(sceneEventGuid, m_questMachineSceneEvents);
             }
             if (sceneEventIndex == -1 && !string.IsNullOrEmpty(sceneEventGuid))
             {
@@ -48,15 +54,6 @@ namespace PixelCrushers.QuestMachine
                 if (GUILayout.Button("Delete Scene Event"))
                 {
                     guidProperty.stringValue = string.Empty;
-                }
-            }
-            if (sceneEventIndex != -1)
-            {
-                // Make sure our serialized object points to this scene's QuestMachineSceneEvents:
-                if (m_questMachineSceneEvents != QuestMachineSceneEvents.sceneInstance || m_questMachineSceneEventsSerializedObject == null)
-                {
-                    m_questMachineSceneEvents = QuestMachineSceneEvents.sceneInstance;
-                    m_questMachineSceneEventsSerializedObject = new SerializedObject(m_questMachineSceneEvents);
                 }
             }
             if (sceneEventIndex != -1 && m_questMachineSceneEventsSerializedObject != null)
@@ -89,37 +86,17 @@ namespace PixelCrushers.QuestMachine
 
         private void MakeSureQuestMachineSceneEventsExists()
         {
-            if (QuestMachineSceneEvents.sceneInstance == null)
+            if (m_questMachineSceneEvents == null)
             {
-                QuestMachineSceneEvents.sceneInstance = FindObjectOfType<QuestMachineSceneEvents>();
-                if (QuestMachineSceneEvents.sceneInstance == null)
+                m_questMachineSceneEvents = GameObjectUtility.FindFirstObjectByType<QuestMachineSceneEvents>();
+                if (m_questMachineSceneEvents == null)
                 {
                     var go = new GameObject("Quest Machine Scene Events");
-                    QuestMachineSceneEvents.sceneInstance = go.AddComponent(PixelCrushers.TypeUtility.GetWrapperType(typeof(QuestMachineSceneEvents))) as QuestMachineSceneEvents;
+                    m_questMachineSceneEvents = go.AddComponent(PixelCrushers.TypeUtility.GetWrapperType(typeof(QuestMachineSceneEvents))) as QuestMachineSceneEvents;
                     UnityEditor.SceneManagement.EditorSceneManager.MarkSceneDirty(UnityEditor.SceneManagement.EditorSceneManager.GetActiveScene());
                 }
             }
         }
 
-        //    private bool DoesDialogueEntryHaveEvent(DialogueEntry entry)
-        //    {
-        //        if (!dialogueEntryHasEvent.ContainsKey(entry.id))
-        //        {
-        //            dialogueEntryHasEvent[entry.id] = FullCheckDoesDialogueEntryHaveEvent(entry);
-        //        }
-        //        return dialogueEntryHasEvent[entry.id];
-        //    }
-
-        //private bool FullCheckDoesDialogueEntryHaveEvent(DialogueEntry entry)
-        //{
-        //    if (entry == null) return false;
-        //    if (entry.onExecute != null && entry.onExecute.GetPersistentEventCount() > 0) return true;
-        //    if (!string.IsNullOrEmpty(entry.sceneEventGuid)) return true;
-        //    return false;
-        //}
-
-
-
-
     }
-        }
+}

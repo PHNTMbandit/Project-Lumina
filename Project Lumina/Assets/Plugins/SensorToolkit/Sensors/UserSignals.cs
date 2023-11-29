@@ -22,6 +22,7 @@ namespace Micosmo.SensorToolkit {
 
         protected override PulseJob GetPulseJob() {
             InputSignalsChangeHandler();
+            OnPulsed?.Invoke();
             return default;
         }
 

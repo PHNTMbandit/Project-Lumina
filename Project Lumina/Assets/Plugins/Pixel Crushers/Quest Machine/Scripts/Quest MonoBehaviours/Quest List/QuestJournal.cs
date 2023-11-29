@@ -125,6 +125,14 @@ namespace PixelCrushers.QuestMachine
         public override void OnMessage(MessageArgs messageArgs)
         {
             base.OnMessage(messageArgs);
+
+            var quest = (messageArgs.sender != null) ? messageArgs.sender as Quest : null;
+            if (quest != null && quest != FindQuest(quest.id))
+            {
+                // If this is not my instance of the quest, exit.
+                return;
+            }
+
             switch (messageArgs.message)
             {
                 case QuestMachineMessages.QuestStateChangedMessage:

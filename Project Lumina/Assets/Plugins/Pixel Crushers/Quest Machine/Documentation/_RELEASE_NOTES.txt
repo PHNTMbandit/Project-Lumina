@@ -4,6 +4,35 @@ Copyright © Pixel Crushers
 RELEASE NOTES
 -------------
 
+Version 1.2.41.1:
+[November 17, 2023]
+- Fixed: Scene Events bug when returning to a scene.
+- Dialogue System: Fixed typo in Lua function ShowGeneratedQuestConversation(); added ShowQuestConversation() Lua function.
+
+
+Version 1.2.41:
+[November 8, 2023]
+- Improved: Added "Exclude Entities In Quest Journals" checkbox to Quest Generator Entity.
+- Improved: Quest State conditions and Set Quest State actions can now accept quest asset references in addition to IDs.
+- Fixed: QuestListContainer SaveSystem.ResetGameState().
+- Save System: Now supports loading scenes from Addressables.
+- Dialogue System: DialogueSystemQuestDialogueUI only generates quests list conversation if any conversations in active/offerable lists has Dialogue System Conversation quest content.
+
+
+Version 1.2.40.1:
+[September 28, 2023]
+- Fixed: UIUtility.Select() issue when using multiple EventSystems that didn't update the current EventSystem.
+
+
+Version 1.2.40:
+[September 26, 2023]
+- CHANGED: If using Unity navmesh navigation, you *must* now enable integration by ticking USE_NAVMESH in Welcome Window or menu item Tools > Pixel Crushers > Common > Misc > Use NavMesh.
+- Improved: UIs now support different EventSystems for local multiplayer games.
+- Improved: Scene events action now works when multiple scenes are loaded with their own Quest Machine Scene Events components.
+- Fixed: If multiple questers have the same quest, QuestJournal.OnMessage now repaints only the specific quester's UI whose quest changed.
+- Dialogue System: SetQuestNodeState() Lua function now accepts "true" in addition to "success".
+
+
 Version 1.2.39:
 [August 2, 2023]
 - Demo scene now uses Quest Journal options to Remember Completed Quests.

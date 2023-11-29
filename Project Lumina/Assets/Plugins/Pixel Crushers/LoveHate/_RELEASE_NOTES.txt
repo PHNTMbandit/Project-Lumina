@@ -4,6 +4,23 @@ Copyright © Pixel Crushers
 RELEASE NOTES
 -------------
 
+Version 1.10.41:
+[November 8, 2023]
+- Updated common library code.
+- Save System: Now supports loading scenes from Addressables.
+
+
+Version 1.10.40.1:
+[September 28, 2023]
+- Fixed: UIUtility.Select() issue when using multiple EventSystems that didn't update the current EventSystem.
+
+
+Version 1.10.40:
+[September 26, 2023]
+- CHANGED: If using Unity navmesh navigation, you *must* now enable integration by selecting Tools > Pixel Crushers > Common > Misc > Use NavMesh.
+- Improved: UIs now support different EventSystems for local multiplayer games.
+
+
 Version 1.10.38.2:
 [July 10, 2023]
 - Improved: Updated to handle Unity 2023 API changes.

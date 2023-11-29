@@ -24,8 +24,8 @@ namespace Micosmo.SensorToolkit.Editors {
         protected bool IsActivePulsable => EditorState.ActivePulsable.Value == pulsable;
         protected abstract bool canTest { get; }
 
-        protected bool showDetections => EditorApplication.isPlaying || EditorApplication.isPaused || IsTesting;
-        bool showTestButton => !showDetections;
+        bool isInGame => EditorApplication.isPlaying || EditorApplication.isPaused;
+        protected bool showDetections => isInGame || IsTesting;
 
         protected virtual void OnEnable() {
             if (serializedObject == null) {
@@ -70,15 +70,18 @@ namespace Micosmo.SensorToolkit.Editors {
 
             EditorGUILayout.Space();
 
-            if (canTest && showTestButton) {
-                if (GUILayout.Button("Test", GUILayout.Width(100))) {
-                    StartTesting();
-                }
-            } else if (!showTestButton && !IsActivePulsable) {
+            EditorGUILayout.BeginHorizontal();
+            if (showDetections && !IsActivePulsable) {
                 if (GUILayout.Button("Show Gizmos", GUILayout.Width(100))) {
                     EditorState.ActivePulsable.Value = pulsable;
                 }
             }
+            if (canTest && !isInGame) {
+                if (GUILayout.Button("Test", GUILayout.Width(100))) {
+                    StartTesting();
+                }
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         void DrawActive(Rect rect) {
@@ -90,7 +93,7 @@ namespace Micosmo.SensorToolkit.Editors {
 
         void OnPulsedHandler() {
             Repaint();
-            if (IsTesting || Application.isPlaying || pulsable == null) {
+            if (Application.isPlaying || pulsable == null) {
                 return;
             }
             IsTesting = true;
@@ -98,8 +101,11 @@ namespace Micosmo.SensorToolkit.Editors {
         }
 
         void StartTesting() {
-            if (IsTesting || Application.isPlaying || pulsable == null) {
+            if (Application.isPlaying || pulsable == null) {
                 return;
+            }
+            if (IsTesting) {
+                EditorState.StopAllTesting();
             }
             pulsable.PulseAll();
             EditorState.ActivePulsable.Value = pulsable;

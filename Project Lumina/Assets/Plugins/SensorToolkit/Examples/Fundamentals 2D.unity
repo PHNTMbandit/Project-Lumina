@@ -2989,8 +2989,8 @@ MonoBehaviour:
     SignalProcessors: []
     MappingFunction: 0
     RadialInterpolation:
-      OuterRadius: 2
       InnerRadius: 0
+      OuterRadius: 2
       Power: 1
   danger:
     Sensors:
@@ -2998,8 +2998,8 @@ MonoBehaviour:
     SignalProcessors: []
     MappingFunction: 0
     RadialInterpolation:
-      OuterRadius: 4
       InnerRadius: 0.5
+      OuterRadius: 4
       Power: 0.5
   velocity:
     PreferredSpeed: 1.5
@@ -5251,8 +5251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Operation: 0
   RadialRange:
-    OuterRadius: 10
     InnerRadius: 0
+    OuterRadius: 10
     Power: 1
   MinimumStrength: 0.2
 --- !u!114 &568018037
@@ -12331,15 +12331,18 @@ MonoBehaviour:
       m_Calls: []
   inputSignals:
     m_list:
-    - Strength: 1
+    - _object: {fileID: 1343435744}
+      Strength: 1
       Shape:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 0.25, y: 0.25, z: 0}
-    - Strength: 1
+    - _object: {fileID: 1239363920}
+      Strength: 1
       Shape:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 0.25, y: 0.25, z: 0}
-    - Strength: 1
+    - _object: {fileID: 641221009}
+      Strength: 1
       Shape:
         m_Center: {x: 0, y: 0, z: 0}
         m_Extent: {x: 0.25, y: 0.25, z: 0}
@@ -14316,16 +14319,16 @@ MonoBehaviour:
     SignalProcessors: []
     MappingFunction: 0
     RadialInterpolation:
-      OuterRadius: 2
       InnerRadius: 0
+      OuterRadius: 2
       Power: 1
   danger:
     Sensors: []
     SignalProcessors: []
     MappingFunction: 0
     RadialInterpolation:
-      OuterRadius: 2
       InnerRadius: 0
+      OuterRadius: 2
       Power: 1
   velocity:
     PreferredSpeed: 1.5
@@ -19620,7 +19623,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!223 &2043364238
 Canvas:
   m_ObjectHideFlags: 0

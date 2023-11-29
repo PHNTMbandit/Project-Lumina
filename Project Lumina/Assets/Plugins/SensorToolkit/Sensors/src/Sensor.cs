@@ -438,6 +438,11 @@ namespace Micosmo.SensorToolkit {
                 processed = default;
                 return false;
             }
+            var go = processedSignal.Object as GameObject;
+            if (!ReferenceEquals(go, null) && SignalFilter != null && !SignalFilter.IsPassingTagFilter(go)) {
+                processed = default;
+                return false;
+            }
             if (signalProcessors != null) {
                 foreach (var processor in signalProcessors) {
                     if (processor == null) {
@@ -448,11 +453,6 @@ namespace Micosmo.SensorToolkit {
                         return false;
                     }
                 }
-            }
-            var go = processedSignal.Object as GameObject;
-            if (!ReferenceEquals(go, null) && SignalFilter != null && !SignalFilter.IsPassingTagFilter(go)) {
-                processed = default;
-                return false;
             }
             processed = processedSignal;
             return true;

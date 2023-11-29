@@ -541,6 +541,11 @@ namespace PixelCrushers.QuestMachine
             QuestMachine.isLoadingGame = false;
         }
 
+        public override void OnRestartGame()
+        {
+            ResetToOriginalState();
+        }
+
         #endregion
 
     }

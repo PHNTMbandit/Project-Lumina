@@ -155,7 +155,7 @@ namespace PixelCrushers.DialogueSystem
             {
                 if (DialogueDebug.logInfo) Debug.Log(string.Format("{0}: {1} says '{2}'", new System.Object[] { DialogueDebug.Prefix, Tools.GetGameObjectName(subtitle.speakerInfo.transform), subtitle.formattedText.text }));
 
-                if (DialogueManager.instance.activeConversations.Count > 1)
+                if (DialogueManager.instance.allowSimultaneousConversations)
                 {
                     DialogueManager.instance.displaySettings = settings;
                 }

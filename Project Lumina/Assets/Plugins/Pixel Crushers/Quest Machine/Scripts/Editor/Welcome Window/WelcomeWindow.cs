@@ -27,7 +27,7 @@ namespace PixelCrushers.QuestMachine
         public static WelcomeWindow ShowWindow()
         {
             var window = GetWindow<WelcomeWindow>(false, "Welcome");
-            window.minSize = new Vector2(300, 368);
+            window.minSize = new Vector2(300, 388);
             window.showOnStart = true; // Can't check EditorPrefs when constructing window. Check in first EditorApplication.update.
             return window;
         }
@@ -151,6 +151,7 @@ namespace PixelCrushers.QuestMachine
         }
 
         private const string USE_PHYSICS2D = "USE_PHYSICS2D";
+        private const string USE_NAVMESH = "USE_NAVMESH";
         private const string USE_NEW_INPUT = "USE_NEW_INPUT";
         private const string TMP_PRESENT = "TMP_PRESENT";
         private const string USE_STM = "USE_STM";
@@ -161,6 +162,7 @@ namespace PixelCrushers.QuestMachine
             EditorGUILayout.LabelField("Current Build Target: " + ObjectNames.NicifyVariableName(EditorUserBuildSettings.activeBuildTarget.ToString()), EditorStyles.boldLabel);
 
             var define_USE_PHYSICS2D = false;
+            var define_USE_NAVMESH = false;
             var define_USE_NEW_INPUT = false;
             var define_TMP_PRESENT = false;
             var define_USE_STM = false;
@@ -168,12 +170,14 @@ namespace PixelCrushers.QuestMachine
             for (int i = 0; i < defines.Length; i++)
             {
                 if (string.Equals(USE_PHYSICS2D, defines[i].Trim())) define_USE_PHYSICS2D = true;
+                if (string.Equals(USE_NAVMESH, defines[i].Trim())) define_USE_NAVMESH = true;
                 if (string.Equals(USE_NEW_INPUT, defines[i].Trim())) define_USE_NEW_INPUT = true;
                 if (string.Equals(TMP_PRESENT, defines[i].Trim())) define_TMP_PRESENT = true;
                 if (string.Equals(USE_STM, defines[i].Trim())) define_USE_STM = true;
             }
 #if EVALUATION_VERSION || !UNITY_2018_1_OR_NEWER
             define_USE_PHYSICS2D = true;
+            define_USE_NAVMESH = true;
             define_USE_NEW_INPUT = false;
             define_TMP_PRESENT = false;
             define_USE_STM = false;
@@ -183,13 +187,16 @@ namespace PixelCrushers.QuestMachine
             EditorGUILayout.LabelField(new GUIContent("Enable support for:", "NOTE: Enables Quest Machine support. You must still enable each package in Package Manager."));
 #if UNITY_2018_1_OR_NEWER && !EVALUATION_VERSION
             var new_USE_PHYSICS2D = EditorGUILayout.ToggleLeft("2D Physics (USE_PHYSICS2D)", define_USE_PHYSICS2D);
+            var new_USE_NAVMESH = EditorGUILayout.ToggleLeft("Navigation (USE_NAVMESH)", define_USE_NAVMESH);
             var new_USE_NEW_INPUT = EditorGUILayout.ToggleLeft(new GUIContent("New Input System (USE_NEW_INPUT)", "Note: You must use Package Manager to install New Input System package first!"), define_USE_NEW_INPUT);
 #else
             EditorGUI.BeginDisabledGroup(true);
-            EditorGUILayout.ToggleLeft(new GUIContent("2D Physics (USE_PHYSICS2D)", "Support is built in for evaluation version or Unity 2017 and earlier."), define_USE_PHYSICS2D);
+            EditorGUILayout.ToggleLeft(new GUIContent("2D Physics (USE_PHYSICS2D)", "Support is built in for evaluation version."), define_USE_PHYSICS2D);
+            EditorGUILayout.ToggleLeft(new GUIContent("Navigation (USE_NAVMESH)", "Support is built in for evaluation version."), define_USE_NAVMESH);
             EditorGUILayout.ToggleLeft(new GUIContent("New Input System (USE_NEW_INPUT)", "New Input System support not available in evaluation version."), define_USE_NEW_INPUT);
             EditorGUI.EndDisabledGroup();
             var new_USE_PHYSICS2D = define_USE_PHYSICS2D;
+            var new_USE_NAVMESH = define_USE_NAVMESH;
             var new_USE_NEW_INPUT = define_USE_NEW_INPUT;
 #endif
 
@@ -206,7 +213,7 @@ namespace PixelCrushers.QuestMachine
             var changed = EditorGUI.EndChangeCheck();
 
             if (new_USE_PHYSICS2D != define_USE_PHYSICS2D) MoreEditorUtility.ToggleScriptingDefineSymbol(USE_PHYSICS2D, new_USE_PHYSICS2D);
-            //if (new_USE_NEW_INPUT != define_USE_NEW_INPUT) MoreEditorUtility.ToggleScriptingDefineSymbol(USE_NEW_INPUT, new_USE_NEW_INPUT);
+            if (new_USE_NAVMESH != define_USE_NAVMESH) MoreEditorUtility.ToggleScriptingDefineSymbol(USE_NAVMESH, new_USE_NAVMESH);
             if (new_TMP_PRESENT != define_TMP_PRESENT) MoreEditorUtility.ToggleScriptingDefineSymbol(TMP_PRESENT, new_TMP_PRESENT, true);
 
             if (new_USE_NEW_INPUT != define_USE_NEW_INPUT)

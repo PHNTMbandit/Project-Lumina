@@ -15,17 +15,21 @@ namespace Micosmo.SensorToolkit {
 
     [Serializable]
     public struct Signal : IAccumulated<GameObject, Signal> {
-        public GameObject Object { get; set; }
+        [SerializeField] GameObject _object;
+        public GameObject Object {
+            get => _object;
+            set => _object = value;
+        }
         public float Strength;
         public Bounds Shape;
         Vector3 safePosition => Object != null ? Object.transform.position : Vector3.zero;
         public Signal(GameObject obj, float strength, Bounds shape) {
-            Object = obj;
+            _object = obj;
             Strength = strength;
             Shape = shape;
         }
         public Signal(GameObject obj) {
-            Object = obj;
+            _object = obj;
             Strength = 1f;
             Shape = new Bounds();
         }

@@ -31,9 +31,13 @@ namespace Micosmo.SensorToolkit {
         public static Color LOSFovColour => Instance?.losFovColour ?? Color.yellow;
         public static Color[] RayVisibilityGradient => Instance?.rayVisibilityGradient ?? defaultVisibilityGradientColours;
         public static Color LOSRayBlockedColour => Instance?.losRayBlockedColour ?? Color.red;
-        public static Color AvoidColour => Instance?.avoidColour ?? Color.red;
-        public static Color SeekColour => Instance?.seekColour ?? Color.yellow;
-        public static Color SteeringVectorColour => Instance?.steeringVectorColour ?? Color.green;
+        public static Color SteeringVectorColour => Instance?.steeringVectorColour ?? Color.cyan;
+        public static Color InterestColour => Instance?.interestColour ?? Color.yellow;
+        public static Color DangerColour => Instance?.dangerColour ?? Color.red;
+        public static Color LowSpeedColour => Instance?.lowSpeedColour ?? Color.blue;
+        public static Color CollisionSpeedColour => Instance?.collisionSpeedColour ?? new Color(69f / 255, 6f / 255, 46f / 255);
+        public static Color HighSpeedColour => Instance?.highSpeedColour ?? new Color(0.8f, 1f, 1f);
+        public static Color DecisionColour => Instance?.decisionColour ?? Color.green;
 
         [Header("Sensor Editors")]
         [SerializeField] Color redEditorTextColour = new Color(1f, .2f, .2f);
@@ -58,9 +62,13 @@ namespace Micosmo.SensorToolkit {
         [SerializeField] Color losRayBlockedColour = Color.red;
 
         [Header("Steering Sensor Widgets")]
-        [SerializeField] Color avoidColour = Color.red;
-        [SerializeField] Color seekColour = Color.yellow;
-        [SerializeField] Color steeringVectorColour = Color.green;
+        [SerializeField] Color steeringVectorColour = Color.cyan;
+        [SerializeField] Color dangerColour = Color.red;
+        [SerializeField] Color interestColour = Color.yellow;
+        [SerializeField] Color lowSpeedColour = Color.blue;
+        [SerializeField] Color collisionSpeedColour = new Color(69f / 255, 6f / 255, 46f / 255);
+        [SerializeField] Color highSpeedColour = new Color(0.8f, 1f, 1f);
+        [SerializeField] Color decisionColour = Color.green;
 
         static STPrefs instance;
         static STPrefs Instance {

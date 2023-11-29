@@ -22,6 +22,10 @@ namespace Micosmo.SensorToolkit {
         ObservableBool isSpherical = new ObservableBool();
 
         [SerializeField]
+        [Tooltip("The up-drection of the sensor when using circular grids.")]
+        ObservableVector3 upDirection = new ObservableVector3() { Value = Vector3.up };
+
+        [SerializeField]
         [Tooltip("Determines the number of discrete buckets that directions around the sensor are boken up into.")]
         ObservableInt resolution = new ObservableInt() { Value = 3 };
 
@@ -62,6 +66,11 @@ namespace Micosmo.SensorToolkit {
             set => isSpherical.Value = value;
         }
 
+        public Vector3 UpDirection {
+            get => upDirection.Value;
+            set => upDirection.Value = value;
+        }
+        
         // Change Resolution at runtime
         public int Resolution {
             get => Mathf.Abs(resolution.Value);
@@ -155,6 +164,7 @@ namespace Micosmo.SensorToolkit {
         bool isControlling => LocomotionMode != LocomotionMode.None;
         
         ObservableEffect gridConfigEffect;
+        ObservableEffect upDirectionEffect;
 
         PulseJob pulseJob;
 
@@ -202,7 +212,6 @@ namespace Micosmo.SensorToolkit {
             }
         }
 
-
         void Awake() {
             if (!Application.isPlaying) {
                 return;
@@ -214,7 +223,8 @@ namespace Micosmo.SensorToolkit {
                 resolution = new ObservableInt() { Value = 3 };
             }
             gridConfigEffect = ObservableEffect.Create(RecreateGrids, new Observable[] { isSpherical, resolution }, false);
-
+            upDirectionEffect = ObservableEffect.Create(UpdateUpDirection, new Observable[] { upDirection }, false);
+            
             if (pulseRoutine == null) {
                 pulseRoutine = new PulseRoutine();
             }
@@ -238,10 +248,12 @@ namespace Micosmo.SensorToolkit {
 
         void OnDestroy() {
             gridConfigEffect?.Dispose();
+            upDirectionEffect?.Dispose();
         }
 
         void OnValidate() {
             isSpherical?.OnValidate();
+            upDirection?.OnValidate();
             resolution?.OnValidate();
             pulseRoutine?.OnValidate();
         }
@@ -254,7 +266,7 @@ namespace Micosmo.SensorToolkit {
             decision.Interpolate(Time.deltaTime);
 
             if (LocomotionMode == LocomotionMode.UnityCharacterController) {
-                locomotion.CharacterSeek(CharacterController, GetSteeringVector(), Vector3.up);
+                locomotion.CharacterSeek(CharacterController, GetSteeringVector(), IsSpherical ? Vector3.up : GetSafeUpDirection());
             }
         }
 
@@ -266,7 +278,7 @@ namespace Micosmo.SensorToolkit {
             if (LocomotionMode == LocomotionMode.RigidBodyFlying) {
                 locomotion.FlyableSeek(RigidBody, GetSteeringVector());
             } else if (LocomotionMode == LocomotionMode.RigidBodyCharacter) {
-                locomotion.CharacterSeek(RigidBody, GetSteeringVector(), Vector3.up);
+                locomotion.CharacterSeek(RigidBody, GetSteeringVector(), IsSpherical ? Vector3.up : GetSafeUpDirection());
             }
         }
         
@@ -280,10 +292,27 @@ namespace Micosmo.SensorToolkit {
         }
         
         void RecreateGrids() {
-            interest.RecreateGrids(Resolution, IsSpherical, Vector3.up);
-            danger.RecreateGrids(Resolution, IsSpherical, Vector3.up);
-            velocity.RecreateGrids(Resolution, IsSpherical, Vector3.up);
-            decision.RecreateGrids(Resolution, IsSpherical, Vector3.up);
+            ClearPendingPulse();
+            var up = GetSafeUpDirection();
+            interest.RecreateGrids(Resolution, IsSpherical, up);
+            danger.RecreateGrids(Resolution, IsSpherical, up);
+            velocity.RecreateGrids(Resolution, IsSpherical, up);
+            decision.RecreateGrids(Resolution, IsSpherical, up);
+        }
+
+        void UpdateUpDirection() {
+            var up = GetSafeUpDirection();
+            interest.UpdateUpDirection(up);
+            danger.UpdateUpDirection(up);
+            velocity.UpdateUpDirection(up);
+            decision.UpdateUpDirection(up);
+        }
+
+        Vector3 GetSafeUpDirection() {
+            if (UpDirection == Vector3.zero) {
+                return Vector3.up;
+            }
+            return UpDirection.normalized;
         }
 
         public static bool ShowInterestGizmos = false;
@@ -323,7 +352,7 @@ namespace Micosmo.SensorToolkit {
                 nShown++;
             }
 
-            SensorGizmos.PushColor(Color.cyan);
+            SensorGizmos.PushColor(STPrefs.SteeringVectorColour);
             SensorGizmos.ThickLineNoZTest(transform.position, transform.position + GetSteeringVector(), rayWidth);
             SensorGizmos.PopColor();
         }

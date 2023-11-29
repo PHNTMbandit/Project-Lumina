@@ -4,7 +4,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if USE_NAVMESH
 using UnityEngine.AI;
+#endif
 
 namespace PixelCrushers.QuestMachine
 {
@@ -472,12 +474,14 @@ namespace PixelCrushers.QuestMachine
             var position = (positionInfo.plane == PositionInfo.Plane.X_Z)
                 ? new Vector3(transform.position.x + rand1, transform.position.y, transform.position.z + rand2)
                 : new Vector3(transform.position.x + rand1, transform.position.y + rand2, transform.position.z);
+#if USE_NAVMESH
             var navMeshAgent = spawnedEntity.GetComponent<NavMeshAgent>();
             if (navMeshAgent != null)
             {
                 navMeshAgent.Warp(position);
             }
             else
+#endif
             {
                 spawnedEntity.transform.position = position;
             }
@@ -506,12 +510,14 @@ namespace PixelCrushers.QuestMachine
             var spawnpoint = positionInfo.spawnpoints[Mathf.Min(index, positionInfo.spawnpoints.Length - 1)];
             if (spawnpoint != null)
             {
+#if USE_NAVMESH
                 var navMeshAgent = spawnedEntity.GetComponent<NavMeshAgent>();
                 if (navMeshAgent != null)
                 {
                     navMeshAgent.Warp(spawnpoint.transform.position);
                 }
                 else
+#endif
                 {
                     spawnedEntity.transform.position = spawnpoint.transform.position;
                 }
@@ -627,7 +633,7 @@ namespace PixelCrushers.QuestMachine
             RemoveSpawnedEntity(spawnedEntity);
         }
 
-        #endregion
+#endregion
 
     }
 

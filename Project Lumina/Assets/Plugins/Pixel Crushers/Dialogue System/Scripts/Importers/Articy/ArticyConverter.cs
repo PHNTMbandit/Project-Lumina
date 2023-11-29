@@ -1727,7 +1727,7 @@ namespace PixelCrushers.DialogueSystem.Articy
         {
             foreach (var conversation in database.conversations)
             {
-                conversation.SplitPipesIntoEntries(true, prefs.TrimWhitespace);
+                conversation.SplitPipesIntoEntries(true, prefs.TrimWhitespace, ArticyIdFieldTitle);
             }
         }
 

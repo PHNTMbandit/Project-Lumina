@@ -34,10 +34,16 @@ namespace PixelCrushers.QuestMachine
         protected QuestNode GetLastNodeBeforeSuccess(Quest quest)
         {
             var node = quest.startNode;
+            if (node == null || node.childList == null)
+            {
+                Debug.LogError("Quest Machine: Quest must have a Start node.", quest);
+                return null;
+            }
             int safeguard = 0;
-            while (node.childList.Find(child => child.nodeType == QuestNodeType.Success) == null && safeguard < 999)
+            while (node.childList.Find(child => (child != null) && (child.nodeType == QuestNodeType.Success)) == null && safeguard < 999)
             {
                 safeguard++;
+                if (node.childList == null) continue;
                 node = node.childList[0];
             }
             return node;

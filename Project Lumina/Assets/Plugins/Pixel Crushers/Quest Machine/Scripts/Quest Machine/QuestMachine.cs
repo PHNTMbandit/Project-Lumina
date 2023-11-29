@@ -193,6 +193,14 @@ namespace PixelCrushers.QuestMachine
             return GetQuestJournal(string.Empty);
         }
 
+        /// <summary>
+        /// Returns a dictionary of all registered QuestListContainers keyed by ID.
+        /// </summary>
+        public static Dictionary<string, IdentifiableQuestListContainer> GetAllQuestListContainers()
+        {
+            return m_questListContainers;
+        }
+
         #endregion
 
         #region Give Quest
