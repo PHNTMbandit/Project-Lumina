@@ -29,6 +29,8 @@ namespace ProjectLumina.Player.Input
         {
             if (GameControls == null)
             {
+                Debug.Log("enabling");
+
                 GameControls = new GameControls();
                 GameControls.Player.AddCallbacks(this);
             }
@@ -38,6 +40,8 @@ namespace ProjectLumina.Player.Input
 
         private void OnDisable()
         {
+            Debug.Log("disabling");
+
             DisableAllInput();
         }
 
