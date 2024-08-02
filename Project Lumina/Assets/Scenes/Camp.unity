@@ -19069,6 +19069,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Swordmaster
       objectReference: {fileID: 0}
+    - target: {fileID: 7908729315755960447, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+      propertyPath: startingState
+      value: 
+      objectReference: {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

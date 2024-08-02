@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Data;
-using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
@@ -12,13 +11,9 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Melee Attack")]
     public class CharacterMeleeAttack : CharacterAbility
     {
-        public bool IsAttacking { get; private set; }
-
         [BoxGroup("Attack Combos"), SerializeField]
-        private MeleeAttack[] _attackCombos;
+        private MeleeAttack[] _attacks;
 
-        private int _comboIndex = 0;
-        private bool _canContinueCombo = true;
         private Attack _currentMeleeAttack;
         private Animator _animator;
 
@@ -29,35 +24,17 @@ namespace ProjectLumina.Character
             _animator = GetComponent<Animator>();
         }
 
-        public void MeleeAttack()
-        {
-            if (_canContinueCombo)
-            {
-                _comboIndex++;
-                _currentMeleeAttack = _attackCombos[_comboIndex - 1];
+        private void Update() { }
 
-                if (_currentMeleeAttack.IsUnlocked)
-                {
-                    if (_comboIndex > _attackCombos.Length)
-                    {
-                        _comboIndex = 1;
-                    }
-
-                    _animator.SetTrigger($"melee attack {_comboIndex}");
-
-                    _canContinueCombo = false;
-                    IsAttacking = true;
-                }
-                else
-                {
-                    _comboIndex = 1;
-                }
-            }
-        }
+        public void MeleeAttack() { }
 
         public void TryMeleeAttack()
         {
-            foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            foreach (
+                Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(
+                    new List<Damageable>()
+                )
+            )
             {
                 if (_currentMeleeAttack.TryAttack(gameObject, damageable))
                 {
@@ -66,21 +43,9 @@ namespace ProjectLumina.Character
             }
         }
 
-        public void ContinueMeleeAttackCombo()
-        {
-            _canContinueCombo = true;
-        }
-
-        public void FinishMeleeAttack()
-        {
-            _comboIndex = 0;
-            _canContinueCombo = true;
-            IsAttacking = false;
-        }
-
         public MeleeAttack[] GetMeleeAttacks()
         {
-            return _attackCombos;
+            return _attacks;
         }
     }
 }

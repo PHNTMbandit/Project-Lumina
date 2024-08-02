@@ -7899,7 +7899,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos: []
+  _attacks: []
 --- !u!114 &216755457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7951,6 +7951,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultState: {fileID: 0}
+  states: []
 --- !u!50 &216755460
 Rigidbody2D:
   serializedVersion: 4
@@ -13177,7 +13179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos: []
+  _attacks: []
 --- !u!114 &283585244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13229,6 +13231,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultState: {fileID: 0}
+  states: []
 --- !u!50 &283585247
 Rigidbody2D:
   serializedVersion: 4
@@ -13926,7 +13930,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos: []
+  _attacks: []
 --- !u!114 &290937443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13978,6 +13982,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultState: {fileID: 0}
+  states: []
 --- !u!50 &290937446
 Rigidbody2D:
   serializedVersion: 4
@@ -43023,7 +43029,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos: []
+  _attacks: []
 --- !u!114 &1241889898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43075,6 +43081,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultState: {fileID: 0}
+  states: []
 --- !u!50 &1241889901
 Rigidbody2D:
   serializedVersion: 4
@@ -53666,7 +53674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos: []
+  _attacks: []
 --- !u!114 &1616297246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53718,6 +53726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  defaultState: {fileID: 0}
+  states: []
 --- !u!50 &1616297249
 Rigidbody2D:
   serializedVersion: 4
@@ -78270,6 +78280,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 969693562633438370, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+      propertyPath: <IsUnlocked>k__BackingField
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3331883664042409217, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_Camera
       value: 

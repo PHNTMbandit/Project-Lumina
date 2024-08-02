@@ -57,5 +57,6 @@
     "Temp/": true
   },
   "omnisharp.enableRoslynAnalyzers": true,
-  "dotnet.defaultSolution": "Project Lumina.sln"
+  "dotnet.defaultSolution": "Project Lumina.sln",
+  "editor.defaultFormatter": "csharpier.csharpier-vscode"
 }

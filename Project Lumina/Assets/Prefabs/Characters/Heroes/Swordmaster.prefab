@@ -1178,10 +1178,10 @@ GameObject:
   - component: {fileID: 5234622297951310634}
   - component: {fileID: 2041146607062771200}
   - component: {fileID: 3518663555988437935}
-  - component: {fileID: 7908729315755960447}
   - component: {fileID: 5188672235610599560}
   - component: {fileID: 7944689914820168971}
   - component: {fileID: 6872371990101784772}
+  - component: {fileID: 7908729315755960447}
   - component: {fileID: 1119459725394500653}
   - component: {fileID: 3896303241643222283}
   - component: {fileID: 1717507716594173446}
@@ -1525,19 +1525,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7908729315755960447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7857708129487907294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01c901c309511d4ab6c263cfa5b6083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &5188672235610599560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,6 +1617,22 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7908729315755960447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01c901c309511d4ab6c263cfa5b6083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultState: {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
+  states:
+  - {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
+  <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &1119459725394500653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1802,42 +1805,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
+  _attacks:
   - <IsUnlocked>k__BackingField: 1
     damage: 5
-    criticalChance: 3
-    criticalDamageMultiplier: 15
-    hitStopDuration: 0.065
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
   - <IsUnlocked>k__BackingField: 1
-    damage: 8
-    criticalChance: 5
-    criticalDamageMultiplier: 20
-    hitStopDuration: 0.065
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
   - <IsUnlocked>k__BackingField: 1
-    damage: 12
-    criticalChance: 7
-    criticalDamageMultiplier: 35
-    hitStopDuration: 0.065
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
   - <IsUnlocked>k__BackingField: 1
-    damage: 16
-    criticalChance: 9
-    criticalDamageMultiplier: 50
-    hitStopDuration: 0.065
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
 --- !u!114 &539630210308743331
 MonoBehaviour:

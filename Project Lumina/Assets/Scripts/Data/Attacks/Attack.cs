@@ -9,6 +9,9 @@ namespace ProjectLumina.Data
     [Serializable, HideLabel]
     public abstract class Attack
     {
+        [TabGroup("Stats"), ShowInInspector, ReadOnly]
+        public string AttackName { get; private set; }
+
         [TabGroup("Stats"), LabelText("Damage Stat"), ShowInInspector, ReadOnly]
         public Stat Damage { get; private set; } = new(0);
 
@@ -25,7 +28,8 @@ namespace ProjectLumina.Data
         protected float damage;
 
         [TabGroup("Stats"), Range(0, 100), SuffixLabel("%"), SerializeField]
-        protected float criticalChance, criticalDamageMultiplier;
+        protected float criticalChance,
+            criticalDamageMultiplier;
 
         [TabGroup("Effects"), Range(0, 0.1f), SerializeField]
         protected float hitStopDuration;
@@ -34,7 +38,8 @@ namespace ProjectLumina.Data
         protected GameObject hitFX;
 
         [TabGroup("Effects"), ColorPalette, SerializeField]
-        protected Color damageIndicatorColour, criticalDamageIndicatorColour;
+        protected Color damageIndicatorColour,
+            criticalDamageIndicatorColour;
 
         [field: TabGroup("References"), SerializeField]
         public RangeSensor2D Sensor { get; private set; }
