@@ -10,6 +10,19 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerFallState : PlayerInAirState
     {
+        public override void OnUpdate(PlayerStateController stateController)
+        {
+            base.OnUpdate(stateController);
+
+            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
+            {
+                if (characterJump.IsGrounded)
+                {
+                    stateController.ChangeState("Player Idle State");
+                }
+            }
+        }
+
         public override void OnFixedUpdate(PlayerStateController stateController)
         {
             base.OnFixedUpdate(stateController);

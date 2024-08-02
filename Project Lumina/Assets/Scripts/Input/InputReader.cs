@@ -160,13 +160,11 @@ namespace ProjectLumina.Player.Input
 
         public void DisableAllInput()
         {
-            Debug.Log("disabling");
             GameControls.Player.Disable();
         }
 
         public void EnableAllInput()
         {
-            Debug.Log("enabling");
             GameControls.Player.Enable();
         }
 

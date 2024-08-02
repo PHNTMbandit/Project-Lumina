@@ -1629,9 +1629,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f01c901c309511d4ab6c263cfa5b6083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
+  startingState: {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
   states:
+  - {fileID: 11400000, guid: cbdb5636c96398541a1fd9ef2412deb8, type: 2}
   - {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
+  - {fileID: 11400000, guid: 09ae6005b7a3ce34089a9c39b1d7cc17, type: 2}
+  - {fileID: 11400000, guid: 37ab6ae0942a61548bdf552e6b764e50, type: 2}
+  - {fileID: 11400000, guid: 8ae004b24f733f149b2fbf2b8c5290ea, type: 2}
+  - {fileID: 11400000, guid: 238b222e3ba098f4980d153c1fbd1f11, type: 2}
   <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &1119459725394500653
 MonoBehaviour:
@@ -1890,7 +1895,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   Roll: 1
   _collider: {fileID: 8642475815790382610}
-  _rollSpeed: 6
+  _rollSpeed: 8
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
 --- !u!114 &5987676301644156327

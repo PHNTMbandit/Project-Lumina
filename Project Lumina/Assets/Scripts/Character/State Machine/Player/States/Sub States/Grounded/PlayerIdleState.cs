@@ -9,6 +9,16 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerIdleState : PlayerGroundedState
     {
+        public override void OnUpdate(PlayerStateController stateController)
+        {
+            base.OnUpdate(stateController);
+
+            if (moveInput.x != 0)
+            {
+                stateController.ChangeState("Player Move State");
+            }
+        }
+
         public override void OnFixedUpdate(PlayerStateController stateController)
         {
             base.OnFixedUpdate(stateController);

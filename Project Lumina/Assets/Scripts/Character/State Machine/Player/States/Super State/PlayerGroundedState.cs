@@ -11,10 +11,21 @@ namespace ProjectLumina.StateMachine.Character.Player
         {
             base.OnEnter(stateController);
 
+            stateController.InputReader.onJump += stateController.Jump;
+            stateController.InputReader.onRoll += stateController.Roll;
+
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
                 characterDash.ResetDash();
             }
+        }
+
+        public override void OnExit(PlayerStateController stateController)
+        {
+            base.OnExit(stateController);
+
+            stateController.InputReader.onJump -= stateController.Jump;
+            stateController.InputReader.onRoll -= stateController.Roll;
         }
 
         public override void OnUpdate(PlayerStateController stateController)

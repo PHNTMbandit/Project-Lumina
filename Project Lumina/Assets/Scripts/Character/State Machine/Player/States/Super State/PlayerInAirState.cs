@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ProjectLumina.Character;
+using UnityEngine;
 
 namespace ProjectLumina.StateMachine.Character.Player
 {
