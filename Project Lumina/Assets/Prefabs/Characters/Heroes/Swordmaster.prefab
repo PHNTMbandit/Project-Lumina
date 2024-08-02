@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -1750,53 +1750,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3ba5f605aa77c47b5d162272b7f891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
-  _sensor: {fileID: 7336295668862005102}
   onInteractableDetected:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2656570799480455306}
-        m_TargetAssemblyTypeName: ProjectLumina.UI.InteractUI, Assembly-CSharp
-        m_MethodName: SetInteractText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2833440158046621441}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   onInteractableLost:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2833440158046621441}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  _inputReader: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
+  _sensor: {fileID: 7336295668862005102}
+  _interactUI: {fileID: 2656570799480455306}
 --- !u!114 &6544038380653437511
 MonoBehaviour:
   m_ObjectHideFlags: 0
