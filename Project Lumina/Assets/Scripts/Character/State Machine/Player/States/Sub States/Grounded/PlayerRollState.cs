@@ -15,11 +15,6 @@ namespace ProjectLumina.StateMachine.Character.Player
             base.OnEnter(stateController);
 
             stateController.InputReader.onAttack += stateController.RollAttack;
-
-            if (stateController.HasCharacterAbility(out CharacterRoll characterRoll))
-            {
-                characterRoll.RollCharacter();
-            }
         }
 
         public override void OnExit(PlayerStateController stateController)

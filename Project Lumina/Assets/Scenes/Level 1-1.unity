@@ -7857,7 +7857,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
+  - <AttackName>k__BackingField: 
+    <IsUnlocked>k__BackingField: 1
     damage: 3
     criticalChance: 3
     criticalDamageMultiplier: 15
@@ -7899,7 +7900,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attacks: []
+  <Attacks>k__BackingField: []
 --- !u!114 &216755457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7951,7 +7952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 0}
+  startingState: {fileID: 0}
   states: []
 --- !u!50 &216755460
 Rigidbody2D:
@@ -13137,7 +13138,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
+  - <AttackName>k__BackingField: 
+    <IsUnlocked>k__BackingField: 1
     damage: 3
     criticalChance: 3
     criticalDamageMultiplier: 15
@@ -13179,7 +13181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attacks: []
+  <Attacks>k__BackingField: []
 --- !u!114 &283585244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13231,7 +13233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 0}
+  startingState: {fileID: 0}
   states: []
 --- !u!50 &283585247
 Rigidbody2D:
@@ -13888,7 +13890,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
+  - <AttackName>k__BackingField: 
+    <IsUnlocked>k__BackingField: 1
     damage: 3
     criticalChance: 3
     criticalDamageMultiplier: 15
@@ -13930,7 +13933,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attacks: []
+  <Attacks>k__BackingField: []
 --- !u!114 &290937443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13982,7 +13985,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 0}
+  startingState: {fileID: 0}
   states: []
 --- !u!50 &290937446
 Rigidbody2D:
@@ -42987,7 +42990,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
+  - <AttackName>k__BackingField: 
+    <IsUnlocked>k__BackingField: 1
     damage: 3
     criticalChance: 3
     criticalDamageMultiplier: 15
@@ -43029,7 +43033,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attacks: []
+  <Attacks>k__BackingField: []
 --- !u!114 &1241889898
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -43081,7 +43085,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 0}
+  startingState: {fileID: 0}
   states: []
 --- !u!50 &1241889901
 Rigidbody2D:
@@ -53632,7 +53636,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
   _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
+  - <AttackName>k__BackingField: 
+    <IsUnlocked>k__BackingField: 1
     damage: 3
     criticalChance: 3
     criticalDamageMultiplier: 15
@@ -53674,7 +53679,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attacks: []
+  <Attacks>k__BackingField: []
 --- !u!114 &1616297246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53726,7 +53731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultState: {fileID: 0}
+  startingState: {fileID: 0}
   states: []
 --- !u!50 &1616297249
 Rigidbody2D:

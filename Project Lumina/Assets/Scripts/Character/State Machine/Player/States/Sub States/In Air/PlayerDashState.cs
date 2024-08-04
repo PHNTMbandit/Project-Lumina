@@ -21,11 +21,6 @@ namespace ProjectLumina.StateMachine.Character.Player
             base.OnEnter(stateController);
 
             _enterTime = Time.time;
-
-            if (stateController.HasCharacterAbility(out CharacterDash characterDash))
-            {
-                characterDash.Dash();
-            }
         }
 
         public override void OnUpdate(PlayerStateController stateController)

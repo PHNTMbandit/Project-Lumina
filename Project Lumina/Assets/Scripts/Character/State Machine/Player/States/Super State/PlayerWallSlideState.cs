@@ -10,23 +10,36 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerWallSlideState : PlayerState
     {
+        public override void OnEnter(PlayerStateController stateController)
+        {
+            base.OnEnter(stateController);
+
+            stateController.InputReader.onJump += stateController.WallJump;
+        }
+
+        public override void OnExit(PlayerStateController stateController)
+        {
+            base.OnExit(stateController);
+
+            stateController.InputReader.onJump -= stateController.WallJump;
+        }
+
         public override void OnUpdate(PlayerStateController stateController)
         {
             base.OnUpdate(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide))
-            {
-                if (characterWallSlide.CanWallSlide == false)
-                {
-                    stateController.ChangeState("Player Fall State");
-                }
-            }
-
-            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
+            if (
+                stateController.HasCharacterAbility(out CharacterWallSlide characterWallSlide)
+                && stateController.HasCharacterAbility(out CharacterJump characterJump)
+            )
             {
                 if (characterJump.IsGrounded)
                 {
                     stateController.ChangeState("Player Idle State");
+                }
+                else if (characterWallSlide.CanWallSlide() == false)
+                {
+                    stateController.ChangeState("Player Fall State");
                 }
             }
         }

@@ -15,11 +15,6 @@ namespace ProjectLumina.StateMachine.Character.Player
             base.OnEnter(stateController);
 
             stateController.InputReader.onAttack += stateController.AerialAttack;
-
-            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
-            {
-                characterJump.Jump();
-            }
         }
 
         public override void OnExit(PlayerStateController stateController)

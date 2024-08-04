@@ -66,6 +66,7 @@ namespace ProjectLumina.StateMachine.Character.Player
                 if (dash.CurrentDashCharges > 0)
                 {
                     ChangeState($"Player Dash State");
+                    dash.Dash();
                 }
             }
         }
@@ -88,6 +89,7 @@ namespace ProjectLumina.StateMachine.Character.Player
                 if (characterJump.CanJump())
                 {
                     ChangeState("Player Jump State");
+                    characterJump.Jump();
                 }
             }
         }
@@ -97,6 +99,7 @@ namespace ProjectLumina.StateMachine.Character.Player
             if (HasCharacterAbility(out CharacterRoll characterRoll))
             {
                 ChangeState("Player Roll State");
+                characterRoll.RollCharacter();
             }
         }
 
@@ -105,6 +108,19 @@ namespace ProjectLumina.StateMachine.Character.Player
             if (HasCharacterAbility(out CharacterRollAttack rollAttack))
             {
                 ChangeState("Player Roll Attack State");
+                rollAttack.RollAttack();
+            }
+        }
+
+        public void WallJump()
+        {
+            if (HasCharacterAbility(out CharacterWallJump wallJump))
+            {
+                if (wallJump.CanWallJump())
+                {
+                    ChangeState("Player Jump State");
+                    wallJump.WallJump();
+                }
             }
         }
 

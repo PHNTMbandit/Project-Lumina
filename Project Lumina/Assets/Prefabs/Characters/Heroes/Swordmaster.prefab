@@ -964,7 +964,7 @@ MonoBehaviour:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 0.3
+  Length: 0.6
   Direction: {x: 0, y: -1}
   WorldSpace: 0
   DetectsOnLayers:
@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 5987676301644156327}
   - component: {fileID: 4429014146250662890}
   - component: {fileID: 4016446487865762295}
+  - component: {fileID: 6752170329020138342}
   - component: {fileID: 8936565788166426222}
   - component: {fileID: 1505913605161621145}
   - component: {fileID: 7145477492940236767}
@@ -1645,6 +1646,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8ae004b24f733f149b2fbf2b8c5290ea, type: 2}
   - {fileID: 11400000, guid: 379fca3f93da06e4486298adfdb38d0a, type: 2}
   - {fileID: 11400000, guid: 238b222e3ba098f4980d153c1fbd1f11, type: 2}
+  - {fileID: 11400000, guid: 2a5f9060bc127bf47ad68164efeee71e, type: 2}
   <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &1119459725394500653
 MonoBehaviour:
@@ -1936,7 +1938,7 @@ MonoBehaviour:
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
     criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
-  _rollAttackSpeedDamping: 0
+  _rollAttackSpeedDamping: 5
 --- !u!114 &4429014146250662890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1968,6 +1970,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StatusEffects>k__BackingField: []
+--- !u!114 &6752170329020138342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71598ee5e619166409032bc40d317a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
+  _wallJumpUpForce: 18
+  _wallJumpForce: 10
+  _input: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
+  _sensor: {fileID: 2053428681226868005}
 --- !u!114 &8936565788166426222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1981,11 +2000,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  WallSlide: 1
-  _wallSlideSpeed: 2
-  WallJump: 1
-  _wallJumpUpForce: 4
-  _wallJumpForce: 40
+  _wallSlideSpeed: 3.2
   _sensor: {fileID: 2053428681226868005}
 --- !u!114 &1505913605161621145
 MonoBehaviour:

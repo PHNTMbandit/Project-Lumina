@@ -35,6 +35,14 @@ namespace ProjectLumina.StateMachine.Character.Player
                     stateController.ChangeState("Player Idle State");
                 }
             }
+
+            if (stateController.HasCharacterAbility(out CharacterWallSlide wallSlide))
+            {
+                if (wallSlide.CanWallSlide())
+                {
+                    stateController.ChangeState("Player Wall Slide State");
+                }
+            }
         }
 
         public override void OnFixedUpdate(PlayerStateController stateController)
