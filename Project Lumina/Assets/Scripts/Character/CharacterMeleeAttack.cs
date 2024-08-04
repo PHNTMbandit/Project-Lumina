@@ -22,7 +22,7 @@ namespace ProjectLumina.Character
                             : value;
         }
 
-        [BoxGroup("Attack Combos"), SerializeField]
+        [BoxGroup("Attacks"), SerializeField]
         private MeleeAttack[] _attacks;
 
         private int _currentMeleeComboIndex;

@@ -1640,6 +1640,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 855f5285a05230741b49dcabd7fd5d5b, type: 2}
   - {fileID: 11400000, guid: 37ab6ae0942a61548bdf552e6b764e50, type: 2}
   - {fileID: 11400000, guid: 8ae004b24f733f149b2fbf2b8c5290ea, type: 2}
+  - {fileID: 11400000, guid: 379fca3f93da06e4486298adfdb38d0a, type: 2}
   - {fileID: 11400000, guid: 238b222e3ba098f4980d153c1fbd1f11, type: 2}
   <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &1119459725394500653
@@ -1834,7 +1835,7 @@ MonoBehaviour:
     criticalChance: 1
     criticalDamageMultiplier: 10
     hitStopDuration: 0.0095
-    hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
     criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
@@ -1854,7 +1855,7 @@ MonoBehaviour:
     criticalChance: 1
     criticalDamageMultiplier: 10
     hitStopDuration: 0.0095
-    hitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
     criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
@@ -1922,16 +1923,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <AttackName>k__BackingField: 
+  <Attack>k__BackingField:
+    <AttackName>k__BackingField: Roll Attack
     <IsUnlocked>k__BackingField: 1
-    damage: 8
-    criticalChance: 8
-    criticalDamageMultiplier: 35
-    hitStopDuration: 0.065
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
   _rollAttackSpeed: 2
 --- !u!114 &4429014146250662890

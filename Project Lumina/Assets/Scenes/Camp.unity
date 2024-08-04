@@ -19025,6 +19025,10 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 853046128}
+    - target: {fileID: 5987676301644156327, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
+      propertyPath: _rollAttackSpeed
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 7364123420893204485, guid: 262377e1074c0364ea8e065efd01477f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.562

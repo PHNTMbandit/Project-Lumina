@@ -10,25 +10,20 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerRollAttackState : PlayerGroundedState
     {
+        public float duration = 0.5f;
+
+        private float _enterTime,
+            _elapsedTime;
+
         public override void OnEnter(PlayerStateController stateController)
         {
             base.OnEnter(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
-            {
-                characterRollAttack.RollAttack();
-                stateController.InputReader.onAttack += characterRollAttack.RollAttack;
-            }
-        }
+            _enterTime = Time.time;
 
-        public override void OnExit(PlayerStateController stateController)
-        {
-            base.OnExit(stateController);
-
-            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
+            if (stateController.HasCharacterAbility(out CharacterRollAttack rollAttack))
             {
-                stateController.InputReader.onAttack -= characterRollAttack.RollAttack;
-                characterRollAttack.FinishRollAttack();
+                rollAttack.RollAttack();
             }
         }
 
@@ -36,12 +31,11 @@ namespace ProjectLumina.StateMachine.Character.Player
         {
             base.OnUpdate(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterRollAttack characterRollAttack))
+            _elapsedTime = Time.time - _enterTime;
+
+            if (_elapsedTime >= duration)
             {
-                if (characterRollAttack.IsRollAttacking == false)
-                {
-                    stateController.ChangeState("Player Idle State");
-                }
+                stateController.ChangeState("Player Idle State");
             }
         }
     }

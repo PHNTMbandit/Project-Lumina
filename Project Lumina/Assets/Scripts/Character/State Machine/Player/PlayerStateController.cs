@@ -76,6 +76,14 @@ namespace ProjectLumina.StateMachine.Character.Player
             }
         }
 
+        public void RollAttack()
+        {
+            if (HasCharacterAbility(out CharacterRollAttack rollAttack))
+            {
+                ChangeState("Player Roll Attack State");
+            }
+        }
+
         public void ChangeState(string stateName)
         {
             CharacterState<PlayerStateController> state = Array.Find(
