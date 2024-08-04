@@ -31,7 +31,6 @@ namespace ProjectLumina.Character
 
         public bool CanNextCombo(int stateLength)
         {
-            print(CurrentMeleeAttack);
             if (CurrentMeleeAttack < stateLength)
             {
                 _currentMeleeAttack = _attacks[CurrentMeleeAttack];
@@ -39,6 +38,11 @@ namespace ProjectLumina.Character
                 if (_currentMeleeAttack.IsUnlocked)
                 {
                     CurrentMeleeAttack++;
+                }
+                else
+                {
+                    EndCombo();
+                    return false;
                 }
 
                 return true;

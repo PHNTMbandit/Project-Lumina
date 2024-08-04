@@ -10,6 +10,20 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerMoveState : PlayerGroundedState
     {
+        public override void OnEnter(PlayerStateController stateController)
+        {
+            base.OnEnter(stateController);
+
+            stateController.InputReader.onAttack += stateController.MeleeAttack;
+        }
+
+        public override void OnExit(PlayerStateController stateController)
+        {
+            base.OnExit(stateController);
+
+            stateController.InputReader.onAttack -= stateController.MeleeAttack;
+        }
+
         public override void OnUpdate(PlayerStateController stateController)
         {
             base.OnUpdate(stateController);
