@@ -2,11 +2,15 @@ using System;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Character;
 using ProjectLumina.Data;
-using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace ProjectLumina.StateMachine
 {
+    [RequireComponent(typeof(CharacterFall))]
+    [RequireComponent(typeof(CharacterMove))]
+    [RequireComponent(typeof(Animator))]
+    [RequireComponent(typeof(Damageable))]
+    [RequireComponent(typeof(Health))]
     public abstract class CharacterStateController : MonoBehaviour
     {
         public Animator Animator { get; private set; }

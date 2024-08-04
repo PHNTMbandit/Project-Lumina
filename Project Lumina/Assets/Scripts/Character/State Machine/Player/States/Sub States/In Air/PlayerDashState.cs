@@ -10,13 +10,21 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerDashState : PlayerInAirState
     {
+        public float cooldown,
+            duration = 0.5f;
+
+        private float _enterTime,
+            _elapsedTime;
+
         public override void OnEnter(PlayerStateController stateController)
         {
             base.OnEnter(stateController);
 
+            _enterTime = Time.time;
+
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
-                characterDash.UseDash();
+                characterDash.Dash();
             }
         }
 
@@ -24,9 +32,11 @@ namespace ProjectLumina.StateMachine.Character.Player
         {
             base.OnUpdate(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterDash characterDash))
+            _elapsedTime = Time.time - _enterTime;
+
+            if (_elapsedTime >= duration)
             {
-                if (characterDash.IsDashing == false)
+                if (stateController.HasCharacterAbility(out CharacterDash dash))
                 {
                     stateController.ChangeState("Player Fall State");
                 }

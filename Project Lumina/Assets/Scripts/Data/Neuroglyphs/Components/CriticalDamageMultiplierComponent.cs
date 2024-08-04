@@ -19,7 +19,7 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (user.TryGetComponent(out CharacterAerialAttack aerialAttack))
             {
-                foreach (var attack in aerialAttack.GetAerialAttacks())
+                foreach (var attack in aerialAttack.Attacks)
                 {
                     attack.CriticalDamageMultiplier.AddModifier(
                         new PercentageStatModifier(_criticalDamageMultiplierModifier)
@@ -39,7 +39,7 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
             {
-                foreach (var attack in meleeAttack.GetMeleeAttacks())
+                foreach (var attack in meleeAttack.Attacks)
                 {
                     attack.CriticalDamageMultiplier.AddModifier(
                         new PercentageStatModifier(_criticalDamageMultiplierModifier)
@@ -69,7 +69,7 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (user.TryGetComponent(out CharacterAerialAttack aerialAttack))
             {
-                foreach (var attack in aerialAttack.GetAerialAttacks())
+                foreach (var attack in aerialAttack.Attacks)
                 {
                     attack.CriticalDamageMultiplier.RemoveModifier(
                         new PercentageStatModifier(_criticalDamageMultiplierModifier)
@@ -89,7 +89,7 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
             {
-                foreach (var attack in meleeAttack.GetMeleeAttacks())
+                foreach (var attack in meleeAttack.Attacks)
                 {
                     attack.CriticalDamageMultiplier.RemoveModifier(
                         new PercentageStatModifier(_criticalDamageMultiplierModifier)

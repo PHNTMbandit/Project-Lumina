@@ -21,6 +21,7 @@ namespace ProjectLumina.StateMachine.Character.Player
         [field: BoxGroup("Player"), SerializeField]
         public InputReader InputReader { get; private set; }
 
+        private PlayerAerialAttackState[] _aerialAttackStates;
         private PlayerMeleeAttackState[] _meleeAttackStates;
 
         protected override void Awake()
@@ -28,6 +29,7 @@ namespace ProjectLumina.StateMachine.Character.Player
             base.Awake();
 
             StateMachine = new(this);
+            _aerialAttackStates = states.OfType<PlayerAerialAttackState>().ToArray();
             _meleeAttackStates = states.OfType<PlayerMeleeAttackState>().ToArray();
         }
 
@@ -46,13 +48,35 @@ namespace ProjectLumina.StateMachine.Character.Player
             StateMachine.CurrentState.OnFixedUpdate(this);
         }
 
+        public void AerialAttack()
+        {
+            if (HasCharacterAbility(out CharacterAerialAttack aerialAttack))
+            {
+                if (aerialAttack.CanNextCombo(_aerialAttackStates.Length))
+                {
+                    ChangeState($"Player Aerial Attack {aerialAttack.CurrentComboIndex} State");
+                }
+            }
+        }
+
+        public void Dash()
+        {
+            if (HasCharacterAbility(out CharacterDash dash))
+            {
+                if (dash.CurrentDashCharges > 0)
+                {
+                    ChangeState($"Player Dash State");
+                }
+            }
+        }
+
         public void MeleeAttack()
         {
             if (HasCharacterAbility(out CharacterMeleeAttack meleeAttack))
             {
                 if (meleeAttack.CanNextCombo(_meleeAttackStates.Length))
                 {
-                    ChangeState($"Player Melee Attack {meleeAttack.CurrentMeleeAttack} State");
+                    ChangeState($"Player Melee Attack {meleeAttack.CurrentComboIndex} State");
                 }
             }
         }

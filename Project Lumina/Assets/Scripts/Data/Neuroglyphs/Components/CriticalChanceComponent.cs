@@ -19,7 +19,7 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (user.TryGetComponent(out CharacterAerialAttack aerialAttack))
             {
-                foreach (var attack in aerialAttack.GetAerialAttacks())
+                foreach (var attack in aerialAttack.Attacks)
                 {
                     attack.CriticalChance.AddModifier(
                         new PercentageStatModifier(_criticalChanceModifier)
@@ -39,7 +39,7 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
             {
-                foreach (var attack in meleeAttack.GetMeleeAttacks())
+                foreach (var attack in meleeAttack.Attacks)
                 {
                     attack.CriticalChance.AddModifier(
                         new PercentageStatModifier(_criticalChanceModifier)
@@ -69,7 +69,7 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (user.TryGetComponent(out CharacterAerialAttack aerialAttack))
             {
-                foreach (var attack in aerialAttack.GetAerialAttacks())
+                foreach (var attack in aerialAttack.Attacks)
                 {
                     attack.CriticalChance.RemoveModifier(
                         new PercentageStatModifier(_criticalChanceModifier)
@@ -89,7 +89,7 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
             {
-                foreach (var attack in meleeAttack.GetMeleeAttacks())
+                foreach (var attack in meleeAttack.Attacks)
                 {
                     attack.CriticalChance.RemoveModifier(
                         new PercentageStatModifier(_criticalChanceModifier)

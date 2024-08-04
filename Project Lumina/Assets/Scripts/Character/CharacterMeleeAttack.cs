@@ -10,34 +10,34 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Melee Attack")]
     public class CharacterMeleeAttack : CharacterAbility
     {
-        public int CurrentMeleeAttack
+        public int CurrentComboIndex
         {
-            get => _currentMeleeComboIndex;
+            get => _currentComboIndex;
             set =>
-                _currentMeleeComboIndex =
+                _currentComboIndex =
                     value <= 0
                         ? 0
-                        : value >= _attacks.Length
-                            ? _attacks.Length
+                        : value >= Attacks.Length
+                            ? Attacks.Length
                             : value;
         }
 
-        [BoxGroup("Attacks"), SerializeField]
-        private MeleeAttack[] _attacks;
+        [field: BoxGroup("Attacks"), SerializeField]
+        public MeleeAttack[] Attacks { get; private set; }
 
-        private int _currentMeleeComboIndex;
+        private int _currentComboIndex;
         private MeleeAttack _currentMeleeAttack;
         public UnityAction<GameObject> onHit;
 
         public bool CanNextCombo(int stateLength)
         {
-            if (CurrentMeleeAttack < stateLength)
+            if (CurrentComboIndex < stateLength)
             {
-                _currentMeleeAttack = _attacks[CurrentMeleeAttack];
+                _currentMeleeAttack = Attacks[CurrentComboIndex];
 
                 if (_currentMeleeAttack.IsUnlocked)
                 {
-                    CurrentMeleeAttack++;
+                    CurrentComboIndex++;
                 }
                 else
                 {
@@ -54,7 +54,7 @@ namespace ProjectLumina.Character
 
         public void EndCombo()
         {
-            CurrentMeleeAttack = 0;
+            CurrentComboIndex = 0;
         }
 
         public void DealDamage()
@@ -70,11 +70,6 @@ namespace ProjectLumina.Character
                     onHit?.Invoke(damageable.gameObject);
                 }
             }
-        }
-
-        public MeleeAttack[] GetMeleeAttacks()
-        {
-            return _attacks;
         }
     }
 }

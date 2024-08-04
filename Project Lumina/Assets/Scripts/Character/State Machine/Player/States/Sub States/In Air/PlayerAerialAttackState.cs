@@ -10,50 +10,40 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerAerialAttackState : PlayerInAirState
     {
+        public float cooldown,
+            duration = 0.5f;
+
+        private float _enterTime,
+            _elapsedTime;
+        private PlayerStateController _stateController;
+
         public override void OnEnter(PlayerStateController stateController)
         {
             base.OnEnter(stateController);
 
-            if (
-                stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack)
-            )
-            {
-                characterAerialAttack.AerialAttack();
-                stateController.InputReader.onAttack += characterAerialAttack.AerialAttack;
-            }
+            _enterTime = Time.time;
+            _stateController = stateController;
+            _stateController.InputReader.onAttack += TryNextAttack;
         }
 
         public override void OnExit(PlayerStateController stateController)
         {
             base.OnExit(stateController);
 
-            if (
-                stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack)
-            )
-            {
-                stateController.InputReader.onAttack -= characterAerialAttack.AerialAttack;
-                characterAerialAttack.FinishAerialAttack();
-            }
+            _stateController.InputReader.onAttack -= TryNextAttack;
         }
 
         public override void OnUpdate(PlayerStateController stateController)
         {
             base.OnUpdate(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterJump characterJump))
-            {
-                if (characterJump.IsGrounded)
-                {
-                    stateController.ChangeState("Player Idle State");
-                }
-            }
+            _elapsedTime = Time.time - _enterTime;
 
-            if (
-                stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack)
-            )
+            if (_elapsedTime >= duration)
             {
-                if (characterAerialAttack.IsAttacking == false)
+                if (stateController.HasCharacterAbility(out CharacterAerialAttack aerialAttack))
                 {
+                    aerialAttack.EndCombo();
                     stateController.ChangeState("Player Fall State");
                 }
             }
@@ -64,15 +54,13 @@ namespace ProjectLumina.StateMachine.Character.Player
             base.OnFixedUpdate(stateController);
 
             stateController.CharacterMove.MoveCharacter(stateController.InputReader.MoveInput.x);
+        }
 
-            if (
-                stateController.HasCharacterAbility(out CharacterAerialAttack characterAerialAttack)
-            )
+        private void TryNextAttack()
+        {
+            if (_elapsedTime >= cooldown)
             {
-                if (characterAerialAttack.IsSlowStop == false)
-                {
-                    stateController.CharacterFall.SetGravityScale();
-                }
+                _stateController.AerialAttack();
             }
         }
     }

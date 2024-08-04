@@ -1631,6 +1631,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingState: {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
   states:
+  - {fileID: 11400000, guid: e67af218a071c4942ab8c003ef6f96e5, type: 2}
+  - {fileID: 11400000, guid: cb08dea5114a7de4e9e8bd2d66978948, type: 2}
+  - {fileID: 11400000, guid: b95ee463b773fe34b95e9238aca97ea4, type: 2}
   - {fileID: 11400000, guid: cbdb5636c96398541a1fd9ef2412deb8, type: 2}
   - {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
   - {fileID: 11400000, guid: 09ae6005b7a3ce34089a9c39b1d7cc17, type: 2}
@@ -1656,27 +1659,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <AttackName>k__BackingField: 
+  <Attacks>k__BackingField:
+  - <AttackName>k__BackingField: Aerial Attack 1
     <IsUnlocked>k__BackingField: 1
-    damage: 8
-    criticalChance: 3
-    criticalDamageMultiplier: 15
-    hitStopDuration: 0.065
+    damage: 0
+    criticalChance: 0
+    criticalDamageMultiplier: 0
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    damageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    criticalDamageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
-  - <AttackName>k__BackingField: 
+  - <AttackName>k__BackingField: Aerial Attack 2
     <IsUnlocked>k__BackingField: 1
-    damage: 10
-    criticalChance: 5
-    criticalDamageMultiplier: 25
-    hitStopDuration: 0.065
-    hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
-    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
-    <Sensor>k__BackingField: {fileID: 7767870463966260675}
+    damage: 0
+    criticalChance: 0
+    criticalDamageMultiplier: 0
+    hitStopDuration: 0.0095
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    damageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    criticalDamageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    <Sensor>k__BackingField: {fileID: 840393152120787049}
   SlowStop: 1
   _slowStopGravityScale: 0.3
   _slowStopVelocityScale: 5
@@ -1710,7 +1713,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  Dash: 1
   _dashCharges: 1
   _dashSpeed: 20
 --- !u!114 &7290589450951481158
@@ -1818,7 +1820,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attacks:
+  <Attacks>k__BackingField:
   - <AttackName>k__BackingField: Slash 1
     <IsUnlocked>k__BackingField: 1
     damage: 5
@@ -1839,7 +1841,7 @@ MonoBehaviour:
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
     criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <AttackName>k__BackingField: Spin
+  - <AttackName>k__BackingField: Slam
     <IsUnlocked>k__BackingField: 1
     damage: 5
     criticalChance: 1
@@ -1849,7 +1851,7 @@ MonoBehaviour:
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
     criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <AttackName>k__BackingField: Slam
+  - <AttackName>k__BackingField: Spin
     <IsUnlocked>k__BackingField: 1
     damage: 5
     criticalChance: 1
@@ -1934,7 +1936,7 @@ MonoBehaviour:
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
     criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
-  _rollAttackSpeed: 2
+  _rollAttackSpeedDamping: 0
 --- !u!114 &4429014146250662890
 MonoBehaviour:
   m_ObjectHideFlags: 0

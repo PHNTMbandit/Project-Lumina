@@ -16,7 +16,7 @@ namespace ProjectLumina.StateMachine.Character.Player
 
             if (stateController.HasCharacterAbility(out CharacterDash characterDash))
             {
-                characterDash.ResetDash();
+                characterDash.RechargeDash();
             }
         }
 
@@ -34,11 +34,7 @@ namespace ProjectLumina.StateMachine.Character.Player
 
             moveInput = stateController.InputReader.MoveInput;
 
-            if (stateController.CharacterFall.IsFalling())
-            {
-                stateController.ChangeState("Player Fall State");
-            }
-            else if (stateController.CharacterFall.CanFallThrough() && moveInput.y <= -0.8f)
+            if (stateController.CharacterFall.CanFallThrough() && moveInput.y <= -0.8f)
             {
                 stateController.CharacterFall.StartCoroutine(
                     stateController.CharacterFall.FallThrough()
