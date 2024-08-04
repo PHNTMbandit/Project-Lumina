@@ -9,7 +9,7 @@ namespace ProjectLumina.Data
     [Serializable, HideLabel]
     public abstract class Attack
     {
-        [TabGroup("Stats"), ShowInInspector, ReadOnly]
+        [field: SerializeField, TabGroup("Stats"), ShowInInspector]
         public string AttackName { get; private set; }
 
         [TabGroup("Stats"), LabelText("Damage Stat"), ShowInInspector, ReadOnly]

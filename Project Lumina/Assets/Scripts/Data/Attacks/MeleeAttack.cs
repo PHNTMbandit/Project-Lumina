@@ -19,12 +19,18 @@ namespace ProjectLumina.Data
 
                 if (UnityEngine.Random.Range(0, 100) <= criticalChance)
                 {
-                    float criticalDamage = Damage.Value + (Damage.Value * (criticalDamageMultiplier / 100));
+                    float criticalDamage =
+                        Damage.Value + (Damage.Value * (criticalDamageMultiplier / 100));
                     target.Damage(criticalDamage);
 
                     if (target.TryGetComponent(out DamageIndicator damageIndicator))
                     {
-                        damageIndicator.ShowDamageIndicator(true, criticalDamage, user.transform.position, criticalDamageIndicatorColour);
+                        damageIndicator.ShowDamageIndicator(
+                            true,
+                            criticalDamage,
+                            user.transform.position,
+                            criticalDamageIndicatorColour
+                        );
                     }
 
                     if (target.TryGetComponent(out CameraShake cameraShake))
@@ -38,7 +44,12 @@ namespace ProjectLumina.Data
 
                     if (target.TryGetComponent(out DamageIndicator damageIndicator))
                     {
-                        damageIndicator.ShowDamageIndicator(false, Damage.Value, user.transform.position, damageIndicatorColour);
+                        damageIndicator.ShowDamageIndicator(
+                            false,
+                            Damage.Value,
+                            user.transform.position,
+                            damageIndicatorColour
+                        );
                     }
 
                     if (target.TryGetComponent(out CameraShake cameraShake))
@@ -61,6 +72,11 @@ namespace ProjectLumina.Data
             }
 
             return false;
+        }
+
+        public static implicit operator MeleeAttack(int v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

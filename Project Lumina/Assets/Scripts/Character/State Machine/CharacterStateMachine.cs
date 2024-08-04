@@ -4,7 +4,7 @@ namespace ProjectLumina.StateMachine
         where T : CharacterStateController
     {
         public CharacterState<T> CurrentState { get; private set; }
-        private T _stateController;
+        private readonly T _stateController;
 
         public CharacterStateMachine(T stateController)
         {

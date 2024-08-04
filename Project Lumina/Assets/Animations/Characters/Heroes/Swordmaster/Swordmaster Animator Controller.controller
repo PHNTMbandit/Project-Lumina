@@ -464,6 +464,23 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 1
   serializedVersion: 1
+--- !u!1109 &-5985149507675888562
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: melee attack 1
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: -7943015285768726451}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1109 &-5914649101020130082
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -769,6 +786,23 @@ AnimatorTransition:
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 1
+  serializedVersion: 1
+--- !u!1109 &-3320898532687325333
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: melee attack 4
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 7449363695539558406}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
   serializedVersion: 1
 --- !u!1109 &-3269185388833307458
 AnimatorTransition:
@@ -1143,7 +1177,6 @@ AnimatorStateMachine:
   - {fileID: 6924121240565220410}
   - {fileID: 7685474757981662216}
   - {fileID: 3978452593039810780}
-  - {fileID: 7233753311759754715}
   - {fileID: -2992658231410691945}
   - {fileID: -6987328178474559619}
   - {fileID: -6171381704436575664}
@@ -1155,25 +1188,29 @@ AnimatorStateMachine:
   - {fileID: -1611658160620988054}
   - {fileID: -217429460257726471}
   - {fileID: -9181064527499805217}
+  - {fileID: -5985149507675888562}
+  - {fileID: 1432682594928725533}
+  - {fileID: 5783688671069663025}
+  - {fileID: -3320898532687325333}
   m_StateMachineTransitions:
-  - first: {fileID: -7320202668032549936}
-    second:
-    - {fileID: -242249927272367648}
   - first: {fileID: -7198535514675776607}
     second:
     - {fileID: -6115951697592915418}
   - first: {fileID: -2189210652078115740}
     second:
     - {fileID: -6777103644960012251}
-  - first: {fileID: 1833265824520280794}
-    second:
-    - {fileID: -4436867727618157654}
   - first: {fileID: 7519061622292420098}
     second:
     - {fileID: -3858907964209994604}
+  - first: {fileID: 1833265824520280794}
+    second:
+    - {fileID: -4436867727618157654}
   - first: {fileID: 8736704852050089792}
     second:
     - {fileID: 1071851172714726426}
+  - first: {fileID: -7320202668032549936}
+    second:
+    - {fileID: -242249927272367648}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: -80, z: 0}
   m_EntryPosition: {x: 60, y: 350, z: 0}
@@ -1445,6 +1482,23 @@ AnimatorTransition:
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 1
+  serializedVersion: 1
+--- !u!1109 &1432682594928725533
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: melee attack 2
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 5690287371303083463}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
   serializedVersion: 1
 --- !u!1107 &1833265824520280794
 AnimatorStateMachine:
@@ -1879,6 +1933,23 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1109 &5783688671069663025
+AnimatorTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: melee attack 3
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 2082729971505907788}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 1
 --- !u!1102 &5905054402971666735
 AnimatorState:
   serializedVersion: 6
@@ -1998,23 +2069,6 @@ AnimatorTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 1
---- !u!1109 &7233753311759754715
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: melee attack 1
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 7519061622292420098}
-  m_DstState: {fileID: 0}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1102 &7449363695539558406
 AnimatorState:
   serializedVersion: 6
@@ -2065,8 +2119,7 @@ AnimatorStateMachine:
     m_Position: {x: 420, y: 250, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
-  m_EntryTransitions:
-  - {fileID: 7563492812003276277}
+  m_EntryTransitions: []
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
@@ -2099,23 +2152,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1109 &7563492812003276277
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: melee attack 1
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: -7943015285768726451}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1109 &7685474757981662216
 AnimatorTransition:
   m_ObjectHideFlags: 1

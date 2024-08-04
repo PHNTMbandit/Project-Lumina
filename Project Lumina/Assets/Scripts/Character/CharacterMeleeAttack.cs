@@ -7,28 +7,53 @@ using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
-    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Melee Attack")]
     public class CharacterMeleeAttack : CharacterAbility
     {
+        public int CurrentMeleeAttack
+        {
+            get => _currentMeleeComboIndex;
+            set =>
+                _currentMeleeComboIndex =
+                    value <= 0
+                        ? 0
+                        : value >= _attacks.Length
+                            ? _attacks.Length
+                            : value;
+        }
+
         [BoxGroup("Attack Combos"), SerializeField]
         private MeleeAttack[] _attacks;
 
-        private Attack _currentMeleeAttack;
-        private Animator _animator;
-
+        private int _currentMeleeComboIndex;
+        private MeleeAttack _currentMeleeAttack;
         public UnityAction<GameObject> onHit;
 
-        private void Awake()
+        public bool CanNextCombo(int stateLength)
         {
-            _animator = GetComponent<Animator>();
+            print(CurrentMeleeAttack);
+            if (CurrentMeleeAttack < stateLength)
+            {
+                _currentMeleeAttack = _attacks[CurrentMeleeAttack];
+
+                if (_currentMeleeAttack.IsUnlocked)
+                {
+                    CurrentMeleeAttack++;
+                }
+
+                return true;
+            }
+
+            EndCombo();
+            return false;
         }
 
-        private void Update() { }
+        public void EndCombo()
+        {
+            CurrentMeleeAttack = 0;
+        }
 
-        public void MeleeAttack() { }
-
-        public void TryMeleeAttack()
+        public void DealDamage()
         {
             foreach (
                 Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(

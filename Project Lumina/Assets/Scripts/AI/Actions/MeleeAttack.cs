@@ -18,8 +18,6 @@ namespace ProjectLumina.AI.Conditionals
         public override void OnStart()
         {
             base.OnStart();
-
-            _characterMeleeAttack.MeleeAttack();
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ProjectLumina.Character;
 using ProjectLumina.Player.Input;
 using Sirenix.OdinInspector;
@@ -20,11 +21,14 @@ namespace ProjectLumina.StateMachine.Character.Player
         [field: BoxGroup("Player"), SerializeField]
         public InputReader InputReader { get; private set; }
 
+        private PlayerMeleeAttackState[] _meleeAttackStates;
+
         protected override void Awake()
         {
             base.Awake();
 
             StateMachine = new(this);
+            _meleeAttackStates = states.OfType<PlayerMeleeAttackState>().ToArray();
         }
 
         protected virtual void Start()
@@ -40,6 +44,17 @@ namespace ProjectLumina.StateMachine.Character.Player
         protected virtual void FixedUpdate()
         {
             StateMachine.CurrentState.OnFixedUpdate(this);
+        }
+
+        public void MeleeAttack()
+        {
+            if (HasCharacterAbility(out CharacterMeleeAttack meleeAttack))
+            {
+                if (meleeAttack.CanNextCombo(_meleeAttackStates.Length))
+                {
+                    ChangeState($"Player Melee Attack {meleeAttack.CurrentMeleeAttack} State");
+                }
+            }
         }
 
         public void Jump()
