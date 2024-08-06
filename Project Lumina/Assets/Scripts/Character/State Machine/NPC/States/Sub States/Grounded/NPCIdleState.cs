@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Character;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ProjectLumina.StateMachine.Character.NPC
 {
@@ -17,14 +16,6 @@ namespace ProjectLumina.StateMachine.Character.NPC
             if (stateController.AIPath.velocity.x != 0 && stateController.AIPath.hasPath)
             {
                 stateController.ChangeState("NPC Move State");
-            }
-
-            if (stateController.HasCharacterAbility(out CharacterShoot characterShoot))
-            {
-                if (characterShoot.IsShooting)
-                {
-                    stateController.ChangeState("NPC Shoot State");
-                }
             }
         }
     }

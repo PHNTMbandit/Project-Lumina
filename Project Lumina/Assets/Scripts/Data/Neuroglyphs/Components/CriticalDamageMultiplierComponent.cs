@@ -53,12 +53,9 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterShoot shoot))
             {
-                foreach (var attack in shoot.GetRangedAttacks())
-                {
-                    attack.CriticalDamageMultiplier.AddModifier(
-                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
-                    );
-                }
+                shoot.Attack.CriticalDamageMultiplier.AddModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
         }
 
@@ -100,12 +97,9 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterShoot shoot))
             {
-                foreach (var attack in shoot.GetRangedAttacks())
-                {
-                    attack.CriticalDamageMultiplier.RemoveModifier(
-                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
-                    );
-                }
+                shoot.Attack.CriticalDamageMultiplier.RemoveModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
         }
 

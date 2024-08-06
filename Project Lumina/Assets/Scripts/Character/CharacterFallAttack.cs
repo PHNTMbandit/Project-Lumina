@@ -17,7 +17,7 @@ namespace ProjectLumina.Character
 
         public UnityAction<GameObject> onHit;
 
-        public void TryFallAttack()
+        public void DealFallAttackDamage()
         {
             foreach (
                 Damageable damageable in Attack.Sensor.GetDetectedComponents(new List<Damageable>())

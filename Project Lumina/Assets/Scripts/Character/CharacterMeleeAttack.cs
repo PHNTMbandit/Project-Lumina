@@ -57,7 +57,7 @@ namespace ProjectLumina.Character
             CurrentComboIndex = 0;
         }
 
-        public void DealDamage()
+        public void DealMeleeDamage()
         {
             foreach (
                 Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(
