@@ -1269,6 +1269,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53df35c9c5a5eb34884b91e27918a2a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingState: {fileID: 11400000, guid: 4a39278b21009ea47849c4601ec1a71b, type: 2}
+  states:
+  - {fileID: 11400000, guid: 20257649c00bb8a4c90248884c6f088f, type: 2}
+  - {fileID: 11400000, guid: e41bf9b1567ab0f4689b51c1ffcb0ea8, type: 2}
+  - {fileID: 11400000, guid: 4a39278b21009ea47849c4601ec1a71b, type: 2}
+  - {fileID: 11400000, guid: 85f804dffa22a074f92fd901b42f653d, type: 2}
+  - {fileID: 11400000, guid: 71cd8742c0db6154db0d31041c7f377e, type: 2}
 --- !u!114 &2766563775868989475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1283,7 +1290,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6486949022328041400}
+        m_TargetAssemblyTypeName: ProjectLumina.StateMachine.Character.NPC.NPCStateController,
+          Assembly-CSharp
+        m_MethodName: ChangeState
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: NPC Hit State
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &4525009610691105383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1340,6 +1360,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 6486949022328041400}
+        m_TargetAssemblyTypeName: ProjectLumina.StateMachine.Character.NPC.NPCStateController,
+          Assembly-CSharp
+        m_MethodName: ChangeState
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: NPC Dead State
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &3228559339102267121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1392,7 +1425,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos: []
+  <Attacks>k__BackingField: []
 --- !u!114 &8913216245909492744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1405,11 +1438,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaaa03a8ba67194ba3d9ee655ad2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move: 1
   _moveSpeed: 4
   _acceleration: 9
   _velocity: 1.2
-  Stop: 1
   _decceleration: 9
   _frictionAmount: 0.2
 --- !u!114 &3573416232631176223
@@ -1425,15 +1456,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
-    damage: 3
-    criticalChance: 3
-    criticalDamageMultiplier: 15
+  <Attack>k__BackingField:
+    <AttackName>k__BackingField: Shoot
+    <IsUnlocked>k__BackingField: 1
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
     hitStopDuration: 0
     hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 3657249586278866276}
   _fireRate: 1.55
 --- !u!114 &8047855507821010640
@@ -1521,7 +1553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 1073741824
   drawGizmos: 1
   detailedGizmos: 0
   startEndModifier:
@@ -1549,7 +1581,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 5
+  version: 1073741824
   radius: 1.12
   height: 2
   canMove: 1
@@ -1558,6 +1590,14 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  endReachedDistance: 2
+  whenCloseToDestination: 0
+  rvoDensityBehavior:
+    enabled: 0
+    densityThreshold: 0.5
+    returnAfterBeingPushedAway: 0
+    progressAverage: 0
+    lastJobDensityResult: 0
   centerOffsetCompatibility: NaN
   repathRateCompatibility: NaN
   canSearchCompability: 0
@@ -1574,10 +1614,9 @@ MonoBehaviour:
   rotationSpeed: 32400
   slowdownDistance: 2.6
   pickNextWaypointDist: 4
-  endReachedDistance: 2
   alwaysDrawGizmos: 0
   slowWhenNotFacingTarget: 1
-  whenCloseToDestination: 0
+  preventMovingBackwards: 0
   constrainInsideGraph: 0
 --- !u!114 &4224349700809815099
 MonoBehaviour:
@@ -1591,7 +1630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 1
+  version: 1073741824
   smoothType: 0
   subdivisions: 2
   iterations: 2

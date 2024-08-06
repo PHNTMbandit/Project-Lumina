@@ -30,7 +30,7 @@ namespace ProjectLumina.Character
             _rb.velocity /= _rollAttackSpeedDamping;
         }
 
-        public void TryRollAttack()
+        public void DealRollAttackDamage()
         {
             foreach (
                 Damageable damageable in Attack.Sensor.GetDetectedComponents(new List<Damageable>())

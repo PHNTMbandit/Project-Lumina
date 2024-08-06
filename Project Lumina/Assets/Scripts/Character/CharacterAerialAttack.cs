@@ -85,7 +85,7 @@ namespace ProjectLumina.Character
             CurrentComboIndex = 0;
         }
 
-        public void TryAerialAttack()
+        public void DealAerialDamage()
         {
             foreach (
                 Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(

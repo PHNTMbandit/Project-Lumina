@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Character;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ProjectLumina.StateMachine.Character.NPC
 {
@@ -10,15 +9,16 @@ namespace ProjectLumina.StateMachine.Character.NPC
     )]
     public class NPCHitState : NPCState
     {
+        public float duration = 0.5f;
+
+        private float _enterTime,
+            _elapsedTime;
+
         public override void OnEnter(NPCStateController stateController)
         {
             base.OnEnter(stateController);
 
-            if (stateController.HasCharacterAbility(out CharacterShoot characterShoot))
-            {
-                characterShoot.FinishShoot();
-            }
-
+            _enterTime = Time.time;
             stateController.AIPath.maxSpeed = 0;
         }
 
@@ -27,6 +27,18 @@ namespace ProjectLumina.StateMachine.Character.NPC
             base.OnExit(stateController);
 
             stateController.AIPath.maxSpeed = stateController.MoveSpeed;
+        }
+
+        public override void OnUpdate(NPCStateController stateController)
+        {
+            base.OnUpdate(stateController);
+
+            _elapsedTime = Time.time - _enterTime;
+
+            if (_elapsedTime >= duration)
+            {
+                stateController.ChangeState("NPC Idle State");
+            }
         }
     }
 }

@@ -12,19 +12,17 @@ namespace ProjectLumina.Character
         public Stat Acceleration { get; private set; }
         public Stat MoveSpeed { get; private set; }
 
-        [ToggleGroup("Move"), SerializeField]
-        private bool Move;
+        [BoxGroup("Move"), SerializeField, Range(0, 25)]
+        private float _moveSpeed,
+            _acceleration,
+            _velocity;
 
-        [ToggleGroup("Move"), SerializeField, Range(0, 25)]
-        private float _moveSpeed, _acceleration, _velocity;
+        [BoxGroup("Stop"), SerializeField, Range(0, 25)]
+        private float _decceleration,
+            _frictionAmount;
 
-        [ToggleGroup("Stop"), SerializeField]
-        private bool Stop;
-
-        [ToggleGroup("Stop"), SerializeField, Range(0, 25)]
-        private float _decceleration, _frictionAmount;
-
-        private float _lastMoveX, _moveInput;
+        private float _lastMoveX,
+            _moveInput;
         private Animator _animator;
         private Rigidbody2D _rb;
 
@@ -49,8 +47,10 @@ namespace ProjectLumina.Character
         {
             float targetSpeed = move * MoveSpeed.Value;
             float speedDiff = targetSpeed - _rb.velocity.x;
-            float accelRate = (Mathf.Abs(targetSpeed) > 0.01f) ? Acceleration.Value : _decceleration;
-            float movement = Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, _velocity) * Mathf.Sign(speedDiff);
+            float accelRate =
+                (Mathf.Abs(targetSpeed) > 0.01f) ? Acceleration.Value : _decceleration;
+            float movement =
+                Mathf.Pow(Mathf.Abs(speedDiff) * accelRate, _velocity) * Mathf.Sign(speedDiff);
 
             _moveInput = move;
             _animator.SetFloat("speed", Mathf.Abs(_moveInput));

@@ -1598,6 +1598,19 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 7908729315755960447}
+        m_TargetAssemblyTypeName: ProjectLumina.StateMachine.Character.Player.PlayerStateController,
+          Assembly-CSharp
+        m_MethodName: ChangeState
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Player Dead State
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6872371990101784772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1648,6 +1661,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e67af218a071c4942ab8c003ef6f96e5, type: 2}
   - {fileID: 11400000, guid: cb08dea5114a7de4e9e8bd2d66978948, type: 2}
   - {fileID: 11400000, guid: b95ee463b773fe34b95e9238aca97ea4, type: 2}
+  - {fileID: 11400000, guid: b8edfee41b09a8842b9a62952642b466, type: 2}
   - {fileID: 11400000, guid: e6f4c7f342ad3bd4cad64fe90b460e8c, type: 2}
   - {fileID: 11400000, guid: cbdb5636c96398541a1fd9ef2412deb8, type: 2}
   - {fileID: 11400000, guid: a1257f55553e7ea4398bbba544cdc202, type: 2}
@@ -1890,11 +1904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eaaa03a8ba67194ba3d9ee655ad2373, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Move: 1
   _moveSpeed: 7
   _acceleration: 9
   _velocity: 1.2
-  Stop: 1
   _decceleration: 9
   _frictionAmount: 0.2
 --- !u!114 &1494634681898418241
