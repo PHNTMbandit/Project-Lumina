@@ -29,7 +29,14 @@ namespace ProjectLumina.StateMachine.Character.Player
 
             if (moveInput.x != 0)
             {
-                stateController.ChangeState("Player Move State");
+                if (stateController.InputReader.SprintInput)
+                {
+                    stateController.ChangeState("Player Sprint State");
+                }
+                else
+                {
+                    stateController.ChangeState("Player Move State");
+                }
             }
         }
 
