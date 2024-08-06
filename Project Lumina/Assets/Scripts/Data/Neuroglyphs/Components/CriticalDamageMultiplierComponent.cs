@@ -29,12 +29,9 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterFallAttack fallAttack))
             {
-                foreach (var attack in fallAttack.GetFallAttacks())
-                {
-                    attack.CriticalDamageMultiplier.AddModifier(
-                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
-                    );
-                }
+                fallAttack.Attack.CriticalDamageMultiplier.AddModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
@@ -79,12 +76,9 @@ namespace ProjectLumina.Neuroglyphs.Components
 
             if (user.TryGetComponent(out CharacterFallAttack fallAttack))
             {
-                foreach (var attack in fallAttack.GetFallAttacks())
-                {
-                    attack.CriticalDamageMultiplier.RemoveModifier(
-                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
-                    );
-                }
+                fallAttack.Attack.CriticalDamageMultiplier.RemoveModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))

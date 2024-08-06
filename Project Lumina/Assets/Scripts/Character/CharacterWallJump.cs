@@ -12,11 +12,8 @@ namespace ProjectLumina.Character
         [Range(0, 50), SerializeField]
         private float _wallJumpUpForce;
 
-        [Range(0, 100), SerializeField]
+        [Range(0, 500), SerializeField]
         private float _wallJumpForce;
-
-        [FoldoutGroup("References"), SerializeField]
-        private InputReader _input;
 
         [FoldoutGroup("References"), SerializeField]
         private RaySensor2D _sensor;
@@ -33,11 +30,7 @@ namespace ProjectLumina.Character
         public bool CanWallJump()
         {
             GameObject wall = _sensor.GetNearestDetection();
-            bool isOppositeDirection =
-                (_input.MoveInput.x > 0 && _characterMove.GetFacingDirection().x < 0)
-                || (_input.MoveInput.x < 0 && _characterMove.GetFacingDirection().x > 0);
-
-            return isOppositeDirection && wall != null;
+            return wall != null;
         }
 
         public void WallJump()

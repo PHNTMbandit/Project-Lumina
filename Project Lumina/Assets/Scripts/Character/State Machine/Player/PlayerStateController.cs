@@ -50,12 +50,27 @@ namespace ProjectLumina.StateMachine.Character.Player
 
         public void AerialAttack()
         {
-            if (HasCharacterAbility(out CharacterAerialAttack aerialAttack))
+            if (InputReader.MoveInput.y >= 0)
             {
-                if (aerialAttack.CanNextCombo(_aerialAttackStates.Length))
+                if (HasCharacterAbility(out CharacterAerialAttack aerialAttack))
                 {
-                    ChangeState($"Player Aerial Attack {aerialAttack.CurrentComboIndex} State");
+                    if (aerialAttack.CanNextCombo(_aerialAttackStates.Length))
+                    {
+                        ChangeState($"Player Aerial Attack {aerialAttack.CurrentComboIndex} State");
+                    }
                 }
+            }
+            else if (InputReader.MoveInput.y < 0)
+            {
+                FallAttack();
+            }
+        }
+
+        public void FallAttack()
+        {
+            if (HasCharacterAbility(out CharacterFallAttack fallAttack))
+            {
+                ChangeState("Player Fall Attack State");
             }
         }
 

@@ -1,5 +1,4 @@
-﻿using ProjectLumina.Character;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ProjectLumina.StateMachine.Character.Player
 {
@@ -10,6 +9,30 @@ namespace ProjectLumina.StateMachine.Character.Player
     )]
     public class PlayerFallAttackState : PlayerInAirState
     {
+        public float duration = 0.5f;
+
+        private float _enterTime,
+            _elapsedTime;
+
+        public override void OnEnter(PlayerStateController stateController)
+        {
+            base.OnEnter(stateController);
+
+            _enterTime = Time.time;
+        }
+
+        public override void OnUpdate(PlayerStateController stateController)
+        {
+            base.OnUpdate(stateController);
+
+            _elapsedTime = Time.time - _enterTime;
+
+            if (_elapsedTime >= duration)
+            {
+                stateController.ChangeState("Player Fall State");
+            }
+        }
+
         public override void OnFixedUpdate(PlayerStateController stateController)
         {
             base.OnFixedUpdate(stateController);

@@ -10,7 +10,7 @@ namespace ProjectLumina.Character
     [AddComponentMenu("Character/Character Roll Attack")]
     public class CharacterRollAttack : CharacterAbility
     {
-        [field: BoxGroup("Attacks"), SerializeField]
+        [field: BoxGroup("Attack"), SerializeField]
         public MeleeAttack Attack { get; private set; }
 
         [BoxGroup("Settings"), Range(0, 10), SerializeField]
