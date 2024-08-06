@@ -316,7 +316,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -964,7 +964,7 @@ MonoBehaviour:
     IgnoreList: []
     EnableTagFilter: 0
     AllowedTags: []
-  Length: 0.3
+  Length: 0.6
   Direction: {x: 0, y: -1}
   WorldSpace: 0
   DetectsOnLayers:
@@ -1178,10 +1178,10 @@ GameObject:
   - component: {fileID: 5234622297951310634}
   - component: {fileID: 2041146607062771200}
   - component: {fileID: 3518663555988437935}
-  - component: {fileID: 7908729315755960447}
   - component: {fileID: 5188672235610599560}
   - component: {fileID: 7944689914820168971}
   - component: {fileID: 6872371990101784772}
+  - component: {fileID: 7908729315755960447}
   - component: {fileID: 1119459725394500653}
   - component: {fileID: 3896303241643222283}
   - component: {fileID: 1717507716594173446}
@@ -1196,6 +1196,7 @@ GameObject:
   - component: {fileID: 5987676301644156327}
   - component: {fileID: 4429014146250662890}
   - component: {fileID: 4016446487865762295}
+  - component: {fileID: 6752170329020138342}
   - component: {fileID: 8936565788166426222}
   - component: {fileID: 1505913605161621145}
   - component: {fileID: 7145477492940236767}
@@ -1525,19 +1526,6 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7908729315755960447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7857708129487907294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f01c901c309511d4ab6c263cfa5b6083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &5188672235610599560
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1552,7 +1540,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   onDamaged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7908729315755960447}
+        m_TargetAssemblyTypeName: ProjectLumina.StateMachine.Character.Player.PlayerStateController,
+          Assembly-CSharp
+        m_MethodName: ChangeState
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Player Hit State
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7944689914820168971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1630,6 +1631,38 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &7908729315755960447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f01c901c309511d4ab6c263cfa5b6083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingState: {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
+  states:
+  - {fileID: 11400000, guid: e67af218a071c4942ab8c003ef6f96e5, type: 2}
+  - {fileID: 11400000, guid: cb08dea5114a7de4e9e8bd2d66978948, type: 2}
+  - {fileID: 11400000, guid: b95ee463b773fe34b95e9238aca97ea4, type: 2}
+  - {fileID: 11400000, guid: e6f4c7f342ad3bd4cad64fe90b460e8c, type: 2}
+  - {fileID: 11400000, guid: cbdb5636c96398541a1fd9ef2412deb8, type: 2}
+  - {fileID: 11400000, guid: a1257f55553e7ea4398bbba544cdc202, type: 2}
+  - {fileID: 11400000, guid: 475ff0bb5cbb7304783b2aa73bb62b00, type: 2}
+  - {fileID: 11400000, guid: 09ae6005b7a3ce34089a9c39b1d7cc17, type: 2}
+  - {fileID: 11400000, guid: d7ff0e08776d3ca40a4eb4b3c50a4318, type: 2}
+  - {fileID: 11400000, guid: fe2bc43f031fede488a1ec981b2c0530, type: 2}
+  - {fileID: 11400000, guid: 3f41af8bef8b1814ca0a9e6449736b52, type: 2}
+  - {fileID: 11400000, guid: 855f5285a05230741b49dcabd7fd5d5b, type: 2}
+  - {fileID: 11400000, guid: 37ab6ae0942a61548bdf552e6b764e50, type: 2}
+  - {fileID: 11400000, guid: 8ae004b24f733f149b2fbf2b8c5290ea, type: 2}
+  - {fileID: 11400000, guid: 379fca3f93da06e4486298adfdb38d0a, type: 2}
+  - {fileID: 11400000, guid: 238b222e3ba098f4980d153c1fbd1f11, type: 2}
+  - {fileID: 11400000, guid: 2a5f9060bc127bf47ad68164efeee71e, type: 2}
+  <InputReader>k__BackingField: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
 --- !u!114 &1119459725394500653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1643,25 +1676,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
-    damage: 8
-    criticalChance: 3
-    criticalDamageMultiplier: 15
-    hitStopDuration: 0.065
+  <Attacks>k__BackingField:
+  - <AttackName>k__BackingField: Aerial Attack 1
+    <IsUnlocked>k__BackingField: 1
+    damage: 0
+    criticalChance: 0
+    criticalDamageMultiplier: 0
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
-    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    damageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    criticalDamageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
-  - <IsUnlocked>k__BackingField: 1
-    damage: 10
-    criticalChance: 5
-    criticalDamageMultiplier: 25
-    hitStopDuration: 0.065
-    hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
-    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
-    <Sensor>k__BackingField: {fileID: 7767870463966260675}
+  - <AttackName>k__BackingField: Aerial Attack 2
+    <IsUnlocked>k__BackingField: 1
+    damage: 0
+    criticalChance: 0
+    criticalDamageMultiplier: 0
+    hitStopDuration: 0.0095
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    damageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    criticalDamageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+    <Sensor>k__BackingField: {fileID: 840393152120787049}
   SlowStop: 1
   _slowStopGravityScale: 0.3
   _slowStopVelocityScale: 5
@@ -1695,7 +1730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  Dash: 1
   _dashCharges: 1
   _dashSpeed: 20
 --- !u!114 &7290589450951481158
@@ -1728,15 +1762,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
-    damage: 0
-    criticalChance: 0
-    criticalDamageMultiplier: 0
-    hitStopDuration: 0
-    hitFX: {fileID: 0}
-    damageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
-    criticalDamageIndicatorColour: {r: 0, g: 0, b: 0, a: 0}
+  <Attack>k__BackingField:
+    <AttackName>k__BackingField: Fall Attack
+    <IsUnlocked>k__BackingField: 1
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
+    damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 3195123333087440787}
 --- !u!114 &6431609096680149782
 MonoBehaviour:
@@ -1750,53 +1785,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3ba5f605aa77c47b5d162272b7f891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
-  _sensor: {fileID: 7336295668862005102}
   onInteractableDetected:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2656570799480455306}
-        m_TargetAssemblyTypeName: ProjectLumina.UI.InteractUI, Assembly-CSharp
-        m_MethodName: SetInteractText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2833440158046621441}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
+      m_Calls: []
   onInteractableLost:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2833440158046621441}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   onInteract:
     m_PersistentCalls:
       m_Calls: []
+  _inputReader: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
+  _sensor: {fileID: 7336295668862005102}
+  _interactUI: {fileID: 2656570799480455306}
 --- !u!114 &6544038380653437511
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1837,42 +1837,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
+  <Attacks>k__BackingField:
+  - <AttackName>k__BackingField: Slash 1
+    <IsUnlocked>k__BackingField: 1
     damage: 5
-    criticalChance: 3
-    criticalDamageMultiplier: 15
-    hitStopDuration: 0.065
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 840393152120787049}
-  - <IsUnlocked>k__BackingField: 1
-    damage: 8
-    criticalChance: 5
-    criticalDamageMultiplier: 20
-    hitStopDuration: 0.065
-    hitFX: {fileID: 6900393257970694771, guid: 20ae8fc8077b8664f8ef613742ac32d4, type: 3}
+  - <AttackName>k__BackingField: Slash 2
+    <IsUnlocked>k__BackingField: 1
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 7767870463966260675}
-  - <IsUnlocked>k__BackingField: 1
-    damage: 12
-    criticalChance: 7
-    criticalDamageMultiplier: 35
-    hitStopDuration: 0.065
+  - <AttackName>k__BackingField: Slam
+    <IsUnlocked>k__BackingField: 1
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 3542054666643161060}
-  - <IsUnlocked>k__BackingField: 1
-    damage: 16
-    criticalChance: 9
-    criticalDamageMultiplier: 50
-    hitStopDuration: 0.065
-    hitFX: {fileID: 6900393257970694771, guid: 62892941acb6ae642afbe12c11039788, type: 3}
+  - <AttackName>k__BackingField: Spin
+    <IsUnlocked>k__BackingField: 1
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
+    hitFX: {fileID: 6900393257970694771, guid: 8df73577ebbda7046960556e5e18b263, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 8542632119800572134}
 --- !u!114 &539630210308743331
 MonoBehaviour:
@@ -1922,7 +1926,7 @@ MonoBehaviour:
   <IsUnlocked>k__BackingField: 1
   Roll: 1
   _collider: {fileID: 8642475815790382610}
-  _rollSpeed: 6
+  _rollSpeed: 8
   _colliderSizeY: 0.9687549
   _colliderOffsetY: 0.2752807
 --- !u!114 &5987676301644156327
@@ -1938,17 +1942,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  _attackCombos:
-  - <IsUnlocked>k__BackingField: 1
-    damage: 8
-    criticalChance: 8
-    criticalDamageMultiplier: 35
-    hitStopDuration: 0.065
+  <Attack>k__BackingField:
+    <AttackName>k__BackingField: Roll Attack
+    <IsUnlocked>k__BackingField: 1
+    damage: 5
+    criticalChance: 1
+    criticalDamageMultiplier: 10
+    hitStopDuration: 0.0095
     hitFX: {fileID: 6900393257970694771, guid: 635ad1918672a9c4e9166f0fcd9ac7ed, type: 3}
     damageIndicatorColour: {r: 0.976, g: 0.98, b: 0.961, a: 1}
-    criticalDamageIndicatorColour: {r: 0.996, g: 0.839, b: 0.322, a: 1}
+    criticalDamageIndicatorColour: {r: 0.776, g: 0.651, b: 0.349, a: 1}
     <Sensor>k__BackingField: {fileID: 4158299948446454387}
-  _rollAttackSpeed: 2
+  _rollAttackSpeedDamping: 5
 --- !u!114 &4429014146250662890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1980,6 +1985,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <StatusEffects>k__BackingField: []
+--- !u!114 &6752170329020138342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857708129487907294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71598ee5e619166409032bc40d317a9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsUnlocked>k__BackingField: 1
+  _wallJumpUpForce: 18
+  _wallJumpForce: 91
+  _sensor: {fileID: 2053428681226868005}
 --- !u!114 &8936565788166426222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1993,11 +2014,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <IsUnlocked>k__BackingField: 1
-  WallSlide: 1
-  _wallSlideSpeed: 2
-  WallJump: 1
-  _wallJumpUpForce: 4
-  _wallJumpForce: 40
+  _wallSlideSpeed: 3.2
   _sensor: {fileID: 2053428681226868005}
 --- !u!114 &1505913605161621145
 MonoBehaviour:

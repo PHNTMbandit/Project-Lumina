@@ -1,86 +1,75 @@
 using System.Collections.Generic;
 using ProjectLumina.Capabilities;
 using ProjectLumina.Data;
-using ProjectLumina.Effects;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace ProjectLumina.Character
 {
-    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Melee Attack")]
     public class CharacterMeleeAttack : CharacterAbility
     {
-        public bool IsAttacking { get; private set; }
-
-        [BoxGroup("Attack Combos"), SerializeField]
-        private MeleeAttack[] _attackCombos;
-
-        private int _comboIndex = 0;
-        private bool _canContinueCombo = true;
-        private Attack _currentMeleeAttack;
-        private Animator _animator;
-
-        public UnityAction<GameObject> onHit;
-
-        private void Awake()
+        public int CurrentComboIndex
         {
-            _animator = GetComponent<Animator>();
+            get => _currentComboIndex;
+            set =>
+                _currentComboIndex =
+                    value <= 0
+                        ? 0
+                        : value >= Attacks.Length
+                            ? Attacks.Length
+                            : value;
         }
 
-        public void MeleeAttack()
+        [field: BoxGroup("Attacks"), SerializeField]
+        public MeleeAttack[] Attacks { get; private set; }
+
+        private int _currentComboIndex;
+        private MeleeAttack _currentMeleeAttack;
+        public UnityAction<GameObject> onHit;
+
+        public bool CanNextCombo(int stateLength)
         {
-            if (_canContinueCombo)
+            if (CurrentComboIndex < stateLength)
             {
-                _comboIndex++;
-                _currentMeleeAttack = _attackCombos[_comboIndex - 1];
+                _currentMeleeAttack = Attacks[CurrentComboIndex];
 
                 if (_currentMeleeAttack.IsUnlocked)
                 {
-                    if (_comboIndex > _attackCombos.Length)
-                    {
-                        _comboIndex = 1;
-                    }
-
-                    _animator.SetTrigger($"melee attack {_comboIndex}");
-
-                    _canContinueCombo = false;
-                    IsAttacking = true;
+                    CurrentComboIndex++;
                 }
                 else
                 {
-                    _comboIndex = 1;
+                    EndCombo();
+                    return false;
                 }
+
+                return true;
             }
+
+            EndCombo();
+            return false;
         }
 
-        public void TryMeleeAttack()
+        public void EndCombo()
         {
-            foreach (Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            CurrentComboIndex = 0;
+        }
+
+        public void DealDamage()
+        {
+            foreach (
+                Damageable damageable in _currentMeleeAttack.Sensor.GetDetectedComponents(
+                    new List<Damageable>()
+                )
+            )
             {
                 if (_currentMeleeAttack.TryAttack(gameObject, damageable))
                 {
                     onHit?.Invoke(damageable.gameObject);
                 }
             }
-        }
-
-        public void ContinueMeleeAttackCombo()
-        {
-            _canContinueCombo = true;
-        }
-
-        public void FinishMeleeAttack()
-        {
-            _comboIndex = 0;
-            _canContinueCombo = true;
-            IsAttacking = false;
-        }
-
-        public MeleeAttack[] GetMeleeAttacks()
-        {
-            return _attackCombos;
         }
     }
 }

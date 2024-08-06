@@ -6,24 +6,33 @@ namespace ProjectLumina.Capabilities
     [AddComponentMenu("Capabilities/Interactable")]
     public class Interactable : MonoBehaviour
     {
+        public bool IsInteractable { get; private set; } = true;
+
         [field: SerializeField]
         public string InteractText { get; private set; }
 
-        public UnityEvent onDetected, onInteracted, onLost;
+        public UnityEvent<GameObject> onDetected,
+            onInteracted,
+            onLost;
 
-        public void OnDetected()
+        public void OnDetected(GameObject interactor)
         {
-            onDetected?.Invoke();
+            onDetected?.Invoke(interactor);
         }
 
-        public void Interact()
+        public void Interact(GameObject interactor)
         {
-            onInteracted?.Invoke();
+            onInteracted?.Invoke(interactor);
         }
 
-        public void OnLost()
+        public void OnLost(GameObject interactor)
         {
-            onLost?.Invoke();
+            onLost?.Invoke(interactor);
+        }
+
+        public void SetInteractable(bool interactable)
+        {
+            IsInteractable = interactable;
         }
     }
 }

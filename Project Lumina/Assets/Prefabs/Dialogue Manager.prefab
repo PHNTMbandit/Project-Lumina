@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: 3733440337225769107}
   - component: {fileID: 1712611508311216717}
   - component: {fileID: 171627055945131330}
+  - component: {fileID: 5155796014808463399}
   m_Layer: 0
   m_Name: Dialogue Manager
   m_TagString: Untagged
@@ -424,6 +425,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_prettyPrint: 0
+--- !u!114 &5155796014808463399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 125852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f019b7247c137954f95c3a9dd029c562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSaveStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onSaveEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onLoadStart:
+    m_PersistentCalls:
+      m_Calls: []
+  onLoadEnd:
+    m_PersistentCalls:
+      m_Calls: []
+  onSaveDataApplied:
+    m_PersistentCalls:
+      m_Calls: []
+  onSceneLoad:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 54589254661f8ed4ab0fced18fda7d8a, type: 2}
+        m_TargetAssemblyTypeName: ProjectLumina.Player.Input.InputReader, Assembly-CSharp
+        m_MethodName: EnableAllInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &3501046878351637663
 PrefabInstance:
   m_ObjectHideFlags: 0

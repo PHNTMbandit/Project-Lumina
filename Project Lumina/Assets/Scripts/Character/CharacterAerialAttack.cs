@@ -11,15 +11,23 @@ namespace ProjectLumina.Character
 {
     [RequireComponent(typeof(CharacterMove))]
     [RequireComponent(typeof(Rigidbody2D))]
-    [RequireComponent(typeof(Animator))]
     [AddComponentMenu("Character/Character Aerial Attack")]
     public class CharacterAerialAttack : CharacterAbility
     {
-        public bool IsAttacking { get; private set; }
-        public bool IsSlowStop { get; private set; }
+        public int CurrentComboIndex
+        {
+            get => _currentComboIndex;
+            set =>
+                _currentComboIndex =
+                    value <= 0
+                        ? 0
+                        : value >= Attacks.Length
+                            ? Attacks.Length
+                            : value;
+        }
 
-        [BoxGroup("Attack Combos"), SerializeField]
-        private MeleeAttack[] _attackCombos;
+        [field: BoxGroup("Attacks"), SerializeField]
+        public MeleeAttack[] Attacks { get; private set; }
 
         [ToggleGroup("SlowStop")]
         public bool SlowStop;
@@ -33,82 +41,71 @@ namespace ProjectLumina.Character
         [ToggleGroup("SlowStop"), SerializeField, Range(0, 5)]
         private float _slowStopTimer;
 
-        private int _comboIndex = 0;
-        private bool _canContinueCombo = true;
+        private int _currentComboIndex = 0;
         private Attack _currentAerialAttack;
-        private Animator _animator;
         private Rigidbody2D _rb;
 
         public UnityAction<GameObject> onHit;
 
         private void Awake()
         {
-            _animator = GetComponent<Animator>();
             _rb = GetComponent<Rigidbody2D>();
         }
 
-        public void AerialAttack()
+        public bool CanNextCombo(int stateLength)
         {
-            if (_canContinueCombo)
+            if (CurrentComboIndex < stateLength)
             {
-                _comboIndex++;
+                _currentAerialAttack = Attacks[CurrentComboIndex];
 
-                if (_comboIndex > _attackCombos.Length)
+                if (_currentAerialAttack.IsUnlocked)
                 {
-                    _comboIndex = 1;
+                    CurrentComboIndex++;
+
+                    if (SlowStop)
+                    {
+                        StartCoroutine(StartSlowStop());
+                    }
+                }
+                else
+                {
+                    EndCombo();
+                    return false;
                 }
 
-                _currentAerialAttack = _attackCombos[_comboIndex - 1];
-                _animator.SetTrigger($"aerial attack {_comboIndex}");
-
-                _canContinueCombo = false;
-                IsAttacking = true;
+                return true;
             }
+
+            EndCombo();
+            return false;
         }
 
-        public void TryAerialAttack1()
+        public void EndCombo()
         {
-            foreach (Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(new List<Damageable>()))
+            CurrentComboIndex = 0;
+        }
+
+        public void TryAerialAttack()
+        {
+            foreach (
+                Damageable damageable in _currentAerialAttack.Sensor.GetDetectedComponents(
+                    new List<Damageable>()
+                )
+            )
             {
                 if (_currentAerialAttack.TryAttack(gameObject, damageable))
                 {
                     onHit?.Invoke(damageable.gameObject);
-                }
-
-                if (SlowStop)
-                {
-                    StartCoroutine(StartSlowStop());
                 }
             }
         }
 
         private IEnumerator StartSlowStop()
         {
-            IsSlowStop = true;
-
             _rb.gravityScale = _slowStopGravityScale;
             _rb.velocity /= _slowStopVelocityScale;
 
             yield return new WaitForSeconds(_slowStopTimer);
-
-            IsSlowStop = false;
-        }
-
-        public void ContinueAerialAttackCombo()
-        {
-            _canContinueCombo = true;
-        }
-
-        public void FinishAerialAttack()
-        {
-            _comboIndex = 0;
-            _canContinueCombo = true;
-            IsAttacking = false;
-        }
-
-        public MeleeAttack[] GetAerialAttacks()
-        {
-            return _attackCombos;
         }
     }
 }

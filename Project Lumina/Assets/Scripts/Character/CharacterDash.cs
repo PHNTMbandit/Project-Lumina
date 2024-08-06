@@ -11,18 +11,19 @@ namespace ProjectLumina.Character
         public int CurrentDashCharges
         {
             get => _currentDashCharges;
-            set => _currentDashCharges = value <= 0 ? 0 : value >= _dashCharges ? _dashCharges : value;
+            set =>
+                _currentDashCharges =
+                    value <= 0
+                        ? 0
+                        : value >= _dashCharges
+                            ? _dashCharges
+                            : value;
         }
 
-        public bool IsDashing { get; private set; }
-
-        [ToggleGroup("Dash"), SerializeField]
-        private bool Dash;
-
-        [ToggleGroup("Dash"), Range(0, 10), SerializeField]
+        [Range(0, 10), SerializeField]
         private int _dashCharges;
 
-        [ToggleGroup("Dash"), Range(0, 50), SerializeField]
+        [Range(0, 50), SerializeField]
         private float _dashSpeed;
 
         private int _currentDashCharges;
@@ -37,28 +38,20 @@ namespace ProjectLumina.Character
 
         private void Start()
         {
-            _currentDashCharges = _dashCharges;
+            RechargeDash();
         }
 
-        public void UseDash()
+        public void Dash()
         {
-            if (IsDashing == false)
+            if (CurrentDashCharges > 0)
             {
                 CurrentDashCharges--;
+                _rb.velocity = new Vector2(_characterMove.GetFacingDirection().x * _dashSpeed, 0);
+                _rb.gravityScale = 0;
             }
-
-            IsDashing = true;
-
-            _rb.velocity = new Vector2(_characterMove.GetFacingDirection().x * _dashSpeed, 0);
-            _rb.gravityScale = 0;
         }
 
-        public void FinishDash()
-        {
-            IsDashing = false;
-        }
-
-        public void ResetDash()
+        public void RechargeDash()
         {
             CurrentDashCharges = _dashCharges;
         }

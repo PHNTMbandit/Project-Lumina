@@ -4,7 +4,11 @@ using UnityEngine.InputSystem;
 
 namespace ProjectLumina.Player.Input
 {
-    [CreateAssetMenu(fileName = "Input Reader", menuName = "Project Lumina/Input Reader", order = 0)]
+    [CreateAssetMenu(
+        fileName = "Input Reader",
+        menuName = "Project Lumina/Input Reader",
+        order = 0
+    )]
     public class InputReader : ScriptableObject, GameControls.IPlayerActions
     {
         #region Variables
@@ -19,7 +23,12 @@ namespace ProjectLumina.Player.Input
         public bool RollInput { get; private set; }
         public bool SprintInput { get; private set; }
 
-        public UnityAction onAttack, onDash, onInteract, onJump, onRoll, onSprint;
+        public UnityAction onAttack,
+            onDash,
+            onInteract,
+            onJump,
+            onRoll,
+            onSprint;
 
         #endregion Variables
 
@@ -29,19 +38,15 @@ namespace ProjectLumina.Player.Input
         {
             if (GameControls == null)
             {
-                Debug.Log("enabling");
-
                 GameControls = new GameControls();
                 GameControls.Player.AddCallbacks(this);
             }
 
-            EnableGameplayInput();
+            EnableAllInput();
         }
 
         private void OnDisable()
         {
-            Debug.Log("disabling");
-
             DisableAllInput();
         }
 
@@ -160,7 +165,7 @@ namespace ProjectLumina.Player.Input
 
         public void EnableAllInput()
         {
-            GameControls.Player.Disable();
+            GameControls.Player.Enable();
         }
 
         #endregion Device Map Actions

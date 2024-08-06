@@ -5,7 +5,11 @@ using UnityEngine;
 
 namespace ProjectLumina.Neuroglyphs.Components
 {
-    [CreateAssetMenu(fileName = "New Critical Damage Multiplier Component", menuName = "Project Lumina/Neuroglyphs/Components/Critical Damage Multiplier", order = 0)]
+    [CreateAssetMenu(
+        fileName = "New Critical Damage Multiplier Component",
+        menuName = "Project Lumina/Neuroglyphs/Components/Critical Damage Multiplier",
+        order = 0
+    )]
     public class CriticalDamageMultiplierComponent : NeuroglyphComponent
     {
         [Range(0, 1000), SuffixLabel("%"), SerializeField]
@@ -15,41 +19,45 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (user.TryGetComponent(out CharacterAerialAttack aerialAttack))
             {
-                foreach (var attack in aerialAttack.GetAerialAttacks())
+                foreach (var attack in aerialAttack.Attacks)
                 {
-                    attack.CriticalDamageMultiplier.AddModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
+                    attack.CriticalDamageMultiplier.AddModifier(
+                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                    );
                 }
             }
 
             if (user.TryGetComponent(out CharacterFallAttack fallAttack))
             {
-                foreach (var attack in fallAttack.GetFallAttacks())
-                {
-                    attack.CriticalDamageMultiplier.AddModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
-                }
+                fallAttack.Attack.CriticalDamageMultiplier.AddModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
             {
-                foreach (var attack in meleeAttack.GetMeleeAttacks())
+                foreach (var attack in meleeAttack.Attacks)
                 {
-                    attack.CriticalDamageMultiplier.AddModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
+                    attack.CriticalDamageMultiplier.AddModifier(
+                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                    );
                 }
             }
 
             if (user.TryGetComponent(out CharacterRollAttack rollAttack))
             {
-                foreach (var attack in rollAttack.GetRollAttacks())
-                {
-                    attack.CriticalDamageMultiplier.AddModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
-                }
+                rollAttack.Attack.CriticalDamageMultiplier.AddModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
 
             if (user.TryGetComponent(out CharacterShoot shoot))
             {
                 foreach (var attack in shoot.GetRangedAttacks())
                 {
-                    attack.CriticalDamageMultiplier.AddModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
+                    attack.CriticalDamageMultiplier.AddModifier(
+                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                    );
                 }
             }
         }
@@ -58,41 +66,45 @@ namespace ProjectLumina.Neuroglyphs.Components
         {
             if (user.TryGetComponent(out CharacterAerialAttack aerialAttack))
             {
-                foreach (var attack in aerialAttack.GetAerialAttacks())
+                foreach (var attack in aerialAttack.Attacks)
                 {
-                    attack.CriticalDamageMultiplier.RemoveModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
+                    attack.CriticalDamageMultiplier.RemoveModifier(
+                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                    );
                 }
             }
 
             if (user.TryGetComponent(out CharacterFallAttack fallAttack))
             {
-                foreach (var attack in fallAttack.GetFallAttacks())
-                {
-                    attack.CriticalDamageMultiplier.RemoveModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
-                }
+                fallAttack.Attack.CriticalDamageMultiplier.RemoveModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
 
             if (user.TryGetComponent(out CharacterMeleeAttack meleeAttack))
             {
-                foreach (var attack in meleeAttack.GetMeleeAttacks())
+                foreach (var attack in meleeAttack.Attacks)
                 {
-                    attack.CriticalDamageMultiplier.RemoveModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
+                    attack.CriticalDamageMultiplier.RemoveModifier(
+                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                    );
                 }
             }
 
             if (user.TryGetComponent(out CharacterRollAttack rollAttack))
             {
-                foreach (var attack in rollAttack.GetRollAttacks())
-                {
-                    attack.CriticalDamageMultiplier.RemoveModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
-                }
+                rollAttack.Attack.CriticalDamageMultiplier.RemoveModifier(
+                    new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                );
             }
 
             if (user.TryGetComponent(out CharacterShoot shoot))
             {
                 foreach (var attack in shoot.GetRangedAttacks())
                 {
-                    attack.CriticalDamageMultiplier.RemoveModifier(new PercentageStatModifier(_criticalDamageMultiplierModifier));
+                    attack.CriticalDamageMultiplier.RemoveModifier(
+                        new PercentageStatModifier(_criticalDamageMultiplierModifier)
+                    );
                 }
             }
         }
