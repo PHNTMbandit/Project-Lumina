@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Melee Attack 1 State
   m_EditorClassIdentifier: 
   stateAnimationName: melee attack 1
-  cooldown: 0.1
-  duration: 0.4
+  cooldown: 0.2
+  duration: 0.6

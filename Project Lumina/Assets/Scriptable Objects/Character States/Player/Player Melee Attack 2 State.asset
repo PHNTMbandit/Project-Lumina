@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Melee Attack 2 State
   m_EditorClassIdentifier: 
   stateAnimationName: melee attack 2
-  cooldown: 0.15
+  cooldown: 0.1
   duration: 0.4
