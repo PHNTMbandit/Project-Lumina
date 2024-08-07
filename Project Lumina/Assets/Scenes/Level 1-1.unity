@@ -49516,6 +49516,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!95 &1220024684 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3501046878360949159, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+  m_PrefabInstance: {fileID: 1543205370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1220213046
 GameObject:
   m_ObjectHideFlags: 0
@@ -59501,6 +59506,42 @@ PrefabInstance:
     - target: {fileID: 425660, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3501046878358570041, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 8191
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 1220024684}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: SetTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: UnityEngine.Animator, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_StringArgument
+      value: Hide
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155796014808463399, guid: 58ac37417e60e534f91138088a3e6f70, type: 3}
+      propertyPath: onSceneLoad.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
