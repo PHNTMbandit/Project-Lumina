@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Fall Attack State
   m_EditorClassIdentifier: 
   stateAnimationName: fall attack
-  duration: 0.3
+  duration: 0.5

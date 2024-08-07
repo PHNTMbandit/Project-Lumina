@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Player Roll Attack State
   m_EditorClassIdentifier: 
   stateAnimationName: roll attack
-  duration: 0.4
+  duration: 0.6

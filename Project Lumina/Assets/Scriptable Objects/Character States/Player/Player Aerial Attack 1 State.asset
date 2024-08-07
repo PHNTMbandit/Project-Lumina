@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Player Aerial Attack 1 State
   m_EditorClassIdentifier: 
   stateAnimationName: aerial attack 1
-  cooldown: 0.1
-  duration: 0.5
+  cooldown: 0.3
+  duration: 0.6
