@@ -38,27 +38,13 @@ namespace ProjectLumina.Character
             _inputReader.onInteract -= OnInteract;
         }
 
-        private void Update()
-        {
-            var interactable = _sensor.GetNearestComponent<Interactable>();
-
-            if (interactable != null && interactable.IsInteractable)
-            {
-                _interactUI.gameObject.SetActive(true);
-                _interactUI.SetInteractText(interactable);
-            }
-            else
-            {
-                _interactUI.gameObject.SetActive(false);
-            }
-        }
-
         public void OnInteract()
         {
             var interactable = _sensor.GetNearestComponent<Interactable>();
 
             if (interactable != null && interactable.IsInteractable)
             {
+                _interactUI.Hide();
                 interactable.Interact(gameObject);
             }
         }
@@ -70,6 +56,7 @@ namespace ProjectLumina.Character
                 if (gameObject.TryGetComponent(out Interactable interactable))
                 {
                     interactable.OnDetected(gameObject);
+                    _interactUI.Show(interactable);
 
                     onInteractableDetected?.Invoke(interactable);
                 }
@@ -83,6 +70,7 @@ namespace ProjectLumina.Character
                 if (gameObject.TryGetComponent(out Interactable interactable))
                 {
                     interactable.OnLost(gameObject);
+                    _interactUI.Hide();
 
                     onInteractableLost?.Invoke();
                 }
