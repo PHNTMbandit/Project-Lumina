@@ -301,7 +301,7 @@ namespace Pathfinding.Drawing {
 			// Callback when rendering with the built-in render pipeline
 			Camera.onPostRender += PostRender;
 			// Callback when rendering with a scriptable render pipeline
-#if UNITY_2023_3_OR_NEWER
+#if UNITY_2021_1_OR_NEWER
 			UnityEngine.Rendering.RenderPipelineManager.beginContextRendering += BeginContextRendering;
 #else
 			UnityEngine.Rendering.RenderPipelineManager.beginFrameRendering += BeginFrameRendering;
@@ -343,7 +343,7 @@ namespace Pathfinding.Drawing {
 			commandBuffer.Dispose();
 			commandBuffer = null;
 			Camera.onPostRender -= PostRender;
-#if UNITY_2023_3_OR_NEWER
+#if UNITY_2021_1_OR_NEWER
 			UnityEngine.Rendering.RenderPipelineManager.beginContextRendering -= BeginContextRendering;
 #else
 			UnityEngine.Rendering.RenderPipelineManager.beginFrameRendering -= BeginFrameRendering;

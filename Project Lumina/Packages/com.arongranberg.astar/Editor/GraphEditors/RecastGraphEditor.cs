@@ -211,7 +211,7 @@ namespace Pathfinding {
 
 			if (!editor.isPrefab) {
 				if (GUILayout.Button(new GUIContent("Snap bounds to scene", "Will snap the bounds of the graph to exactly contain all meshes in the scene that matches the masks."))) {
-					graph.SnapForceBoundsToScene();
+					graph.SnapBoundsToScene();
 					GUI.changed = true;
 				}
 			}

@@ -232,17 +232,16 @@ namespace Pathfinding {
 
 		/// <summary>Load from data from <see cref="file_cachedStartup"/></summary>
 		public void LoadFromCache () {
-			var graphLock = AssertSafe();
+			using (AssertSafe()) {
+				if (file_cachedStartup != null) {
+					var bytes = file_cachedStartup.bytes;
+					DeserializeGraphs(bytes);
 
-			if (file_cachedStartup != null) {
-				var bytes = file_cachedStartup.bytes;
-				DeserializeGraphs(bytes);
-
-				GraphModifier.TriggerEvent(GraphModifier.EventType.PostCacheLoad);
-			} else {
-				Debug.LogError("Can't load from cache since the cache is empty");
+					GraphModifier.TriggerEvent(GraphModifier.EventType.PostCacheLoad);
+				} else {
+					Debug.LogError("Can't load from cache since the cache is empty");
+				}
 			}
-			graphLock.Release();
 		}
 
 		#region Serialization
@@ -270,19 +269,19 @@ namespace Pathfinding {
 		/// A similar function exists in the AstarPathEditor.cs script to save additional info
 		/// </summary>
 		public byte[] SerializeGraphs (SerializeSettings settings, out uint checksum) {
-			var graphLock = AssertSafe();
-			var sr = new AstarSerializer(this, settings, active.gameObject);
+			using (AssertSafe()) {
+				var sr = new AstarSerializer(this, settings, active.gameObject);
 
-			sr.OpenSerialize();
-			sr.SerializeGraphs(graphs);
-			sr.SerializeExtraInfo();
-			byte[] bytes = sr.CloseSerialize();
-			checksum = sr.GetChecksum();
+				sr.OpenSerialize();
+				sr.SerializeGraphs(graphs);
+				sr.SerializeExtraInfo();
+				byte[] bytes = sr.CloseSerialize();
+				checksum = sr.GetChecksum();
 #if ASTARDEBUG
-			Debug.Log("Got a whole bunch of data, "+bytes.Length+" bytes");
+				Debug.Log("Got a whole bunch of data, "+bytes.Length+" bytes");
 #endif
-			graphLock.Release();
-			return bytes;
+				return bytes;
+			}
 		}
 
 		/// <summary>Deserializes graphs from <see cref="data"/></summary>
@@ -298,48 +297,47 @@ namespace Pathfinding {
 		/// See: <see cref="RemoveGraph"/>
 		/// </summary>
 		public void ClearGraphs () {
-			var graphLock = AssertSafe();
-
-			ClearGraphsInternal();
-			graphLock.Release();
+			using (AssertSafe()) {
+				ClearGraphsInternal();
+			}
 		}
 
 		void ClearGraphsInternal () {
 			if (graphs == null) return;
-			var graphLock = AssertSafe();
-			for (int i = 0; i < graphs.Length; i++) {
-				if (graphs[i] != null) {
-					active.DirtyBounds(graphs[i].bounds);
-					((IGraphInternals)graphs[i]).OnDestroy();
-					graphs[i].active = null;
+			using (AssertSafe()) {
+				for (int i = 0; i < graphs.Length; i++) {
+					if (graphs[i] != null) {
+						active.DirtyBounds(graphs[i].bounds);
+						((IGraphInternals)graphs[i]).OnDestroy();
+						graphs[i].active = null;
+					}
 				}
+				graphs = new NavGraph[0];
+				UpdateShortcuts();
 			}
-			graphs = new NavGraph[0];
-			UpdateShortcuts();
-			graphLock.Release();
 		}
 
 		public void DisposeUnmanagedData () {
 			if (graphs == null) return;
-			var graphLock = AssertSafe();
-			for (int i = 0; i < graphs.Length; i++) {
-				if (graphs[i] != null) {
-					((IGraphInternals)graphs[i]).DisposeUnmanagedData();
+			using (AssertSafe()) {
+				for (int i = 0; i < graphs.Length; i++) {
+					if (graphs[i] != null) {
+						((IGraphInternals)graphs[i]).DisposeUnmanagedData();
+					}
 				}
 			}
-			graphLock.Release();
 		}
 
 		/// <summary>Makes all graphs become unscanned</summary>
 		internal void DestroyAllNodes () {
 			if (graphs == null) return;
-			var graphLock = AssertSafe();
-			for (int i = 0; i < graphs.Length; i++) {
-				if (graphs[i] != null) {
-					((IGraphInternals)graphs[i]).DestroyAllNodes();
+			using (AssertSafe()) {
+				for (int i = 0; i < graphs.Length; i++) {
+					if (graphs[i] != null) {
+						((IGraphInternals)graphs[i]).DestroyAllNodes();
+					}
 				}
 			}
-			graphLock.Release();
 		}
 
 		public void OnDestroy () {
@@ -347,51 +345,56 @@ namespace Pathfinding {
 		}
 
 		/// <summary>
-		/// Deserializes graphs from the specified byte array.
+		/// Deserializes and loads graphs from the specified byte array.
 		/// An error will be logged if deserialization fails.
+		///
+		/// Returns: The deserialized graphs
 		/// </summary>
-		public void DeserializeGraphs (byte[] bytes) {
-			var graphLock = AssertSafe();
-
-			ClearGraphs();
-			DeserializeGraphsAdditive(bytes);
-			graphLock.Release();
+		public NavGraph[] DeserializeGraphs (byte[] bytes) {
+			using (AssertSafe()) {
+				ClearGraphs();
+				return DeserializeGraphsAdditive(bytes);
+			}
 		}
 
 		/// <summary>
-		/// Deserializes graphs from the specified byte array additively.
+		/// Deserializes and loads graphs from the specified byte array additively.
 		/// An error will be logged if deserialization fails.
 		/// This function will add loaded graphs to the current ones.
+		///
+		/// Returns: The deserialized graphs
 		/// </summary>
-		public void DeserializeGraphsAdditive (byte[] bytes) {
-			var graphLock = AssertSafe();
+		public NavGraph[] DeserializeGraphsAdditive (byte[] bytes) {
+			using (AssertSafe()) {
+				try {
+					NavGraph[] result;
+					if (bytes != null) {
+						var sr = new AstarSerializer(this, active.gameObject);
 
-			try {
-				if (bytes != null) {
-					var sr = new AstarSerializer(this, active.gameObject);
-
-					if (sr.OpenDeserialize(bytes)) {
-						DeserializeGraphsPartAdditive(sr);
-						sr.CloseDeserialize();
+						if (sr.OpenDeserialize(bytes)) {
+							result = DeserializeGraphsPartAdditive(sr);
+							sr.CloseDeserialize();
+						} else {
+							throw new System.ArgumentException("Invalid data file (cannot read zip).\nThe data is either corrupt or it was saved using a 3.0.x or earlier version of the system");
+						}
 					} else {
-						Debug.Log("Invalid data file (cannot read zip).\nThe data is either corrupt or it was saved using a 3.0.x or earlier version of the system");
+						throw new System.ArgumentNullException(nameof(bytes));
 					}
-				} else {
-					throw new System.ArgumentNullException(nameof(bytes));
+					active.VerifyIntegrity();
+					UpdateShortcuts();
+					GraphModifier.TriggerEvent(GraphModifier.EventType.PostGraphLoad);
+					return result;
+				} catch (System.Exception e) {
+					Debug.LogError(new System.Exception("Caught exception while deserializing data.", e));
+					graphs = new NavGraph[0];
+					UpdateShortcuts();
+					throw;
 				}
-				active.VerifyIntegrity();
-			} catch (System.Exception e) {
-				Debug.LogError(new System.Exception("Caught exception while deserializing data.", e));
-				graphs = new NavGraph[0];
 			}
-
-			UpdateShortcuts();
-			GraphModifier.TriggerEvent(GraphModifier.EventType.PostGraphLoad);
-			graphLock.Release();
 		}
 
 		/// <summary>Helper function for deserializing graphs</summary>
-		void DeserializeGraphsPartAdditive (AstarSerializer sr) {
+		NavGraph[] DeserializeGraphsPartAdditive (AstarSerializer sr) {
 			if (graphs == null) graphs = new NavGraph[0];
 
 			var gr = new List<NavGraph>(graphs);
@@ -439,6 +442,7 @@ namespace Pathfinding {
 				}
 			});
 			active.FlushWorkItems();
+			return newGraphs;
 		}
 
 		#endregion
@@ -536,34 +540,33 @@ namespace Pathfinding {
 		/// <summary>Adds the specified graph to the <see cref="graphs"/> array</summary>
 		void AddGraph (NavGraph graph) {
 			// Make sure to not interfere with pathfinding
-			var graphLock = AssertSafe(true);
+			using (AssertSafe(true)) {
+				// Try to fill in an empty position
+				bool foundEmpty = false;
 
-			// Try to fill in an empty position
-			bool foundEmpty = false;
-
-			for (int i = 0; i < graphs.Length; i++) {
-				if (graphs[i] == null) {
-					graphs[i] = graph;
-					graph.graphIndex = (uint)i;
-					foundEmpty = true;
-					break;
-				}
-			}
-
-			if (!foundEmpty) {
-				if (graphs != null && graphs.Length >= GraphNode.MaxGraphIndex) {
-					throw new System.Exception("Graph Count Limit Reached. You cannot have more than " + GraphNode.MaxGraphIndex + " graphs.");
+				for (int i = 0; i < graphs.Length; i++) {
+					if (graphs[i] == null) {
+						graphs[i] = graph;
+						graph.graphIndex = (uint)i;
+						foundEmpty = true;
+						break;
+					}
 				}
 
-				// Add a new entry to the list
-				Memory.Realloc(ref graphs, graphs.Length + 1);
-				graphs[graphs.Length - 1] = graph;
-				graph.graphIndex = (uint)(graphs.Length-1);
-			}
+				if (!foundEmpty) {
+					if (graphs != null && graphs.Length >= GraphNode.MaxGraphIndex) {
+						throw new System.Exception("Graph Count Limit Reached. You cannot have more than " + GraphNode.MaxGraphIndex + " graphs.");
+					}
 
-			UpdateShortcuts();
-			graph.active = active;
-			graphLock.Release();
+					// Add a new entry to the list
+					Memory.Realloc(ref graphs, graphs.Length + 1);
+					graphs[graphs.Length - 1] = graph;
+					graph.graphIndex = (uint)(graphs.Length-1);
+				}
+
+				UpdateShortcuts();
+				graph.active = active;
+			}
 		}
 
 		/// <summary>
@@ -578,19 +581,18 @@ namespace Pathfinding {
 		/// </summary>
 		public bool RemoveGraph (NavGraph graph) {
 			// Make sure the pathfinding threads are paused
-			var graphLock = AssertSafe();
+			using (AssertSafe()) {
+				active.DirtyBounds(graph.bounds);
+				((IGraphInternals)graph).OnDestroy();
+				graph.active = null;
 
-			active.DirtyBounds(graph.bounds);
-			((IGraphInternals)graph).OnDestroy();
-			graph.active = null;
+				int i = System.Array.IndexOf(graphs, graph);
+				if (i != -1) graphs[i] = null;
 
-			int i = System.Array.IndexOf(graphs, graph);
-			if (i != -1) graphs[i] = null;
-
-			UpdateShortcuts();
-			active.offMeshLinks.Refresh();
-			graphLock.Release();
-			return i != -1;
+				UpdateShortcuts();
+				active.offMeshLinks.Refresh();
+				return i != -1;
+			}
 		}
 
 		#endregion

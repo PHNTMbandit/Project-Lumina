@@ -107,7 +107,12 @@ namespace Pathfinding.ECS {
 						endOfPath = state.endOfPath,
 						remainingDistance = distanceToSteeringTarget,
 						closestOnNavmesh = state.closestOnNavmesh,
+#if UNITY_EDITOR
 						debugFlags = settings.debugFlags,
+#else
+						// Do not even try to draw debug info if we are not in the editor
+						debugFlags = PIDMovement.DebugFlags.Nothing,
+#endif
 						p = position,
 						rotation = rotation,
 						maxDesiredWallDistance = state.followerState.maxDesiredWallDistance,

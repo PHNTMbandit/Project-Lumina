@@ -3,7 +3,19 @@ using Unity.Mathematics;
 using System.Runtime.CompilerServices;
 
 namespace Pathfinding {
-	/// <summary>Holds a coordinate in integers</summary>
+	/// <summary>
+	/// Holds a coordinate in (integer) millimeters.
+	///
+	/// This is used for node coordinates and other things, primarily to avoid floating point calculations in the core pathfinding routines (as they can be slow and non-deterministic if you are not careful).
+	///
+	/// You can cast back and forth between Vector3s and Int3s like:
+	/// <code>
+	/// Int3 intPoint = (Int3)transform.position;
+	/// transform.position = (Vector3)intPoint;
+	/// </code>
+	///
+	/// During the cast, the coordinates will be rounded to the nearest millimeter.
+	/// </summary>
 	public struct Int3 : System.IEquatable<Int3> {
 		public int x;
 		public int y;

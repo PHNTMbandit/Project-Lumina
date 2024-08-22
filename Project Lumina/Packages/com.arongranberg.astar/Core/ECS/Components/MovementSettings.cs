@@ -117,8 +117,8 @@ namespace Pathfinding.ECS {
 		///
 		/// Deprecated: Use the AgentMovementPlaneSource component instead, or the movementPlaneSource property on the FollowerEntity component
 		/// </summary>
-		[System.Obsolete("Use the AgentMovementPlaneSource component instead, or the movementPlaneSource property on the FollowerEntity component")]
-		public MovementPlaneSource movementPlaneSource;
+		[System.Obsolete("Use the AgentMovementPlaneSource component instead, or the movementPlaneSource property on the FollowerEntity component", true)]
+		public MovementPlaneSource movementPlaneSource { get; set; }
 
 		/// <summary>\copydocref{IAstarAI.isStopped}</summary>
 		public bool isStopped;

@@ -817,10 +817,14 @@ namespace Pathfinding {
 			}
 		}
 
+		[System.Obsolete("Use SnapBoundsToScene instead")]
+		public void SnapForceBoundsToScene () {
+			SnapBoundsToScene();
+		}
+
 		/// <summary>
-		/// Changes the bounds of the graph to precisely encapsulate all objects in the scene that can be included in the scanning process based on the settings.
-		/// Which objects are used depends on the settings. If an object would have affected the graph with the current settings if it would have
-		/// been inside the bounds of the graph, it will be detected and the bounds will be expanded to contain that object.
+		/// Changes the bounds of the graph to precisely encapsulate all objects in the scene.
+		/// The bounds will be expanded to fit all objects in the scene which match the current scanning settings.
 		///
 		/// This method corresponds to the 'Snap bounds to scene' button in the inspector.
 		///
@@ -833,7 +837,7 @@ namespace Pathfinding {
 		/// See: forcedBoundsCenter
 		/// See: forcedBoundsSize
 		/// </summary>
-		public void SnapForceBoundsToScene () {
+		public void SnapBoundsToScene () {
 			var arena = new DisposeArena();
 			var meshes = new TileBuilder(this, new TileLayout(this), default).CollectMeshes(new Bounds(Vector3.zero, new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity)));
 
@@ -848,7 +852,7 @@ namespace Pathfinding {
 
 				// The center is in world space, so we need to convert it back from the rotated space
 				forcedBoundsCenter = Quaternion.Euler(rotation) * bounds.center;
-				forcedBoundsSize = bounds.size;
+				forcedBoundsSize = Vector3.Max(bounds.size, Vector3.one*0.01f);
 			}
 
 			arena.Add(meshes);

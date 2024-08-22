@@ -32,7 +32,7 @@ using Thread = System.Threading.Thread;
 [HelpURL("https://arongranberg.com/astar/documentation/stable/astarpath.html")]
 public class AstarPath : VersionedMonoBehaviour {
 	/// <summary>The version number for the A* Pathfinding Project</summary>
-	public static readonly System.Version Version = new System.Version(5, 1, 4);
+	public static readonly System.Version Version = new System.Version(5, 1, 6);
 
 	/// <summary>Information about where the package was downloaded</summary>
 	public enum AstarDistribution { WebsiteDownload, AssetStore, PackageManager };
@@ -395,12 +395,13 @@ public class AstarPath : VersionedMonoBehaviour {
 	bool isScanningBacking;
 
 	/// <summary>
-	/// Set while any graphs are being scanned.
-	/// It will be true up until the FloodFill is done.
+	/// True while any graphs are being scanned.
+	///
+	/// This is primarily relevant when scanning graph asynchronously.
 	///
 	/// Note: Not to be confused with graph updates.
 	///
-	/// Used to better support Graph Update Objects called for example in OnPostScan
+	/// Note: This will be false during <see cref="OnLatePostScan"/> and during the <see cref="GraphModifier.EventType"/>.LatePostScan event.
 	///
 	/// See: IsAnyGraphUpdateQueued
 	/// See: IsAnyGraphUpdateInProgress
@@ -614,6 +615,14 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// See: heuristic-opt (view in online documentation for working links)
 	/// </summary>
 	public EuclideanEmbedding euclideanEmbedding = new EuclideanEmbedding();
+
+	/// <summary>
+	/// If an async scan is running, this will be set to the coroutine.
+	///
+	/// This primarily used to be able to force the async scan to complete immediately,
+	/// if the AstarPath component should happen to be destroyed while an async scan is running.
+	/// </summary>
+	IEnumerator<Progress> asyncScanTask;
 
 	#endregion
 
@@ -1121,9 +1130,9 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// </summary>
 	public void FlushWorkItems () {
 		if (workItems.anyQueued || workItems.workItemsInProgress) {
-			var graphLock = PausePathfinding();
-			PerformBlockingActions(true);
-			graphLock.Release();
+			using (PausePathfinding()) {
+				PerformBlockingActions(true);
+			}
 		}
 	}
 
@@ -1348,6 +1357,11 @@ public class AstarPath : VersionedMonoBehaviour {
 	void OnDisable () {
 		redrawScope.Dispose();
 		if (active == this) {
+			if (asyncScanTask != null) {
+				Debug.LogWarning("An async scan was running when the AstarPath component was disabled. Blocking until the async scan is complete.", this);
+				BlockUntilAsyncScanComplete();
+			}
+
 			// Ensure there are no jobs running that might read or write graph data
 			graphDataLock.WriteSync().Unlock();
 
@@ -1514,6 +1528,17 @@ public class AstarPath : VersionedMonoBehaviour {
 		return pathProcessor.PausePathfinding(false);
 	}
 
+	/// <summary>Blocks until the currently running async scan (if any) has completed</summary>
+	void BlockUntilAsyncScanComplete () {
+		// We can't block and wait for the async scan, so we have to spin.
+		// Not great, but this is not something that should happen during normal gameplay.
+		// It's more a fallback if the user doesn't wait for the async scan to complete before starting a new one.
+		// Note: The ProgressScanningIteratorsConcurrently method used internally by the scan will ensure
+		// that the thread yields its time slice in case it's just waiting for other threads.
+		while (asyncScanTask != null && asyncScanTask.MoveNext()) {}
+		asyncScanTask = null;
+	}
+
 	/// <summary>
 	/// Scans a particular graph.
 	/// Calling this method will recalculate the specified graph from scratch.
@@ -1567,6 +1592,11 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// <param name="graphsToScan">The graphs to scan. If this parameter is null then all graphs will be scanned</param>
 	public void Scan (NavGraph[] graphsToScan = null) {
 		var prevStage = (ScanningStage)(-1);
+
+		if (asyncScanTask != null) {
+			Debug.LogError("An async scan was already running when a new scan was requested. Blocking until it is complete. You can check if a scan is currently in progress using the AstarPath.active.isScanning property.", this);
+			BlockUntilAsyncScanComplete();
+		}
 
 		Profiler.BeginSample("Scan");
 		Profiler.BeginSample("Init");
@@ -1631,7 +1661,37 @@ public class AstarPath : VersionedMonoBehaviour {
 	/// </summary>
 	/// <param name="graphsToScan">The graphs to scan. If this parameter is null then all graphs will be scanned</param>
 	public IEnumerable<Progress> ScanAsync (NavGraph[] graphsToScan = null) {
-		return ScanInternal(graphsToScan, true);
+		if (asyncScanTask != null) {
+			Debug.LogError("An async scan was already running when a new async scan was requested. Blocking until the previous one is complete. You can check if a scan is currently in progress using the AstarPath.active.isScanning property.", this);
+			BlockUntilAsyncScanComplete();
+		}
+		asyncScanTask = ScanInternal(graphsToScan, true).GetEnumerator();
+		// We cannot inline the TickAsyncScanUntilCompletion function, because we want *this* function to
+		// not be a coroutine, so that the setup runs immediately when calling ScanAsync,
+		// instead of defering until the coroutine is ticked for the first time.
+
+		// We tick the coroutine once here to do some inital setup.
+		// This includes setting isScanning to true.
+		try {
+			asyncScanTask.MoveNext();
+		} catch {
+			asyncScanTask = null;
+			throw;
+		}
+		return TickAsyncScanUntilCompletion(asyncScanTask);
+	}
+
+	IEnumerable<Progress> TickAsyncScanUntilCompletion (IEnumerator<Progress> task) {
+		while (true) {
+			try {
+				if (!task.MoveNext()) break;
+			} catch {
+				if (asyncScanTask == task) asyncScanTask = null;
+				throw;
+			}
+			yield return task.Current;
+		}
+		if (asyncScanTask == task) asyncScanTask = null;
 	}
 
 	class DummyGraphUpdateContext : IGraphUpdateContext {
@@ -1644,8 +1704,6 @@ public class AstarPath : VersionedMonoBehaviour {
 		if (graphsToScan == null || graphsToScan.Length == 0) {
 			yield break;
 		}
-
-		if (isScanning) throw new System.InvalidOperationException("Another async scan is already running");
 
 		// Guard to ensure the A* object is always enabled if the graphs have any valid data.
 		// This is because otherwise the OnDisable method will not be called and some unmanaged data
@@ -1679,14 +1737,20 @@ public class AstarPath : VersionedMonoBehaviour {
 
 
 		{
-			var writeLock2 = graphDataLock.WriteSync();
-			if (OnPreScan != null) {
-				OnPreScan(this);
-			}
+			using (var writeLock2 = graphDataLock.WriteSync()) {
+				try {
+					if (OnPreScan != null) {
+						OnPreScan(this);
+					}
 
-			GraphModifier.TriggerEvent(GraphModifier.EventType.PreScan);
-			GraphModifier.TriggerEvent(GraphModifier.EventType.PreUpdate);
-			writeLock2.Unlock();
+					GraphModifier.TriggerEvent(GraphModifier.EventType.PreScan);
+					GraphModifier.TriggerEvent(GraphModifier.EventType.PreUpdate);
+				} catch {
+					isScanning = false;
+					graphUpdateLock.Release();
+					throw;
+				}
+			}
 		}
 
 		data.LockGraphStructure();
@@ -1706,23 +1770,30 @@ public class AstarPath : VersionedMonoBehaviour {
 		// Most of the data will be destroyed at the end of the async scan, but some memory will
 		// still be reserved. So a non-async scan is more memory efficient.
 		if (!async) {
-			var writeLock2 = graphDataLock.WriteSync();
-			Profiler.BeginSample("Destroy previous nodes");
-			for (int i = 0; i < graphsToScan.Length; i++) {
-				if (graphsToScan[i] != null) {
-					((IGraphInternals)graphsToScan[i]).DestroyAllNodes();
+			using (var writeLock2 = graphDataLock.WriteSync()) {
+				Profiler.BeginSample("Destroy previous nodes");
+				for (int i = 0; i < graphsToScan.Length; i++) {
+					if (graphsToScan[i] != null) {
+						((IGraphInternals)graphsToScan[i]).DestroyAllNodes();
+					}
 				}
+				Profiler.EndSample();
 			}
-			Profiler.EndSample();
-			writeLock2.Unlock();
 		}
 
 		if (OnGraphPreScan != null) {
-			var writeLock2 = graphDataLock.WriteSync();
-			for (int i = 0; i < graphsToScan.Length; i++) {
-				if (graphsToScan[i] != null) OnGraphPreScan(graphsToScan[i]);
+			using (var writeLock2 = graphDataLock.WriteSync()) {
+				try {
+					for (int i = 0; i < graphsToScan.Length; i++) {
+						if (graphsToScan[i] != null) OnGraphPreScan(graphsToScan[i]);
+					}
+				} catch {
+					isScanning = false;
+					data.UnlockGraphStructure();
+					graphUpdateLock.Release();
+					throw;
+				}
 			}
-			writeLock2.Unlock();
 		}
 
 		// Loop through all graphs and start scanning them
@@ -1768,6 +1839,7 @@ public class AstarPath : VersionedMonoBehaviour {
 					Profiler.EndSample();
 				}
 			} catch {
+				Profiler.EndSample();
 				isScanning = false;
 				data.UnlockGraphStructure();
 				graphUpdateLock.Release();
@@ -1779,7 +1851,15 @@ public class AstarPath : VersionedMonoBehaviour {
 		for (int i = 0; i < graphsToScan.Length; i++) {
 			if (graphsToScan[i] != null) {
 				if (OnGraphPostScan != null) {
-					OnGraphPostScan(graphsToScan[i]);
+					try {
+						OnGraphPostScan(graphsToScan[i]);
+					} catch {
+						isScanning = false;
+						data.UnlockGraphStructure();
+						graphUpdateLock.Release();
+						writeLock.Unlock();
+						throw;
+					}
 				}
 				// Notify the off mesh links subsystem that graphs have been recalculated, and we may need to recalculate off mesh links.
 				// But skip this for the link graph, since that's the graph that holds the off mesh link nodes themselves.
@@ -1790,11 +1870,16 @@ public class AstarPath : VersionedMonoBehaviour {
 		// Unlock the graph structure here so that e.g. off-mesh-links can add the point graph required for them to work
 		data.UnlockGraphStructure();
 
-		// Graph Modifiers and the OnGraphsUpdated callback may modify graphs arbitrarily, so this also needs to be inside the write lock
-		if (OnPostScan != null) {
-			OnPostScan(this);
+		try {
+			// Graph Modifiers and the OnGraphsUpdated callback may modify graphs arbitrarily, so this also needs to be inside the write lock
+			if (OnPostScan != null) OnPostScan(this);
+			GraphModifier.TriggerEvent(GraphModifier.EventType.PostScan);
+		} catch {
+			isScanning = false;
+			graphUpdateLock.Release();
+			writeLock.Unlock();
+			throw;
 		}
-		GraphModifier.TriggerEvent(GraphModifier.EventType.PostScan);
 
 		// This lock may not be held if there are no work items pending
 		if (workItemLock.Held) {
@@ -1814,13 +1899,28 @@ public class AstarPath : VersionedMonoBehaviour {
 
 		// Scanning a graph *is* a type of update
 		GraphModifier.TriggerEvent(GraphModifier.EventType.PostUpdate);
-		if (OnGraphsUpdated != null) OnGraphsUpdated(this);
+		if (OnGraphsUpdated != null) {
+			try {
+				OnGraphsUpdated(this);
+			} catch {
+				isScanning = false;
+				graphUpdateLock.Release();
+				writeLock.Unlock();
+				throw;
+			}
+		}
 
 		// Signal that we have stopped scanning here
 		isScanning = false;
 
-		if (OnLatePostScan != null) OnLatePostScan(this);
-		GraphModifier.TriggerEvent(GraphModifier.EventType.LatePostScan);
+		try {
+			if (OnLatePostScan != null) OnLatePostScan(this);
+			GraphModifier.TriggerEvent(GraphModifier.EventType.LatePostScan);
+		} catch {
+			graphUpdateLock.Release();
+			writeLock.Unlock();
+			throw;
+		}
 
 		writeLock.Unlock();
 

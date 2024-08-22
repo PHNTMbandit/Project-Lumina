@@ -1390,11 +1390,25 @@ namespace Pathfinding.Drawing {
 			}
 		}
 
+		void CleanupOldCameras () {
+			// Remove cameras that have not been used for a while, to avoid memory leaks.
+			// We keep them for a few frames for debugging purposes.
+			foreach (var item in cameraVersions) {
+				if (item.Value.end < lastTickVersion - 10) {
+					cameraVersions.Remove(item.Key);
+					// Break to avoid modifying the collection while iterating over it
+					// In the rare case that multiple cameras needed to be removed, we can continue removing them next frame.
+					break;
+				}
+			}
+		}
+
 		public void TickFramePreRender () {
 			data.DisposeCommandBuildersWithJobDependencies(this);
 			// Remove persistent commands that have timed out.
 			// When not playing then persistent commands are never drawn twice
 			processedData.FilterOldPersistentCommands(version, lastTickVersion, CurrentTime, adjustedSceneModeVersion);
+			CleanupOldCameras();
 
 			RefreshRedrawScopes();
 

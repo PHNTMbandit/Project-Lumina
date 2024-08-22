@@ -1,3 +1,33 @@
+## 5.1.6 (2024-08-06)
+- Fixed compatibility with com.unity.mathematics 1.3.0 and lower.
+
+## 5.1.5 (2024-08-06)
+- If an async scan is running when the AstarPath component is disabled, or another scan is started, then the code will block until the in-progress async scan has finished.
+		Previously, unloading a scene while an async scan was running could in some cases lead to memory leaks and exceptions.
+- Fixed \reflink{FollowerEntity} could get teleported a small distance in 2D games, right when the game started.
+- Fixed \reflink{PointGraph.GetNearest} could throw an exception in some situations if there was no acceptable node nearby.
+- Fixed \reflink{GridGraph.RelocateNodes} could leave the grid graph with a corrupted state.
+- Fixed updating point graphs could throw an exception if some nodes had been manually added to the graph.
+- Fixed some compilation warnings in Unity 6.
+- Fixed \reflink{FollowerEntity.updateRotation} and \reflink{FollowerEntity.updatePosition} would not always take effect when set from the unity inspector.
+- Fixed \reflink{AstarPath.showSearchTree} could show incorrect information on recast graphs.
+- Fixed \reflink{FloodPathTracer} not working with recast graphs (regression in 5.0).
+- Fixed using graph coloring modes G, H or F on recast graphs could display incorrect information.
+- Fixed toggling \reflink{AstarPath.showSearchTree} would not always re-render the graph visualization.
+- Fixed an \reflink{ITraversalProvider} on a \reflink{FollowerEntity} could be called with a null node in some cases.
+- Fixed tons of grammar and spelling mistakes in the documentation.
+- Fixed Seeker.StartMultiTargetPath would never use the Seeker's graphMask.
+- Fixed calling \reflink{AstarPath.FlushWorkItems} would freeze unity if a work item threw an exception.
+- \reflink{AstarData.DeserializeGraphsAdditive} now returns an array with the deserialized graphs.
+- Trying to deserialize graphs from an invalid zip file will now throw an exception instead of just logging an error message.
+- Renamed RecastGraph.SnapForceBoundsToScene to \reflink{RecastGraph.SnapBoundsToScene}.
+- RecastGraph.SnapBoundsToScene will now ensure the resulting bounds are non-zero along all axes.
+- Improved smoothness of the \reflink{FollowerEntity} when using the \reflink{MovementPlaneSource}.NavmeshNormal mode.
+- The \ref spherical example scene now uses the \reflink{FollowerEntity} component instead of the \reflink{AIPathAlignedToSurface} component.
+- \reflink{AstarPath.showSearchTree} now renders the search tree with thicker lines, to make it easier to see.
+- Deprecated \reflink{PointNode.SetPosition}. Use \reflink{PointNode.position} instead.
+- Fixed \reflink{GridGraphRule.Pass}.AfterApplied not being called in some cases.
+
 ## 5.1.4 (2024-06-12)
 - Fixed an exception that could be thrown after updating a graph (regression in 5.1.3).
 - Reduced memory usage slightly.

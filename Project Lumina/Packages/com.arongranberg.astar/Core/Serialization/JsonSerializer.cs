@@ -420,14 +420,6 @@ namespace Pathfinding.Serialization {
 			return encoding.GetBytes(output.ToString());
 		}
 
-		/// <summary>
-		/// Deprecated method to serialize node data.
-		/// Deprecated: Not used anymore
-		/// </summary>
-		[System.Obsolete("Not used anymore. You can safely remove the call to this function.")]
-		public void SerializeNodes () {
-		}
-
 		static int GetMaxNodeIndexInAllGraphs (NavGraph[] graphs) {
 			int maxIndex = 0;
 
@@ -978,13 +970,6 @@ namespace Pathfinding.Serialization {
 		/// If false, only settings will be saved
 		/// </summary>
 		public bool nodes = true;
-
-		/// <summary>
-		/// Use pretty printing for the json data.
-		/// Good if you want to open up the saved data and edit it manually
-		/// </summary>
-		[System.Obsolete("There is no support for pretty printing the json anymore")]
-		public bool prettyPrint;
 
 		/// <summary>
 		/// Save editor settings.

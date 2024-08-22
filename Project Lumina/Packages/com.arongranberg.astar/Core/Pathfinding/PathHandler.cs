@@ -5,6 +5,11 @@ using UnityEngine;
 namespace Pathfinding {
 	using Pathfinding.Util;
 
+	/// <summary>
+	/// NNConstraint which also takes an <see cref="ITraversalProvider"/> into account.
+	///
+	/// Paths will automatically use this if an ITraversalProvider is set on the path.
+	/// </summary>
 	public class NNConstraintWithTraversalProvider : NNConstraint {
 		public ITraversalProvider traversalProvider;
 		public NNConstraint baseConstraint;
@@ -15,6 +20,8 @@ namespace Pathfinding {
 			baseConstraint = null;
 			path = null;
 		}
+
+		public bool isSet => traversalProvider != null;
 
 		public void Set (Path path, NNConstraint constraint, ITraversalProvider traversalProvider) {
 			this.path = path;

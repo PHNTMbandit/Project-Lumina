@@ -134,7 +134,7 @@ namespace Pathfinding {
 		}
 
 		/// <summary>Prevents pathfinding from running while held</summary>
-		public struct GraphUpdateLock {
+		public struct GraphUpdateLock : System.IDisposable {
 			PathProcessor pathProcessor;
 			int id;
 
@@ -153,6 +153,10 @@ namespace Pathfinding {
 
 			/// <summary>Allow pathfinding to start running again if no other locks are still held</summary>
 			public void Release() => pathProcessor.Unlock(id);
+
+			void System.IDisposable.Dispose () {
+				Release();
+			}
 		}
 
 		int Lock (bool block) {

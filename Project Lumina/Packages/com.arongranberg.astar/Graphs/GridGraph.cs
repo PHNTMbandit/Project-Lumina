@@ -857,11 +857,18 @@ namespace Pathfinding {
 			DirtyBounds(bounds);
 			SetDimensions(width, depth, nodeSize);
 
-			GetNodes(node => {
-				var gnode = node as GridNodeBase;
-				var height = previousTransform.InverseTransform((Vector3)node.position).y;
-				node.position = GraphPointToWorld(gnode.XCoordinateInGrid, gnode.ZCoordinateInGrid, height);
-			});
+			new JobRelocateNodes {
+				previousWorldToGraph = previousTransform.inverseMatrix,
+				graphToWorld = transform.matrix,
+				positions = nodeData.positions,
+				bounds = nodeData.bounds,
+			}.Run();
+
+			var positions = this.nodeData.positions.AsUnsafeSpan();
+			for (int i = 0; i < this.nodes.Length; i++) {
+				var node = this.nodes[i];
+				if (node != null) node.position = (Int3)positions[i];
+			}
 			DirtyBounds(bounds);
 		}
 
@@ -1570,7 +1577,8 @@ namespace Pathfinding {
 						allocationMethod: Allocator.Persistent,
 						recalculationMode: RecalculationMode.RecalculateMinimal,
 						graphUpdateObject: null,
-						ownsJobDependencyTracker: true
+						ownsJobDependencyTracker: true,
+						isFinalUpdate: false
 						);
 				}
 			}
@@ -1664,11 +1672,12 @@ namespace Pathfinding {
 			IntBounds readBounds;
 			IntBounds fullRecalculationBounds;
 			public bool ownsJobDependencyTracker = false;
+			bool isFinalUpdate;
 			GraphTransform transform;
 
 			public int CostEstimate => fullRecalculationBounds.volume;
 
-			public GridGraphUpdatePromise(GridGraph graph, GraphTransform transform, NodesHolder nodes, int3 nodeArrayBounds, IntRect rect, JobDependencyTracker dependencyTracker, JobHandle nodesDependsOn, Allocator allocationMethod, RecalculationMode recalculationMode, GraphUpdateObject graphUpdateObject, bool ownsJobDependencyTracker) {
+			public GridGraphUpdatePromise(GridGraph graph, GraphTransform transform, NodesHolder nodes, int3 nodeArrayBounds, IntRect rect, JobDependencyTracker dependencyTracker, JobHandle nodesDependsOn, Allocator allocationMethod, RecalculationMode recalculationMode, GraphUpdateObject graphUpdateObject, bool ownsJobDependencyTracker, bool isFinalUpdate) {
 				this.graph = graph;
 				this.transform = transform;
 				this.nodes = nodes;
@@ -1679,6 +1688,7 @@ namespace Pathfinding {
 				this.recalculationMode = recalculationMode;
 				this.graphUpdateObject = graphUpdateObject;
 				this.ownsJobDependencyTracker = ownsJobDependencyTracker;
+				this.isFinalUpdate = isFinalUpdate;
 				CalculateRectangles(graph, rect, out this.rect, out var fullRecalculationRect, out var writeMaskRect, out var readRect);
 
 				if (recalculationMode == RecalculationMode.RecalculateFromScratch) {
@@ -1982,6 +1992,7 @@ namespace Pathfinding {
 				graph.AssertSafeToUpdateGraph();
 				if (emptyUpdate) {
 					Dispose();
+					if (isFinalUpdate) graph.rules.ExecuteRuleMainThread(GridGraphRule.Pass.AfterApplied, context ?? new GridGraphRules.Context { graph = graph });
 					return;
 				}
 
@@ -2022,6 +2033,8 @@ namespace Pathfinding {
 				// Recalculate off mesh links in the affected area
 				ctx.DirtyBounds(graph.GetBoundsFromRect(new IntRect(writeMaskBounds.min.x, writeMaskBounds.min.z, writeMaskBounds.max.x - 1, writeMaskBounds.max.z - 1)));
 				Dispose();
+
+				if (isFinalUpdate) graph.rules.ExecuteRuleMainThread(GridGraphRule.Pass.AfterApplied, context);
 			}
 
 			public void Dispose () {
@@ -2075,7 +2088,8 @@ namespace Pathfinding {
 				allocationMethod: Allocator.Persistent,
 				recalculationMode: RecalculationMode.RecalculateFromScratch,
 				graphUpdateObject: null,
-				ownsJobDependencyTracker: true
+				ownsJobDependencyTracker: true,
+				isFinalUpdate: true
 				);
 		}
 
@@ -2302,12 +2316,14 @@ namespace Pathfinding {
 						Profiler.BeginSample("Rebuild Retained Gizmo Chunk");
 						using (var helper = GraphGizmoHelper.GetGizmoHelper(gizmos, active, hasher, redrawScope)) {
 							if (showNodeConnections) {
+								if (helper.showSearchTree) helper.builder.PushLineWidth(2);
 								for (int i = 0; i < allNodesCount; i++) {
 									// Don't bother drawing unwalkable nodes
 									if (allNodes[i].Walkable) {
 										helper.DrawConnections(allNodes[i]);
 									}
 								}
+								if (helper.showSearchTree) helper.builder.PopLineWidth();
 							}
 							if (showMeshSurface || showMeshOutline) CreateNavmeshSurfaceVisualization(allNodes, allNodesCount, helper);
 						}
@@ -2655,7 +2671,8 @@ namespace Pathfinding {
 						allocationMethod: Allocator.Persistent,
 						recalculationMode: graphUpdate.updatePhysics ? RecalculationMode.RecalculateMinimal : RecalculationMode.NoRecalculation,
 						graphUpdateObject: graphUpdate,
-						ownsJobDependencyTracker: true
+						ownsJobDependencyTracker: true,
+						isFinalUpdate: i == graphUpdates.Count - 1
 						);
 					promises.Add(promise);
 				}

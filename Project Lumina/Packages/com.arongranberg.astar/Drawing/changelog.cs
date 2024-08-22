@@ -2,6 +2,10 @@
 /// \page changelog Changelog
 /// \order{-10}
 ///
+/// - 1.7.5 (2024-08-06)
+///     - Fixed a memory leak causing references to destroyed cameras to be kept around.
+///     - Fixed <see cref="Draw.xy.SolidCircle(float3,float,float,float)"/> and <see cref="Draw.xz.SolidCircle(float3,float,float,float)"/> would render the circles in the wrong location.
+///
 /// - 1.7.4 (2024-02-13)
 ///     - Fixed compatibility with HDRP render pipeline.
 ///     - Improved performance when there are many cameras rendered during the same frame.

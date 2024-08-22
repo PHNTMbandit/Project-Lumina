@@ -1461,6 +1461,7 @@ namespace Pathfinding {
 								}
 
 								if (showNodeConnections) {
+									if (helper.showSearchTree) helper.builder.PushLineWidth(2);
 									for (int ti = startTileIndex; ti <= i; ti++) {
 										if (tiles[ti] == null) continue;
 
@@ -1469,6 +1470,7 @@ namespace Pathfinding {
 											helper.DrawConnections(tileNodes[j]);
 										}
 									}
+									if (helper.showSearchTree) helper.builder.PopLineWidth();
 								}
 							}
 						}

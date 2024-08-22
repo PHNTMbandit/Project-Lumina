@@ -785,7 +785,7 @@ namespace Pathfinding {
 
 					// Filter using the traveral provider.
 					// TODO: We need to change the APIs to allow the GetNearest method to use the traversal provider
-					if (traversalProvider != null && !traversalProvider.CanTraverse(path, globallyClosestNode)) globallyClosestNode = null;
+					if (traversalProvider != null && globallyClosestNode != null && !traversalProvider.CanTraverse(path, globallyClosestNode)) globallyClosestNode = null;
 
 					startNode = globallyClosestNode;
 					if (startNode != null) {

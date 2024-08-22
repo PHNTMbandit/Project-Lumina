@@ -335,8 +335,8 @@ namespace Pathfinding {
 			otherPathNode.fractionAlongEdge = fractionAlongEdge;
 			// Make sure the path gets information about us having visited this in-between node,
 			// even if we never add it to the heap
-			OnVisitNode(parentNodeIndex, hScore, gScore);
-			pathHandler.LogVisitedNode(parentNodeIndex, hScore, gScore);
+			OnVisitNode(pathNodeIndex, hScore, gScore);
+			pathHandler.LogVisitedNode(pathNodeIndex, hScore, gScore);
 		}
 
 		/// <summary>
@@ -898,7 +898,7 @@ namespace Pathfinding {
 		/// This takes both the NNConstraint and the ITraversalProvider into account.
 		/// </summary>
 		protected NNInfo GetNearest (Vector3 point) {
-			return AstarPath.active.GetNearest(point, traversalProvider != null ? pathHandler.constraintWrapper : nnConstraint);
+			return AstarPath.active.GetNearest(point, pathHandler.constraintWrapper.isSet ? pathHandler.constraintWrapper : nnConstraint);
 		}
 
 		/// <summary>

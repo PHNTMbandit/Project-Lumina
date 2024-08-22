@@ -32,7 +32,7 @@ namespace Pathfinding {
 	/// - <see cref="AIDestinationSetter"/> (optional, you can instead set the <see cref="destination"/> property manually)
 	///
 	/// Of note is that this component shouldn't be used with a <see cref="Seeker"/> component.
-	/// It instead has its own settings for pathfinding, which are stored in the <see cref="pathfindingSettings"/> field.
+	/// It has its own settings for pathfinding instead, which are stored in the <see cref="pathfindingSettings"/> field.
 	///
 	/// \section followerentity-features Features
 	///
@@ -100,7 +100,7 @@ namespace Pathfinding {
 	/// \inspectorField{Has Path, hasPath}
 	/// \inspectorField{Path Pending, pathPending}
 	/// \inspectorField{Destination, destination}
-	/// \inspectorField{Remaining Distance, destination}
+	/// \inspectorField{Remaining Distance, remainingDistance}
 	/// \inspectorField{Speed, velocity}
 	///
 	/// \section followerentity-ecs ECS
@@ -332,6 +332,8 @@ namespace Pathfinding {
 			}
 			world.EntityManager.SetComponentEnabled<ReadyToTraverseOffMeshLink>(entity, false);
 			world.EntityManager.SetSharedComponent(entity, new AgentMovementPlaneSource { value = movementPlaneSourceBacking });
+			this.updatePosition = updatePosition;
+			this.updateRotation = updateRotation;
 
 			// Register with the BatchedEvents system
 			// This is used not for the events, but because it keeps track of a TransformAccessArray
@@ -349,13 +351,26 @@ namespace Pathfinding {
 		void Start () {
 			var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			managedStateAccessRW.Update(entityManager);
-			movementPlaneAccessRO.Update(entityManager);
+			movementPlaneAccessRW.Update(entityManager);
 			if (!managedState.pathTracer.hasPath && AstarPath.active != null) {
 				var nearest = AstarPath.active.GetNearest(position, NNConstraint.Walkable);
 				if (nearest.node != null) {
 					var storage = entityManager.GetStorageInfo(entity);
-					var movementPlane = movementPlaneAccessRO[storage];
+					ref var movementPlane = ref movementPlaneAccessRW[storage];
+
+					// If we are using the graph's natural movement plane, we need to update our movement plane from the graph
+					// beore we start repairing the path. Otherwise the agent can get snapped to a weird point on the navmesh.
+					// Especially if this is a 2D game (XY plane), because the initial movement plane will be the XZ plane.
+					if (movementPlaneSource == MovementPlaneSource.Graph) {
+						movementPlane = new AgentMovementPlane(MovementPlaneFromGraphSystem.MovementPlaneFromGraph(nearest.node.Graph));
+						// TODO: Do we need to do a similar thing for the raycast and navmesh normal cases?
+					}
+
+					// Make the agent's path consist of a single node at the current position.
+					// This is temporary and will be replaced by the actual path when it is calculated.
+					// This allows it to be clamped to the navmesh immediately, instead of waiting for a destination to be set and a path to be calculated.
 					managedState.pathTracer.SetFromSingleNode(nearest.node, nearest.position, movementPlane.value);
+					// Make the end of the path be unset
 					managedState.pathTracer.UpdateEnd(new Vector3(float.PositiveInfinity, float.PositiveInfinity, float.PositiveInfinity), PathTracer.RepairQuality.High, movementPlane.value, null, null);
 				}
 			}
@@ -414,7 +429,15 @@ namespace Pathfinding {
 			}
 		}
 
-		/// <summary>Pathfinding settings</summary>
+		/// <summary>
+		/// %Pathfinding settings.
+		///
+		/// The settings in this struct controls how the agent calculates paths to its destination.
+		///
+		/// This is analogous to the <see cref="Seeker"/> component used for other movement scripts.
+		///
+		/// See: <see cref="PathRequestSettings"/>
+		/// </summary>
 		public ref PathRequestSettings pathfindingSettings {
 			get {
 				// Complete any job dependencies
@@ -653,6 +676,9 @@ namespace Pathfinding {
 		/// The entity internally always treats the Z axis as forward, but this property respects the <see cref="orientation"/> field. So it
 		/// will return either a rotation with the Y axis as forward, or Z axis as forward, depending on the <see cref="orientation"/> field.
 		///
+		/// Note: if <see cref="updateRotation"/> is true (which is the default), this will also set the transform's rotation.
+		/// If <see cref="updateRotation"/> is false, only the agent's internal rotation will be set.
+		///
 		/// This will return the agent's rotation even if <see cref="updateRotation"/> is false.
 		///
 		/// See: <see cref="position"/>
@@ -678,7 +704,11 @@ namespace Pathfinding {
 					localTransformAccessRW.Update(entityManager);
 					localTransformAccessRW[storage].Rotation = value;
 				} else {
-					transform.rotation = value;
+					if (updateRotation) {
+						transform.rotation = value;
+					} else {
+						Debug.LogWarning("Cannot set agent rotation because updateRotation is false and the FollowerEntity component has not been enabled yet. Therefore, the internal entity does not exist, and there's no rotation to set.", this);
+					}
 				}
 			}
 		}
@@ -1078,7 +1108,7 @@ namespace Pathfinding {
 		/// <summary>
 		/// Policy for when the agent recalculates its path.
 		///
-		/// See: <see cref="AutoRepathPolicy"/>
+		/// See: <see cref="ECS.AutoRepathPolicy"/>
 		/// </summary>
 		public ECS.AutoRepathPolicy autoRepath {
 			get {
@@ -1188,6 +1218,9 @@ namespace Pathfinding {
 		/// Determines if the character's rotation should be coupled to the Transform's rotation.
 		/// If false then all movement calculations will happen as usual, but the GameObject that this component is attached to will not rotate.
 		/// Instead, only the <see cref="rotation"/> property and the internal entity's rotation will change.
+		///
+		/// This is particularly useful for 2D games where you want the Transform to stay in the same orientation, and instead swap out the displayed
+		/// sprite to indicate the direction the character is facing.
 		///
 		/// You can enable <see cref="PIDMovement.DebugFlags"/>.Rotation in <see cref="debugFlags"/> to draw a gizmos arrow in the scene view to indicate the agent's internal rotation.
 		///
@@ -1619,13 +1652,20 @@ namespace Pathfinding {
 		///     }
 		/// }
 		/// </code>
+		///
+		/// See: calling-pathfinding (view in online documentation for working links)
+		/// See: example_path_types (view in online documentation for working links)
 		/// </summary>
 		/// <param name="path">The path to follow.</param>
 		/// <param name="updateDestinationFromPath">If true, the \reflink{destination} property will be set to the end point of the path. If false, the previous destination value will be kept.
 		///     If you pass a path which has no well defined destination before it is calculated (e.g. a MultiTargetPath or RandomPath), then the destination will be first be cleared, but once the path has been calculated, it will be set to the end point of the path.</param>
 		public void SetPath(Path path, bool updateDestinationFromPath = true) => SetPath(entity, path, updateDestinationFromPath);
 
-		/// <summary>\copydocref{SetPath(Path,bool)}</summary>
+		/// <summary>
+		/// \copydocref{SetPath(Path,bool)}
+		///
+		/// Note: This static method is used if you only have an entity reference. If you are working with a GameObject, you can use the instance method instead.
+		/// </summary>
 		public static void SetPath (Entity entity, Path path, bool updateDestinationFromPath = true) {
 			var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
 			if (!entityManager.Exists(entity)) throw new System.InvalidOperationException("Entity does not exist. You can only assign a path if the component is active and enabled.");
@@ -1809,10 +1849,8 @@ namespace Pathfinding {
 					this.pathfindingSettings = PathRequestSettings.Default;
 				}
 			}
+			migrations.AddAndMaybeRunMigration((int)FollowerEntityMigrations.MigrateMovementPlaneSource);
 			#pragma warning disable 618
-			if (migrations.AddAndMaybeRunMigration((int)FollowerEntityMigrations.MigrateMovementPlaneSource, unityThread)) {
-				this.movementPlaneSource = this.movement.movementPlaneSource;
-			}
 			if (migrations.AddAndMaybeRunMigration((int)FollowerEntityMigrations.MigrateAutoRepathPolicy, unityThread)) {
 				this.autoRepathBacking = new ECS.AutoRepathPolicy(managedState.autoRepath);
 			}

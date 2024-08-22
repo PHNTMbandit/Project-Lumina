@@ -199,7 +199,7 @@ namespace Pathfinding.Jobs {
 			}
 		}
 
-		public readonly struct LockSync {
+		public readonly struct LockSync : System.IDisposable {
 			readonly RWLock inner;
 
 			public LockSync(RWLock inner) {
@@ -209,6 +209,10 @@ namespace Pathfinding.Jobs {
 			/// <summary>Release the lock</summary>
 			public void Unlock () {
 				if (inner != null) inner.RemovePendingSync();
+			}
+
+			void System.IDisposable.Dispose () {
+				Unlock();
 			}
 		}
 	}

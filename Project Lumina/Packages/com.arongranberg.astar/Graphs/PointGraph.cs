@@ -201,12 +201,10 @@ namespace Pathfinding {
 				if (nearestNodeDistanceMode == NodeDistanceMode.Node) {
 					var minDistSqr = maxDistanceSqr;
 					var closestNode = lookupTree.GetNearest(iposition, constraint, ref minDistSqr);
-					return new NNInfo(closestNode, (Vector3)closestNode.position, minDistSqr);
+					return closestNode == null ? NNInfo.Empty : new NNInfo(closestNode, (Vector3)closestNode.position, minDistSqr);
 				} else {
 					var closestNode = lookupTree.GetNearestConnection(iposition, constraint, maximumConnectionLength);
-					if (closestNode == null) return NNInfo.Empty;
-
-					return FindClosestConnectionPoint(closestNode as PointNode, position, maxDistanceSqr);
+					return closestNode == null ? NNInfo.Empty : FindClosestConnectionPoint(closestNode as PointNode, position, maxDistanceSqr);
 				}
 			}
 
@@ -299,7 +297,7 @@ namespace Pathfinding {
 				nodes = newNodes;
 			}
 
-			node.SetPosition(position);
+			node.position = position;
 			node.GraphIndex = graphIndex;
 			node.Walkable = true;
 
@@ -663,7 +661,7 @@ namespace Pathfinding {
 									if (conn == null && (contains != validConnection)) {
 										tmpList.Clear();
 										conn = tmpList;
-										conn.AddRange(node.connections);
+										if (node.connections != null) conn.AddRange(node.connections);
 									}
 
 									if (!contains && validConnection) {

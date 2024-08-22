@@ -455,7 +455,9 @@ namespace Pathfinding {
 			// Update the gizmo mesh if necessary
 			if (!gizmos.Draw(hasher, redrawScope)) {
 				using (var helper = GraphGizmoHelper.GetGizmoHelper(gizmos, active, hasher, redrawScope)) {
+					if (helper.showSearchTree) helper.builder.PushLineWidth(2);
 					GetNodes((System.Action<GraphNode>)helper.DrawConnections);
+					if (helper.showSearchTree) helper.builder.PopLineWidth();
 				}
 			}
 
